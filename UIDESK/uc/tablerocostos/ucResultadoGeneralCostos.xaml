@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="UIDESK.uc.tablerocostos.ucResultadoGeneralCostos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions" 
+              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:local="clr-namespace:UIDESK.uc.tablerocostos"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="450"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>  
+        
+        <!--#region  barra de comandos-->
+        <Border BorderBrush="Orange" BorderThickness="1"  CornerRadius="5" >
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="Cyan">Resumen actual de costos para el año:</TextBlock>
+                <TextBox x:Name="txtAnioBuscar" Width="70" Margin="20,0,0,0" FontSize="16" BorderBrush="White" BorderThickness="1" Foreground="Orange" VerticalAlignment="Center"></TextBox>
+                <Button x:Name="btnBuscarAnio" Click="btnBuscarAnio_Click" Margin="10,0,0,0" Padding="2" Style="{StaticResource MaterialDesignFlatButton}">
+                    <materialDesign:PackIcon Kind="DatabaseSearch" Foreground="Yellow" Width="20" Height="20"/>
+                </Button>
+                <!--
+                <TextBlock x:Name="txtAnio" Margin="20,0,0,0" FontSize="14" Foreground="Orange" VerticalAlignment="Center"></TextBlock>-->
+                <Button x:Name="btnExcel" ToolTip="Exportar a Excel" Click="btnExcel_Click" Padding="4" Foreground="LightGreen" Margin="30,0,0,0"
+                        Style="{StaticResource MaterialDesignFlatButton}">
+                    <md:PackIcon Kind="MicrosoftExcel" Width="25" Height="25"/>
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <!--#region  grafico torta-->
+            
+            <lvc:PieChart Name="graficoPie" DataClick="graficoPie_DataClick" LegendLocation="Bottom"  Hoverable="True"  
+                          Grid.Row="1" DataTooltip="{x:Null}">
+                <lvc:PieChart.ChartLegend>
+                    <lvc:DefaultLegend Foreground="White"></lvc:DefaultLegend>
+                </lvc:PieChart.ChartLegend>
+            </lvc:PieChart>
+            <!--#region  de costos Totales-->
+
+        <Border BorderBrush="Orange"  Margin="10" Grid.Row="2" CornerRadius="5" BorderThickness="1">
+            <StackPanel Name="stkTotales" Orientation="Horizontal" Margin="10" >
+               
+
+                
+                    <TextBlock  Margin="20,0,0,0" Foreground="White">Total Costos Combustibles:</TextBlock>
+                <TextBlock Margin="20,0,0,0" Text="{Binding Path=CostoTotalCombustibles, StringFormat=C,ConverterCulture=es-Ar}" Foreground="#FF3CCCEC" FontSize="12" ></TextBlock>
+              
+                    <TextBlock  Margin="20,0,0,0" Foreground="White">Total Costos Inversiones:</TextBlock>
+                    <TextBlock Margin="20,0,0,0" Text="{Binding Path=CostoTotalInversiones,StringFormat=C,ConverterCulture=es-Ar}" Foreground="Green" FontSize="12"></TextBlock>
+                
+                    <TextBlock Margin="20,0,0,0" Foreground="White">Total Costos Mantenimientos</TextBlock>
+                    <TextBlock Margin="20,0,0,0" Text="{Binding Path=CostoTotalMantenimientos,StringFormat=C,ConverterCulture=es-Ar}" Foreground="Red" FontSize="12"></TextBlock>
+                
+
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</UserControl>

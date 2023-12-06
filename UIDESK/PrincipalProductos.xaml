@@ -1,0 +1,84 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.PrincipalProductos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIDESK"
+        xmlns:producto="clr-namespace:UIDESK.uc.Productos"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+        
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d"  WindowStartupLocation="CenterScreen"
+        Title="Abastecimiento" Height="700" Width="1000">
+    <mde:MaterialWindow.BorderBackgroundBrush>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black"/>
+            <GradientStop Color="#FF3DC0EC" Offset="1"/>
+        </LinearGradientBrush>
+    </mde:MaterialWindow.BorderBackgroundBrush>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <mde:AppBar Title="Abastecimiento">
+            <mde:AppBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF3DC0EC" Offset="1"/>
+                </LinearGradientBrush>
+            </mde:AppBar.Background>
+            <mde:AppBar.AppIcon>
+                <materialDesign:PackIcon Kind="Wrench" Width="30" Height="30"/>
+            </mde:AppBar.AppIcon>
+            <StackPanel Orientation="Horizontal" >
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Content="Productos" Cursor="Hand"
+                        IsChecked="False" Margin="10,0,0,0" Name="rbProductos" Click="rbProductos_Click"></RadioButton>
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Content="Proveedores" Cursor="Hand"
+                            IsChecked="False" Margin="5,0,0,0" Name="rbProveedores" Click="rbProveedores_Click" ></RadioButton>
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Content="Compras" Cursor="Hand"
+                            IsChecked="False" Margin="5,0,0,0" Name="rbCompras" Click="rbCompras_Click"></RadioButton>
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Content="Deposito" Cursor="Hand"
+                            IsChecked="False" Margin="5,0,0,0" Name="rbDeposito" Click="rbDeposito_Click"></RadioButton>
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Content="Mantenimientos" Cursor="Hand"
+                            IsChecked="False" Margin="5,0,0,0" Name="rbMantenimientos" Click="rbMantenimientos_Click" ></RadioButton>
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Content="Documentos" Cursor="Hand"
+                            IsChecked="False" Margin="5,0,0,0" Name="rbDocumentos" Click="rbDocumentos_Click" ></RadioButton>
+            </StackPanel>
+        </mde:AppBar>
+        <!--
+           <Grid x:Name="principal" Margin="0,60,0,0">
+            <TabControl Style="{StaticResource MaterialDesignTabControl}">
+                <TabItem Header="Productos">
+                    <producto:ucProductosGeneral></producto:ucProductosGeneral>
+                </TabItem>
+                <TabItem Header="Proveedores">
+                    <producto:ucProveedor></producto:ucProveedor>
+                </TabItem>
+                <TabItem Header="Gestion Stock">
+                    <producto:ucStock></producto:ucStock>
+                </TabItem>
+                <TabItem Header="Compras">
+                    <producto:ucCompras></producto:ucCompras>
+                </TabItem>
+                <TabItem Header="Mantenimientos">
+                    <producto:ucMantenimientos></producto:ucMantenimientos>
+                </TabItem>
+                <TabItem Header="Documentos">
+                    <producto:ucDocumentosProductos></producto:ucDocumentosProductos>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        -->
+
+        <ContentControl x:Name="ctc" Grid.Row="1"></ContentControl>
+    </Grid>
+</mde:MaterialWindow>

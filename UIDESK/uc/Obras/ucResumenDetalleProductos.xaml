@@ -1,0 +1,163 @@
+﻿<UserControl x:Class="UIDESK.uc.Obras.ucResumenDetalleProductos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+              xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+             xmlns:local="clr-namespace:UIDESK.uc.Obras"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="900">
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn}">
+        <Grid>
+            <materialDesign:Card Grid.Row="0" Grid.Column="0" Margin="10">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" FontWeight="Bold"
+                          Foreground="DarkGreen" Margin="10,5,0,10" FontSize="18" >Herramientas - Detalle</TextBlock>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+                        <ComboBox Name="cmbTipoProducto" Width="200" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                  materialDesign:HintAssist.Hint="Tipo Producto"
+                                 Margin="20,0,0,0" SelectionChanged="cmbTipoProducto_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Path=IdTipoP}"></TextBlock>
+                                        <Separator Width="5" Margin="5,0,0,0"></Separator>
+                                        <TextBlock Text="{Binding Path=NomTipo}" Margin="5,0,0,0"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <CheckBox x:Name="chkVerExistenciaGral" Margin="20,0,0,0" Checked="chkVerExistenciaGral_Checked"  Unchecked="chkVerExistenciaGral_Unchecked"
+                                  VerticalContentAlignment="Center">Ver solo existencias general</CheckBox>
+                        
+                        <Button x:Name="btnReset" ToolTip="Ver todos los resultados" Padding="2"   Click="btnReset_Click" 
+                                Margin="10,0,0,0" Style="{StaticResource MaterialDesignFlatButton}">
+                            <materialDesign:PackIcon Kind="LockReset" Foreground="Black"/>
+                        </Button>
+                        <Button x:Name="btnReporteExistencia" ToolTip="Reporte Existencias" Padding="3" Margin="15,0,0,0" 
+                                Click="btnReporteExistencia_Click" Style="{StaticResource MaterialDesignPaperButton}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>Imprimir</TextBlock>
+                                <materialDesign:PackIcon Kind="Printer" Foreground="Black" VerticalAlignment="Center" Margin="5,0"/>
+                            </StackPanel>
+                           
+                        </Button>
+                        <Button x:Name="btnExportarExcel" ToolTip="Exportat a Excel" Padding="3" Margin="15,0,0,0" Style="{StaticResource MaterialDesignPaperButton}"
+                                Click="btnExportarExcel_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>Exportar</TextBlock>
+                                <materialDesign:PackIcon Kind="MicrosoftExcel" Foreground="Green" VerticalAlignment="Center" Margin="5,0"/>
+                            </StackPanel>
+                            
+                        </Button>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5,5,0,5">
+                        <ComboBox Name="cmbCategoriaProducto" Width="200" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                  materialDesign:HintAssist.Hint="Categoria"
+                                 Margin="20,0,0,0" SelectionChanged="cmbCategoriaProducto_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Path=IdCateP}"></TextBlock>
+                                        <Separator Width="5" Margin="5,0,0,0"></Separator>
+                                        <TextBlock Text="{Binding Path=NomCateP}" Margin="5,0,0,0"></TextBlock>
+                                       
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <CheckBox x:Name="chkVerExistencia" Margin="20,0,0,0" Checked="chkVerExistencia_Checked" Unchecked="chkVerExistencia_Unchecked"
+                                  VerticalAlignment="Center" VerticalContentAlignment="Center">Ver existencias Categoria</CheckBox>
+                        
+                        
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3"  Orientation="Horizontal" Margin="10,20,0,10">
+                        <TextBlock FontWeight="DemiBold">Cantidad Total Categoria:</TextBlock>
+                        <TextBlock x:Name="txbCTProductos" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+
+                    <DataGrid x:Name="dgDetalleProducto" Grid.Row="4"  AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                    RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" SelectionChanged="dgDetalleProducto_SelectionChanged"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" Background="Transparent" Margin="5,0,5,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Categoria" Binding="{Binding Path=Categoria}"/>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Path=Nombre}"/>
+                            <DataGridTextColumn Header="Modelo" Binding="{Binding Path=Modelo}"/>
+                            <DataGridTextColumn Header="Marca" Binding="{Binding Path=Marca}"/>
+                            <DataGridTextColumn Header="Cod Inventario" Binding="{Binding Path=CodInventario}"/>
+                            <DataGridTextColumn Header="Cant Entregada" Binding="{Binding Path=CantEntregada}"/>
+                            <DataGridTextColumn Header="Cant Devolucion" Binding="{Binding Path=CantDevolucion}"/>
+                            <DataGridTextColumn Header="Existencia" Binding="{Binding Path=DifCantidad}"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Border Grid.Row="5" Background="Transparent" BorderBrush="DarkSeaGreen" BorderThickness="2"  CornerRadius="5">
+                        <StatusBar>
+                            <StatusBar.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="130"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                    </Grid>
+                                </ItemsPanelTemplate>
+                            </StatusBar.ItemsPanel>
+                            <StatusBarItem Grid.Column="0">
+                                <TextBlock Text="Mostrando Resultados:" />
+                            </StatusBarItem>
+                            <StatusBarItem Grid.Column="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Items:" VerticalAlignment="Center"/>
+                                    <TextBox Name="txtRegistros" IsReadOnly="True" Margin="3" Width="100"/>
+                                </StackPanel>
+                            </StatusBarItem>
+                            <Separator Grid.Column="2"/>
+                            <StatusBarItem Grid.Column="3">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Data Info" VerticalAlignment="Center"/>
+                                    <TextBox Name="txtTotalKmAcu" IsReadOnly="True" Margin="3" Width="100"/>
+                                </StackPanel>
+                            </StatusBarItem>
+                            <Separator Grid.Column="4"/>
+                            <StatusBarItem Grid.Column="5">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Data Info" VerticalAlignment="Center"/>
+                                    <TextBox Name="txtTotalHsAcu" IsReadOnly="True" Margin="3" Width="100"/>
+                                </StackPanel>
+                            </StatusBarItem>
+                        </StatusBar>
+                    </Border>
+
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+    </materialDesign:TransitioningContent>
+</UserControl>

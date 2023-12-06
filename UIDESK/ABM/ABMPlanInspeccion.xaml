@@ -1,0 +1,101 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.ABM.ABMPlanInspeccion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:UIDESK.ABM"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d" Closing="MaterialWindow_Closing"
+         WindowStartupLocation="CenterScreen"  ResizeMode="NoResize" MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Title="ABM PlanInspeccion" Height="350" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+       
+       
+        <Grid Name="grDatos" Grid.Row="0" Margin="5">
+            <materialDesign:Card UniformCornerRadius="6" Margin="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <!--Datos del vehiculo y demas-->
+
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5,5">
+                        <TextBox Text="{Binding Path=Dominio}" materialDesign:HintAssist.Hint="Dominio" 
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" Width="100"></TextBox>
+                        <TextBox Text="{Binding Path=Descripcion}" materialDesign:HintAssist.Hint="Descripcion" Margin="10,0,0,0" 
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" Width="250"></TextBox>
+                        <TextBox Text="{Binding Path=Modelo}" materialDesign:HintAssist.Hint="Modelo"  Margin="10,0,0,0"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" Width="150"></TextBox>
+                        <TextBox Text="{Binding Path=NomMarca}" materialDesign:HintAssist.Hint="Marca" Margin="10,0,0,0"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" Width="150"></TextBox>
+                    </StackPanel>
+                    <Border Grid.Row="2" Background="Transparent" BorderBrush="DarkOliveGreen" BorderThickness="1" Margin="5">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="2,5,0,5">
+                                <TextBox Name="txtTarea" materialDesign:HintAssist.Hint="Descripcion de la tarea" CharacterCasing="Upper"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Width="400"></TextBox>
+                                <ComboBox Name="cmbAtributoComparacion" Width="122" materialDesign:HintAssist.Hint="Atributo" Margin="10,0,0,0"
+                                     Style="{StaticResource MaterialDesignFloatingHintComboBox}"  SelectionChanged="CmbAtributoComparacion_SelectionChanged">
+                                    <ComboBoxItem>Kilometros</ComboBoxItem>
+                                    <ComboBoxItem>Horas</ComboBoxItem>
+                                </ComboBox>
+                                <TextBox Name="txtValorConstante" 
+                                     materialDesign:HintAssist.Hint="Valor Rango" Margin="20,0,0,0" 
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Width="100"></TextBox>
+                                <Button Name="btnCalcularValores" Padding="2" Width="25" Height="25" VerticalAlignment="Bottom" Margin="10,0,0,0"
+                                   Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+                                    Click="BtnCalcularValores_Click" IsEnabled="False">
+                                    <materialDesign:PackIcon Kind="Calculator"/>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="2,5,0,5">
+                                <TextBox Name="txtValorActualAtributo" materialDesign:HintAssist.Hint="Valor Actual Atributo" 
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" Width="150"></TextBox>
+                                <TextBox Name="txtNuevoValorComparacion" materialDesign:HintAssist.Hint="Prox. Valor de Comparacion" Margin="10,0,0,0"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" Width="160"></TextBox>
+                                <TextBox Name="txtGap" materialDesign:HintAssist.Hint="GAP" Margin="10,0,0,0"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" Width="100"/>
+                                <TextBox Name="txtFechaInicio" materialDesign:HintAssist.Hint="Inicio Tarea" Margin="90,0,0,0" 
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" Width="80"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="2,5,0,5">
+                                <TextBlock Text="Configurar Alarma(% GAP)" VerticalAlignment="Bottom"/>
+                                <ComboBox Name="cmbConfigurarAlarma" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                     materialDesign:HintAssist.Hint="Porcentaje"  Margin="5,0,0,0" Width="100" SelectionChanged="CmbConfigurarAlarma_SelectionChanged">
+                                    <ComboBoxItem >10</ComboBoxItem>
+                                    <ComboBoxItem>20</ComboBoxItem>
+                                </ComboBox>
+                                <TextBox Name="txtGapAlarma" IsReadOnly="True" Width="100" Margin="10,0,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                    materialDesign:HintAssist.Hint="Valor de Alarma" ></TextBox>
+                                <TextBlock Name="txbNombreAtributo" Margin="10,0,0,0" VerticalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                   
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+        <StackPanel Grid.Row="1" Margin="5">
+            <Button Name="btnAceptar" Style="{StaticResource MaterialDesignPaperButton}" Click="BtnAceptar_Click">Aceptar</Button>
+        </StackPanel>
+       
+    </Grid>
+</mde:MaterialWindow>

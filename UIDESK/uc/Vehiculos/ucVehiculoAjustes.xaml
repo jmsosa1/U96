@@ -1,0 +1,343 @@
+﻿<UserControl x:Class="UIDESK.uc.Vehiculos.ucVehiculoAjustes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIDESK.uc.Vehiculos"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+       
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <DockPanel>
+        <UniformGrid Columns="4" Rows="2">
+            <GroupBox Header="Combustibles" Margin="5"  materialDesign:ColorZoneAssist.Mode="Dark" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    
+                        <DataGrid Margin="3" AutoGenerateColumns="False"  Name="dgCombustibles" 
+                          Grid.Row="0"
+                  RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" 
+                             materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Path=IdCombustible}"/>
+                                <DataGridTextColumn Header="Nombre" Binding="{Binding Path=Descripcion}"/>
+                                <DataGridTextColumn Header="Precio Actual" Binding="{Binding Path=PrecioLitroActual}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Background="LightCyan">
+                            <Button ToolTip="Agregar" Height="25" Width="25" Margin="3" Name="btnAddComb" Click="btnAddComb_Click"
+                                Style="{StaticResource MaterialDesignPaperButton}" Padding="2">
+                                <materialDesign:PackIcon Kind="Plus" Foreground="Black"/>
+                            </Button>
+                            <Button ToolTip="Editar" Height="25" Width="25" Margin="3" Name="btnMComb" Click="btnMComb_Click"
+                               Style="{StaticResource MaterialDesignPaperButton}" Padding="2">
+                                <materialDesign:PackIcon Kind="Pencil" Foreground="Black"/>
+                            </Button>
+                            <Button ToolTip="Borrar" Height="25" Width="25" Margin="3" Name="btnDelComb" Click="btnDelComb_Click"
+                               Style="{StaticResource MaterialDesignPaperButton}" Padding="2">
+                                <materialDesign:PackIcon Kind="Minus" Foreground="Black"/>
+                            </Button>
+                        </StackPanel>
+                   
+
+                </Grid>
+                
+            </GroupBox>
+            <GroupBox Header="Categorias Vehiculos" Margin="5" materialDesign:ColorZoneAssist.Mode="Dark">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                        <DataGrid Margin="3" AutoGenerateColumns="False" Name="dgCategoria" 
+                        SelectionChanged="dgCategoria_SelectionChanged" Grid.Row="0"
+                  RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" 
+                             materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Path=IdCateVh}"/>
+                                <DataGridTextColumn Header="Nombre" Binding="{Binding Path=NomCate}"/>
+                                <DataGridTextColumn Header="CDP" Binding="{Binding Path=CostoDiarioParo, StringFormat=C,ConverterCulture=es-Ar}"/>
+                                <DataGridTextColumn Header="CDU" Binding="{Binding Path=CostoDiarioUso, StringFormat=C, ConverterCulture=es-Ar}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Background="LightCyan">
+                            <Button ToolTip="Agregar" Height="25" Width="25" Margin="3" Padding="2" Name="btnAddCate" Click="btnAddCate_Click"
+                                Style="{StaticResource MaterialDesignPaperButton}">
+                                <materialDesign:PackIcon Kind="Plus" Foreground="Black"/>
+                            </Button>
+                            <Button ToolTip="Editar" Height="25" Width="25" Margin="3" Name="btnMCate" Click="btnMCate_Click"
+                               Style="{StaticResource MaterialDesignPaperButton}" Padding="2" >
+                                <materialDesign:PackIcon Kind="Pencil" Foreground="Black"/>
+                            </Button>
+                            <Button ToolTip="Borrar" Height="25" Width="25" Margin="3" Name="btnDelCate" Click="btnDelCate_Click"
+                               Style="{StaticResource MaterialDesignPaperButton}" Padding="2" >
+                                <materialDesign:PackIcon Kind="Minus" Foreground="Black"/>
+                            </Button>
+                        </StackPanel>
+                   
+                </Grid>
+               
+            </GroupBox>
+            <GroupBox Header="Lineas Vehiculos" Margin="5"  materialDesign:ColorZoneAssist.Mode="Dark">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                        <DataGrid Margin="3" AutoGenerateColumns="False" Name="dgLineas" Grid.Row="0"
+                                RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" 
+                                materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                                    materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Path=IdLineaVh}"/>
+                                <DataGridTextColumn Header="Nombre" Binding="{Binding Path=NomLineaVh}"/>
+                                <DataGridTextColumn Header="Categoria" Binding="{Binding Path=IdCateVh}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Background="LightCyan">
+                            <Button ToolTip="Agregar" Height="25" Width="25" Margin="3" Name="btnAddLinea" Click="btnAddLinea_Click"
+                                Style="{StaticResource MaterialDesignPaperButton}" Padding="2">
+                                <materialDesign:PackIcon Kind="Plus" Foreground="Black"/>
+                            </Button>
+                            <Button ToolTip="Editar" Height="25" Width="25" Margin="3" Name="btnMLinea" Click="btnMLinea_Click"
+                               Style="{StaticResource MaterialDesignPaperButton}" Padding="2" >
+                                <materialDesign:PackIcon Kind="Pencil" Foreground="Black"/>
+                            </Button>
+                            <Button ToolTip="Borrar" Height="25" Width="25" Margin="3" Name="btnDelLinea" Click="btnDelLinea_Click"
+                               Style="{StaticResource MaterialDesignPaperButton}" Padding="2">
+                                <materialDesign:PackIcon Kind="Minus" Foreground="Black"/>
+                            </Button>
+                     </StackPanel>
+                    
+                </Grid>
+                
+            </GroupBox>
+            <GroupBox Header="Marcas Vehiculos" Margin="5"  materialDesign:ColorZoneAssist.Mode="Dark" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                        <DataGrid Margin="3" AutoGenerateColumns="False"  Name="dgMarcasVh" Grid.Row="0"
+                            RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" 
+                             materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                                materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Path=IdMarca}"/>
+                                <DataGridTextColumn Header="Nombre" Binding="{Binding Path=NombreMarca}"/>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                   
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Background="LightCyan">
+                            <Button ToolTip="Agregar" Height="25" Width="25" Margin="3" Name="btnAddMarcaVh" Click="BtnAddMarcaVh_Click"
+                                Style="{StaticResource MaterialDesignPaperButton}" Padding="2">
+                                <materialDesign:PackIcon Kind="Plus" Foreground="Black"/>
+                            </Button>
+                            <Button ToolTip="Editar" Height="25" Width="25" Margin="3" Name="btnMMarcaVh" Click="BtnMMarcaVh_Click"
+                               Style="{StaticResource MaterialDesignPaperButton}" Padding="2" >
+                                <materialDesign:PackIcon Kind="Pencil" Foreground="Black"/>
+                            </Button>
+                            <Button ToolTip="Borrar" Height="25" Width="25" Margin="3" Name="btnDelMarcaVh" Click="BtnDelMarcaVh_Click"
+                               Style="{StaticResource MaterialDesignPaperButton}" Padding="2" >
+                                <materialDesign:PackIcon Kind="Minus" Foreground="Black"/>
+                            </Button>
+                        </StackPanel>
+                    
+                </Grid>
+                
+            </GroupBox>
+            <GroupBox Header="Documentacion de Vehiculos" Margin="5"  materialDesign:ColorZoneAssist.Mode="Dark" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                        <DataGrid Margin="3" AutoGenerateColumns="False"  Name="dgDocuVh" 
+                           Grid.Row="0"
+                  RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" 
+                             materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Path=IdDocuVH}"/>
+                                <DataGridTextColumn Header="Nombre" Binding="{Binding Path=Descripcion}"/>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Background="LightCyan">
+                            <Button ToolTip="Agregar" Height="25" Width="25" Margin="3" Name="btnAddDocu" Click="btnAddDocu_Click"
+                                Style="{StaticResource MaterialDesignPaperButton}" Padding="2">
+                                <materialDesign:PackIcon Kind="Plus" Foreground="Black"/>
+                            </Button>
+                            <Button ToolTip="Editar" Height="25" Width="25" Margin="3" Name="btnEditDocu" Click="btnEditDocu_Click"
+                               Style="{StaticResource MaterialDesignPaperButton}" Padding="2" >
+                                <materialDesign:PackIcon Kind="Pencil" Foreground="Black"/>
+                            </Button>
+                            <Button ToolTip="Borrar" Height="25" Width="25" Margin="3" Name="btnDelDocu" Click="btnDelDocu_Click"
+                               Style="{StaticResource MaterialDesignPaperButton}" Padding="2" >
+                                <materialDesign:PackIcon Kind="Minus" Foreground="Black"/>
+                            </Button>
+                        </StackPanel>
+                    
+                </Grid>
+                
+            </GroupBox>
+            <GroupBox Header="Localidades" Margin="5"  materialDesign:ColorZoneAssist.Mode="Dark">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                        <ComboBox Name="cmbProvincias" Grid.Row="0" Margin="3" materialDesign:HintAssist.Hint="Seleccione Provincia"
+                             
+                              SelectionChanged="cmbProvincias_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Path=IdProvincia}" Margin="3"></TextBlock>
+                                        <Separator Width="3" Background="OrangeRed" Margin="2"/>
+                                        <TextBlock Text="{Binding Path=Nombre}" Margin="3"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <DataGrid Margin="3"  Grid.Row="1" AutoGenerateColumns="False" Name="dgLocalidades" 
+                  SelectionChanged="dgLocalidades_SelectionChanged"
+                  RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" 
+                             materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Path=IdLocalidad}"/>
+                                <DataGridTextColumn Header="Nombre" Binding="{Binding Path=Nombre}"/>
+                                <DataGridTextColumn Header="CP" Binding="{Binding Path=CP}"/>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2"  Background="LightCyan">
+                            <Button ToolTip="Agregar" Height="25" Width="25" Margin="3" Name="btnAddLocalidad" Click="btnAddLocalidad_Click"
+                                Style="{StaticResource MaterialDesignPaperButton}" Padding="2">
+                                <materialDesign:PackIcon Kind="Plus" Foreground="Black"/>
+                            </Button>
+                            <Button ToolTip="Editar" Height="25" Width="25" Margin="3" Name="btnMLocalidad" Click="btnMLocalidad_Click"
+                               Style="{StaticResource MaterialDesignPaperButton}" Padding="2" >
+                                <materialDesign:PackIcon Kind="Pencil" Foreground="Black"/>
+                            </Button>
+                        </StackPanel>
+                   
+                </Grid>
+                
+            </GroupBox>
+            <GroupBox Header="Moneda Extranjera" Margin="5"  materialDesign:ColorZoneAssist.Mode="Dark">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel Orientation="Horizontal">
+                            <TextBlock>Año:</TextBlock>
+                        <TextBlock x:Name="txbAnioMoneda"></TextBlock>
+                        </StackPanel>
+                    <DataGrid Margin="3" AutoGenerateColumns="False" Name="dgValorMoneda" Grid.Row="1"
+                                      SelectionChanged="dgValorMoneda_SelectionChanged"
+                                    RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" 
+                                    materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                                     materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Mes" Binding="{Binding Path=MesValor}"/>
+                                <DataGridTextColumn Header="Valor" Binding="{Binding Path=Valor,StringFormat=C,ConverterCulture=es-AR}"/>
+                                <DataGridTextColumn Header="Variacion (ultimo valor)" Binding="{Binding Path=Variacion,StringFormat=N,ConverterCulture=es-AR}"/>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Background="LightCyan">
+                            <Button ToolTip="Agregar" Height="25" Width="25" Margin="3" Name="btnAddValor" Click="btnAddValor_Click"
+                                Style="{StaticResource MaterialDesignPaperButton}" Padding="2">
+                                <materialDesign:PackIcon Kind="Plus" Foreground="Black"/>
+                            </Button>
+                            <Button ToolTip="Editar" Height="25" Width="25" Margin="3" Name="btnMValor" Click="btnMValor_Click"
+                               Style="{StaticResource MaterialDesignPaperButton}" Padding="2" >
+                                <materialDesign:PackIcon Kind="Pencil" Foreground="Black"/>
+                            </Button>
+                            <Button ToolTip="Borrar" Height="25" Width="25" Margin="3" Name="btnBorrarValor" Click="btnBorrarValor_Click"
+                               Style="{StaticResource MaterialDesignPaperButton}" Padding="2" >
+                                <materialDesign:PackIcon Kind="Minus" Foreground="Black"/>
+                            </Button>
+                        </StackPanel>
+                    
+
+                </Grid>
+              
+            </GroupBox>
+            <GroupBox Header="Coeficientes"  Margin="5"  materialDesign:ColorZoneAssist.Mode="Dark">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock>Lista</TextBlock>
+                       
+                    </StackPanel>
+                    <DataGrid Margin="3" AutoGenerateColumns="False" Name="dgCof" Grid.Row="1"
+                                      SelectionChanged="dgCof_SelectionChanged"
+                                    RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" 
+                                    materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                                     materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Path=NomCof}"/>
+                            <DataGridTextColumn Header="Min" Binding="{Binding Path=ValorMin,StringFormat=N,ConverterCulture=es-AR}"/>
+                            <DataGridTextColumn Header="Medio" Binding="{Binding Path=ValorMed,StringFormat=N,ConverterCulture=es-AR}"/>
+                            <DataGridTextColumn Header="Max" Binding="{ Binding Path=ValorMax ,StringFormat=N,ConverterCulture=es-Ar}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Background="LightCyan">
+                        <Button ToolTip="Agregar" Height="25" Width="25" Margin="3" Name="btnAddRegistro" Click="btnAddRegistro_Click"
+                                Style="{StaticResource MaterialDesignPaperButton}" Padding="2">
+                            <materialDesign:PackIcon Kind="Plus" Foreground="Black"/>
+                        </Button>
+                        <Button ToolTip="Marcar como Activo" Height="25" Width="25" Margin="3" Name="btnEdit" Click="btnEdit_Click"
+                               Style="{StaticResource MaterialDesignPaperButton}" Padding="2" >
+                            <materialDesign:PackIcon Kind="Pencil" Foreground="Black"/>
+                        </Button>
+                        <Button ToolTip="Borrar" Height="25" Width="25" Margin="3" Name="btnDelRegistro" Click="btnDelRegistro_Click"
+                               Style="{StaticResource MaterialDesignPaperButton}" Padding="2" >
+                            <materialDesign:PackIcon Kind="Minus" Foreground="Black"/>
+                        </Button>
+
+                      
+                       
+
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+
+        </UniformGrid>
+    </DockPanel>
+</UserControl>

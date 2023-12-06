@@ -1,0 +1,5 @@
+﻿RSF-A - Reglas de situacion flota - Atomoviles
+Situacion  - condicion km
+"buena"		- <= 200.000
+"regular"	 - > 200.000 y < 300.000
+"mala"		- > 300.000

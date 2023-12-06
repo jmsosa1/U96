@@ -1,0 +1,43 @@
+﻿<Window x:Class="UIDESK.uc.gestion.ObservacionActividad"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIDESK.uc.gestion"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None" WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="ObservacionActividad" Height="200" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="Auto"/>
+            
+        </Grid.RowDefinitions>
+       
+        <Grid Grid.Row="0">
+            <materialDesign:ColorZone Background="DimGray">
+                <TextBlock Text="---- Actividad - Agregar Observacion" Style="{StaticResource MaterialDesignBody2TextBlock}" Name="txtOperacion"
+                        Foreground="Wheat"
+                           HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,20,0,10"/>
+            </materialDesign:ColorZone>
+        </Grid>
+        <Grid Name="grdObservacion" Grid.Row="1">
+            <TextBox Name="txtObservacion" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Observacion a la actividad"
+                HorizontalAlignment="Left"  Margin="10,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="450"/>
+            <Button Name="btnAgregar" Click="btnAgregar_Click"
+                Content="Agregar" HorizontalAlignment="Left" Margin="187,86,0,0" VerticalAlignment="Top" Width="100"/>
+            <Button Name="btnCancelar" Click="btnCancelar_Click"
+                Content="Cancelar" HorizontalAlignment="Left" Margin="360,86,0,0" VerticalAlignment="Top" Width="100"/>
+
+        </Grid>
+    </Grid>
+</Window>

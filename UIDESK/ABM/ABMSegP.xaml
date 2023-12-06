@@ -1,0 +1,53 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.ABM.ABMSegP"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIDESK.ABM"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+           xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+         WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="ABMSegP" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+       
+       
+            <Grid Grid.Row="1" Name="grd1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+                <TextBox x:Name="txtNombreCate" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="200"
+                         materialDesign:HintAssist.Hint="Categoria" HorizontalAlignment="Left" IsReadOnly="True" Margin="20,0,0,0"/>
+                <TextBox x:Name="txtNombreSeg" Grid.Row="1" Text="{Binding Path=NombreSeg}"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="200"
+                         materialDesign:HintAssist.Hint="Segmento" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+            <TextBox x:Name="txtPrecioSeg" Grid.Row="2" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="200"
+                         materialDesign:HintAssist.Hint="Costo Reposicion" HorizontalAlignment="Left" Margin="20,0,0,0"
+                     Text="{Binding Path=CostoReposicion,StringFormat=C,ConverterCulture=es-AR}"/>
+
+        </Grid>
+        <StackPanel Grid.Row="2">
+            <StackPanel Orientation="Horizontal"  Margin="10">
+                <Button x:Name="btnAceptar"  Click="btnAceptar_Click" Background="DarkBlue" Foreground="White" Content="Guardar">
+                   
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</mde:MaterialWindow>

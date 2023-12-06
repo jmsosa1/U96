@@ -1,0 +1,139 @@
+﻿<Window x:Class="UIDESK.ABM.ABMTarea"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIDESK.ABM"
+        xmlns:validaciones="clr-namespace:UIDESK.validacion"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None" WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="ABMTarea" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="Transparent" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+            <Grid>
+                <materialDesign:ColorZone Mode="PrimaryDark">
+                    <StackPanel HorizontalAlignment="Right">
+                        <Button Height="30" Width="30" Name="btnCerrar" Click="btnCerrar_Click" ToolTip="Cerrar"
+                                materialDesign:ShadowAssist.ShadowDepth="Depth3" Padding="0" IsCancel="True">
+                            <materialDesign:PackIcon Kind="WindowClose"/>
+                        </Button>
+                    </StackPanel>
+                </materialDesign:ColorZone>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="1">
+            <materialDesign:ColorZone Background="DimGray">
+                <TextBlock Text="ABM Tareas" Style="{StaticResource MaterialDesignBody2TextBlock}" Name="txtOperacion"
+                        Foreground="Wheat"
+                           HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,20,0,10"/>
+            </materialDesign:ColorZone>
+        </Grid>
+        <materialDesign:DrawerHost Grid.Row="2">
+            <!--panel de abajo-->
+            <materialDesign:DrawerHost.BottomDrawerContent>
+                <Grid Name="grdItemDetalle">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" Grid.Row="0"
+                               Margin="5">Detalle Activididad </TextBlock>
+                   
+                    <TextBox Name="txtDescriActividad" Grid.Row="2" Width="400"  Margin="10" materialDesign:HintAssist.Hint="Descripcion Actividad"
+                            HorizontalAlignment="Left"  CharacterCasing="Upper"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            Text="{Binding Path=DescriTarea}" GotFocus="txtDescriActividad_GotFocus" ></TextBox>
+                   
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="5">
+                        <Button Name="btnCerrarDrawBotton" Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                CommandParameter="{x:Static Dock.Bottom}" Margin="5"
+                                Style="{StaticResource MaterialDesignFlatButton}">Cerrar</Button>
+                        <Button Name="btnSeleccionarDrawBotton" Click="btnSeleccionarDrawBotton_Click" Margin="5" 
+                                Style="{StaticResource MaterialDesignFlatButton}" >Seleccionar</Button>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:DrawerHost.BottomDrawerContent>
+
+            <materialDesign:Card UniformCornerRadius="6" Margin="5">
+                <Grid  Name="grdDatosTarea">
+                    <TextBox Name="txtAlta" Text="{Binding Path=AltaF, StringFormat=d,ConverterCulture=es-AR}"
+                materialDesign:HintAssist.Hint="Fecha Alta" IsReadOnly="True"
+                HorizontalAlignment="Left"  Margin="10,10,0,0" TextWrapping="Wrap" 
+               Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Top" Width="120"/>
+                    <TextBox Name="txtCreador" Text="{Binding Path=NombreCreador}"
+                materialDesign:HintAssist.Hint="Creado por" IsReadOnly="True"
+                HorizontalAlignment="Left"  Margin="135,10,0,0" TextWrapping="Wrap" 
+                Style="{StaticResource ResourceKey=MaterialDesignFloatingHintTextBox}" VerticalAlignment="Top" Width="200"/>
+                    <TextBox Name="txtEstadoTarea" Text="{Binding Path=EstadoTarea}"
+                materialDesign:HintAssist.Hint="Estado tarea" IsReadOnly="True"
+                HorizontalAlignment="Left"  Margin="600,10,0,0" TextWrapping="Wrap" 
+                Style="{StaticResource ResourceKey=MaterialDesignFloatingHintTextBox}" VerticalAlignment="Top" Width="120"/>
+                    <TextBox Name="txtTitulo" Text="{Binding Path=TituloTarea}" CharacterCasing="Upper"
+                materialDesign:HintAssist.Hint="Titulo" TabIndex="1" GotFocus="txtTitulo_GotFocus"
+                HorizontalAlignment="Left"  Margin="10,55,0,0" TextWrapping="Wrap" 
+                Style="{StaticResource ResourceKey=MaterialDesignFloatingHintTextBox}" VerticalAlignment="Top" Width="420"/>
+                    <ComboBox Name="cmbImportancia" 
+                Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Importancia" 
+                HorizontalAlignment="Left" Margin="458,52,0,0" VerticalAlignment="Top" Width="142">
+                        <ComboBox.Items>
+                            <ComboBoxItem>Alta</ComboBoxItem>
+                            <ComboBoxItem>Normal</ComboBoxItem>
+                            <ComboBoxItem>Baja</ComboBoxItem>
+                        </ComboBox.Items>
+                    </ComboBox>
+                    <DatePicker Name="dtpFNecesidad"
+                materialDesign:HintAssist.Hint="Fecha Necesidad"
+                HorizontalAlignment="Left" Margin="644,67,0,0" VerticalAlignment="Top" Width="125"/>
+                    <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}"
+                HorizontalAlignment="Left" Margin="10,119,0,0" TextWrapping="Wrap" Text="Lista de Actividades de la tarea" VerticalAlignment="Top"/>
+
+                    <DataGrid Name="dgActividades" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                         VerticalScrollBarVisibility="Auto" SelectionMode="Single"
+                           materialDesign:DataGridAssist.CellPadding="4,2,2,2" IsReadOnly="True"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2"
+                HorizontalAlignment="Left" Height="305" Margin="10,151,0,0" VerticalAlignment="Top" Width="628" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Item" Binding="{Binding Path=NumItem}" Width="100"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Descripcion" Width="350" Binding="{Binding Path=DescriTarea}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Estado" Width="80" Binding="{Binding Path=EstadoItem }"/>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Name="btnEliminarItem" Height="15" Width="15" Click="btnEliminarItem_Click">
+                                            <materialDesign:PackIcon Kind="Delete"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Name="btnOperacion" Click="btnOperacion_Click" Background="DarkBlue" Foreground="White"
+                Content="Operacion" HorizontalAlignment="Left" Margin="650,443,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Button Name="btnAddItem" ToolTip="Agregra una actividad" Style="{StaticResource MaterialDesignFlatButton}" Background="DarkBlue" Foreground="White"
+                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"   CommandParameter="{x:Static Dock.Bottom}"
+                 HorizontalAlignment="Left" Margin="666,181,0,0" VerticalAlignment="Top" Width="50" >
+                        <materialDesign:PackIcon Kind="PlusOne"  Height="20" Width="20"/>
+                    </Button>
+
+                </Grid>
+            </materialDesign:Card>
+           
+        </materialDesign:DrawerHost>
+    </Grid>
+</Window>

@@ -1,0 +1,192 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.uc.Productos.RegistrarMantenimiento"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIDESK.uc.Productos"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+          xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+         
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d"  WindowStartupLocation="CenterScreen" BorderThickness="1" BorderBrush="Black" ResizeMode="NoResize"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Title="Registrar Mantenimiento" Height="600" Width="850">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+
+            <RowDefinition Height="*"/>
+           
+        </Grid.RowDefinitions>
+        <!--<Grid Grid.Row="0" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="txbOperacion" Grid.Column="0"   FontFamily="Helvetica" FontWeight="Light" FontStyle="Normal" FontSize="20" Foreground="BlueViolet">Registrar Mantenimiento</TextBlock>
+            <Button Name="btnCancelar"  Grid.Column="1" Click="btnCerrar_Click"  Background="OrangeRed" Foreground="White"  
+                    Style="{StaticResource MaterialDesignPaperButton}">
+                <materialDesign:PackIcon Kind="Close"/>
+            </Button>
+        </Grid>-->
+        <materialDesign:DrawerHost Grid.Row="1" Name="dwrBusqueda">
+            <!--panel izquierda seleccionar un proveedor-->
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0">
+                        <TextBox Name="txtBuscarProve" CharacterCasing="Upper" materialDesign:HintAssist.Hint="Proveedor a Buscar"
+                                 Width="200" Margin="5"  ></TextBox>
+                        <Button Name="btnBuscarProveedor" Padding="2" Click="BtnBuscarProveedor_Click" Margin="5">
+                            <materialDesign:PackIcon Kind="SearchWeb"/>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Row="1">
+                        <TextBlock Text="Lista de Proveedores Encontrados" Margin="5,20,0,0"/>
+                        <Separator></Separator>
+                        <ListBox Name="lstResultadoBusquedaProve" Margin="5" Width="250" Height="250">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Path=IdProve}" Margin="3" VerticalAlignment="Center"/>
+                                        <Separator Width="5" Background="OrangeRed" Margin="5"/>
+                                        <TextBlock Text="{Binding Path=RazonSocial}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2">
+                        <Button Name="btnCerrarDrawLeft" Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                CommandParameter="{x:Static Dock.Left}"
+                                Style="{StaticResource MaterialDesignFlatButton}">Cerrar</Button>
+                        <Button Name="btnSeleccionarDrawLeft" Click="btnSeleccionarDrawLeft_Click" 
+                                Style="{StaticResource MaterialDesignFlatButton}" >Seleccionar</Button>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            <Grid  Name="grdPrincipal" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <materialDesign:Card UniformCornerRadius="6" Margin="5" Grid.Row="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--Datos del producto-->
+                        <StackPanel Grid.Row="0" Margin="5">
+                            <TextBlock Text="Datos del Producto" FontSize="14" FontFamily="Helvetica" FontWeight="Bold"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5" Name="stpProducto">
+                            <!--datos de la herramienta-->
+                            <TextBox x:Name="txtIdProducto" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Id"
+                                    Width="70" Text="{Binding Path=IdProducto}" IsReadOnly="True"></TextBox>
+                            <TextBox x:Name="txtNombre" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nombre"
+                                    Width="250" Margin="5,0,0,0" Text="{Binding Path=Nombre}" IsReadOnly="True"></TextBox>
+                            <TextBox x:Name="txtMarca" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Marca"
+                                    Width="150" Margin="5,0,0,0" Text="{Binding Path=Marca}" IsReadOnly="True"></TextBox>
+                            <TextBox x:Name="txtModelo" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Modelo"
+                                    Width="130" Margin="5,0,0,0" Text="{Binding Path=Modelo}" IsReadOnly="True"></TextBox>
+                            <TextBox x:Name="txtCodInventario" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Modelo"
+                                    Width="130" Margin="5,0,0,0" Text="{Binding Path=CodInventario}" IsReadOnly="True"></TextBox>
+                        </StackPanel>
+                        <!--Datos del proveedor-->
+                        <StackPanel Grid.Row="2" Margin="5" Orientation="Horizontal">
+                            <TextBlock Text="Datos del proveedor" FontSize="14" FontFamily="Helvetica" FontWeight="Bold"></TextBlock>
+                           
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="3">
+                            <Button Name="btnBuscarProve"  ToolTip="Abrir panel de busqueda de proveedor" TabIndex="1"
+                                Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"  CommandParameter="{x:Static Dock.Left}"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                VerticalAlignment="Center" Margin="5,0,0,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="PlusCircle"/>
+                                    <TextBlock Text="Proveedor" Margin="5,0,0,0" />
+                                </StackPanel>
+                            </Button>
+                            <TextBox Name="txtIdProve" Text="{Binding Path=IdProve}" Margin="5,0,0,0"  
+                                    VerticalAlignment="Center" IsEnabled="False"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="ID" 
+                                Width="60" TabIndex="2"/>
+                            <TextBlock Name="txbRazonSocial" Text="Razon Social" Margin="5,0,0,0" VerticalAlignment="Center" Width="200" FontStyle="Italic"/>
+                            <TextBox x:Name="txtIdRma" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="RMA" 
+                                    Width="80" KeyDown="txtIdRma_KeyDown"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="5">
+                            <TextBox Name="txtFactura" Text="{Binding Path=NumFacturaProve}" 
+                         materialDesign:HintAssist.Hint="Factura" GotFocus="txtFactura_GotFocus"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 Margin="5,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Center"  Width="100" TabIndex="4"/>
+
+                            <TextBox Name="txtRemito" Text="{Binding Path=NumRemitoProve}"  
+                         materialDesign:HintAssist.Hint="Remito" GotFocus="txtRemito_GotFocus"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                  Margin="10,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Center" Width="100" TabIndex="5"/>
+
+                            <DatePicker Name="dtpFechaFactura" Text="{Binding Path=FechaFactura,StringFormat=d,ConverterCulture=es-AR}"
+                                        materialDesign:HintAssist.Hint="F. Factura"   Margin="20,0,0,0" VerticalAlignment="Bottom" Width="100" TabIndex="6"/>
+
+                            <DatePicker Name="dtpFechaRemito" Text="{Binding Path=FechaRemito,StringFormat=d,ConverterCulture=es-Ar}"
+                                        materialDesign:HintAssist.Hint="F. Remito"  HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Bottom" Width="100" TabIndex="7"/>
+                            <TextBox Name="txtOC" Text="{Binding Path=OCProve}" 
+                         materialDesign:HintAssist.Hint="OC" GotFocus="txtOC_GotFocus"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Margin="5,0,0,0"   VerticalAlignment="Center" Width="100" TabIndex="8"/>
+
+                            <TextBox Name="txtImporte" Text="{Binding Path=ImporteFactura, StringFormat=C,ConverterCulture=es-AR}"  
+                         materialDesign:HintAssist.Hint="Importe" GotFocus="txtImporte_GotFocus"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         HorizontalAlignment="Left"  Margin="20,0,0,0"   VerticalAlignment="Center" Width="120" TabIndex="9"/>
+                        </StackPanel>
+                        <!--Datos de la obra-->
+                        <StackPanel Grid.Row="5" Margin="5">
+                            <TextBlock Text="Datos de Obra" FontSize="14" FontFamily="Helvetica" FontWeight="Bold"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="6">
+                            <TextBox x:Name="txtImputacion" Width="70" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Imputacion"
+                                     TabIndex="3" KeyDown="txtImputacion_KeyDown" Margin="5,0,0,0"/>
+                            <TextBlock Name="txbNombreObra" Text="Cliente Obra" Margin="20,0,0,0" VerticalAlignment="Bottom" FontStyle="Italic" Width="200"/>
+                            <TextBlock Name="txbClienteObra" Text="Cliente Obra" Margin="20,0,0,0" VerticalAlignment="Bottom" FontStyle="Italic" Width="100"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="7" Margin="5,10,0,0">
+                            <TextBlock Text="Detalle del Mantenimiento" FontSize="14" FontFamily="Helvetica" FontWeight="Bold"></TextBlock>
+                        </StackPanel>
+                        <Border Grid.Row="8" Margin="10" BorderThickness="1" BorderBrush="DeepSkyBlue">
+                            <StackPanel>
+                                <TextBox x:Name="txtDetalle" AcceptsReturn="True" AcceptsTab="True" Height="150"  FontSize="12" FontFamily="Helvetica" TabIndex="10"
+                                        CharacterCasing="Upper"  ></TextBox>
+                            </StackPanel>
+                        </Border>
+                        
+                    </Grid>
+                </materialDesign:Card>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5,10,0,0" HorizontalAlignment="Right">
+                    <Button x:Name="btnCancelar2" Background="DarkBlue" Foreground="White" Click="btnCerrar_Click" >Cancelar </Button>
+                    <Button x:Name="btnAceptar" Margin="10,0,0,0" Background="DarkBlue" Foreground="White" Click="btnAceptar_Click">Aceptar</Button>
+                </StackPanel>
+            </Grid>
+        </materialDesign:DrawerHost>
+       
+    </Grid>
+</mde:MaterialWindow>

@@ -1,0 +1,115 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.TableroControlCostos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+         xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions" 
+        xmlns:local="clr-namespace:UIDESK"
+        AllowsTransparency="False" BorderBackgroundBrush="#272537" BorderForegroundBrush="White"
+        mc:Ignorable="d"
+        Title="Tablero CC" Height="600" Width="920">
+    <!--<mde:MaterialWindow.TitleTemplate>
+        <DataTemplate>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource MaterialDesignTextBlock}" Text="{Binding Path=Title, RelativeSource={RelativeSource AncestorType={x:Type mde:MaterialWindow}}}" Margin="8,0,0,0" />
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Stretch">
+                    <Button Style="{StaticResource MaterialDesignFlatLightButton}" >
+                        <md:PackIcon Style="{StaticResource WindowButtonIconStyle}" Kind="Github" />
+                    </Button>
+                    <Button Style="{StaticResource WindowButtonStyle}" >
+                        <md:PackIcon Style="{StaticResource WindowButtonIconStyle}" Kind="HelpCircle" />
+                    </Button>
+                    <Border Width="1" VerticalAlignment="Stretch" SnapsToDevicePixels="True" Margin="8,4,8,4"
+                            Background="{Binding Path=BorderForegroundBrush, RelativeSource={RelativeSource AncestorType={x:Type mde:MaterialWindow}}}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </mde:MaterialWindow.TitleTemplate>-->
+    <Border Background="#272537" CornerRadius="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="190" />
+                <ColumnDefinition  Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="SAHMV6" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White"
+                       FontSize="22" Margin="20,0,0,0"></TextBlock>
+        
+            <Border Grid.Row="1" Grid.Column="0" Background="#FF061D3A">
+                <StackPanel>
+                    <!--#region Mantenimientos Nav-->
+                    <StackPanel>
+                        
+                        <ListView x:Name="lsvNavMante" Grid.Row="1" SelectionChanged="lsvNavMante_SelectionChanged" Margin="5">
+                            <ListViewItem Name="IMHome" Cursor="Hand" >
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="Home" Foreground="White"></md:PackIcon>
+                                    <TextBlock Foreground="White"  VerticalAlignment="Center" Margin="10,0,0,0">Inicio</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Name="IMComparativaAnios" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="ChartBar" Foreground="White"></md:PackIcon>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Progresion Interanual</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Name="IMProgresionMensual" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="ChartBubble" Foreground="White"></md:PackIcon>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Progresion Mensual</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                           
+                            
+                            <ListViewItem Name="IMCostoInversiones" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="CurrencyUsd" Foreground="White"></md:PackIcon>
+                                   
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Costos Inversiones</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                          
+                            <ListViewItem Name="IMCostoMantenimientos" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="CurrencyUsd" Foreground="White"></md:PackIcon>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Costos Mantenimientos</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                           
+                        </ListView>
+                    </StackPanel>
+                    <!--#region consumos Nav-->
+                 
+
+                </StackPanel>
+
+            </Border>
+                <Border Grid.Column="1" Background="Transparent" BorderBrush="White" BorderThickness="1" CornerRadius="5" 
+                    Width="450" Height="40" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Tableros de Costos -" Foreground="DarkCyan"  FontWeight="Bold"
+                          FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" ></TextBlock>
+                    <TextBlock x:Name="txbTitulo" Margin="10,0,0,0" Foreground="OrangeRed" VerticalAlignment="Center"
+                              FontSize="16" ></TextBlock>
+                </StackPanel>
+               
+               
+            </Border>
+
+
+            <ScrollViewer Grid.Column="1" Grid.Row="1" >
+                <ContentControl x:Name="cc"  Margin="5,0"></ContentControl>
+
+            </ScrollViewer>
+           
+        </Grid>
+    </Border>
+</mde:MaterialWindow>

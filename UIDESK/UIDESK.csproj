@@ -1,0 +1,2197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{27DC0B04-367E-4822-945C-6F77B2BFDE08}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>UIDESK</RootNamespace>
+    <AssemblyName>SAHMV6</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <PublishUrl>D:\InstallSAHMV6\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>\\PCDESARROLLO\InstallSAHMV6\</InstallUrl>
+    <UpdateUrl>\\PCDesarrollo\InstallSahmv6\</UpdateUrl>
+    <ProductName>SAHM V6</ProductName>
+    <PublisherName>Los Veloces</PublisherName>
+    <SuiteName>SAHM V6</SuiteName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <TrustUrlParameters>true</TrustUrlParameters>
+    <ApplicationRevision>21</ApplicationRevision>
+    <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>true</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationIcon>tools_114406 .ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>0757D777139FD9B122CF2101E6FD02E3496940A2</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>UIDESK_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <StartupObject>UIDESK.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommunityToolkit.Mvvm, Version=8.2.0.0, Culture=neutral, PublicKeyToken=4aff67a105548ee2, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommunityToolkit.Mvvm.8.2.1\lib\netstandard2.0\CommunityToolkit.Mvvm.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=6.2.3.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.6.2.3\lib\net462\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=6.1.1.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.6.1.1\lib\net462\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing, Version=6.1.1.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.System.Drawing.6.1.1\lib\net462\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="HarfBuzzSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\HarfBuzzSharp.7.3.0\lib\net462\HarfBuzzSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveChartsCore, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc92a3e13d40c573, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveChartsCore.2.0.0-beta.802\lib\netstandard2.0\LiveChartsCore.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveChartsCore.SkiaSharpView, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc92a3e13d40c573, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveChartsCore.SkiaSharpView.2.0.0-beta.802\lib\netstandard2.0\LiveChartsCore.SkiaSharpView.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveChartsCore.SkiaSharpView.WPF, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc92a3e13d40c573, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveChartsCore.SkiaSharpView.WPF.2.0.0-beta.802\lib\net462\LiveChartsCore.SkiaSharpView.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=2.1.2.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.2.1.2\lib\net462\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignExtensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c5ebccebe084d64f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignExtensions.4.0.0-a01\lib\net45\MaterialDesignExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=4.8.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.4.8.0\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=2.3.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.2.3.2\lib\net462\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Pri.LongPath, Version=2.0.53.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pri.LongPath.2.0.53\lib\net45\Pri.LongPath.dll</HintPath>
+    </Reference>
+    <Reference Include="QuestPDF, Version=2023.10.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuestPDF.2023.10.2\lib\netstandard2.0\QuestPDF.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="SkiaSharp, Version=2.88.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\SkiaSharp.2.88.6\lib\net462\SkiaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp.HarfBuzz, Version=2.88.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\SkiaSharp.HarfBuzz.2.88.6\lib\net462\SkiaSharp.HarfBuzz.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp.Views.Desktop.Common, Version=2.88.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\SkiaSharp.Views.Desktop.Common.2.88.3\lib\net462\SkiaSharp.Views.Desktop.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp.Views.WPF, Version=2.88.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\SkiaSharp.Views.WPF.2.88.3\lib\net462\SkiaSharp.Views.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.4.5.1\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ABM\ABMAjuste.xaml.cs">
+      <DependentUpon>ABMAjuste.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMAsignacion.xaml.cs">
+      <DependentUpon>ABMAsignacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMAutorizacion.xaml.cs">
+      <DependentUpon>ABMAutorizacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMCalibracion.xaml.cs">
+      <DependentUpon>ABMCalibracion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMCategoria.xaml.cs">
+      <DependentUpon>ABMCategoria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMCateP.xaml.cs">
+      <DependentUpon>ABMCateP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMCoeficiente.xaml.cs">
+      <DependentUpon>ABMCoeficiente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMCombustible.xaml.cs">
+      <DependentUpon>ABMCombustible.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMCompraP.xaml.cs">
+      <DependentUpon>ABMCompraP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMDocumento.xaml.cs">
+      <DependentUpon>ABMDocumento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMDocVh.xaml.cs">
+      <DependentUpon>ABMDocVh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMEmpleado.xaml.cs">
+      <DependentUpon>ABMEmpleado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMFoto.xaml.cs">
+      <DependentUpon>ABMFoto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMFotoProducto.xaml.cs">
+      <DependentUpon>ABMFotoProducto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMLinea.xaml.cs">
+      <DependentUpon>ABMLinea.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMLocalidad.xaml.cs">
+      <DependentUpon>ABMLocalidad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMMantenimiento.xaml.cs">
+      <DependentUpon>ABMMantenimiento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMMarcasVh.xaml.cs">
+      <DependentUpon>ABMMarcasVh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMMoneda.xaml.cs">
+      <DependentUpon>ABMMoneda.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMObra.xaml.cs">
+      <DependentUpon>ABMObra.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMOtm.xaml.cs">
+      <DependentUpon>ABMOtm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMPlanInspeccion.xaml.cs">
+      <DependentUpon>ABMPlanInspeccion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMProducto.xaml.cs">
+      <DependentUpon>ABMProducto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMProveedor.xaml.cs">
+      <DependentUpon>ABMProveedor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMRemito.xaml.cs">
+      <DependentUpon>ABMRemito.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMSegP.xaml.cs">
+      <DependentUpon>ABMSegP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMSolicitud.xaml.cs">
+      <DependentUpon>ABMSolicitud.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMTarea.xaml.cs">
+      <DependentUpon>ABMTarea.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMTipoDocuVH.xaml.cs">
+      <DependentUpon>ABMTipoDocuVH.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMTipoP.xaml.cs">
+      <DependentUpon>ABMTipoP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMTrabajador.xaml.cs">
+      <DependentUpon>ABMTrabajador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMVehiculo.xaml.cs">
+      <DependentUpon>ABMVehiculo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\AMBFotoEmpleado.xaml.cs">
+      <DependentUpon>AMBFotoEmpleado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\DescriRepuesto.xaml.cs">
+      <DependentUpon>DescriRepuesto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\RechazoPlanificacion.xaml.cs">
+      <DependentUpon>RechazoPlanificacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CarpetaTareasSector.xaml.cs">
+      <DependentUpon>CarpetaTareasSector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Contexto.cs" />
+    <Compile Include="DockBarMenuPpal.xaml.cs">
+      <DependentUpon>DockBarMenuPpal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Documentos\PITareas.xaml.cs">
+      <DependentUpon>PITareas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Documentos\PrintFichaControlCalibraciones.xaml.cs">
+      <DependentUpon>PrintFichaControlCalibraciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Documentos\PrintPITareas.xaml.cs">
+      <DependentUpon>PrintPITareas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Documentos\PrintProductosPP.xaml.cs">
+      <DependentUpon>PrintProductosPP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Documentos\PrintVhDocVencida.xaml.cs">
+      <DependentUpon>PrintVhDocVencida.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Documentos\ucNotasDocVh.xaml.cs">
+      <DependentUpon>ucNotasDocVh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Documentos\VhDocVencida.xaml.cs">
+      <DependentUpon>VhDocVencida.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\CalculosFlota.cs" />
+    <Compile Include="imprimir\ImpListRepVh.xaml.cs">
+      <DependentUpon>ImpListRepVh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\ImprimiDDO.xaml.cs">
+      <DependentUpon>ImprimiDDO.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\ImprimirBE.xaml.cs">
+      <DependentUpon>ImprimirBE.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\ImprimirDIP.xaml.cs">
+      <DependentUpon>ImprimirDIP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\ImprimirDMO.xaml.cs">
+      <DependentUpon>ImprimirDMO.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\ImprimirDocPorVencerVH.xaml.cs">
+      <DependentUpon>ImprimirDocPorVencerVH.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\ImprimirDocumento.xaml.cs">
+      <DependentUpon>ImprimirDocumento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\ImprimirDocVencidaVh.xaml.cs">
+      <DependentUpon>ImprimirDocVencidaVh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\ImprimirDSI.xaml.cs">
+      <DependentUpon>ImprimirDSI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\ImprimirDSO.xaml.cs">
+      <DependentUpon>ImprimirDSO.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\ImprimirExistencia.xaml.cs">
+      <DependentUpon>ImprimirExistencia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\ImprimirManteVsHs.xaml.cs">
+      <DependentUpon>ImprimirManteVsHs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\ImprimirManteVsKm.xaml.cs">
+      <DependentUpon>ImprimirManteVsKm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\ImprimirPlanInspeccion.xaml.cs">
+      <DependentUpon>ImprimirPlanInspeccion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\ImprimirRemitoProducto.xaml.cs">
+      <DependentUpon>ImprimirRemitoProducto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\ImprimirRemitoVh.xaml.cs">
+      <DependentUpon>ImprimirRemitoVh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\ImprimirRMA.xaml.cs">
+      <DependentUpon>ImprimirRMA.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\PrintIndumentaria.xaml.cs">
+      <DependentUpon>PrintIndumentaria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\PrintRemitoDMO.xaml.cs">
+      <DependentUpon>PrintRemitoDMO.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\PrintRemitoObra.xaml.cs">
+      <DependentUpon>PrintRemitoObra.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\PrintRemitoVH.xaml.cs">
+      <DependentUpon>PrintRemitoVH.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir\PrintRMA.xaml.cs">
+      <DependentUpon>PrintRMA.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login2.xaml.cs">
+      <DependentUpon>Login2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login3.xaml.cs">
+      <DependentUpon>Login3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginApp.xaml.cs" />
+    <Compile Include="MainV1.xaml.cs">
+      <DependentUpon>MainV1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDFs\PDFFichaControlInstrumento.cs" />
+    <Compile Include="PDFs\RemitoObraPDF.cs" />
+    <Compile Include="PrincipalAdmHyM.xaml.cs">
+      <DependentUpon>PrincipalAdmHyM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrincipalEmpleados.xaml.cs">
+      <DependentUpon>PrincipalEmpleados.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrincipalObras.xaml.cs">
+      <DependentUpon>PrincipalObras.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrincipalProductos.xaml.cs">
+      <DependentUpon>PrincipalProductos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrincipalResultados.xaml.cs">
+      <DependentUpon>PrincipalResultados.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrincipalVehiculos.xaml.cs">
+      <DependentUpon>PrincipalVehiculos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\DDD.xaml.cs">
+      <DependentUpon>DDD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\DDI.xaml.cs">
+      <DependentUpon>DDI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\DDO.xaml.cs">
+      <DependentUpon>DDO.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\DIP.xaml.cs">
+      <DependentUpon>DIP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\DMO.xaml.cs">
+      <DependentUpon>DMO.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\DSD.xaml.cs">
+      <DependentUpon>DSD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\DSI.xaml.cs">
+      <DependentUpon>DSI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\DSO.xaml.cs">
+      <DependentUpon>DSO.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\DSP.xaml.cs">
+      <DependentUpon>DSP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\RMA.xaml.cs">
+      <DependentUpon>RMA.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\ucDetalleDocumento.xaml.cs">
+      <DependentUpon>ucDetalleDocumento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\ucDetalleDSODDO.xaml.cs">
+      <DependentUpon>ucDetalleDSODDO.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\ucDetalleVCD.xaml.cs">
+      <DependentUpon>ucDetalleVCD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\ucDIPDSP.xaml.cs">
+      <DependentUpon>ucDIPDSP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\ucDSDDDD.xaml.cs">
+      <DependentUpon>ucDSDDDD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\ucDSIDDI.xaml.cs">
+      <DependentUpon>ucDSIDDI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\ucVCD.xaml.cs">
+      <DependentUpon>ucVCD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\VCD.xaml.cs">
+      <DependentUpon>VCD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\VCE.xaml.cs">
+      <DependentUpon>VCE.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remitos\VDP.xaml.cs">
+      <DependentUpon>VDP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResultadosVehiculos.xaml.cs">
+      <DependentUpon>ResultadosVehiculos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableroControlCostos.xaml.cs">
+      <DependentUpon>TableroControlCostos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Empleados\ucDetalleFilaEmpleado.xaml.cs">
+      <DependentUpon>ucDetalleFilaEmpleado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Empleados\ucDetEmpleadoTransitioner.xaml.cs">
+      <DependentUpon>ucDetEmpleadoTransitioner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Empleados\ucGeneralEmpleados.xaml.cs">
+      <DependentUpon>ucGeneralEmpleados.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Empleados\ucMovimientoHerramienta.xaml.cs">
+      <DependentUpon>ucMovimientoHerramienta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Empleados\UIPpal\ucTrabjadoresPpal.xaml.cs">
+      <DependentUpon>ucTrabjadoresPpal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\gestion\CumplirRMA.xaml.cs">
+      <DependentUpon>CumplirRMA.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\gestion\Notas\AgregarRespuesta.xaml.cs">
+      <DependentUpon>AgregarRespuesta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\gestion\Notas\Crear.xaml.cs">
+      <DependentUpon>Crear.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\gestion\Notas\LeerNota.xaml.cs">
+      <DependentUpon>LeerNota.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\gestion\ObservacionActividad.xaml.cs">
+      <DependentUpon>ObservacionActividad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\gestion\ObservacionOTM.xaml.cs">
+      <DependentUpon>ObservacionOTM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\gestion\ucDetalleFilaTarea.xaml.cs">
+      <DependentUpon>ucDetalleFilaTarea.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\gestion\ucDetallePlanManteVh.xaml.cs">
+      <DependentUpon>ucDetallePlanManteVh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\gestion\ucDetalleSolicitudAB.xaml.cs">
+      <DependentUpon>ucDetalleSolicitudAB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\gestion\ucGestionPPal.xaml.cs">
+      <DependentUpon>ucGestionPPal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\gestion\ucNotasSahmv6.xaml.cs">
+      <DependentUpon>ucNotasSahmv6.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\gestion\ucPlanManteHerra.xaml.cs">
+      <DependentUpon>ucPlanManteHerra.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\gestion\ucPlanManteVh.xaml.cs">
+      <DependentUpon>ucPlanManteVh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\gestion\ucSolicitudesAbastecimiento.xaml.cs">
+      <DependentUpon>ucSolicitudesAbastecimiento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\gestion\ucTareasGeneral.xaml.cs">
+      <DependentUpon>ucTareasGeneral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Laboratorio\FichaControlCalibraciones.xaml.cs">
+      <DependentUpon>FichaControlCalibraciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Laboratorio\InstrumentosPorVencer.xaml.cs">
+      <DependentUpon>InstrumentosPorVencer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Laboratorio\InstrumentosVencidos.xaml.cs">
+      <DependentUpon>InstrumentosVencidos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Laboratorio\ucListaCalibracionesProveedor.xaml.cs">
+      <DependentUpon>ucListaCalibracionesProveedor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Laboratorio\ucProveLab.xaml.cs">
+      <DependentUpon>ucProveLab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Mantenimientos\DetallePlanilla.xaml.cs">
+      <DependentUpon>DetallePlanilla.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Mantenimientos\PlanillaMantenimientoMaquina.xaml.cs">
+      <DependentUpon>PlanillaMantenimientoMaquina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Mantenimientos\PrintPlanilla.xaml.cs">
+      <DependentUpon>PrintPlanilla.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Mantenimientos\RegistrarConsumoMaquina.xaml.cs">
+      <DependentUpon>RegistrarConsumoMaquina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Mantenimientos\ucDetalleMpm.xaml.cs">
+      <DependentUpon>ucDetalleMpm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Mantenimientos\ucMaquinasProduccion.xaml.cs">
+      <DependentUpon>ucMaquinasProduccion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Obras\AsignarEmpleadoObra.xaml.cs">
+      <DependentUpon>AsignarEmpleadoObra.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Obras\ucBalanceObra.xaml.cs">
+      <DependentUpon>ucBalanceObra.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Obras\ucDetalleObra.xaml.cs">
+      <DependentUpon>ucDetalleObra.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Obras\ucObrasGeneral.xaml.cs">
+      <DependentUpon>ucObrasGeneral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Obras\ucRemitosDDO.xaml.cs">
+      <DependentUpon>ucRemitosDDO.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Obras\ucRemitosDMO.xaml.cs">
+      <DependentUpon>ucRemitosDMO.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Obras\ucRemitosDSO.xaml.cs">
+      <DependentUpon>ucRemitosDSO.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Obras\ucRemitosObras.xaml.cs">
+      <DependentUpon>ucRemitosObras.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Obras\ucResumenDetalle.xaml.cs">
+      <DependentUpon>ucResumenDetalle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Obras\ucResumenDetalleEmpleados.xaml.cs">
+      <DependentUpon>ucResumenDetalleEmpleados.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Obras\ucResumenDetalleGastos.xaml.cs">
+      <DependentUpon>ucResumenDetalleGastos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Obras\ucResumenDetalleProductos.xaml.cs">
+      <DependentUpon>ucResumenDetalleProductos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Obras\ucResumenDetalleVehiculos.xaml.cs">
+      <DependentUpon>ucResumenDetalleVehiculos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Obras\ucResumenPrincipal.xaml.cs">
+      <DependentUpon>ucResumenPrincipal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Presupuestos\ItemPresupuesto.xaml.cs">
+      <DependentUpon>ItemPresupuesto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Presupuestos\ItemPresupuestoMh.xaml.cs">
+      <DependentUpon>ItemPresupuestoMh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Presupuestos\ItemPresupuestoVh.xaml.cs">
+      <DependentUpon>ItemPresupuestoVh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Presupuestos\Presupuesto_Encabezado.xaml.cs">
+      <DependentUpon>Presupuesto_Encabezado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Presupuestos\ucPrespuestos.xaml.cs">
+      <DependentUpon>ucPrespuestos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\AdmMarcaProductos.xaml.cs">
+      <DependentUpon>AdmMarcaProductos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\AdmTiposProductos.xaml.cs">
+      <DependentUpon>AdmTiposProductos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\AjustarStock.xaml.cs">
+      <DependentUpon>AjustarStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\BajaProducto.xaml.cs">
+      <DependentUpon>BajaProducto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\CalificacionProveedor.xaml.cs">
+      <DependentUpon>CalificacionProveedor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\CambiarPuntoPedido.xaml.cs">
+      <DependentUpon>CambiarPuntoPedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ListaProductosPP.xaml.cs">
+      <DependentUpon>ListaProductosPP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ModiCondicionStock.xaml.cs">
+      <DependentUpon>ModiCondicionStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ModiInstrumento.xaml.cs">
+      <DependentUpon>ModiInstrumento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ModiPosicionProducto.xaml.cs">
+      <DependentUpon>ModiPosicionProducto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\RegistrarMantenimiento.xaml.cs">
+      <DependentUpon>RegistrarMantenimiento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucCalibraciones.xaml.cs">
+      <DependentUpon>ucCalibraciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucCompras.xaml.cs">
+      <DependentUpon>ucCompras.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucConfiguracion.xaml.cs">
+      <DependentUpon>ucConfiguracion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucConsultasExistencias.xaml.cs">
+      <DependentUpon>ucConsultasExistencias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucDetallaFilaProveedor.xaml.cs">
+      <DependentUpon>ucDetallaFilaProveedor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucDetalleAjustesStock.xaml.cs">
+      <DependentUpon>ucDetalleAjustesStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucDetalleCompra.xaml.cs">
+      <DependentUpon>ucDetalleCompra.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucDetalleFilaProducto.xaml.cs">
+      <DependentUpon>ucDetalleFilaProducto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\ABMProgramacion.xaml.cs">
+      <DependentUpon>ABMProgramacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucDetalleMante.xaml.cs">
+      <DependentUpon>ucDetalleMante.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucDocumentosProductos.xaml.cs">
+      <DependentUpon>ucDocumentosProductos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucGestionEPPEntregas.xaml.cs">
+      <DependentUpon>ucGestionEPPEntregas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucGestionIndumentaria.xaml.cs">
+      <DependentUpon>ucGestionIndumentaria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucMantenimientos.xaml.cs">
+      <DependentUpon>ucMantenimientos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucProductosBajas.xaml.cs">
+      <DependentUpon>ucProductosBajas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucProductosGeneral.xaml.cs">
+      <DependentUpon>ucProductosGeneral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucProveedor.xaml.cs">
+      <DependentUpon>ucProveedor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucSituacionStock.xaml.cs">
+      <DependentUpon>ucSituacionStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Productos\ucStock.xaml.cs">
+      <DependentUpon>ucStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\resultados\ucConsumoMensualFlota.xaml.cs">
+      <DependentUpon>ucConsumoMensualFlota.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\resultados\ucCostoManteHs.xaml.cs">
+      <DependentUpon>ucCostoManteHs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\resultados\ucCostoManteKm.xaml.cs">
+      <DependentUpon>ucCostoManteKm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\resultados\ucDatosConsumoAnio.xaml.cs">
+      <DependentUpon>ucDatosConsumoAnio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\resultados\ucDatosConsumoAnioCategorias.xaml.cs">
+      <DependentUpon>ucDatosConsumoAnioCategorias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\resultados\ucDatosConsumoAnioGraficos.xaml.cs">
+      <DependentUpon>ucDatosConsumoAnioGraficos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\resultados\ucDatosConsumoAnioIndividual.xaml.cs">
+      <DependentUpon>ucDatosConsumoAnioIndividual.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\resultados\ucDatosManteVhAnio.xaml.cs">
+      <DependentUpon>ucDatosManteVhAnio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\resultados\ucDatosManteVhAnioCategorias.xaml.cs">
+      <DependentUpon>ucDatosManteVhAnioCategorias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\resultados\ucDatosManteVhAnioGraficos.xaml.cs">
+      <DependentUpon>ucDatosManteVhAnioGraficos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\resultados\ucDatosManteVhAnioIndividual.xaml.cs">
+      <DependentUpon>ucDatosManteVhAnioIndividual.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\resultados\ucHomeRVh.xaml.cs">
+      <DependentUpon>ucHomeRVh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\resultados\ucProgresionConsumosMensual.xaml.cs">
+      <DependentUpon>ucProgresionConsumosMensual.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\resultados\ucResultadoCombustible.xaml.cs">
+      <DependentUpon>ucResultadoCombustible.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\resultados\ucResultadoMantenimientoVh.xaml.cs">
+      <DependentUpon>ucResultadoMantenimientoVh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\resultados\ucSituacionOperativa.xaml.cs">
+      <DependentUpon>ucSituacionOperativa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\tablerocostos\ucCostoInversiones.xaml.cs">
+      <DependentUpon>ucCostoInversiones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\tablerocostos\ucCostoMantenimientos.xaml.cs">
+      <DependentUpon>ucCostoMantenimientos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\tablerocostos\ucProgresionCostosInteranual.xaml.cs">
+      <DependentUpon>ucProgresionCostosInteranual.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\tablerocostos\ucProgresionCostosMensual.xaml.cs">
+      <DependentUpon>ucProgresionCostosMensual.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\tablerocostos\ucResultadoGeneralCostos.xaml.cs">
+      <DependentUpon>ucResultadoGeneralCostos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\FichaVehiculo.xaml.cs">
+      <DependentUpon>FichaVehiculo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\Notas\AddNotaDoc.xaml.cs">
+      <DependentUpon>AddNotaDoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\RegistrarConsumo.xaml.cs">
+      <DependentUpon>RegistrarConsumo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\SelecCausaBaja.xaml.cs">
+      <DependentUpon>SelecCausaBaja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\ucDetalleFilaAsignacion.xaml.cs">
+      <DependentUpon>ucDetalleFilaAsignacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\ucDetalleFilaDocumento.xaml.cs">
+      <DependentUpon>ucDetalleFilaDocumento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\ucDetalleFilaMantenimiento.xaml.cs">
+      <DependentUpon>ucDetalleFilaMantenimiento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\ucDetalleFilaProgramacion.xaml.cs">
+      <DependentUpon>ucDetalleFilaProgramacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\ucDetalleFilaVehiculoGral.xaml.cs">
+      <DependentUpon>ucDetalleFilaVehiculoGral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\ucPrediccionFlota.xaml.cs">
+      <DependentUpon>ucPrediccionFlota.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\ucRemitos.xaml.cs">
+      <DependentUpon>ucRemitos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\ucSituacionFlota.xaml.cs">
+      <DependentUpon>ucSituacionFlota.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\ucVehiculoActualidad.xaml.cs">
+      <DependentUpon>ucVehiculoActualidad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\ucVehiculoAjustes.xaml.cs">
+      <DependentUpon>ucVehiculoAjustes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\ucVehiculosGeneral.xaml.cs">
+      <DependentUpon>ucVehiculosGeneral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\ucVehiculosMantenimientos.xaml.cs">
+      <DependentUpon>ucVehiculosMantenimientos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\ucVehiculosProgramacion.xaml.cs">
+      <DependentUpon>ucVehiculosProgramacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\UIppal\ucVehiculoPpal.xaml.cs">
+      <DependentUpon>ucVehiculoPpal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\Vehiculos\VincularVh.xaml.cs">
+      <DependentUpon>VincularVh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="validacion\BinaryImageConverter.cs" />
+    <Compile Include="validacion\ReglaCajaTextoVacia.cs" />
+    <Compile Include="validacion\ReglaComboBoxVacio.cs" />
+    <Compile Include="validacion\ReglaCorreoElectronicoValido.cs" />
+    <Compile Include="validacion\ReglaTextoNumero.cs" />
+    <Compile Include="validacion\ValidarDireccionCorreo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Principal.xaml.cs">
+      <DependentUpon>Principal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ABM\ABMAjuste.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMAsignacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMAutorizacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMCalibracion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMCategoria.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMCateP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMCoeficiente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMCombustible.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMCompraP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMDocumento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMDocVh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMEmpleado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMFoto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMFotoProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMLinea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMLocalidad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMMantenimiento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMMarcasVh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMMoneda.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMObra.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMOtm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMPlanInspeccion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMProveedor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMRemito.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMSegP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMSolicitud.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMTarea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMTipoDocuVH.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMTipoP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMTrabajador.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMVehiculo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\AMBFotoEmpleado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\DescriRepuesto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\RechazoPlanificacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CarpetaTareasSector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DockBarMenuPpal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Documentos\PITareas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Documentos\PrintFichaControlCalibraciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Documentos\PrintPITareas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Documentos\PrintProductosPP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Documentos\PrintVhDocVencida.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Documentos\ucNotasDocVh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Documentos\VhDocVencida.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\ImpListRepVh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\ImprimiDDO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\ImprimirBE.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\ImprimirDIP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\ImprimirDMO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\ImprimirDocPorVencerVH.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\ImprimirDocumento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\ImprimirDocVencidaVh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\ImprimirDSI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\ImprimirDSO.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="imprimir\ImprimirExistencia.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\ImprimirManteVsHs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\ImprimirManteVsKm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\ImprimirPlanInspeccion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\ImprimirRemitoProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\ImprimirRemitoVh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\ImprimirRMA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\PrintIndumentaria.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\PrintRemitoDMO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\PrintRemitoObra.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\PrintRemitoVH.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imprimir\PrintRMA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginApp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainV1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Principal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrincipalAdmHyM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrincipalEmpleados.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrincipalObras.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrincipalProductos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrincipalResultados.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrincipalVehiculos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\DDD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\DDI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\DDO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\DIP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\DMO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\DSD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\DSI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\DSO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\DSP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\RMA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\ucDetalleDocumento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\ucDetalleDSODDO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\ucDetalleVCD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\ucDIPDSP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\ucDSDDDD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\ucDSIDDI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\ucVCD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\VCD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\VCE.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remitos\VDP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dock Style.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResultadosVehiculos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TableroControlCostos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Empleados\ucDetalleFilaEmpleado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Empleados\ucDetEmpleadoTransitioner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Empleados\ucGeneralEmpleados.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Empleados\ucMovimientoHerramienta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Empleados\UIPpal\ucTrabjadoresPpal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\gestion\CumplirRMA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\gestion\Notas\AgregarRespuesta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\gestion\Notas\Crear.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\gestion\Notas\LeerNota.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\gestion\ObservacionActividad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\gestion\ObservacionOTM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\gestion\ucDetalleFilaTarea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\gestion\ucDetallePlanManteVh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\gestion\ucDetalleSolicitudAB.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\gestion\ucGestionPPal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\gestion\ucNotasSahmv6.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\gestion\ucPlanManteHerra.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\gestion\ucPlanManteVh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\gestion\ucSolicitudesAbastecimiento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\gestion\ucTareasGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Laboratorio\FichaControlCalibraciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Laboratorio\InstrumentosPorVencer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Laboratorio\InstrumentosVencidos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Laboratorio\ucListaCalibracionesProveedor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Laboratorio\ucProveLab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Mantenimientos\DetallePlanilla.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Mantenimientos\PlanillaMantenimientoMaquina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Mantenimientos\PrintPlanilla.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Mantenimientos\RegistrarConsumoMaquina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Mantenimientos\ucDetalleMpm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Mantenimientos\ucMaquinasProduccion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Obras\AsignarEmpleadoObra.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Obras\ucBalanceObra.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Obras\ucDetalleObra.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Obras\ucObrasGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Obras\ucRemitosDDO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Obras\ucRemitosDMO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Obras\ucRemitosDSO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Obras\ucRemitosObras.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Obras\ucResumenDetalle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Obras\ucResumenDetalleEmpleados.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Obras\ucResumenDetalleGastos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Obras\ucResumenDetalleProductos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Obras\ucResumenDetalleVehiculos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Obras\ucResumenPrincipal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Presupuestos\ItemPresupuesto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Presupuestos\ItemPresupuestoMh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Presupuestos\ItemPresupuestoVh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Presupuestos\Presupuesto_Encabezado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Presupuestos\ucPrespuestos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\AdmMarcaProductos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\AdmTiposProductos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\AjustarStock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\BajaProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\CalificacionProveedor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\CambiarPuntoPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ListaProductosPP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ModiCondicionStock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ModiInstrumento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ModiPosicionProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\RegistrarMantenimiento.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="uc\Productos\ucCalibraciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucCompras.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucConfiguracion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucConsultasExistencias.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucDetallaFilaProveedor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucDetalleAjustesStock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucDetalleCompra.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucDetalleFilaProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ABM\ABMProgramacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucDetalleMante.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucDocumentosProductos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucGestionEPPEntregas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucGestionIndumentaria.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucMantenimientos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucProductosBajas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucProductosGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucProveedor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucSituacionStock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Productos\ucStock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\resultados\ucConsumoMensualFlota.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\resultados\ucCostoManteHs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\resultados\ucCostoManteKm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\resultados\ucDatosConsumoAnio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\resultados\ucDatosConsumoAnioCategorias.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\resultados\ucDatosConsumoAnioGraficos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\resultados\ucDatosConsumoAnioIndividual.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\resultados\ucDatosManteVhAnio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\resultados\ucDatosManteVhAnioCategorias.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\resultados\ucDatosManteVhAnioGraficos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\resultados\ucDatosManteVhAnioIndividual.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\resultados\ucHomeRVh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\resultados\ucProgresionConsumosMensual.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\resultados\ucResultadoCombustible.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\resultados\ucResultadoMantenimientoVh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\resultados\ucSituacionOperativa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\tablerocostos\ucCostoInversiones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\tablerocostos\ucCostoMantenimientos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\tablerocostos\ucProgresionCostosInteranual.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\tablerocostos\ucProgresionCostosMensual.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\tablerocostos\ucResultadoGeneralCostos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\FichaVehiculo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\Notas\AddNotaDoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\RegistrarConsumo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\SelecCausaBaja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\ucDetalleFilaAsignacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\ucDetalleFilaDocumento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\ucDetalleFilaMantenimiento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\ucDetalleFilaProgramacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\ucDetalleFilaVehiculoGral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\ucPrediccionFlota.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\ucRemitos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\ucSituacionFlota.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\ucVehiculoActualidad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\ucVehiculoAjustes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\ucVehiculosGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\ucVehiculosMantenimientos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\ucVehiculosProgramacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\UIppal\ucVehiculoPpal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\Vehiculos\VincularVh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\Delete.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="imagenes\logo2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\rhombus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\account-plus .png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\account-card-details.png" />
+    <Resource Include="imagenes\cash-usd.png" />
+    <Resource Include="imagenes\chart-bar.png" />
+    <EmbeddedResource Include="imagenes\memory-chip.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Resource Include="imagenes\shopping.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\account-details.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\tag-outline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\ticket-account.png" />
+    <Resource Include="imagenes\track-light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\account-group.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\car.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="imagenes\nueva-tarea.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Resource Include="Resources\nueva_tarea.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="imagenes\logo1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\trabajadores2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="imagenes\maquinas.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\trabajadores.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\obras.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\documentos.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\gestiondep.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\fresa.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\vehiculo1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\gestion1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\chart-timeline.png" />
+    <Resource Include="imagenes\file-document-box.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imagenes\sign-caution.png" />
+    <Resource Include="imagenes\worker.png" />
+    <Resource Include="imagenes\wrench.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="imagenes\llave.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\clock-alert.png" />
+    <Resource Include="imagenes\clock-check.png" />
+    <Resource Include="imagenes\progress-clock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="imagenes\se-green.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="imagenes\se-red.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="imagenes\se-yelloy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="imagenes\logo3-sahm.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="imagenes\logo4-sahm.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\logo-sahm-blanco.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="imagenes\herramientas-taller.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\account-circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\resultados.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\closeBtn_default.png" />
+    <Resource Include="imagenes\closeBtn_MouseOver.png" />
+    <EmbeddedResource Include="imagenes\img_background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="imagenes\img_contact.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="imagenes\img_home.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="imagenes\img_map.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="imagenes\img_message.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="imagenes\img_setting.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="imagenes\img_signout.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Resource Include="imagenes\tgBtn_default.png" />
+    <Resource Include="imagenes\tgBtn_MouseOver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="imagenes\maximizar.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\72195.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\143370.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\01-24_86388.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\155893.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\131731.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\116471.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\154549.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\72195.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\143370.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\72175.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\148686.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\148663.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\setting_icon-icons.com_65723.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\147031.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\143357.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\115441.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="tools_114406 .ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\abastecimiento.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\gestion-almacen.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\resultados-herra.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\143359.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\143367.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\115750.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\cog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\login2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="Dragablz">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CopiPaste.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\gestion\tareas.png" />
+    <Resource Include="imagenes\gestion\pmvehiculos.png" />
+    <Resource Include="imagenes\gestion\solicitudes.png" />
+    <Resource Include="imagenes\gestion\pmherramientas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\gestion\notas-sahmv-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\gestion\img-gestion-png-5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\img-gestion-png-1.png" />
+    <Resource Include="Resources\img-gestion-png-2.png" />
+    <Resource Include="Resources\img-gestion-png-3.png" />
+    <Resource Include="Resources\img-gestion-png-4.png" />
+    <Resource Include="Resources\img-gestion-png-5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{d0433055-332d-466a-915c-8a00bab30f38}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{e70134d2-3c02-43d1-8a5c-5ae540196813}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ENTIDADES\ENTIDADES.csproj">
+      <Project>{2cb04289-6204-4692-896a-e63520fa1f71}</Project>
+      <Name>ENTIDADES</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="Logo-sahmv-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\Logo-sahmv-1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Helpers\RSF-A.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Helpers\RSF-P.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Helpers\RSF-M.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\sahmv6-iconos-dock-bar-1.png" />
+    <Resource Include="imagenes\sahmv6-iconos-dock-bar-2.png" />
+    <Resource Include="imagenes\sahmv6-iconos-dock-bar-3.png" />
+    <Resource Include="imagenes\sahmv6-iconos-dock-bar-4.png" />
+    <Resource Include="imagenes\sahmv6-iconos-dock-bar-5.png" />
+    <Resource Include="imagenes\sahmv6-iconos-dock-bar-6.png" />
+    <Resource Include="imagenes\sahmv6-iconos-dock-bar-7.png" />
+    <Resource Include="imagenes\sahmv6-iconos-dock-bar-8.png" />
+    <Resource Include="imagenes\sahmv6-iconos-dock-bar-9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\shutdown_def.png" />
+    <Resource Include="imagenes\shutdown_mo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\img_user.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('..\packages\CommunityToolkit.Mvvm.8.2.1\build\netstandard2.0\CommunityToolkit.Mvvm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CommunityToolkit.Mvvm.8.2.1\build\netstandard2.0\CommunityToolkit.Mvvm.targets'))" />
+    <Error Condition="!Exists('..\packages\HarfBuzzSharp.NativeAssets.macOS.7.3.0\build\net462\HarfBuzzSharp.NativeAssets.macOS.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\HarfBuzzSharp.NativeAssets.macOS.7.3.0\build\net462\HarfBuzzSharp.NativeAssets.macOS.targets'))" />
+    <Error Condition="!Exists('..\packages\HarfBuzzSharp.NativeAssets.Win32.7.3.0\build\net462\HarfBuzzSharp.NativeAssets.Win32.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\HarfBuzzSharp.NativeAssets.Win32.7.3.0\build\net462\HarfBuzzSharp.NativeAssets.Win32.targets'))" />
+    <Error Condition="!Exists('..\packages\SkiaSharp.NativeAssets.macOS.2.88.6\build\net462\SkiaSharp.NativeAssets.macOS.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SkiaSharp.NativeAssets.macOS.2.88.6\build\net462\SkiaSharp.NativeAssets.macOS.targets'))" />
+    <Error Condition="!Exists('..\packages\SkiaSharp.NativeAssets.Win32.2.88.6\build\net462\SkiaSharp.NativeAssets.Win32.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SkiaSharp.NativeAssets.Win32.2.88.6\build\net462\SkiaSharp.NativeAssets.Win32.targets'))" />
+  </Target>
+  <Import Project="..\packages\CommunityToolkit.Mvvm.8.2.1\build\netstandard2.0\CommunityToolkit.Mvvm.targets" Condition="Exists('..\packages\CommunityToolkit.Mvvm.8.2.1\build\netstandard2.0\CommunityToolkit.Mvvm.targets')" />
+  <Import Project="..\packages\HarfBuzzSharp.NativeAssets.macOS.7.3.0\build\net462\HarfBuzzSharp.NativeAssets.macOS.targets" Condition="Exists('..\packages\HarfBuzzSharp.NativeAssets.macOS.7.3.0\build\net462\HarfBuzzSharp.NativeAssets.macOS.targets')" />
+  <Import Project="..\packages\HarfBuzzSharp.NativeAssets.Win32.7.3.0\build\net462\HarfBuzzSharp.NativeAssets.Win32.targets" Condition="Exists('..\packages\HarfBuzzSharp.NativeAssets.Win32.7.3.0\build\net462\HarfBuzzSharp.NativeAssets.Win32.targets')" />
+  <Import Project="..\packages\SkiaSharp.NativeAssets.macOS.2.88.6\build\net462\SkiaSharp.NativeAssets.macOS.targets" Condition="Exists('..\packages\SkiaSharp.NativeAssets.macOS.2.88.6\build\net462\SkiaSharp.NativeAssets.macOS.targets')" />
+  <Import Project="..\packages\SkiaSharp.NativeAssets.Win32.2.88.6\build\net462\SkiaSharp.NativeAssets.Win32.targets" Condition="Exists('..\packages\SkiaSharp.NativeAssets.Win32.2.88.6\build\net462\SkiaSharp.NativeAssets.Win32.targets')" />
+</Project>

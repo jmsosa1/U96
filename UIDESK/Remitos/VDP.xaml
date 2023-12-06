@@ -1,0 +1,232 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.Remitos.VDP"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIDESK.Remitos"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+         WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d" ResizeMode="NoResize" MouseLeftButtonDown="MaterialWindow_MouseLeftButtonDown"
+        Title="VDP" Height="650" Width="800">
+    <Grid>
+        
+            <materialDesign:DrawerHost>
+
+                <!--Drawer de busqueda del producto-->
+                <materialDesign:DrawerHost.BottomDrawerContent>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ToolBar Grid.Row="0">
+                            <TextBlock Text="Buscar" />
+                            <TextBox x:Name="txtBuscar" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                materialDesign:HintAssist.Hint="Nombre/Inventario/Marca/Modelo"
+                                 TextChanged="TxtBuscar_TextChanged" CharacterCasing="Upper"/>
+                            <Separator Width="3" Background="OrangeRed"/>
+                            <ComboBox Name="cmbTipoProducto" Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                            Margin="10,0,0,0" materialDesign:HintAssist.Hint="Tipo"    Width="100"
+                                  SelectionChanged="CmbTipoProducto_SelectionChanged">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Path=NomTipo}"/>
+
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox Name="cmbCategoriaProducto"  materialDesign:HintAssist.Hint="Categoria" Width="100"
+                            Margin="10,0,0,0"      Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectionChanged="cmbCategoriaProducto_SelectionChanged" >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=NomCateP}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </ToolBar>
+                        <DataGrid x:Name="dgSeleProductos" Grid.Row="1"
+                             AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                          VerticalScrollBarVisibility="Auto" SelectionMode="Single" Margin="5,10,5,0"
+                           materialDesign:DataGridAssist.CellPadding="4,2,2,2" IsReadOnly="True"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" Height="250" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Path= IdProducto}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Nombre" Binding="{Binding Path=NombreProducto}" Width="100" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Modelo" Binding="{Binding Path= ModeloProducto}" Width="150" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Marca" Binding="{Binding Path= MarcaProducto}" Width="150" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Cod Inventario" Binding="{Binding Path=CodInventario}" Width="100" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="N Serie" Binding="{Binding Path=SerieProducto}" Width="200" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Cant. Disponible" Binding="{Binding Path=DifCantidad}" Width="100" IsReadOnly="True"/>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="5">
+                            <Button x:Name="btnCerrarDrawBotton" Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                CommandParameter="{x:Static Dock.Bottom}" Margin="5"
+                                Style="{StaticResource MaterialDesignFlatButton}" Content="Cerrar"/>
+                            <Button x:Name="btnSeleccionarDrawBotton" Click="btnSeleccionarDrawBotton_Click" Margin="5" 
+                                Style="{StaticResource MaterialDesignFlatButton}" Content="Seleccionar" />
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:DrawerHost.BottomDrawerContent>
+
+
+
+                <!--grid de la ventanaa-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <!--encabezado-->
+                    <Grid x:Name="grdEncabezado" Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" Grid.Row="0" Margin="5">
+                            <StackPanel Orientation="Horizontal" Margin="2">
+                                <TextBox x:Name="txtTipoDocu" Width="100" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            materialDesign:HintAssist.Hint="Tipo Doc." IsReadOnly="True" FontWeight="Bold" Foreground="DarkBlue"/>
+                                <TextBox x:Name="txtFechaVale" Width="100" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            materialDesign:HintAssist.Hint="Fecha Vale" Margin="30,0,0,0" IsReadOnly="True" />
+
+                                <TextBox x:Name="txtIdUsuario" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"
+                                        materialDesign:HintAssist.Hint="Usuario" Margin="20,0,0,0" Width="50"></TextBox>
+                                <TextBox x:Name="txtNombreUsuario" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"
+                                        materialDesign:HintAssist.Hint="Nombre" Margin="20,0,0,0"  Width="120"></TextBox>
+                                <ComboBox Name="cmbCausaDescuento" Width="170" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                         materialDesign:HintAssist.Hint="Causa Baja" Margin="30,0,0,0" >
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate >
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Path=IdCausaBaja}"/>
+                                                <Separator Width="3"></Separator>
+                                                <TextBlock Text="{Binding Path=NomCausa}" Margin="20,0,0,0"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" Grid.Row="1" 
+                                Margin="5" x:Name="bordeEncabezado">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="5,0,0,0"><Run Text="Datos Empleado"/></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="5,0,0,10" Name="stkDatosEmpleado">
+                                    <TextBox x:Name="txtIdEmpleado" Width="60" Style="{ StaticResource MaterialDesignFloatingHintTextBox}" 
+                                     materialDesign:HintAssist.Hint="Id" FontWeight="Bold" Text="{Binding Path=IdEmpleado}"
+                                     Margin="20,0,0,0"  TabIndex="3" ></TextBox>
+                                    <TextBox x:Name="txtNombreEmpleado" Text="{Binding Path=Nombre}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,0,0,0"
+                                      VerticalAlignment="Center" FontStyle="Italic"   materialDesign:HintAssist.Hint="Nombre"  Width="250"/>
+                                    <TextBox x:Name="txtDNI" Text="{Binding Path=Dni}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,0,0,0"
+                                      VerticalAlignment="Center" FontStyle="Italic"   materialDesign:HintAssist.Hint="DNI"  Width="120"/>
+                                    <TextBox x:Name="txtSector" Text="{Binding Path=NomSector}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,0,0,0"
+                                      VerticalAlignment="Center" FontStyle="Italic"   materialDesign:HintAssist.Hint="Sector"  Width="200"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="5,0,0,10">
+                                    <TextBox x:Name="txtImputacion" Width="80" Style="{ StaticResource MaterialDesignFloatingHintTextBox}" 
+                                     materialDesign:HintAssist.Hint="Imputacion" FontWeight="Bold" KeyDown="txtImputacion_KeyDown"
+                                     Margin="20,0,0,0"  TabIndex="4" ></TextBox>
+                                    <TextBox x:Name="txbNombreObra" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,0,0,0"
+                                      VerticalAlignment="Center" FontStyle="Italic"   materialDesign:HintAssist.Hint="Obra"  Width="250"/>
+                                    <TextBox x:Name="txbClienteObra" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,0,0,0"
+                                      VerticalAlignment="Center" FontStyle="Italic"   materialDesign:HintAssist.Hint="Cliente"  Width="250"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                               
+                                </StackPanel>
+
+
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <!--grid del detalle-->
+                    <Grid x:Name="grdDetalle" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" Margin="5" Grid.Row="0" Name="bordeDetalle">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}" 
+                                VerticalAlignment="Center"  Margin="5,0,0,0"><Run Text="Detalle del Producto"/></TextBlock>
+                                    <Button  x:Name="btnSeleccion" Click="btnSeleccion_Click" TabIndex="7" Style="{StaticResource MaterialDesignFlatAccentButton}"
+                                 Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"  CommandParameter="{x:Static Dock.Bottom}"
+                               Margin="10,3,2,2" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="PlusCircle" Foreground="Black"/>
+                                            <TextBlock Text="Agregar Producto" Margin="5,0,0,0" Foreground="Black"/>
+
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                                <!--detalle de la herramienta-->
+                                <DataGrid x:Name="dgDetalleDocu" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                          VerticalScrollBarVisibility="Auto" SelectionMode="Single" Margin="5,10,5,0"
+                           materialDesign:DataGridAssist.CellPadding="4,2,2,2" IsReadOnly="False"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" Height="250" Background="#FFFAFAFA">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Codigo" Binding="{Binding CodigoItem}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="Nombre" Binding="{Binding Descripcion}" Width="150" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="Marca" Binding="{Binding Path=Marca}" Width="100" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="Modelo" Binding="{Binding Path=Modelo}" Width="100" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="Cod Inventario" Binding="{Binding Path=CodIventario}" Width="150" IsReadOnly="True"/>
+
+
+                                        <DataGridTemplateColumn Header="Cantidad">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBox x:Name="txtCantidad" Text="{Binding Path=CantidadItem}" GotFocus="TxtCantidad_GotFocus"
+                                                        Width="100" KeyDown="txtCantidad_KeyDown"></TextBox>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <ToggleButton x:Name="btnAddDel" Padding="2" Height="20" Width="20"
+                              Content="-" Style="{StaticResource MaterialDesignActionAccentToggleButton}" Click="BtnAddDel_Click" />
+
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+
+                        </Border>
+                        <!--panel de nota y de comandos del remito-->
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5" Height="40" >
+
+                            <TextBox x:Name="txtNotaRemito" Width="550" Style="{StaticResource MaterialDesignFloatingHintTextBox}" CharacterCasing="Upper"
+                                materialDesign:HintAssist.Hint="Nota del Remito" Margin="10,0,0,2" HorizontalAlignment="Left" TabIndex="8"/>
+                            <Button x:Name="btnAceptar"  Click="BtnAceptar_Click"  Style="{StaticResource MaterialDesignFlatButton}" Foreground="Black"
+                                Margin="30,0,0,0" Content="Aceptar" TabIndex="9" IsEnabled="False"/>
+                            <Button x:Name="btnCancelar"  Click="btnCerrar_Click"  Foreground="Black" Style="{StaticResource MaterialDesignFlatButton}"
+                                Margin="5,0,0,0" Content="Cancelar"  TabIndex="10"/>
+                        </StackPanel>
+                    </Grid>
+
+
+                </Grid>
+            </materialDesign:DrawerHost>
+       
+    </Grid>
+</mde:MaterialWindow>

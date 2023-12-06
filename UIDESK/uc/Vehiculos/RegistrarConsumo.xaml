@@ -1,0 +1,70 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.uc.Vehiculos.RegistrarConsumo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIDESK.uc.Vehiculos"
+        xmlns:validaciones="clr-namespace:UIDESK.validacion"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="MaterialWindow_Closing"
+        mc:Ignorable="d" MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Title="Registrar Consumo" Height="300" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+           
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+       
+       
+
+        <Grid x:Name="grdLayout" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Name="txtDominio"  IsReadOnly="True"
+                 materialDesign:HintAssist.Hint="Dominio" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            HorizontalAlignment="Left" Margin="10,0,0,0"  Grid.Row="0" Grid.Column="0" Width="100" VerticalAlignment="Center"  TabIndex="1"/>
+            <TextBlock Name="txbModelo" Text="Modelo"
+            HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1"  VerticalAlignment="Bottom" Margin="5,0"/>
+            <TextBlock Name="txbMarca" Text="Marca" 
+            HorizontalAlignment="Left"  Grid.Row="0" Grid.Column="2"   VerticalAlignment="Bottom" Margin="5,0"/>
+            <TextBox Name="txtObra" KeyDown="txtObra_KeyDown"  LostFocus="txtObra_LostFocus" Margin="10,0" Width="100"
+                 materialDesign:HintAssist.Hint="Imputacion" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            HorizontalAlignment="Left"   Grid.Row="1" Grid.Column="0" TextWrapping="Wrap"  VerticalAlignment="Top" TabIndex="2"/>
+            <TextBlock Name="txbNombreObra" Text="Nombre de la obra"
+            HorizontalAlignment="Left"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"   VerticalAlignment="Bottom"/>
+
+            <DatePicker Name="dtpFechaConsumo" Grid.Row="2" Grid.Column="0" Margin="10,0" VerticalAlignment="Bottom"></DatePicker>
+            <TextBox Name="txtCantidad" Margin="10,0" materialDesign:HintAssist.Hint="Cantidad" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1"  VerticalAlignment="Center"  Width="120" TabIndex="5" />
+
+            <StackPanel Grid.Row="3" Grid.ColumnSpan="4" Margin="5,20">
+                <Button Name="btnGuardar" Click="btnGuardar_Click" Style="{StaticResource MaterialDesignPaperButton}" Foreground="Black"
+            Content="Guardar" />
+            </StackPanel>
+           
+            
+        </Grid>
+        
+
+    </Grid>
+</mde:MaterialWindow>

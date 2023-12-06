@@ -1,0 +1,51 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.ABM.ABMTipoP"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIDESK.ABM"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" BorderBrush="Black" BorderThickness="1" materialDesign:ShadowAssist.ShadowDepth="Depth3"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        mc:Ignorable="d"
+        Title="ABM Tipo Producto" Height="300" Width="250">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBox x:Name="txtNombreTipo" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="200"
+                      Text="{Binding Path=NomTipo}"
+                         materialDesign:HintAssist.Hint="Tipo Producto" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Name="stkDatosPrecio">
+            <DatePicker x:Name="dtpUltimaVariacion" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="200"
+                        Text="{Binding Path=FechaVar,StringFormat=d,ConverterCulture=es-Ar}"
+                         materialDesign:HintAssist.Hint="Ultimo Ajuste Precio" HorizontalAlignment="Left" Margin="20,0,0,0" IsEnabled="False"/>
+            <TextBox x:Name="txtUltimoValor" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="200"
+                     Text="{ Binding Path=Porcentaje,StringFormat=N2,ConverterCulture=es-Ar}"
+                         materialDesign:HintAssist.Hint="Porcentaje Variacion" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+            <TextBox x:Name="txtNuevoPorcentajeVariacion" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="200"
+                         materialDesign:HintAssist.Hint="Nuevo Porcentaje Variacion" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+        </StackPanel>
+      
+          
+        <StackPanel Grid.Row="2">
+            <StackPanel Orientation="Horizontal"  Margin="10">
+                <Button x:Name="btnAceptar" Background="DarkBlue" Foreground="White"  Click="btnAceptar_Click" Content="Guardar">
+                    
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</mde:MaterialWindow>

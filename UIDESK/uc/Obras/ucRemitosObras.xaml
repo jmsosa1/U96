@@ -1,0 +1,152 @@
+﻿<UserControl x:Class="UIDESK.uc.Obras.ucRemitosObras"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIDESK.uc.Obras"
+               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:remitos="clr-namespace:UIDESK.Remitos"
+               TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ToolBar Grid.Row="0"  Style="{StaticResource MaterialDesignToolBar}"
+                    ClipToBounds="False"  Padding="2" Margin="3">
+            <ListBox Style="{StaticResource MaterialDesignToolToggleListBox}">
+                <ListBoxItem Selected="ListBoxItem_Selected" ToolTip="Listar Remitos Entrega"
+                            FontWeight="Bold" Foreground="DarkGreen" >Entregas</ListBoxItem>
+                <ListBoxItem Selected="ListBoxItem_Selected_1" ToolTip="Listar Remitos Devolucion"
+                            FontWeight="Bold" Foreground="DarkGreen">Devoluciones</ListBoxItem>
+                <ListBoxItem Selected="ListBoxItem_Selected_2" ToolTip="Listar Remitos Mov Obras"
+                            FontWeight="Bold" Foreground="DarkGreen">Mov Obras</ListBoxItem>
+            </ListBox>
+            <!--
+                 <Button x:Name="btnDSO" Click="btnDSO_Click" Padding="2" ToolTip="Listar Remitos Entrega" Content="Egresos">
+                
+            </Button>
+            <Separator></Separator>
+            <Button x:Name="btnDDO" Click="btnDDO_Click" Padding="2" ToolTip="Listar Remitos Devolucion" Content="Devoluciones">
+                
+            </Button>
+            <Separator></Separator>
+            <Button x:Name="btnDMO" Click="btnDMO_Click" Padding="2" ToolTip="Listar Remitos Mov Obras" Content="Mov Obras">
+                
+            </Button>
+            -->
+            
+            <Separator Width="1" Background="DeepSkyBlue"></Separator>
+            <TextBox Name="txtBuscar" Width="100" Padding="2" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Numero Remito"></TextBox>
+
+            <Button Name="btnBuscar" Padding="2" Click="btnBuscar_Click">
+                <materialDesign:PackIcon Kind="Magnify"/>
+            </Button>
+            <Separator Width="1" Background="DeepSkyBlue"/>
+            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Imputacion"
+                    Name="txtImputacion" ></TextBox>
+            <Button x:Name="btnFiltroImputacion" Click="btnFiltroImputacion_Click" Padding="2"
+                    ToolTip="Filtrar Imputacion" Margin="5,0,0,0">
+                <materialDesign:PackIcon Kind="Filter1"/>
+            </Button>
+            <Separator Width="1" Background="DeepSkyBlue"></Separator>
+            <TextBlock Text="Fechas" VerticalAlignment="Center"/>
+            <DatePicker Width="100" materialDesign:HintAssist.Hint="Desde" Margin="10,0,0,0"
+                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+            <DatePicker Width="100" materialDesign:HintAssist.Hint="Hasta" Margin="10,0,0,0"
+                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+            <Separator Width="1" Background="DeepSkyBlue"/>
+            <Button Name="btnReImprimir" Padding="2" Click="btnReImprimir_Click">
+                <materialDesign:PackIcon Kind="Printer"/>
+            </Button>
+        </ToolBar>
+        <!--
+        <ContentControl x:Name="ccVistaRemitos" Grid.Row="1"></ContentControl>-->
+
+        <DataGrid x:Name="dgPrincipal" Grid.Row="1" Margin="3" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                  SelectionChanged="dgPrincipal_SelectionChanged"  RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2">
+            <DataGrid.Columns>
+                
+                <DataGridTextColumn Header="Id" Binding="{Binding Path=IdDocumento}"/>
+                <DataGridTextColumn Header="Fecha" Binding="{Binding Path=FechaRemito, StringFormat=d, ConverterCulture=es-AR}"/>
+                <DataGridTextColumn Header="Concepto" Binding="{Binding Path=Concepto}"/>
+                <DataGridTextColumn Header="Numero R" Binding="{Binding Path=NumDocumento}"/>
+                <DataGridTextColumn Header="Empleado"  Binding="{Binding Path=NombreEmpleado}"/>
+                <DataGridTextColumn Header="Imp. Origen"  Binding="{Binding Path=Imputacion}"/>
+                <DataGridTextColumn Header="Cliente"  Binding="{Binding Path=ClienteObra}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnAnular" Padding="2" Style="{StaticResource MaterialDesignFlatButton}"
+                               Height="20" Width="20" Click="btnAnular_Click" ToolTip="Anular Remito">
+                                <materialDesign:PackIcon Kind="DeleteCircle" Foreground="Red"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            
+        </DataGrid>
+
+        <Border Grid.Row="2" Background="Transparent" BorderBrush="DarkSeaGreen" BorderThickness="2" Margin="3" CornerRadius="5">
+            <StatusBar>
+                <StatusBar.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="130"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </ItemsPanelTemplate>
+                </StatusBar.ItemsPanel>
+                <StatusBarItem Grid.Column="0">
+                    <TextBlock Text="Resultados Remitos:" />
+                </StatusBarItem>
+                <StatusBarItem Grid.Column="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Egresos:" VerticalAlignment="Center"/>
+                        <TextBox Name="txtRegistros" IsReadOnly="True" Margin="3" Width="100"/>
+                    </StackPanel>
+                </StatusBarItem>
+                <Separator Grid.Column="2"/>
+                <StatusBarItem Grid.Column="3">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Devoluciones" VerticalAlignment="Center"/>
+                        <TextBox Name="txtTotalKmAcu" IsReadOnly="True" Margin="3" Width="100"/>
+                    </StackPanel>
+                </StatusBarItem>
+                <Separator Grid.Column="4"/>
+                <StatusBarItem Grid.Column="5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Mov Obras" VerticalAlignment="Center"/>
+                        <TextBox Name="txtTotalHsAcu" IsReadOnly="True" Margin="3" Width="100"/>
+                    </StackPanel>
+                </StatusBarItem>
+            </StatusBar>
+        </Border>
+    </Grid>
+    
+</UserControl>

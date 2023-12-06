@@ -1,0 +1,84 @@
+﻿<Window x:Class="UIDESK.Login3"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:UIDESK" WindowStyle="None"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" 
+        Height="300" Width="300">
+
+    <materialDesign:DialogHost Name="dlhPpal">
+        <materialDesign:DialogHost.DialogContent>
+            <StackPanel Margin="10">
+                <TextBlock  x:Name="txtMensajeDialog" Margin="5">Bienvenido</TextBlock>
+                <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Name="btnCloseDialog" Margin="5" >OK</Button>
+            </StackPanel>
+        </materialDesign:DialogHost.DialogContent>
+        <materialDesign:Flipper VerticalContentAlignment="Stretch"  HorizontalContentAlignment="Stretch" BorderBrush="Black" BorderThickness="2">
+            <materialDesign:Flipper.FrontContent>
+                <Grid >
+                    <Image Source="/imagenes/login2.jpg" Stretch="Fill"></Image>
+                    <Image Source="/imagenes/logo-sahm-blanco.jpg" Margin="5,-60,0,5" Width="200"></Image>
+                    <Button x:Name="btnEmpezar" VerticalAlignment="Bottom" Command="{x:Static materialDesign:Flipper.FlipCommand}" Style="{StaticResource MaterialDesignPaperDarkButton}" >
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Handshake" Foreground="Black" VerticalAlignment="Center"/>
+                            <TextBlock Text="Empezar" Foreground="Black" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
+                        </StackPanel>
+
+                    </Button>
+                </Grid>
+            </materialDesign:Flipper.FrontContent>
+            <materialDesign:Flipper.BackContent>
+                <Grid>
+                    <Grid.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#DDB892" Offset="0.0"></GradientStop>
+                            <GradientStop Color="#B08968" Offset="1.0"></GradientStop>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" FontSize="16" HorizontalAlignment="Center" Margin="0,30,0,0" Foreground="#FF2033BF">Ingrese sus credenciales</TextBlock>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5,10,0,0">
+                        <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#FF2033BF"></materialDesign:PackIcon>
+                        <TextBox x:Name="txtUser" materialDesign:HintAssist.Hint="Usuario" 
+                         Foreground="Black" Width="200" Margin="10,0,0,0" FontWeight="Bold"></TextBox>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
+                        <materialDesign:PackIcon Kind="Key" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#FF2033BF"></materialDesign:PackIcon>
+                        <PasswordBox x:Name="txtPassword" materialDesign:HintAssist.Hint="Password"  
+                         Foreground="Black" Width="200" Margin="10,0,0,0" FontWeight="Bold"></PasswordBox>
+
+                    </StackPanel>
+
+                    <Button x:Name="btnLogin"  Grid.Row="3" Click="btnLogin_Click" Margin="30,10" Style="{StaticResource MaterialDesignPaperDarkButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Login" Foreground="Black" VerticalAlignment="Center"/>
+                            <TextBlock Text="Ingresar" Foreground="Black" VerticalAlignment="Center" Margin="5,0" FontSize="14"/>
+                        </StackPanel>
+
+                    </Button>
+                    <Button x:Name="btnLogout"  Grid.Row="4" Click="btnLogout_Click" Margin="30,10" Style="{StaticResource MaterialDesignPaperDarkButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Cancel" Foreground="Black" VerticalAlignment="Center"/>
+                            <TextBlock Text="Cancelar" Foreground="Black" Margin="5,0" VerticalAlignment="Center" FontSize="14"/>
+                        </StackPanel>
+
+                    </Button>
+
+                    <TextBlock Grid.Row="5" Margin="20,50,0,0" Foreground="#FF2033BF">Version 3.3.3</TextBlock>
+                </Grid>
+            </materialDesign:Flipper.BackContent>
+        </materialDesign:Flipper>
+    </materialDesign:DialogHost>
+       
+  
+
+</Window>

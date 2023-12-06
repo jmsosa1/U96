@@ -1,0 +1,625 @@
+﻿<UserControl x:Class="UIDESK.uc.Vehiculos.ucDetalleFilaVehiculoGral"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIDESK.uc.Vehiculos"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+              
+             xmlns:converter="clr-namespace:UIDESK.validacion"
+              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            Background="{DynamicResource MaterialDesignPaper}"
+            FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="520" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <converter:BinaryImageConverter x:Key="imageConverter"/>
+        <Style TargetType="TextBlock" x:Key="Encabezado">
+            <Setter Property="FontSize" Value="45" />
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="5">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF615EAD" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <StackPanel Orientation="Horizontal" Margin="10" Name="stkDatosVehiculo">
+                <TextBlock Margin="10,0,0,0" Foreground="White">Dominio:</TextBlock>
+                <TextBlock Text="{Binding Path=Dominio}" Margin="10,0,0,0" Foreground="Violet" FontStyle="Italic"></TextBlock>
+                <TextBlock Margin="10,0,0,0" Foreground="White">Descripcion:</TextBlock>
+                <TextBlock Text="{Binding Path=Descripcion}" Margin="10,0,0,0" Foreground="Violet" FontStyle="Italic"></TextBlock>
+                <TextBlock Margin="10,0,0,0" Foreground="White" >Marca:</TextBlock>
+                <TextBlock Text="{Binding Path=NomMarca}" Margin="10,0,0,0" Foreground="Violet" FontStyle="Italic"></TextBlock>
+                <TextBlock Margin="10,0,0,0" Foreground="White">Modelo:</TextBlock>
+                <TextBlock Text="{Binding Path=Modelo}" Margin="10,0,0,0" Foreground="Violet" FontStyle="Italic"></TextBlock>
+            </StackPanel>
+        </Border>
+        <TabControl Style="{StaticResource MaterialDesignTabControl}" Margin="10" Padding="2" Grid.Row="1" >
+            <TabControl.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF220B75" Offset="1"/>
+                </LinearGradientBrush>
+            </TabControl.Background>
+            <TabItem Header="Detalles" >
+                   <Grid x:Name="grDetalles" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+                        <TextBox Name="txtDominio"
+                             Text="{Binding  Dominio}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Dominio"
+                           VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+                        <TextBox Text="{Binding Modelo}" IsReadOnly="True" Margin="20,0,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Modelo"
+                         Width="205"/>
+                        <TextBox Text="{Binding NomMarca}" IsReadOnly="True" Margin="20,0,0,0"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Marca"
+                         Width="200"/>
+                        <TextBox Text="{Binding AnioModelo}" IsReadOnly="True" Margin="20,0,0,0"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Año Modelo"     
+                         Width="120"/>
+                        <TextBox  IsReadOnly="True" Margin="20,0,0,0"
+                             Text="{Binding Cilindrada}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Cilindrada" 
+                             Width="149"/>
+                        <TextBox Name="txtIdvh" Text="{Binding Path=IdVh}" Margin="20,0,0,0"
+                         Height="23"  IsReadOnly="True"  Width="72"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+                        <TextBox Text="{Binding Descripcion}" IsReadOnly="True" 
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Descripcion"
+                        Width="280"/>
+                       
+                        <TextBox Text="{Binding Color}" IsReadOnly="True" Margin="20,0,0,0"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Color"     
+                         Width="141"/>
+
+                        <TextBox Text="{Binding CodigoRadio}" IsReadOnly="True" Margin="20,0,0,0"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Cod Radio"     
+                        Width="120"/>
+                        <TextBox Text="{Binding KmKitDistribucion, StringFormat=N2, ConverterCulture=es-AR}" IsReadOnly="True" Margin="20,0,0,0"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Km Kit Distribucion"     
+                         Width="130"/>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
+                        <TextBox IsReadOnly="True" 
+                             Text="{Binding FechaCompra, ConverterCulture=es-AR, StringFormat= d}"  
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Fecha Compra"
+                              Width="120"/>
+                        <TextBox  IsReadOnly="True"  
+                             Text="{Binding ValorCompra, ConverterCulture=es-AR,StringFormat=C}" Margin="20,0,0,0"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Precio Compra" 
+                              Width="149"/>
+                        <TextBox  IsReadOnly="True" Margin="20,0,0,0"
+                             Text="{Binding Garantia}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Garantia" 
+                             VerticalAlignment="Top" Width="244"/>
+                        <TextBox  IsReadOnly="True"  
+                             Text="{Binding CostoReposicionDls, ConverterCulture=es-AR,StringFormat=C}" Margin="20,0,0,0"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Costo Reposicion u$s" 
+                              Width="149"/>
+
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5">
+                        <TextBox  IsReadOnly="True"  
+                             Text="{Binding NomCombustible}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Combustible" 
+                              Width="120"/>
+                        <TextBox  IsReadOnly="True"  Margin="20,0,0,0"
+                             Text="{Binding NumeroChasis}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="N. Chasis" 
+                             Width="300"/>
+
+                        <TextBox  IsReadOnly="True"  Margin="20,0,0,0"
+                             Text="{Binding NumeroMotor}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="N. Motor" 
+                             Width="300"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="5">
+                        <TextBox  IsReadOnly="True" 
+                             Text="{Binding NeuDelantero}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Neu. Delantero" 
+                              Width="179"/>
+
+                        <TextBox  IsReadOnly="True" Margin="20,0,0,0"
+                             Text="{Binding NeuTrasero}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Neu. Trasero" 
+                             VerticalAlignment="Top" Width="179"/>
+                        <TextBox  IsReadOnly="True"  Margin="20,0,0,0" Text="{Binding CantiEjes}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Ejes" 
+                             Width="59"/>
+
+                        <TextBox  IsReadOnly="True" Margin="20,0,0,0" Text="{Binding KmLitro,StringFormat=N2,ConverterCulture=es-Ar}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="KM por Litro" 
+                              Width="90"/>
+                        <TextBox  IsReadOnly="True" Margin="20,0,0,0" Text="{Binding ValorHora, ConverterCulture=es-AR, StringFormat=C}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Valor Hora"
+                              Width="120"/>
+
+                        <TextBox  IsReadOnly="True" Margin="20,0,0,0" Text="{Binding ValorKm, ConverterCulture=es-AR, StringFormat=C}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Valor Km"
+                              Width="120"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="5">
+                        <TextBox  IsReadOnly="True" 
+                             Text="{Binding KmAcumulado}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Km Acumulado" 
+                             VerticalAlignment="Top" Width="120"/>
+
+                        <TextBox IsReadOnly="True" Margin="20,0,0,0"
+                             Text="{Binding HorasAcumuladas}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Hs Acumuladas" 
+                             VerticalAlignment="Top" Width="149"/>
+                        <TextBox Name="txtKmIniciales" Text="{Binding KmInicial}" Margin="20,0,0,0"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Km Iniciales" Width="120"/>
+                        <TextBox Name="txtHsIniciales" Text="{Binding HsInicial}" Margin="20,0,0,0"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Hs Iniciales" Width="120"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="5">
+                        <CheckBox Content="Seguimiento SAT" IsChecked="{Binding Path=SegSat}"  />
+
+                        <CheckBox Content="Rastreo SAT" IsChecked="{Binding Path=RSat}" Margin="20,0,0,0"/>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="7" Orientation="Horizontal" Margin="5">
+                        <TextBox  IsReadOnly="True" 
+                             Text="{Binding Path=Largo,StringFormat=N2,ConverterCulture=es-AR}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Largo(m)" 
+                             VerticalAlignment="Top" Width="100"/>
+                        <TextBox  IsReadOnly="True" 
+                             Text="{Binding Path=Ancho,StringFormat=N2,ConverterCulture=es-Ar}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Ancho(m)" 
+                             VerticalAlignment="Top" Width="100" Margin="20,0,0,0"/>
+                        <TextBox  IsReadOnly="True" 
+                             Text="{Binding Path=Alto,StringFormat=N2,ConverterCulture=es-Ar}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Alto(m)" 
+                             VerticalAlignment="Top" Width="100" Margin="20,0,0,0"/>
+                        <TextBox  IsReadOnly="True" 
+                             Text="{Binding Path=Peso,StringFormat=N2,ConverterCulture=es-Ar}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Peso (kg)" 
+                             VerticalAlignment="Top" Width="120" Margin="20,0,0,0"/>
+                        <TextBox  IsReadOnly="True" 
+                             Text="{Binding Path=CargaMaxima,StringFormat=N2,ConverterCulture=es-Ar}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Carga Maxima(kg)" 
+                             VerticalAlignment="Top" Width="120" Margin="20,0,0,0"/>
+                        <TextBox  IsReadOnly="True" 
+                             Text="{Binding Path=VolumenCarga,StringFormat=N2,ConverterCulture=es-Ar}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Volumen Carga(m3)" 
+                             VerticalAlignment="Top" Width="120" Margin="20,0,0,0"/>
+                        <TextBox  IsReadOnly="True" 
+                             Text="{Binding Path=SuperficieCarga,StringFormat=N2,ConverterCulture=es-AR}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Superficie Carga(m2)" 
+                             VerticalAlignment="Top" Width="120" Margin="20,0,0,0"/>
+                    </StackPanel>
+                    <Border Grid.Row="8" BorderBrush="Black" BorderThickness="1" CornerRadius="5">
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBox Text="{Binding Path=BajaF,StringFormat=d,ConverterCulture=es-Ar}" IsReadOnly="True"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Fecha de Baja" ></TextBox>
+                            <TextBox Text="{Binding Path=CausaBaja}" IsReadOnly="True" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                    materialDesign:HintAssist.Hint="Causa" Margin="20,0,0,0" ></TextBox>
+                        </StackPanel>
+                    </Border>
+
+                </Grid>
+                
+                
+            </TabItem>
+            <TabItem Header="Consumos" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid Name="dgConsumosCombustible" AutoGenerateColumns="False" CanUserAddRows="False"
+                          CanUserDeleteRows="False" Grid.Row="0" IsReadOnly="True" Margin="5"
+                        RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding IdCmb}"/>
+                            <DataGridTextColumn Header="Fecha Registro" Binding="{Binding FechaReg ,ConverterCulture=es-Ar, StringFormat=d}"/>
+                            <DataGridTextColumn Header="Imputacion" Binding="{Binding Path=Imputacion}"/>
+                            <DataGridTextColumn Header="KM" Binding="{Binding Path=KmRecorrido, StringFormat=N2,ConverterCulture=es-Ar}"/>
+                            <DataGridTextColumn Header="Horas" Binding="{Binding Path=HorasTrabajo,StringFormat=N2,ConverterCulture=es-Ar}"/>
+                            <DataGridTextColumn Header="Mes" Binding="{Binding Path=Meskm}"/>
+                            <DataGridTextColumn Header="Año" Binding="{Binding Path=AnioConsumo}"/>
+                            <DataGridTextColumn Header="Combustible KM" Binding="{Binding Path=LitrosCmbKM,StringFormat=N2,ConverterCulture=es-Ar}"/>
+                            <DataGridTextColumn Header="Combustible Hs" Binding="{Binding Path=LitrosCmbHoras,StringFormat=N2,ConverterCulture=es-Ar}"/>
+                            <DataGridTextColumn Header="Costo cmb KM" Binding="{Binding Path=CostoCmbKm,ConverterCulture=es-AR,StringFormat=C}"/>
+                            <DataGridTextColumn Header="Costo cmb HS" Binding="{Binding Path=CostoCmbHoras,ConverterCulture=es-AR,StringFormat=C}"/>
+                            <DataGridTextColumn Header="Precio Litro" Binding="{Binding Path=PrecioLitro,ConverterCulture=es-AR,StringFormat=C}"/>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Name="btnBorrarConsumo" ToolTip="Borrar consumo" Background="Red"
+                                                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                                Height="20" Width="20" Click="btnBorrarConsumo_Click">
+                                            <materialDesign:PackIcon Kind="Minus"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                    <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="10,0,0,0" Text="Total KM" VerticalAlignment="Center" 
+                                       Style="{StaticResource MaterialDesignBody2TextBlock}"></TextBlock>
+                                <TextBlock Name="txtTotalKM" Margin="5" VerticalAlignment="Center" ></TextBlock>
+                                <TextBlock Text="Total Horas" VerticalAlignment="Center" Margin="10,0,0,0"
+                                      Style="{StaticResource MaterialDesignBody2TextBlock}" ></TextBlock>
+                                <TextBlock Name="txtTotalHs" Margin="5"  VerticalAlignment="Center" ></TextBlock>
+                                <TextBlock Text="Total Lts Combustibles" VerticalAlignment="Center"
+                                      Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="10,0,0,0" ></TextBlock>
+                                <TextBlock Name="txtTotalLitrosCombustible" Margin="5" VerticalAlignment="Center" />
+                                <TextBlock Text="Total Costo Combustibles" VerticalAlignment="Center"
+                                      Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="10,0,0,0"/>
+                                <TextBlock Name="txtTotalCostoCombustible"   Margin="5" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="Autorizaciones">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+               
+                    <DataGrid Name="dgAutorizaciones" AutoGenerateColumns="False" CanUserAddRows="False"
+                          CanUserDeleteRows="False" SelectionMode="Single" 
+                              IsReadOnly="True" Grid.Row="0" Margin="5"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Path=IdAut}" Width="50"/>
+                            <DataGridTextColumn Header="Empleado" Binding="{Binding Path=NombreEmpleado}" Width="250"/>
+                            <DataGridTextColumn Header="DNI" Binding="{Binding Path=DNI ,StringFormat=N0, ConverterCulture=es-AR}" Width="150"/>
+                            <DataGridTextColumn Header="Fecha Autorizacion" Binding="{Binding Path=Finicio, StringFormat=d,ConverterCulture=es-AR}"/>
+                            <DataGridTextColumn Header="Numero Autorizacion" Binding="{Binding Path=NumAutorizacion}" Width="150"></DataGridTextColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Name="btnDelAutorizacion" ToolTip="Borrar Asignacion" Background="Red"
+                                                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                                Height="20" Width="20" Click="btnDelAutorizacion_Click">
+                                            <materialDesign:PackIcon Kind="Minus"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Cantidad de Autorizaciones:" VerticalAlignment="Center" Margin="10,3,0,0"></TextBlock>
+                            <TextBlock Name="txbCantiAutorizaciones" Margin="5,3,0,0" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                        
+                    </Border>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Documentacion">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ToolBar Name="tbAcciones" Grid.Row="0" Style="{StaticResource MaterialDesignToolBar}" ClipToBounds="False" Margin="5">
+                        <CheckBox Name="chkVerDocu"  Checked="ChkVerDocu_Checked" Unchecked="ChkVerDocu_Unchecked"></CheckBox>
+                        <TextBlock Text="Ver Documentacion:" VerticalAlignment="Center"></TextBlock>
+                        
+                        <ComboBox Name="cmbDocu" Width="150"  SelectionChanged="CmbDocu_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Path=IdDocuVH}" Margin="2"></TextBlock>
+                                        <Separator Width="2" Foreground="Black"/>
+                                        <TextBlock Text="{Binding Path=Descripcion}" Margin="2"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Separator Width="2"/>
+                        <Button Name="btnDocuVigente" ToolTip="Ver Doc Vigente" Padding="2" Click="BtnDocuVigente_Click">
+                            <materialDesign:PackIcon Kind="CalendarCheck"/>
+                        </Button>
+                        <Button Name="btnDocuGral" ToolTip="Ver Doc Gral" Padding="2" Click="BtnDocuGral_Click">
+                            <materialDesign:PackIcon Kind="Calendar"/>
+                        </Button>
+                        <Button Name="btnVencida" ToolTip="Ver Doc Vencida" Padding="2" Click="BtnVencida_Click">
+                            <materialDesign:PackIcon Kind="AlertOutline"/>
+                        </Button>
+                        <Separator Width="2"/>
+                        <Button Name="btnImprimirDocu" ToolTip="Imprimir" Padding="2" Click="BtnImprimirDocu_Click">
+                            <materialDesign:PackIcon Kind="Printer"/>
+                        </Button>
+                        <Separator Width="2"/>
+                        
+                        <Button Name="btnEliminarDocu" ToolTip="Eliminar Registro" Padding="2" Click="BtnEliminarDocu_Click">
+                            <materialDesign:PackIcon Kind="DeleteCircle"/>
+                        </Button>
+                        <Separator Width="2"/>
+                        <Button Name="btnCumplirDocu" ToolTip="Cumplir registro" Padding="2" Click="BtnCumplirDocu_Click">
+                            <materialDesign:PackIcon Kind="CheckboxMarkedCircleOutline"/>
+                        </Button>
+                      
+                        
+                    </ToolBar>
+                    <DataGrid Name="dgDocumentacion" AutoGenerateColumns="False" CanUserAddRows="False"
+                          CanUserDeleteRows="False" IsReadOnly="True" Grid.Row="1" Margin="5"
+                            RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single"
+                            materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                            materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Estado" Binding="{Binding Path=Situacion}" Width="50"/>
+                            <DataGridTextColumn Header="Documentacion" Binding="{Binding Path=NombreDocu}" Width="100"/>
+                            <DataGridTextColumn Header="Vencimiento" Binding="{Binding Path=FVencimiento,StringFormat=d,ConverterCulture=es-Ar}" 
+                                            Width="80"/>
+                            <DataGridTextColumn Header="Costo" Binding="{Binding Path=Costo, StringFormat=C2,ConverterCulture=es-AR}" Width="100"/>
+                            <DataGridTextColumn Header="Desde" Binding="{Binding Path=FDesde,StringFormat=d,ConverterCulture=es-AR}" Width="100"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Hasta" Binding="{Binding Path=FHasta, StringFormat=d,ConverterCulture=es-AR}" Width="100"/>
+                            <DataGridTextColumn Header="Nota" Binding="{Binding Path=Nota}" Width="150"/>
+                            <DataGridTextColumn Header="Numero Doc" Binding="{Binding Path=NumeroDoc}" Width="150"/>
+                          
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Documentos registrados:" Margin="10,5,0,0"></TextBlock>
+                            <TextBlock Name="txbCantDocu" Margin="5,5,0,0"></TextBlock>
+                            <TextBlock Text="Costo Documentacion Vigente(activa):" Margin="10,5,0,0"></TextBlock>
+                            <TextBlock Name="txbCostoDocuActiva" Margin="5,5,0,0" ></TextBlock>
+                            <TextBlock Text="Costo Total Documentacion:" Margin="10,5,0,0"></TextBlock>
+                            <TextBlock Name="txbCostoTotalDoc" Margin="5,5,0,0"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="Mantenimientos">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ToolBar Name="tbAccionesMante" Grid.Row="0" Style="{StaticResource MaterialDesignToolBar}" ClipToBounds="False" Margin="5">
+
+                        <Button Name="btnAgruparCateMante" Padding="2" ToolTip="Agrupar Categorias Mante" Click="BtnAgruparCateMante_Click">
+                            <materialDesign:PackIcon Kind="Group"/>
+                        </Button>
+                        <Button Name="btnDesCatMante" Padding="2" ToolTip="Desagrupar" Click="BtnDesCatMante_Click" IsEnabled="False">
+                            <materialDesign:PackIcon Kind="Undo"/>
+                        </Button>
+                        <Separator Width="2"></Separator>
+                        <Button Name="btnExcel" Padding="2" ToolTip="Exportar a Excel" Click="btnExcel_Click" >
+                            <materialDesign:PackIcon Kind="MicrosoftExcel" Foreground="Green"/>
+                        </Button>
+                    </ToolBar>
+                    <DataGrid Name="dgDetMante" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False"
+                          CanUserDeleteRows="False" IsReadOnly="True" Margin="5"
+                             RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single"
+                            materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                            materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2"  >
+                        <DataGrid.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.ContainerStyle>
+                                    <Style TargetType="{x:Type GroupItem}">
+                                        <Setter Property="Margin" Value="0,0,0,5"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                    <Expander IsExpanded="True" Background="#FF566FB9" BorderBrush="#FF002255" Foreground="#FFEEEEEE" BorderThickness="1,1,1,5">
+                                                        <Expander.Header>
+                                                            <DockPanel>
+                                                                <TextBlock FontWeight="Bold" Text="{Binding Path=Name}" Margin="5,0,0,0" Width="100"/>
+                                                                <TextBlock FontWeight="Bold" Text="{Binding Path=ItemCount}"/>
+
+                                                            </DockPanel>
+                                                        </Expander.Header>
+                                                        <Expander.Content>
+                                                            <ItemsPresenter />
+                                                        </Expander.Content>
+                                                    </Expander>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </GroupStyle.ContainerStyle>
+                            </GroupStyle>
+                        </DataGrid.GroupStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Cat Mante" Width="100" Binding="{Binding Path=NomCateMante}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Descripcion" Width="300" Binding="{Binding Path=DescriMante}"/>
+                            <DataGridTextColumn Header="Fecha" Width="100" Binding="{Binding Path=FechaFac,StringFormat=d,ConverterCulture=es-AR}"/>
+                            <DataGridTextColumn Header="Cantidad" Width="100" Binding="{Binding Path=Cantidad}"/>
+                            <DataGridTextColumn Header="Costo" Width="100" Binding="{Binding Path=CostoItem,StringFormat=C,ConverterCulture=es-AR}"/>
+                            <DataGridTextColumn Header="Proveedor" Width="150" Binding="{Binding Path=RazonSocial}"/>
+                            <DataGridTextColumn Header="Km" Width="80" Binding="{Binding Path=KmDetMante, StringFormat=N0,ConverterCulture=es-AR}"/>
+                            <DataGridTextColumn Header="Hs" Width="80" Binding="{Binding Path=HsDetMante}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1">
+                        <StackPanel  Orientation="Horizontal">
+                            <TextBlock Margin="10,5,0,0">Cantidad de Mantenimientos:</TextBlock>
+                            <TextBlock Name="txbCantMantenimientos" Margin="5,5,0,0"></TextBlock>
+                            <TextBlock Margin="10,5,0,0">Costo Total de los mantenimientos</TextBlock>
+                            <TextBlock Name="txbCostoTotalMante" Margin="5,5,0,0"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="Galeria">
+                <Grid Name="grdGaleria">
+                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="275" Margin="10,10,0,0" VerticalAlignment="Top" Width="455">
+                        <Image Source="{Binding Path=Foto}" Name="imgFotoAuto"/>
+                    </Border>
+                   
+                    <Button Content="{materialDesign:PackIcon Kind=PageLast}" Name="btnPrevFoto" Click="BtnPrevFoto_Click"
+                            HorizontalAlignment="Left" Margin="492,30,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button Content="{materialDesign:PackIcon Kind=PageFirst}" Name="btnNextFoto" Click="BtnNextFoto_Click"
+                            HorizontalAlignment="Left" Margin="492,67,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button Name="btnDelFoto" Click="BtnDelFoto_Click"
+                        Content="{materialDesign:PackIcon Kind=Delete}" HorizontalAlignment="Left" Margin="492,104,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button Name="btnAddFoto" Click="BtnAddFoto_Click" 
+                        Content="{materialDesign:PackIcon Kind=PlusBox}" HorizontalAlignment="Left" Margin="492,141,0,0" VerticalAlignment="Top" Width="75"/>
+                    
+                    <TextBox Text="{Binding Path=Titulo}" IsReadOnly="True" 
+                             materialDesign:HintAssist.Hint="Titulo" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                        HorizontalAlignment="Left"  Margin="612,50,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="300"/>
+                    <TextBox Text="{Binding Path=DescriFoto}" IsReadOnly="True" 
+                             materialDesign:HintAssist.Hint="Descripcion" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        HorizontalAlignment="Left"  Margin="612,90,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="300" Height="100"/>
+                    <TextBox Text="{Binding Path=AltaF, StringFormat=d, ConverterCulture=es-Ar}" IsReadOnly="True"
+                             materialDesign:HintAssist.Hint="Fecha" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        HorizontalAlignment="Left"  Margin="612,15,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Repuestos">
+                <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ToolBar Name="tbRepuestos" Grid.Row="0"  Style="{StaticResource MaterialDesignToolBar}" ClipToBounds="False">
+                            <Button Name="btnAddRepuesto" Padding="2" Margin="5"
+                                    Click="BtnAddRepuesto_Click" >
+                                <materialDesign:PackIcon Kind="PlusCircle"/>
+                            </Button>
+                            
+                            <Button Name="btnDelRepuesto" Padding="2" Click="BtnDelRepuesto_Click">
+                                <materialDesign:PackIcon Kind="Delete"/>
+                            </Button>
+                        <Separator Width="3" Background="OrangeRed"/>
+                        <Button Name="btnImprimirRepuestos" Click="BtnImprimirRepuestos_Click" Padding="2" 
+                                    ToolTip="Imprimir listado de Repuestos">
+                            <materialDesign:PackIcon Kind="Printer"/>
+                        </Button>
+                    </ToolBar>
+                        <DataGrid Name="dgRepuestos" Grid.Row="1"  AutoGenerateColumns="False" CanUserAddRows="False"
+                          CanUserDeleteRows="False" IsReadOnly="True" Margin="5"
+                             RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single"
+                            materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                            materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2"  >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Path=IdProducto}" Width="70"/>
+                                <DataGridTextColumn Header="Nombre" Binding="{Binding Path= Nombre}" Width="100"/>
+                                <DataGridTextColumn Header="Modelo" Binding="{Binding Path=Modelo}" Width="100"/>
+                                <DataGridTextColumn Header="CodInventario" Binding="{Binding Path=CodInventario}" Width="100"/>
+                                <DataGridTextColumn Header="NumeroSerie" Binding="{Binding Path=NumSerie}" Width="100"/>
+                                <DataGridTextColumn Header="Descripcion" Binding="{Binding Path=Descripcion}" Width="150"/>
+                            <DataGridTextColumn Header="Marca" Binding="{Binding Path=Marca}" Width="100"/>
+                            <DataGridTextColumn Header="PrecioUnit" Binding="{Binding Path=PrecioUnit, ConverterCulture=es-AR, StringFormat=C}"/>
+                                <DataGridTextColumn Header="CostoReposicion" Binding="{Binding Path=CostRepo,ConverterCulture=es-Ar,StringFormat=C}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Text="Repuestos registrados:" Margin="10,5,0,0"></TextBlock>
+                            <TextBlock Name="txb1" Margin="5,5,0,0"></TextBlock>
+                            <TextBlock Text="Costo total:" Margin="10,5,0,0"></TextBlock>
+                            <TextBlock Name="txb2" Margin="5,5,0,0" ></TextBlock>
+                            <TextBlock Text="Costo Reposicion total:" Margin="10,5,0,0"></TextBlock>
+                            <TextBlock Name="txb3" Margin="5,5,0,0"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                       
+                    </Grid>
+                
+            </TabItem>
+            <TabItem Header="Plan Inspecion">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ToolBar Name="tbPlan" Grid.Row="0" Margin="5" Style="{StaticResource MaterialDesignToolBar}" ClipToBounds="False" >
+                        
+                        <Button Name="btnAddTareaPLan" Margin="10,2,2,2"  ToolTip="Agregar Tarea" Padding="2" Click="BtnAddTareaPLan_Click">
+                            <materialDesign:PackIcon Kind="PlusCircle"/>
+                        </Button>
+                        <Button Name="btnDeleteTareaPLan" Margin="10,2,2,2" ToolTip="Quitar Tarea" Padding="2" Click="BtnDeleteTareaPLan_Click">
+                            <materialDesign:PackIcon Kind="Delete"/>
+                        </Button>
+                        <Separator Width="2" Background="OrangeRed"></Separator>
+                        <Button x:Name="btnCrearTareaMante" Margin="10,2,2,2" ToolTip="Crear Tarea de Mantenimiento" Padding="2" 
+                                Click="BtnCrearTareaMante_Click">
+                            <materialDesign:PackIcon Kind="Wrench"/>
+                        </Button>
+                    </ToolBar>
+                    <DataGrid Name="dgPlanInspeccion" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False"
+                             CanUserDeleteRows="False" IsReadOnly="True" Margin="5"
+                             RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single"
+                             VerticalScrollBarVisibility="Visible" materialDesign:DataGridAssist.CellPadding="4,2,2,2"
+                             materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2"  >
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Style.Triggers>
+
+                                    <DataTrigger Binding="{Binding Estado}" Value="1">
+                                        <Setter Property="Background" Value="GreenYellow"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Estado}" Value="2">
+                                        <Setter Property="Background" Value="Gold"/>
+                                    </DataTrigger>
+                                    <DataTrigger  Binding="{Binding Estado}" Value="3">
+                                        <Setter Property="Background" Value="#FFE83838"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Estado}" Value="4">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Path= Idplan}" ></DataGridTextColumn>
+                            <DataGridTextColumn Header="Descripcion Tarea" Binding="{Binding Path=Tarea}" Width="250"/>
+                            <DataGridTextColumn Header="Atributo" Width=" 90" Binding="{Binding Path=AtributoComparativo}"/>
+                            <DataGridTextColumn Header="Valor Inicio" Width="90" Binding="{Binding Path=ValorInicio,StringFormat=N0,ConverterCulture=es-AR}"/>
+                            <DataGridTextColumn Header="Valor Limite" Width="90" Binding="{Binding Path=ValorLimiteComparativo,StringFormat=N0,ConverterCulture=es-AR}"/>
+                            <DataGridTextColumn Header="Valor Actual " Width="90" Binding="{Binding Path=ValorActualComparativo,StringFormat=N0,ConverterCulture=es-AR}"/>
+                            <DataGridTextColumn Header="GAP" Width="90" Binding="{Binding Path=Gap,StringFormat=N0,ConverterCulture=es-AR}"/>
+                            <DataGridTextColumn Header="Valor Control" Width="90" Binding="{Binding Path=ValorConstante,StringFormat=N0,ConverterCulture=es-AR}"/>
+                            <DataGridTextColumn Header="Situacion" Binding="{Binding Path=SituacionTarea}"/>
+                            <DataGridTextColumn Header="Actualizacion" Width="90" Binding="{Binding Path=Ultima_actualizacion,ConverterCulture=es-Ar,StringFormat=d}"/>
+                            <DataGridTextColumn Header="N° OTM" Binding="{Binding Path=IdOtm}"/>
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
+                    <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Text="Data info:" Margin="10,5,0,0"></TextBlock>
+                            <TextBlock Name="txbdata1" Margin="5,5,0,0"></TextBlock>
+                            <TextBlock Text="Data info:" Margin="10,5,0,0"></TextBlock>
+                            <TextBlock Name="txbdata2" Margin="5,5,0,0" ></TextBlock>
+                            <TextBlock Text="Data info" Margin="10,5,0,0"></TextBlock>
+                            <TextBlock Name="txbdata3" Margin="5,5,0,0"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    
+                </Grid>
+            </TabItem>
+
+
+        </TabControl>
+    </Grid>
+</UserControl>

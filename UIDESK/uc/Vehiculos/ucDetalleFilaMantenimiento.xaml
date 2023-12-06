@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="UIDESK.uc.Vehiculos.ucDetalleFilaMantenimiento"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIDESK.uc.Vehiculos"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             
+             xmlns:converter="clr-namespace:UIDESK.validacion"
+              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            Background="{DynamicResource MaterialDesignPaper}"
+            FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="900">
+    <Grid>
+        <TabControl Margin="10">
+            <TabItem Header="Detalle de los mantenimientos">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid Name="dgListaMantenimientos" Grid.Row="0" AutoGenerateColumns="False" CanUserAddRows="False"
+                             CanUserDeleteRows="False" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single"
+                             VerticalScrollBarVisibility="Visible" materialDesign:DataGridAssist.CellPadding="4,2,2,2"
+                             materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2"  >
+
+                        <DataGrid.Columns>
+
+                            
+                            <DataGridTextColumn Header="Cat Mantenimiento" Width="130" Binding="{Binding Path=NomCateMante}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Descripcion" Width="500"  Binding="{Binding Path= DescriMante}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Cantidad" Width="100" Binding="{Binding Path=Cantidad}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Costo" Width="150" Binding="{Binding Path= CostoItem, StringFormat=C, ConverterCulture=es-AR}"></DataGridTextColumn>
+                            
+                                                
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <materialDesign:ColorZone Grid.Row="1" >
+
+
+                        <StackPanel Orientation="Horizontal" Name="stkInfoAdicional">
+
+
+                            <TextBlock Text="Informacion adicional" Margin="3" VerticalAlignment="Center"/>
+
+                            <TextBox Name="txtAltaF" Margin="3" materialDesign:HintAssist.Hint="Fecha Registro"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"
+                                     Text="{Binding Path=AltaF, StringFormat=d,ConverterCulture=es-AR}"></TextBox>
+
+                            <TextBox Name="txtKmMantenimiento"  Width="100" Margin="3" materialDesign:HintAssist.Hint="Kilometros"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"
+                                 Text="{Binding Path=KmMante,StringFormat=N0,ConverterCulture=es-AR}"    ></TextBox>
+
+                            <TextBox Name="txtHsMantenimiento"  Width="100" Margin="3"  materialDesign:HintAssist.Hint="Horas"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"
+                                    Text="{Binding Path=HorasMante,StringFormat=N0,ConverterCulture=es-AR}" ></TextBox>
+                        </StackPanel>
+
+                    </materialDesign:ColorZone>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

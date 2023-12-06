@@ -1,0 +1,205 @@
+﻿<UserControl x:Class="UIDESK.uc.Productos.ucSituacionStock"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIDESK.uc.Productos"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="740" d:DesignWidth="1220">
+    <ScrollViewer>
+
+
+        <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5">
+                    <TextBlock FontSize="20" Foreground="DeepSkyBlue" FontWeight="Bold" VerticalAlignment="Center">Situacion del stock en deposito</TextBlock>
+
+                </StackPanel>
+                <!-- paneles de la situacion del stock -->
+                <Grid x:Name="grStockTipos" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:Card Grid.Column="0" Margin="3">
+                        <materialDesign:Card.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#3f7435" Offset="1"/>
+                                <GradientStop Color="#9ed582" Offset="0"/>
+                            </LinearGradientBrush>
+                        </materialDesign:Card.Background>
+                        <StackPanel  Margin="5">
+                            <TextBlock  Margin="10,0,0,0" FontSize="16">Stock Activo</TextBlock>
+                            <DataGrid x:Name="dgStkActivo"  Margin="3" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                    RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" SelectionChanged="dgStkActivo_SelectionChanged">
+                                <DataGrid.Columns>
+
+                                    <DataGridTextColumn Header="Tipo Producto" Binding="{Binding Path=NombreTipo}"/>
+                                    <DataGridTextColumn Header="Stock Actual" Binding="{Binding Path=StockActual, StringFormat=N2,ConverterCulture=es-Ar}"/>
+                                    <DataGridTextColumn Header="Costo Stock" Binding="{Binding Path=CostoStockActual,StringFormat=C,ConverterCulture=es-Ar}"/>
+                                    <DataGridTextColumn Header="Deposito" Binding="{Binding Path=IdDeposito}"/>
+                                </DataGrid.Columns>
+
+                            </DataGrid>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="White">Costo Total:</TextBlock>
+                                <TextBlock x:Name="txbCTStkActivo" Foreground="White" ></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </materialDesign:Card>
+                    <materialDesign:Card Grid.Column="1" Margin="3">
+                        <materialDesign:Card.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#dc462b" Offset="1"/>
+                                <GradientStop Color="#FF9661" Offset="0"/>
+                            </LinearGradientBrush>
+                        </materialDesign:Card.Background>
+                        <StackPanel  Margin="5" >
+                            <TextBlock Margin="10,0,0,0" FontSize="16">Stock Mantenimiento</TextBlock>
+                            <DataGrid x:Name="dgStkMante"  Margin="3" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                          RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" SelectionChanged="dgStkMante_SelectionChanged" >
+                                <DataGrid.Columns>
+
+                                    <DataGridTextColumn Header="Tipo Producto" Binding="{Binding Path=NombreTipo}"/>
+                                    <DataGridTextColumn Header="Unidades en Mante." Binding="{Binding Path=StockActual, StringFormat=N,ConverterCulture=es-Ar}"/>
+                                    <DataGridTextColumn Header="Costo del Stock" Binding="{Binding Path=CostoStockActual, StringFormat=C, ConverterCulture=es-Ar}"/>
+                                    <DataGridTextColumn Header="Deposito" Binding="{Binding Path=IdDeposito}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="White">Costo Total:</TextBlock>
+                                <TextBlock x:Name="txbCTStkMante" Foreground="White"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </materialDesign:Card>
+                    <materialDesign:Card Grid.Column="2" Margin="3">
+                        <materialDesign:Card.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#767676" Offset="1"/>
+                                <GradientStop Color="#C7c7c7" Offset="0"/>
+                            </LinearGradientBrush>
+                        </materialDesign:Card.Background>
+                        <StackPanel  Margin="5">
+                            <TextBlock  Margin="10,0,0,0" FontSize="16">Stock en Punto Pedido</TextBlock>
+                            <DataGrid x:Name="dgStkPP"  Margin="3" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                          RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" SelectionChanged="dgStkPP_SelectionChanged">
+                                <DataGrid.Columns>
+
+                                    <DataGridTextColumn Header="Tipo Producto" Binding="{Binding Path=NombreTipo}"/>
+                                    <DataGridTextColumn Header="Productos PP" Binding="{Binding Path=StockActual, StringFormat=N, ConverterCulture=es-Ar}"/>
+                                    <DataGridTextColumn Header="Costo Estimado" Binding="{Binding Path=CostoStockActual, StringFormat=C, ConverterCulture=es-AR}"/>
+                                    <DataGridTextColumn Header="Deposito" Binding="{Binding Path=IdDeposito}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="White">Costo Total:</TextBlock>
+                                <TextBlock x:Name="txbCTStkPP" Foreground="White" Style="{Binding StringFormat=C,ConverterCulture=es-Ar}"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </materialDesign:Card>
+                    
+                </Grid>
+                <!-- detalle de la seleccion del panel de stock-->
+                <materialDesign:Card Grid.Row="2">
+                    <Grid x:Name="fila2" Grid.Row="2" Margin="5,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Background="LightBlue">
+                            <TextBlock Foreground="Blue" FontSize="16">Detalle de la seleccion</TextBlock>
+                            <TextBlock x:Name="txbNombreTipoProducto" FontSize="16" FontStyle="Italic" Margin="10,0,0,0" Foreground="Black"></TextBlock>
+                            <TextBlock Foreground="Blue" FontSize="16" Margin="10,0,0,0">Tipo de Stock:</TextBlock>
+                            <TextBlock x:Name="txbTipoStock" Foreground="Black" FontSize="16" FontStyle="Italic" Margin="10,0,0,0"></TextBlock>
+                        </StackPanel>
+                        <materialDesign:Card Grid.Row="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:Card Grid.Column="0" Margin="5">
+                                    <materialDesign:Card.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#6766c2" Offset="1"/>
+                                            <GradientStop Color="#7991f6" Offset="0"/>
+                                        </LinearGradientBrush>
+                                    </materialDesign:Card.Background>
+                                    <StackPanel>
+                                        <TextBlock Margin="10,10,0,0" Style="{StaticResource PopupText}">Categorias</TextBlock>
+                                        <Separator Style="{StaticResource MaterialDesignLightSeparator}"></Separator>
+                                        <DataGrid x:Name="dgStkCategoria"  Margin="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                          RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible" Height="400"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" Grid.Column="0" SelectionChanged="dgStkCategoria_SelectionChanged">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Id" Binding="{Binding Path=IdCategoria}"/>
+                                                <DataGridTextColumn Header="Categoria" Binding="{Binding Path=NombreCate}"/>
+                                                <DataGridTextColumn Header="Unidades" Binding="{Binding Path=StockActual, StringFormat=N, ConverterCulture=es-Ar}"/>
+                                                <DataGridTextColumn Header="Costo Estimado" Binding="{Binding Path=CostoStock, StringFormat=C, ConverterCulture=es-AR}"/>
+                                                <DataGridTextColumn Header="Deposito" Binding="{Binding Path=IdDeposito}"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </StackPanel>
+                                </materialDesign:Card>
+                                <materialDesign:Card Grid.Column="1" Margin="5">
+                                    <materialDesign:Card.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="Black" Offset="1"/>
+                                            <GradientStop Color="#FFA5A01C" Offset="0"/>
+                                        </LinearGradientBrush>
+                                    </materialDesign:Card.Background>
+                                    <StackPanel>
+                                        <TextBlock Margin="10,10,0,0" Style="{StaticResource PopupText}">Productos de la categoria</TextBlock>
+                                        <Separator Style="{StaticResource MaterialDesignLightSeparator}"></Separator>
+                                        <DataGrid x:Name="dgStkProductosCate"  Margin="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                          RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible" Height="400"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" >
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Id" Binding="{Binding Path=IdProducto}"/>
+                                                <DataGridTextColumn Header="Producto" Binding="{Binding Path=NombreProducto}" Width="150"/>
+                                                <DataGridTextColumn Header="Stock" Binding="{Binding Path=StkDisponible, StringFormat=N, ConverterCulture=es-Ar}"/>
+                                                <DataGridTextColumn Header="Punto Pedido" Binding="{Binding Path=PuntoPedido, StringFormat=N, ConverterCulture=es-AR}"/>
+                                                <DataGridTextColumn Header="Cod inventario" Binding="{Binding Path=CodInventario}"/>
+                                                <DataGridTextColumn Header="Modelo" Binding="{Binding Path=ModeloProducto}"/>
+                                                <DataGridTextColumn Header="Marca" Binding="{Binding Path=Marca}"/>
+                                                <DataGridTextColumn Header="Deposito" Binding="{Binding Path=IdDeposito}"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </StackPanel>
+                                </materialDesign:Card>
+                                
+
+                            </Grid>
+                        </materialDesign:Card>
+                        
+
+
+                    </Grid>
+                </materialDesign:Card>
+                
+            </Grid>
+        </materialDesign:TransitioningContent>
+    </ScrollViewer>
+</UserControl>

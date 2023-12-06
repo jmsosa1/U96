@@ -1,0 +1,189 @@
+﻿<UserControl x:Class="UIDESK.uc.gestion.ucSolicitudesAbastecimiento"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:UIDESK.uc.gestion"
+             xmlns:uc="clr-namespace:UIDESK.uc.gestion"
+              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <ToolBar Name="tbComandos"  Style="{StaticResource MaterialDesignToolBar}"
+                    ClipToBounds="False"  Padding="2" Margin="3" Grid.Row="0">
+
+            <TextBox Name="txtBuscar" Width="200" Padding="2" CharacterCasing="Upper" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Buscar  por Encargado"></TextBox>
+            <Button Name="btnBuscar" Padding="2" ToolTip="Buscar" Click="btnBuscar_Click">
+                <materialDesign:PackIcon Kind="Magnify"/>
+            </Button>
+            <Separator Width="2" Background="OrangeRed"></Separator>
+            <Button Name="btnAgregar" Padding="2" Click="btnAgregar_Click" ToolTip="Agregar una Solicitud">
+                <materialDesign:PackIcon Kind="Plus"/>
+            </Button>
+
+            <Button Name="btnBaja" Padding="2" ToolTip="Anular Solicitud" Click="btnBaja_Click">
+                <materialDesign:PackIcon Kind="MinusCircle"/>
+            </Button>
+            <Separator Width="2" Background="OrangeRed"></Separator>
+            <CheckBox Name="chkEstadoSol" Unchecked="ChkEstadoSol_Unchecked" Checked="ChkEstadoSol_Checked"/>
+            <TextBlock Text="Estado Solicidud" VerticalAlignment="Center"/>
+            <ComboBox Name="cmbEstadoSolicitud" Width="100" IsEnabled="False" 
+                      SelectionChanged="CmbEstadoSolicitud_SelectionChanged">
+                <ComboBox.Items>
+                    <ComboBoxItem>Pendiente</ComboBoxItem>
+                    <ComboBoxItem>Cumplido</ComboBoxItem>
+                    <ComboBoxItem>Anulado</ComboBoxItem>
+                </ComboBox.Items>
+            </ComboBox>
+            <Separator Width="2" Background="OrangeRed"/>
+            <CheckBox Name="chkImputacion" Content="Imputacion" Checked="ChkImputacion_Checked" Unchecked="ChkImputacion_Unchecked"/>
+            <TextBox Name="txtImputacion" Width="100" materialDesign:HintAssist.Hint="Imputacion" IsEnabled="False" />
+            <Button Name="btnBuscarImputacion" Padding="2" ToolTip="Filtrar por imputacion" Click="BtnBuscarImputacion_Click">
+                <materialDesign:PackIcon Kind="MagnifyMinusOutline"/>
+            </Button>
+            <Separator Width="2" Background="OrangeRed"/>
+            <Button Name="btnImprimirSol" Padding="2" ToolTip="Imprimir solicitud seleccionada" Click="BtnImprimirSol_Click">
+                <materialDesign:PackIcon Kind="Printer"/>
+            </Button>
+        </ToolBar>
+        
+        <DataGrid Name="dgVhGeneral"  Margin="3" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1"
+                  CanUserDeleteRows="False"  SelectionChanged="dgVhGeneral_SelectionChanged"
+                  RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" 
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2"  >
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+
+                        <DataTrigger Binding="{Binding EstadoSolicitud}" Value="Pendiente">
+                            <Setter Property="Background" Value="Gold"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding EstadoSolicitud}" Value="Cumplido">
+                            <Setter Property="Background" Value="LightBlue"/>
+                        </DataTrigger>
+                        <DataTrigger  Binding="{Binding EstadoSolicitud}" Value="Anulado">
+                            <Setter Property="Background" Value="OrangeRed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnCerrarDetalle" Click="btnCerrarDetalle_Click" Height="15" Width="15"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Id" Width="30" Binding="{Binding Path=IdSol}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Alta" Width="80" Binding="{Binding Path=AltaF, StringFormat=d,ConverterCulture=es-AR}" ></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image  Height="15" Width="15" Source="{Binding Path=ImgEstado}" ToolTip="Nueva"></Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Solicitado por" Width="200" Binding="{Binding Path=SolicitadoPor}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Imputacion" Binding="{Binding Path=Imputacion}" Width="60"></DataGridTextColumn>
+                <DataGridTextColumn Header="Obra/Sector" Width="200" Binding="{Binding Path=NomObra}"/>
+                <DataGridTextColumn Header="F.Necesidad" Width="80" Binding="{ Binding Path=FNecesidad,StringFormat=d,ConverterCulture=es-AR}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Estado" Width="70" Binding="{Binding Path= EstadoSolicitud}"></DataGridTextColumn>
+
+                <DataGridTextColumn Header="Cumplimiento %" Width="100" Binding="{Binding Path=PorcentajeCumplimiento}" />
+                <DataGridTextColumn Header="Siguiendo" Width="100" Binding="{Binding NomSeguidor}"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnTomarSolicitud" ToolTip="Tomar Actividad" 
+                                                Style="{StaticResource MaterialDesignFlatButton}"
+                                                Height="20" Width="20" Padding="1" Click="BtnTomarSolicitud_Click">
+                                <materialDesign:PackIcon Kind="AirplaneTakeoff"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header=" Items" Width="50" Binding="{Binding Path=CantidadItems}"/>
+            </DataGrid.Columns>
+            <!-- definimos el contenedor del detalle de cada fila-->
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <uc:ucDetalleSolicitudAB/>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+        <Border Grid.Row="2" Background="Transparent" BorderBrush="DarkSeaGreen" BorderThickness="2" Margin="2" CornerRadius="5">
+            <StatusBar>
+
+                <StatusBar.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="130"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </ItemsPanelTemplate>
+                </StatusBar.ItemsPanel>
+                <StatusBarItem Grid.Column="0">
+                    <TextBlock Text="Mostrando Resultados:" />
+                </StatusBarItem>
+
+                <StatusBarItem Grid.Column="2">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <TextBlock Text="Registros:" Margin="3"/>
+                        <TextBox Name="txtRegistros" Width="120" IsReadOnly="True" Margin="2,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StatusBarItem>
+
+                <StatusBarItem Grid.Column="4">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <TextBlock Text="Pendientes" Margin="3"/>
+                        <TextBox Name="txtPendientes" Width="120" IsReadOnly="True" Margin="2,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StatusBarItem>
+
+                <StatusBarItem Grid.Column="6">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <TextBlock Text="Cumplidos" Margin="3"/>
+                        <TextBox Name="txtCumplidos" Width="120" IsReadOnly="True" Margin="2,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StatusBarItem>
+
+
+                <StatusBarItem Grid.Column="8">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <TextBlock Text="Anulados:" Margin="3"/>
+                        <TextBox Name="txtAnulados" Width="120" IsReadOnly="True" Margin="2,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StatusBarItem>
+
+            </StatusBar>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,174 @@
+﻿<UserControl x:Class="UIDESK.uc.Vehiculos.ucVehiculoActualidad"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIDESK.uc.Vehiculos"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+       
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1100">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ToolBar Name="tbComandos" Style="{StaticResource MaterialDesignToolBar}" Grid.Row="0"
+                    ClipToBounds="False"  Padding="2" Margin="3">
+            <!--este textbox permite escribir una imputacion de lugar (numero) o el dominio de un vehiculo-->
+            <!--para saber que buscar , el sistema evalua la propiedad text del cuadro
+            si es un numero, busca una imputacion y si es un caracter alfanumerico busca un dominio-->
+            <TextBox Name="txtBuscar" Width="100" Padding="2" CharacterCasing="Upper"
+                         materialDesign:HintAssist.Hint="Buscar Vehiculo"></TextBox>
+            <Button Name="btnBuscar" Padding="2" ToolTip="Buscar Vehiculo" Click="btnBuscar_Click">
+                <materialDesign:PackIcon Kind="Magnify"/>
+            </Button>
+            <Separator Width="2" Background="OrangeRed"></Separator>
+
+            <Button Name="btnModicarDatos" Padding="2" ToolTip="Modificar datos seleccionado">
+                <materialDesign:PackIcon Kind="Pen"/>
+            </Button>
+
+            <Button Name="btnEliminar" Padding="2" ToolTip="Borrar seleccionado" Click="btnEliminar_Click">
+                <materialDesign:PackIcon Kind="Delete"/>
+            </Button>
+            <Button Name="btnBaja" Padding="2" ToolTip="Anular seleccionado" Click="btnBaja_Click">
+                <materialDesign:PackIcon Kind="MinusCircle"/>
+            </Button>
+            <Separator Width="2" Background="OrangeRed"></Separator>
+
+            <CheckBox Name="chkFiltroCategoria" IsChecked="False" Checked="chkFiltroCategoria_Checked" Unchecked="chkFiltroCategoria_Unchecked"
+                          Style="{StaticResource MaterialDesignCheckBox}"/>
+
+            <ComboBox Name="cmbCategoria" materialDesign:HintAssist.Hint="Categorias"  Padding="2"
+                      IsEnabled="False"
+                       Width="130" SelectionChanged="cmbCategoria_SelectionChanged"    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding IdCateVh}" Margin="3" VerticalAlignment="Center"/>
+                            <Separator Width="3"/>
+                            <TextBlock Text="{Binding NomCate}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Separator Width="2" Background="OrangeRed"/>
+            
+            
+            <CheckBox Name="chkImputacion" Checked="ChkImputacion_Checked" Unchecked="ChkImputacion_Unchecked"
+                      Content="Imputacion Obra"/>
+            <TextBox Name="txtImputacion" Width="70" IsEnabled="False" KeyDown="TxtImputacion_KeyDown"></TextBox>
+            <Button Name="btnInformeObra" Padding="2" ToolTip="Reporte Obra" Click="BtnInformeObra_Click">
+                <materialDesign:PackIcon Kind="MicrosoftExcel" Foreground="Green"/>
+            </Button>
+            <Separator Width="2" Background="OrangeRed"></Separator>
+            
+        </ToolBar>
+        <DataGrid Name="dgActualidadVh" Grid.Row="1" Margin="3" AutoGenerateColumns="False" CanUserAddRows="False"
+                 CanUserDeleteRows="False" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single"
+                  IsReadOnly="True"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2"  SelectionChanged="dgActualidadVh_SelectionChanged"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2"  >
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+
+                        <DataTrigger Binding="{Binding SituacionAsignacion}" Value="En Curso">
+                            <Setter Property="Background" Value="LightGreen"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding SituacionAsignacion}" Value="Finalizado">
+                            <Setter Property="Background" Value="LightBlue"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Margin" Value="0,0,0,5"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                                        <Expander IsExpanded="True" Background="#FF566FB9" BorderBrush="#FF002255" Foreground="White" BorderThickness="1,1,1,5">
+                                            <Expander.Header>
+                                                <DockPanel>
+                                                    <TextBlock FontWeight="Bold" Text="{Binding Path=Name}" Margin="5,0,0,0" Width="300"/>
+                                                    <TextBlock FontWeight="Bold" Text="{Binding Path=ItemCount}"/>
+
+                                                </DockPanel>
+                                            </Expander.Header>
+                                            <Expander.Content>
+                                                <ItemsPresenter />
+                                            </Expander.Content>
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </DataGrid.GroupStyle>
+            <DataGrid.Columns>
+
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnCerrarDetalle" Click="btnCerrarDetalle_Click" Height="15" Width="15"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Dominio" Width="100" Binding="{Binding Path=Dominio}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Modelo" Width="100" Binding="{Binding Path= Modelo}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Categoria" Width="100" Binding="{Binding Path=Categoria}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Situacion" Width="100" Binding="{Binding Path=SituacionAsignacion}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Inicio" Width="100" Binding="{Binding Path=FechaIn,ConverterCulture=es-AR, StringFormat=d}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Fin" Width="100" Binding="{Binding Path=FechaFin, ConverterCulture=es-AR, StringFormat=d}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Responsable" Width="100" Binding="{Binding Path=NombreEmpleado}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Imputacion" Width="100" Binding="{Binding Path=Imputacion}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Obra/Sector" Width="150" Binding="{Binding Path=NombreObra}"/>
+                <DataGridTextColumn Header="Cliente" Width="100" Binding="{Binding Path=Cliente}"/>
+                
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <local:ucDetalleFilaAsignacion />
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+        <Border Grid.Row="2" Background="Transparent" BorderBrush="DarkSeaGreen" BorderThickness="2" Margin="3" CornerRadius="5">
+            <StatusBar>
+                <StatusBar.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </ItemsPanelTemplate>
+                </StatusBar.ItemsPanel>
+                <StatusBarItem Grid.Column="0">
+                    <TextBlock Text="Resultado de la consulta:" />
+                </StatusBarItem>
+                <StatusBarItem Grid.Column="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Cantidad vehiculos:" VerticalAlignment="Center"/>
+                        <TextBox Name="txtRegistros" IsReadOnly="True" Margin="3" Width="100"/>
+                    </StackPanel>
+                </StatusBarItem>
+            </StatusBar>
+        </Border>
+    </Grid>
+</UserControl>

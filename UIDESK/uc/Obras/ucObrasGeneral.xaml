@@ -1,0 +1,207 @@
+﻿<UserControl x:Class="UIDESK.uc.Obras.ucObrasGeneral"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+              xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+            xmlns:uc="clr-namespace:UIDESK.uc.Obras"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+    
+       
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+            <ToolBar Name="tbComandos"  Style="{StaticResource MaterialDesignToolBar}" Grid.Row="0"
+                    ClipToBounds="False"  Padding="2" Margin="3" >
+
+                <TextBox Name="txtBuscar" Width="250" Padding="2" CharacterCasing="Upper" 
+                         materialDesign:HintAssist.Hint="Buscar Obra.."></TextBox>
+
+                <Button Name="btnBuscar" Padding="2" ToolTip="Buscar Obra" Click="btnBuscar_Click">
+                    <materialDesign:PackIcon Kind="Magnify"/>
+                </Button>
+                <Separator Width="2" Background="OrangeRed"></Separator>
+                <Button Name="btnAgregar" Padding="2"  ToolTip="Agregar una Obra" Click="BtnAgregar_Click">
+                    <materialDesign:PackIcon Kind="Plus"/>
+                </Button>
+
+                <Button Name="btnModicarDatos" Padding="2"  Click="BtnModicarDatos_Click"
+                    ToolTip="Modificar datos Obra" >
+                    <materialDesign:PackIcon Kind="Pen" />
+
+                </Button>
+
+               
+                <Button Name="btnBaja" Padding="2" ToolTip="Dar Baja a una obra" Click="btnBaja_Click">
+                    <materialDesign:PackIcon Kind="MinusCircle"/>
+                </Button>
+                <Separator Background="OrangeRed"></Separator>
+                <Button x:Name="btnCategoria" ToolTip="Agrupar por Categoria" Click="btnCategoria_Click" Padding="2">
+                    <materialDesign:PackIcon Kind="Category"/>
+                </Button>
+                <Button x:Name="btnProvincia" ToolTip="Agrupar por Provincia" Click="btnProvincia_Click" Padding="2">
+                        <materialDesign:PackIcon Kind="Estate"/>
+                </Button>
+                <!--<CheckBox Name="chkFiltroCategoria" IsChecked="False" Checked="chkFiltroCategoria_Checked"
+                      Unchecked="chkFiltroCategoria_Unchecked"
+                          Style="{StaticResource MaterialDesignCheckBox}"/>
+
+                <ComboBox Name="cmbCategoriaObras" materialDesign:HintAssist.Hint="Categorias" IsEditable="False" Padding="2"
+                       Width="130" SelectionChanged="CmbCategoriaObras_SelectionChanged"    
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding IdCateObra}" Margin="3" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding NombreCateO}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>-->
+            <Separator></Separator>
+            <Button x:Name="btnAsignarEmpleado" Padding="2" ToolTip="Asignar Empleado a Obra" Click="btnAsignarEmpleado_Click">
+                <materialDesign:PackIcon Kind="AccountSettings"/>
+            </Button>
+            <Separator Width="2" Background="OrangeRed"></Separator>
+            <!--<CheckBox Name="chkFiltroProvincia" IsChecked="False" Checked="chkFiltroProvincia_Checked"
+                      Unchecked="chkFiltroProvincia_Unchecked"
+                          Style="{StaticResource MaterialDesignCheckBox}"/>
+            <ComboBox Name="cmbProvincias" materialDesign:HintAssist.Hint="Provincias" IsEditable="False" Padding="2"
+                       Width="130" SelectionChanged="cmbProvincias_SelectionChanged"    
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding IdProvincia}" Margin="3" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Nombre}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>-->
+            <!--
+                <Button x:Name="btnAddCasa" ToolTip="Agregar casa de obra" Padding="2">
+                <materialDesign:PackIcon Kind="Hom"/>
+            </Button>
+                -->
+            </ToolBar>
+            <DataGrid Name="dgGeneralObras"  Margin="3" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1"
+                  CanUserDeleteRows="False"   SelectionChanged="DgVhGeneralObras_SelectionChanged"
+                  RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" 
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2"  >
+            <DataGrid.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Margin" Value="0,0,0,5"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                                        <Expander IsExpanded="True" Background="#FF566FB9" BorderBrush="#FF002255" Foreground="#FFEEEEEE" BorderThickness="1,1,1,5">
+                                            <Expander.Header>
+                                                <DockPanel>
+                                                    <TextBlock FontWeight="Bold" Text="{Binding Path=Name}" Margin="5,0,0,0" Width="100"/>
+                                                    <TextBlock FontWeight="Bold" Text="{Binding Path=ItemCount}"/>
+
+                                                </DockPanel>
+                                            </Expander.Header>
+                                            <Expander.Content>
+                                                <ItemsPresenter />
+                                            </Expander.Content>
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </DataGrid.GroupStyle>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="btnCerrarDetalle" Click="btnCerrarDetalle_Click" Height="15" Width="15"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Imputacion" Binding="{Binding Imputacion}" ></DataGridTextColumn>
+                        <DataGridTextColumn Header="Obra" Binding="{Binding NombreObra}"/>
+                        <DataGridTextColumn Header="Cliente" Width="100" Binding="{Binding Cliente}" ></DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Categoria" Width="100" Binding="{ Binding CateObra}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Direccion" Width="100" Binding="{Binding DireccionObra}"/>
+                        <DataGridTextColumn Header="Localidad" Width="100" Binding="{Binding Localidad}"/>
+                        <DataGridTextColumn Header="Provincia" Width="110" Binding="{Binding Provincia}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Cuit obra" Width="100" Binding="{Binding Cuit}"/>
+
+                    </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <uc:ucDetalleObra/>
+                         </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                </DataGrid>
+
+     
+            <StatusBar Grid.Row="2">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Grid.Column="0">
+                <TextBlock Text="Mostrando Resultados:" />
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Cantidad de Obras Activas:" VerticalAlignment="Center"/>
+                    <TextBox Name="txtRegistros" IsReadOnly="True" Margin="3" Width="100"/>
+                </StackPanel>
+            </StatusBarItem>
+            <Separator Grid.Column="2"/>
+            <StatusBarItem Grid.Column="3">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Data info" VerticalAlignment="Center" Visibility="Hidden"/>
+                    <TextBox Name="txt1" IsReadOnly="True" Margin="3" Width="100" Visibility="Hidden"></TextBox>
+                </StackPanel>
+            </StatusBarItem>
+            <Separator Grid.Column="4"/>
+            <StatusBarItem Grid.Column="5">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Data info" VerticalAlignment="Center" Visibility="Hidden"/>
+                    <TextBox Name="txt2" IsReadOnly="True" Margin="3" Width="100" Visibility="Hidden"/>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+        
+
+    </Grid>
+   
+</UserControl>

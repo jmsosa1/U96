@@ -1,0 +1,100 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.ABM.ABMDocVh"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIDESK.ABM"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+        
+         xmlns:validaciones="clr-namespace:UIDESK.validacion"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d"  WindowStartupLocation="CenterScreen" BorderBackgroundBrush="DarkViolet" 
+        ResizeMode="NoResize" MouseLeftButtonDown="Window_MouseLeftButtonDown" 
+        Title="ABMDocVh" Height="350" Width="600">
+   
+        <materialDesign:Card UniformCornerRadius="6" Margin="5" Grid.Row="1">
+            <Grid Name="grdDatos">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <TextBox Name="txtDominio" CharacterCasing="Upper"  TabIndex="1" KeyDown="TxtDominio_KeyDown"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Dominio"
+                HorizontalAlignment="Left"  Margin="10,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100"/>
+                <TextBox Name="txtModelo"  IsReadOnly="True" CharacterCasing="Upper"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Modelo" 
+                    HorizontalAlignment="Left"  Margin="10,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="290"/>
+                <TextBox Name="txtMarca" IsReadOnly="True" CharacterCasing="Upper" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Marca"
+                          HorizontalAlignment="Left"  Margin="10,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="160"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <ComboBox Name="cmbTipoDoc"  TabIndex="2"
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Tipo Documento"
+                HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Path=IdDocuVH}" Margin="2"></TextBlock>
+                                <Separator Width="2" Foreground="Black"/>
+                                <TextBlock Text="{Binding Path=Descripcion}" Margin="2"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBox Name="txtNumeroDoc" CharacterCasing="Upper" TabIndex="6"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Numero Doc" 
+                HorizontalAlignment="Left"  Margin="10,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="219"/>
+                <TextBox Name="txtCosto" Text="{Binding Path=Costo,StringFormat=C2,ConverterCulture=es-AR}" TabIndex="8"
+                         GotFocus="TxtCosto_GotFocus"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Costo"
+                    HorizontalAlignment="Left"  Margin="10,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="130"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                <RadioButton Name="rdbVencimiento" Content="Vencimiento" GroupName="fechas"  Checked="RdbVencimiento_Checked" 
+                             HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Center"/>
+                <RadioButton Name="rdbCobertura" Content="Cobertura" GroupName="fechas"  Checked="RdbCobertura_Checked" 
+                             HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Center"/>
+                <DatePicker Name="dtpVencimiento" TabIndex="3" IsEnabled="False"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"  materialDesign:HintAssist.Hint="Vencimiento" 
+                HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
+                <DatePicker Name="dtpDesde" TabIndex="4" IsEnabled="False"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"  materialDesign:HintAssist.Hint="Desde"
+                HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
+                <DatePicker  Name="dtpHasta" TabIndex="5" IsEnabled="False"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"  materialDesign:HintAssist.Hint="Hasta" 
+                HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
+
+            </StackPanel>
+            <StackPanel  Grid.Row="3" Margin="5">
+                <TextBox Name="txtNota" CharacterCasing="Upper" TabIndex="7"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Nota"
+                HorizontalAlignment="Left"  Margin="10" TextWrapping="Wrap"  VerticalAlignment="Top" Width="550"/>
+
+            </StackPanel>
+           
+            <StackPanel Grid.Row="4"  Margin="5,20">
+                <Button Name="btnOperacion" Click="BtnOperacion_Click" TabIndex="9" Style="{StaticResource MaterialDesignPaperButton}" 
+                    Content="Operacion"  />
+            </StackPanel>
+
+        </Grid>
+        </materialDesign:Card>
+       
+
+       
+    
+</mde:MaterialWindow>

@@ -1,0 +1,214 @@
+﻿<UserControl x:Class="UIDESK.uc.Vehiculos.ucPrediccionFlota"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIDESK.uc.Vehiculos"
+               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d" >
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel  VerticalAlignment="Top" Grid.Row="0" Orientation="Horizontal">
+            <TextBlock Text="Situacion Flota" Style="{StaticResource MaterialDesignHeadline4TextBlock}" Margin="20,0"></TextBlock>
+            <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}" Width="300" Margin="20,0"
+                      materialDesign:HintAssist.Hint="Seleccione la categoria" Name="cmbCateVh" SelectionChanged="cmbCateVh_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=NomCate}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+
+                </ComboBox.ItemTemplate>
+
+            </ComboBox>
+
+        </StackPanel>
+        <!--En una row debe haber un grafico de barras y al costado del mismo la situacion futura de la flota -->
+        <!-- en una row debe haber info de los potenciales reemplazos y el costo de todos ellos -->
+        <!-- en una row debe haber una grid con los datos de los vehiuculos potencias reemplazos-->
+
+
+        <Grid x:Name="grGRafico" Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <materialDesign:Card UniformCornerRadius="5" Margin="10"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="0" Width="300">
+                    <materialDesign:Card.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="#FF1B8284" Offset="1"/>
+                        </LinearGradientBrush>
+                    </materialDesign:Card.Background>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Año:" Name="txtAnioActual" Grid.Row="0" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Margin="5"/>
+                        <TextBlock Text="Reemplazos" Grid.Row ="1" Margin="5,0" Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                        <TextBlock x:Name="txbReemplazosActuales" Grid.Row="2" Margin="5,0" Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                        <TextBlock x:Name="txbCostoReemplazosActuales" Grid.Row="3" Margin="5,0" Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                    </Grid>
+                </materialDesign:Card>
+                <materialDesign:Card UniformCornerRadius="5" Margin="10"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="0" Width="400">
+                    <materialDesign:Card.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="#FFAF3B7B" Offset="1"/>
+                        </LinearGradientBrush>
+                    </materialDesign:Card.Background>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Pronostico:" Grid.Row="0" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Margin="5"/>
+                        <Separator Grid.Row="1"></Separator>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2">
+                            <TextBlock x:Name="txbPronosticoReemplazos" Text="Potenciales Reemplazos"  Margin="5,0" Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                            <TextBlock x:Name="txbCantPronosticoReemplazos" VerticalAlignment="Center" Margin="5,0" Style="{StaticResource MaterialDesignBody2TextBlock}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="3">
+                            <TextBlock x:Name="txbPronosticoCostoReemplazos" Text="Costo de reemplazos"  Margin="5,0" Style="{StaticResource MaterialDesignBody2TextBlock}"></TextBlock>
+
+                            <TextBlock x:Name="txbCantPronosticoCostoReemplazos" VerticalAlignment="Center" Margin="5,0" Style="{StaticResource MaterialDesignBody2TextBlock}"></TextBlock>
+                        </StackPanel>
+
+
+                    </Grid>
+                </materialDesign:Card>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="5">
+                <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="3">Resultado Pronostico</TextBlock>
+                <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="3">- Periodo :</TextBlock>
+                <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" Name="txbCantAnios" VerticalAlignment="Center"></TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Margin="5">
+                <StackPanel.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="1"/>
+                        <GradientStop Color="#FFD2B565" Offset="0"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
+
+
+                <DataGrid x:Name="dgPronosticos" AutoGenerateColumns="False" CanUserAddRows="False" Margin="5,10"
+                          CanUserDeleteRows="False"  IsReadOnly="True" 
+                        RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" GridLinesVisibility="All"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Reemplazo}" Value="1">
+                                    <Setter Property="Foreground" Value="Red"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Modelo" Binding="{Binding Path=Modelo}"/>
+                        <DataGridTextColumn Header="Dominio" Binding="{Binding Path=Dominio}"/>
+                        <DataGridTextColumn Header="Marca" Binding="{Binding Path=Marca}"/>
+                        <DataGridTextColumn Header="Costo Rep. U$s" Binding="{Binding Path=CostoRepoDls,StringFormat=C,ConverterCulture=en-US}"/>
+                        <DataGridTextColumn Header="Km Acumulado Actual" Binding="{Binding Path=KmAcumulado, StringFormat=N2,ConverterCulture=es-Ar}"/>
+                        <DataGridTextColumn Header="Promedio Km" Binding="{Binding Path=PromedioConsumo,StringFormat=N2,ConverterCulture=es-Ar}"/>
+                        <DataGridTextColumn Header="Promedio Mantenimiento" Binding="{Binding Path=PromedioMante,StringFormat=C,ConverterCulture=es-Ar}"/>
+                        <DataGridTextColumn Header="Km Acumulado Pronostico" Binding="{Binding Path=PronosticoConsumo,StringFormat=N2,ConverterCulture=es-Ar}"/>
+                        <!--<DataGridTextColumn Header=" Pronostico Mante" Binding="{Binding Path=PronosticoMante,StringFormat=C,ConverterCulture=es-Ar}"/>-->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="grDatos1" Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border BorderBrush="DarkBlue" BorderThickness="1" CornerRadius="3" Margin="3">
+                <StackPanel>
+
+                    <TextBlock Margin="3" Style="{StaticResource MaterialDesignBody2TextBlock}">Tiempo de evaluacion:</TextBlock>
+                    <TextBox x:Name="txtAnios" Width="100" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        materialDesign:HintAssist.Hint="Años" ></TextBox>
+                    <Button x:Name="btnCalcular" Margin="5,10" Click="btnCalcular_Click">Calcular</Button>
+                </StackPanel>
+            </Border>
+            <Border BorderBrush="DarkGreen"  BorderThickness="1" CornerRadius="3" Grid.Row="1" Margin="3">
+                <StackPanel>
+                    <TextBlock Text="Zona Datos reemplazos" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="2"/>
+                    <TextBlock Text="Potenciales:" Name="txbPotenciales" Foreground="Red" 
+                           Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="2"/>
+                    <TextBlock Text="Costo Remplazos" Name="txbCostoReemplazos" Foreground="Green"
+                           Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="2"/>
+                </StackPanel>
+            </Border>
+
+            <StackPanel Grid.Row="2">
+                <materialDesign:Card UniformCornerRadius="5" Margin="10" Background="#03a9f4"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="0" Width="200">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Vehiculos por kilometraje" Grid.Row="0" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Margin="5"/>
+                        <TextBlock Text="Actual" Grid.Row ="1" Margin="5,0" Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                        <DataGrid x:Name="dgVhRangoKm" AutoGenerateColumns="False" Grid.Row="2"  materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" IsReadOnly="True" Margin="5">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Rango" Binding="{Binding Path=NombreRango}"/>
+                                <DataGridTextColumn Header="Cantidad" Binding="{Binding Path=CantVh}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </materialDesign:Card>
+                <materialDesign:Card UniformCornerRadius="5" Margin="10" Background="#03a9f4"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="0" Width="200">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Pronostico" Grid.Row="0" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Margin="5"/>
+                        <TextBlock Text="Años :" Grid.Row="1" Margin="5,0" Style="{StaticResource MaterialDesignBody2TextBlock}" Name="txbAniosPronostico"/>
+                        <DataGrid x:Name="dgVhRangoKmPrediccion" AutoGenerateColumns="False" Grid.Row="2"  materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" IsReadOnly="True" Margin="5">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Rango" Binding="{Binding Path=NombreRango}"/>
+                                <DataGridTextColumn Header="Cantidad" Binding="{Binding Path=CantVh}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </materialDesign:Card>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</UserControl>

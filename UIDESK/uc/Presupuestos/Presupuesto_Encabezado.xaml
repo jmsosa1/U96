@@ -1,0 +1,328 @@
+﻿<Window x:Class="UIDESK.uc.Presupuestos.Presupuesto_Encabezado"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIDESK.uc.Presupuestos"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+        mc:Ignorable="d"
+        Title="Presupuesto_Encabezado" Height="600" Width="1000">
+   
+   
+       
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid x:Name="grE" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="5">
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox x:Name="txtUsuarioConfec" Text="{Binding Path=NomUsuarioCreador}" IsReadOnly="True"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="100" materialDesign:HintAssist.Hint="Creado por"/>
+                        <TextBox x:Name="txtFaltaPre"  Text="{Binding Path=F_Alta,StringFormat=d,ConverterCulture=es-Ar}" IsReadOnly="True"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="100" materialDesign:HintAssist.Hint="F. Alta"/>
+                        <TextBox x:Name="txtFBajaPRe" Text="{Binding Path=F_Baja,StringFormat=d,ConverterCulture=es-Ar}" IsReadOnly="True"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="100" materialDesign:HintAssist.Hint="F.Baja"/>
+                        <TextBox x:Name="txtEstadoPre" Text="{Binding Path=Estado}" IsReadOnly="True" 
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="100" materialDesign:HintAssist.Hint="Estado "/>
+                        <TextBox x:Name="txtSituacion" Text="{Binding Path=Situacion}" IsReadOnly="True" 
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="100" materialDesign:HintAssist.Hint="Situacion"/>
+                    <TextBox Name="txtTipoPresupuesto" Text="{Binding Path=TipoPresupuesto}" Margin="5,0" IsReadOnly="True"
+         Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="100" materialDesign:HintAssist.Hint="Tipo Presupuesto"></TextBox>
+                    <TextBox x:Name="txtNumero" Text="{Binding Path=Numero}" Margin="3,0" IsReadOnly="True"
+         Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="100" materialDesign:HintAssist.Hint="Numero"/>
+                    <TextBox Name="txtVersion" Text="{Binding Path=Version}" IsReadOnly="True"
+         Margin="3,0" Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="100" materialDesign:HintAssist.Hint="Version"/>
+                    <TextBox x:Name="txtAnio" Text="{Binding Path=Anio}" Margin="3,0" IsReadOnly="True"
+             Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="60" materialDesign:HintAssist.Hint="Año"/>
+                    <DatePicker x:Name="dtpFechaVencimiento" Text="{Binding Path=Fvencimiento,StringFormat=d,ConverterCulture=es-Ar}" 
+                Style="{StaticResource MaterialDesignOutlinedDatePicker}" Width="120" 
+                materialDesign:HintAssist.Hint="Vencimiento"/>
+                </StackPanel>
+
+
+                </Border>
+                <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="5">
+                    <StackPanel Orientation="Horizontal">
+                        
+                        <TextBox x:Name="txtTitulo" Text="{Binding Path=Titulo}" Margin="3,0" Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="350" materialDesign:HintAssist.Hint="Titulo"/>
+                    <TextBox x:Name="txtDescripcion" Text="{Binding Path=Descripcion}" Margin="3,0" Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="450" materialDesign:HintAssist.Hint="Descripcion"/>
+                </StackPanel>
+                </Border>
+                <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="5">
+                    <StackPanel  Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="5,0">Monedas:</TextBlock>
+
+                        <TextBox x:Name="txtMonedappal" Margin="5,0" Text="{Binding Path=NomMonedaPpal}" Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="100" materialDesign:HintAssist.Hint="Moneda Ppal" IsReadOnly="True"/>
+                        <TextBox x:Name="txtMonedaSec" Margin="3,0" Text="{Binding Path=NomMonedaSec}" Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="100" materialDesign:HintAssist.Hint="Moneda Sec." IsReadOnly="True"/>
+                        <TextBox x:Name="txtCotizacionDolar" Margin="3,0" Text="{Binding Path=DolarPresupuesto,StringFormat=C,ConverterCulture=es-Ar}" Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="100" materialDesign:HintAssist.Hint="Cot. Dolar"/>
+                        <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="5,0">Presupuesto:</TextBlock>
+                        <TextBox x:Name="txtMontoTotalMppal" Margin="3,0" Text="{Binding Path=MontoTotalMonedaPpal,StringFormat=C,ConverterCulture=es-Ar}" IsReadOnly="True"
+                      Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="150" materialDesign:HintAssist.Hint="Importe Moneda Ppal"/>
+                        <TextBox x:Name="txtMontoTotalMSec" Margin="3,0" Text="{Binding Path=MontoTotalMonedaSec,StringFormat=C,ConverterCulture=en-Us}" IsReadOnly="True"
+                      Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="150" materialDesign:HintAssist.Hint="Importe Moneda Sec"/>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Row="3" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="5,0">Avance:</TextBlock>
+                        <TextBox x:Name="txtPorcentajeAProbado" Margin="5,0" Text="{Binding Path=PorcentajeAprobado}" IsReadOnly="True"
+                      Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="100" materialDesign:HintAssist.Hint="% Aprobado"/>
+                        <TextBox x:Name="txtTotalAprobado" Margin="3,0" Text="{Binding Path=MontoTotalAprobado,StringFormat=C,ConverterCulture=es-Ar}" IsReadOnly="True"
+                      Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="130" materialDesign:HintAssist.Hint="Total Aprobado $"/>
+                        <TextBox x:Name="txtTotalEjecutado" Margin="3,0" Text="{Binding Path=MontoTotalEjecutado,StringFormat=C,ConverterCulture=es-Ar}" IsReadOnly="True"
+                      Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="130" materialDesign:HintAssist.Hint="Total Ejecutado $"/>
+                        <TextBox x:Name="txtDesviacion" Margin="3,0" Text="{Binding Path=DesviacionPresupuesto,StringFormat=N,ConverterCulture=es-Ar}" IsReadOnly="True"
+                      Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="130" materialDesign:HintAssist.Hint="Desv. Est."/>
+
+                    </StackPanel>
+                </Border>
+
+
+
+
+            </Grid>
+            
+
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Grid.Row="1" Margin="3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- panel de la derecha, contiene el datagrid con el detalle del presupuesto-->
+                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="10" Grid.ColumnSpan="2">
+                        
+                    <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignHeadline5TextBlock}">Detalle del presupuesto</TextBlock>
+                    <Button Name="btnCalculadora" Click="btnCalculadora_Click" Margin="3" ToolTip="Mostrar Calculadora">
+                        <materialDesign:PackIcon Kind="Calculator"/>
+                    </Button>   
+                    </StackPanel>
+                    <DataGrid Name="grD" Grid.Row="1" Grid.Column="0" Margin="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" 
+                               SelectionMode="Single" IsReadOnly="False" materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                               materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" >
+                        <DataGrid.Columns>
+
+                        <!--<DataGridComboBoxColumn Header="Tipos" SelectedValueBinding="{Binding Path=IdTipo}"
+                                               SelectedValuePath="IdTipo" DisplayMemberPath="NomTipo" x:Name="cmbGTipos">
+                            
+                        </DataGridComboBoxColumn>
+                        <DataGridComboBoxColumn Header="Categorias" SelectedValueBinding="{Binding Path=IdCate}" 
+                                                SelectedValuePath="IdCate" DisplayMemberPath="NomCate" x:Name="cmbGCate">
+                            
+                        </DataGridComboBoxColumn>-->
+                        <DataGridTextColumn Header="Item" Binding="{Binding Path=NumItem}" Width="100"/>
+                        <DataGridTextColumn Header="Categoria" Binding="{ Binding Path=NomCate}" Width="160"/>
+                            <DataGridTextColumn Header="Presupuesto" Binding="{ Binding Path=Monto_Presupuestado,StringFormat=C,ConverterCulture=es-Ar}" Width="130"/>
+                            <DataGridTextColumn Header="Aprobado" Binding="{Binding Path=Monto_Aprobado,StringFormat=C,ConverterCulture=es-Ar}" Width="130"/>
+                            <DataGridTextColumn Header="Ejecutado" Binding="{Binding Path=Monto_Real_Ejecutado,StringFormat=C,ConverterCulture=es-Ar}" Width="130"/>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="btnEditItem" Style="{StaticResource MaterialDesignPaperButton}" Click="btnEditItem_Click">
+                                            <materialDesign:PackIcon Kind="Edit"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="btnDelItem" Style="{StaticResource MaterialDesignPaperButton}" Click="btnDelItem_Click">
+                                            <materialDesign:PackIcon Kind="Delete"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StatusBar Grid.Row="2" Margin="5" Grid.ColumnSpan="2">
+                        <StatusBar.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="130"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                            </ItemsPanelTemplate>
+                        </StatusBar.ItemsPanel>
+                        <StatusBarItem Grid.Column="0">
+                            <TextBlock Text="Info:" />
+                        </StatusBarItem>
+                        <StatusBarItem Grid.Column="1">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Estado Edicion:" VerticalAlignment="Center"/>
+                                <TextBox Text="{Binding Path=Situacion}" IsReadOnly="True" Margin="3" Width="100"/>
+                            </StackPanel>
+                        </StatusBarItem>
+                        <Separator Grid.Column="2"/>
+                        <StatusBarItem Grid.Column="3">
+                            <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Ultima Modificacion:" VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding Path= F_UltimaModificacion,StringFormat=d,ConverterCulture=es-Ar}" IsReadOnly="True" Margin="3" Width="100"/>
+                            </StackPanel>
+                        </StatusBarItem>
+                        <Separator Grid.Column="4"/>
+                        <StatusBarItem Grid.Column="5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Fecha Cierre" VerticalAlignment="Center"/>
+                                <TextBox Name="txtFechaCierre" IsReadOnly="True" Margin="3" Width="100"/>
+                            </StackPanel>
+                        </StatusBarItem>
+                        <Separator Grid.Column="6"/>
+                        <StatusBarItem Grid.Column="7">
+                            <StackPanel>
+                                <Button x:Name="btnGuardar" Click="btnGuardar_Click" ToolTip="GuardarPresupuesto">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="NotebookCheckOutline" VerticalAlignment="Center"/>
+                                    <TextBlock VerticalAlignment="Center" Margin="3,0">Guardar</TextBlock>
+                                </StackPanel>
+                                   
+                                </Button>
+                            </StackPanel>
+
+                        </StatusBarItem>
+                        <StatusBarItem Grid.Column="8">
+                            <StackPanel>
+
+
+                                <Button x:Name="btnCancelarEdicion" Click="btnCancelarEdicion_Click" ToolTip="Cancelar Edicion">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="CancelThick" VerticalAlignment="Center"/>
+                                    <TextBlock VerticalAlignment="Center" Margin="3,0">Cancelar</TextBlock>
+                                </StackPanel>
+                                </Button>
+                            </StackPanel>
+
+                        </StatusBarItem>
+
+                    </StatusBar>
+                       <!-- zona de la segunda columna, aca apararece la calculadora-->
+                <Grid Name="grCalculadora" Grid.Column="1"  Grid.Row="0" Grid.RowSpan="2" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel  Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Margin="5,0" Style="{StaticResource MaterialDesignSubtitle2TextBlock}">Calculadora</TextBlock>
+                        <Button x:Name="btnAddCalculadora" Click="btnAddCalculadora_Click" Style="{StaticResource MaterialDesignOutlinedButton}">
+                            <materialDesign:PackIcon Kind="Plus"/>
+                        </Button>
+                    </StackPanel>
+                    <Grid Grid.Row="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--<Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="10">
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBox x:Name="txtAltaItem" Width="100" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center"
+                                 materialDesign:HintAssist.Hint="Fecha Alta" IsReadOnly="True" Text="{Binding Path=F_alta}" Margin="10,0"/>
+                                <TextBox x:Name="txtUltimaModificacion" Width="100" Margin="10,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                 materialDesign:HintAssist.Hint="Ultima Actualizacion" IsReadOnly="True" Text="{Binding Path=UltimaModificacion}"/>
+
+                            </StackPanel>
+
+                        </Border>-->
+                        <Border Grid.Row="1"  BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="3">
+                            <StackPanel Orientation="Horizontal">
+
+                                <ComboBox Name="cmbTipos" Width="200" Margin="10,0" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                          materialDesign:HintAssist.Hint="Tipos" SelectionChanged="cmbTipos_SelectionChanged">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding IdTipoVh}"></TextBlock>
+                                                <Separator Width="5" Margin="3,0"></Separator>
+                                                <TextBlock Text="{Binding NomTipo}" Margin="3,0"></TextBlock>
+                                            </StackPanel>
+
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="3">
+                            <StackPanel Orientation="Horizontal">
+
+                                <ComboBox Name="cmbCategorias" Width="250" Margin="10,0" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                          materialDesign:HintAssist.Hint="Categorias" SelectionChanged="cmbCategorias_SelectionChanged">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding IdCateVh}"></TextBlock>
+                                                <Separator Width="5" Margin="3,0"></Separator>
+                                                <TextBlock Text="{Binding NomCate}" Margin="3,0"></TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="3" BorderBrush="Black" BorderThickness="1" CornerRadius="5"  Margin="3">
+                            <StackPanel Orientation="Horizontal" Margin="3">
+
+                                <TextBox x:Name="txtPresupuesto" Width="120" Margin="5,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" GotFocus="txtPresupuesto_GotFocus"
+                                    materialDesign:HintAssist.Hint="Presupuesto $" Text="{Binding Path=Monto_Presupuestado,StringFormat=C,ConverterCulture=es-Ar}"></TextBox>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="4" BorderBrush="Black" BorderThickness="1" CornerRadius="5"  Margin="3">
+                            <StackPanel Orientation="Horizontal" Margin="3">
+
+                                <TextBox x:Name="txtAprobado" Width="120" Margin="5,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" GotFocus="txtAprobado_GotFocus"
+                                    materialDesign:HintAssist.Hint="Aprobado $" Text="{Binding Path=Monto_Aprobado,StringFormat=C,ConverterCulture=es-Ar}"></TextBox>
+                                <TextBox x:Name="txtEjecutado" Width="120" Margin="5,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"
+                                        materialDesign:HintAssist.Hint="Ejecutado $" Text="{Binding Path=Monto_Real_Ejecutado,StringFormat=C,ConverterCulture=es-Ar}"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Row="6" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="3">
+                            <StackPanel Orientation="Horizontal" Margin="3" HorizontalAlignment="Left">
+                                <Button x:Name="btnAceptar" Margin="10,0" Click="btnAceptar_Click" IsEnabled="False">Aceptar</Button>
+                                <Button x:Name="btnCancelCal"  Margin="10,0" Click="btnCancelCal_Click">Cancelar</Button>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Grid>
+            </Border>
+
+
+        </Grid>
+    
+</Window>

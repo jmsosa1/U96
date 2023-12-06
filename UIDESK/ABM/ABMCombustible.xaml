@@ -1,0 +1,55 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.ABM.ABMCombustible"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIDESK.ABM"
+          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+        
+         xmlns:validaciones="clr-namespace:UIDESK.validacion"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" 
+        MouseLeftButtonDown="Border_MouseLeftButtonDown" BorderBackgroundBrush="DarkViolet"
+        mc:Ignorable="d"
+        Title="ABM Combustible" Height="300" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+          
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+       
+       
+       
+        <Grid Grid.Row="0"  Name="grdAbm" Margin="5">
+            <TextBox Name="txtNombre" Text="{Binding Path=Descripcion}" CharacterCasing="Upper" TabIndex="1" GotFocus="txtNombre_GotFocus"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nombre Combustible"
+                HorizontalAlignment="Left"  Margin="31,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="314"/>
+            <TextBox Name="txtPrecio" TabIndex="2" GotFocus="txtPrecio_GotFocus"
+                     Text="{Binding Path=PrecioLitroActual,StringFormat=C,ConverterCulture=es-Ar}" 
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Precio Actual"
+                HorizontalAlignment="Left" Margin="31,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="314"/>
+            
+            <TextBox Name="txtPrecioAnterior" TabIndex="3" 
+                     Text="{Binding Path=PrecioLitroAnterior,StringFormat=C,ConverterCulture=es-AR}" 
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Precio Anterior"
+                HorizontalAlignment="Left" Margin="31,130,0,20" TextWrapping="Wrap" VerticalAlignment="Top" Width="314"/>
+            <TextBox x:Name="txtIdCombustible" IsEnabled="False"  
+                Text="{Binding Path=IdCombustible}" 
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Id Combustible"
+                HorizontalAlignment="Left" Margin="31,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="314"/>
+
+        </Grid>
+        <StackPanel Grid.Row="1" Margin="5,20">
+            <Button Name="btnAccion" TabIndex="4" Style="{StaticResource MaterialDesignPaperButton}" Foreground="Black"
+                Content="Accion"   Click="btnAccion_Click"/>
+        </StackPanel>
+    </Grid>
+</mde:MaterialWindow>

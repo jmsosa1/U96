@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="UIDESK.uc.Vehiculos.ucDetalleFilaAsignacion"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIDESK.uc.Vehiculos"
+              
+             xmlns:converter="clr-namespace:UIDESK.validacion"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+           
+              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            Background="{DynamicResource MaterialDesignPaper}"
+            FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="800">
+    <Grid Margin="2">
+        <TabControl Margin="10">
+            <TabItem Header="Detalles">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,25,0,0" TextWrapping="Wrap" Text="Fecha Inicio:" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="232,25,0,0" TextWrapping="Wrap" Text="Fecha Finalizacion:" VerticalAlignment="Top"/>
+
+                    <TextBlock HorizontalAlignment="Left" Margin="10,68,0,0" TextWrapping="Wrap" Text="Cantidad Dias:" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="232,64,0,0" TextWrapping="Wrap" Text="Costo Asignacion:" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="62,104,0,0" TextWrapping="Wrap" Text="Hs:" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="232,104,0,0" TextWrapping="Wrap" Text="KM:" VerticalAlignment="Top"/>
+                    <TextBox Name="txtFInicio" Text="{Binding FechaIn, ConverterCulture=es-AR, StringFormat=d}" IsReadOnly="True"
+                        HorizontalAlignment="Left" Height="23" Margin="97,18,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+                    <TextBox Name="txtFFinal" Text="{Binding FechaFin, StringFormat=d, ConverterCulture=es-AR}" IsReadOnly="True"
+                        HorizontalAlignment="Left" Height="23" Margin="343,15,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+                    <TextBox Name="txtCantDias" Text="{Binding DiasAcumulados}" IsReadOnly="True"
+                        HorizontalAlignment="Left" Height="23" Margin="97,61,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+                    <TextBox Name="txtCostoAsignacion" Text="{Binding CostoAsignacion}" IsReadOnly="True"
+                        HorizontalAlignment="Left" Height="23" Margin="343,57,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+                    <TextBox Name="txtHs" Text="{Binding HsAcuObra}" IsReadOnly="True"
+                        HorizontalAlignment="Left" Height="23" Margin="97,97,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+                    <TextBox Name="txtKm" Text="{Binding KmAcuObra}" IsReadOnly="True"
+                        HorizontalAlignment="Left" Height="23" Margin="267,97,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+                    <Button Name="btnFinalizar" Click="btnFinalizar_Click"
+                            ToolTip="Finalizar Asignacion" 
+                        Content="{materialDesign:PackIcon Kind=ClockEnd}" HorizontalAlignment="Left" Margin="468,9,0,0" VerticalAlignment="Top" Width="50"/>
+                    <Button Name="btnActualizar" IsEnabled="False" 
+                            Style="{StaticResource MaterialDesignFlatButton}" Click="btnActualizar_Click"
+                        Content="Actualizar" HorizontalAlignment="Left" Margin="612,135,5,5" VerticalAlignment="Top" Width="135"/>
+                    <DatePicker Name="dtpFechaFinaliza" IsEnabled="False"
+                        HorizontalAlignment="Left" Margin="592,16,0,0" VerticalAlignment="Top" Width="155"/>
+                    
+                </Grid>
+            </TabItem>
+
+
+
+        </TabControl>
+    </Grid>
+</UserControl>

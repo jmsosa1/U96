@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="UIDESK.uc.Presupuestos.ucPrespuestos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIDESK.uc.Presupuestos"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+              xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
+        <ToolBar Name="tbComandos"  Style="{StaticResource MaterialDesignToolBar}"
+                  ClipToBounds="False"  Padding="2" Margin="3" Grid.Row="0">
+
+            <TextBox Name="txtBuscar" Width="200" Padding="2" CharacterCasing="Upper"
+                       materialDesign:HintAssist.Hint="Buscar Presupuesto"></TextBox>
+         
+            <Button Name="btnBuscar" Padding="2" ToolTip="Buscar Vehiculo" Click="btnBuscar_Click">
+                <materialDesign:PackIcon Kind="Magnify"/>
+            </Button>
+            <Separator Width="2" Background="DarkViolet"></Separator>
+            <Button Name="btnAgregar" Padding="2" Click="btnAgregar_Click" ToolTip="Agregar Presupuesto">
+                <materialDesign:PackIcon Kind="Plus"/>
+            </Button>
+
+            <Button Name="btnModicarDatos" Padding="2" Click="btnModicarDatos_Click" 
+                  ToolTip="Modificar datos seleccionado">
+                <materialDesign:PackIcon Kind="Pen"/>
+            </Button>
+
+           
+            <Button Name="btnBaja" Padding="2" ToolTip="Baja de seleccionado" Click="btnBaja_Click">
+                <materialDesign:PackIcon Kind="MinusCircle"/>
+            </Button>
+            <Separator Width="2" Background="DarkViolet"></Separator>
+            <Button Name="btnMostrar" Padding="2" ToolTip="Ver presupuesto" Click="btnMostrar_Click">
+                <materialDesign:PackIcon Kind="Visibility"/>
+            </Button>
+            <Separator></Separator>
+            
+        </ToolBar>
+        <!--#region REGION DE LA GRID-->
+        <DataGrid Name="dgVhGeneral"  Margin="3" AutoGenerateColumns="False" CanUserAddRows="False"
+                CanUserDeleteRows="False"  Grid.Row="1" SelectionChanged="dgVhGeneral_SelectionChanged"
+                RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" 
+                VerticalScrollBarVisibility="Visible">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Alta" Binding="{Binding F_Alta,StringFormat=d,ConverterCulture=es-Ar}"/>
+                <DataGridTextColumn Header="Numero" Binding="{Binding Numero}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Version" Width="100" Binding="{Binding Version}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Anio" Width="100" Binding="{Binding Anio}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Moneda Principal" Binding="{Binding NomMonedaPpal}"/>
+                <DataGridTextColumn Header="Moned Secundaria" Binding="{Binding NomMonedaSec}"/>
+                <DataGridTextColumn Header="Presupuestado ($)" Binding="{Binding MontoTotalMonedaPpal,StringFormat=C,ConverterCulture=es-Ar}" Width="150"></DataGridTextColumn>
+                <DataGridTextColumn Header="Presupuestado (u$s)" Binding="{Binding MontoTotalMonedaSec,StringFormat=C,ConverterCulture=es-Ar}" Width="150"/>
+                <DataGridTextColumn Header="Dolar Presupuesto" Binding="{Binding DolarPresupuesto,StringFormat=C,ConverterCulture=en-US}"/>
+                <DataGridTextColumn Header="Aprobado($)" Width="100" Binding="{ Binding MontoTotalAprobado, StringFormat=C,ConverterCulture=es-Ar}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ejecutado($)" Width="100" Binding="{Binding MontoTotalEjecutado,StringFormat=C,ConverterCulture=es-Ar}"></DataGridTextColumn>
+                
+                <DataGridTextColumn Header="Situacion" Width="100" Binding="{Binding Situacion}"></DataGridTextColumn>
+
+            </DataGrid.Columns>
+           
+        </DataGrid>
+        <!--#endregion-->
+
+        <!--#region  STATUS BAR CON LOS RESULTADOS GENERAL DE LA CONSULTA -->
+        <Border Grid.Row="2" Background="Transparent" BorderBrush="DarkSeaGreen" BorderThickness="2" Margin="3" CornerRadius="5">
+            <StatusBar>
+                <StatusBar.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </ItemsPanelTemplate>
+                </StatusBar.ItemsPanel>
+                <StatusBarItem Grid.Column="0">
+                    <TextBlock Text="Info" FontFamily="Helvetica" FontWeight="Light" />
+                </StatusBarItem>
+                <StatusBarItem Grid.Column="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Presupuestos" VerticalAlignment="Center" FontFamily="Helvetica"/>
+                        <TextBox Name="txtRegistros" IsReadOnly="True" Margin="3" Width="150" FontFamily="Helvetica" Foreground="BlueViolet"/>
+                    </StackPanel>
+                </StatusBarItem>
+                <Separator Grid.Column="2"/>
+                <StatusBarItem Grid.Column="3">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Data" VerticalAlignment="Center" FontFamily="Helvetica"/>
+                        <TextBox Name="txtTotalKmAcu" IsReadOnly="True" Margin="3" Width="90" FontFamily="Helvetica" Foreground="BlueViolet"/>
+                    </StackPanel>
+                </StatusBarItem>
+                <Separator Grid.Column="4"/>
+                <StatusBarItem Grid.Column="5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Data" VerticalAlignment="Center" FontFamily="Helvetica"/>
+                        <TextBox Name="txtTotalHsAcu" IsReadOnly="True" Margin="3" Width="90" FontFamily="Helvetica" Foreground="BlueViolet"/>
+                    </StackPanel>
+                </StatusBarItem>
+                <Separator Grid.Column="6"></Separator>
+                <StatusBarItem Grid.Column="7">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Data" VerticalAlignment="Center" FontFamily="Helvetica"/>
+                        <TextBox Name="txtTotalDolares" IsReadOnly="True" Margin="3" Width="90" FontFamily="Helvetica" Foreground="DarkGreen"/>
+                    </StackPanel>
+                </StatusBarItem>
+            </StatusBar>
+        </Border>
+        <!--#endregion-->
+    </Grid>
+</UserControl>

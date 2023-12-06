@@ -1,0 +1,294 @@
+﻿<UserControl x:Class="UIDESK.uc.tablerocostos.ucCostoInversiones"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+               xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:local="clr-namespace:UIDESK.uc.tablerocostos"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <TextBlock Foreground="White" FontSize="14" VerticalAlignment="Center">Resumen de Costos Inversiones</TextBlock>
+            <TextBlock Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="20,0,0,0">Año:</TextBlock>
+            <TextBox  x:Name="txtAnio" Foreground="Orange" VerticalAlignment="Center" Margin="20,0,0,0" Width="100"></TextBox>
+            <Button x:Name="btnBuscar" Click="btnBuscar_Click" Margin="10,0,0,0" Padding="2" ToolTip="Buscar Resultados" Style="{StaticResource MaterialDesignFlatButton}">
+                <md:PackIcon Kind="DatabaseSearch" Foreground="Yellow" Width="20" Height="20"/>
+            </Button>
+            <Button x:Name="btnExcel" Click="btnExcel_Click" Padding="2" Margin="10,0,0,0" ToolTip="Importar a Excel" Style="{StaticResource MaterialDesignFlatButton}">
+                <md:PackIcon Kind="MicrosoftExcel" Foreground="Green" Width="20" Height="20"/>
+            </Button>
+            <TextBlock Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="20,0,0,0">Productos:</TextBlock>
+            <TextBlock Foreground="Orange" Name="txbInvPro" FontSize="14" VerticalAlignment="Center" Margin="3,0,0,0"></TextBlock>
+            <TextBlock Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="20,0,0,0">Vehiculos:</TextBlock>
+            <TextBlock Foreground="Orange" FontSize="14" Name="txbInvVh" VerticalAlignment="Center" Margin="3,0,0,0"></TextBlock>
+        </StackPanel>
+        <!--#region  region de costos totales-->
+        <Border Grid.Row="1" BorderBrush="Orange" BorderThickness="1" CornerRadius="5" Margin="5">
+            <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FFB1A0A0" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="14">Resumen Costos Totales</TextBlock>
+                </StackPanel>
+                <DataGrid x:Name="dgTotales" Grid.Column="0" Grid.Row="1" Margin="5" AutoGenerateColumns="False" CanUserDeleteRows="False"
+                  RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 md:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible" 
+                      md:DataGridAssist.ColumnHeaderPadding="4,2,2,2" GridLinesVisibility="All" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=Mes}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Mes"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Path=CostoInvProducto,StringFormat=C,ConverterCulture=es-Ar}" FontSize="11" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Inv. Productos" HorizontalAlignment="Right"/>
+                            </DataGridTextColumn.Header>
+
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Path=CostoInvVehiculo,StringFormat=C,ConverterCulture=es-Ar}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Inv. Vehiculos" HorizontalAlignment="Right"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <lvc:CartesianChart Name="grafTotales" Margin="5" Grid.Column="1" Grid.Row="1" Series="{Binding SeriesCollection1}"  
+                          Foreground="White"      BorderBrush="Cyan" BorderThickness="1" LegendLocation="Right"  Grid.ColumnSpan="2">
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Importes" LabelFormatter="{Binding YFormatter}" MinValue="0"></lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Mes" Labels="{Binding Labels}">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="True" Step="1"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                </lvc:CartesianChart>
+            </Grid>
+        </Border>
+        <!--#region costos de inversiones de productos -->
+        <Border Grid.Row="2" BorderBrush="Orange" BorderThickness="1" CornerRadius="5" Margin="5">
+            <Grid >
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="1"/>
+                        <GradientStop Color="#FF3688BD" Offset="0"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="14">Productos</TextBlock>
+                </StackPanel>
+                <DataGrid   Name="dgInvPro" Grid.Row="1" Margin="5" CanUserAddRows="False" CanUserDeleteRows="False"
+                  RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 md:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
+                      md:DataGridAssist.ColumnHeaderPadding="4,2,2,2" GridLinesVisibility="All" BorderBrush="DarkCyan">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=Nombre}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Tipo Producto"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo1, StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Enero"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo2,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Febrero"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo3,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Marzo"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo4,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Abril"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo5,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Mayo"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo6,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Junio"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo7,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Julio"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo8,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Agosto"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo9,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Septiembre"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo10,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Octubre"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo11,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Noviembre"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo12,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Diciembre"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Total,StringFormat=C,ConverterCulture=es-AR}" 
+                                    FontWeight="Bold"    FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Total"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+        </Border>
+
+
+
+        <!--#region  costo de inversiones de vehiculos-->
+        <Border Grid.Row="3" BorderBrush="Orange" BorderThickness="1" CornerRadius="5" Margin="5">
+            <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="1"/>
+                        <GradientStop Color="#FF9055AD" Offset="0"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="14">Vehiculos</TextBlock>
+                </StackPanel>
+
+                <DataGrid  Grid.Row="1" Name="dgInvVh" Margin="5" CanUserAddRows="False" CanUserDeleteRows="False"
+                  RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 md:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
+                      md:DataGridAssist.ColumnHeaderPadding="4,2,2,2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=Nombre}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Categoria"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo1, StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Enero"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo2,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Febrero"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo3,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Marzo"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo4,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Abril"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo5,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Mayo"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo6,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Junio"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo7,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Julio"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo8,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Agosto"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo9,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Septiembre"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo10,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Octubre"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo11,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Noviembre"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Costo12,StringFormat=C,ConverterCulture=es-AR}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Diciembre"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{ Binding Path=Total,StringFormat=C,ConverterCulture=es-AR}" 
+                                    FontWeight="Bold"    FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Total"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+
+            </Grid>
+        </Border>
+
+    </Grid>
+</UserControl>

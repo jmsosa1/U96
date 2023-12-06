@@ -1,0 +1,102 @@
+﻿<Window x:Class="UIDESK.imprimir.ImprimirDSO"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:UIDESK.imprimir"
+        mc:Ignorable="d" WindowStyle="None" ResizeMode="NoResize"
+        Title="ImprimirDSO" Height="800" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="grdEncabezado" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" HorizontalAlignment="Right" Margin="0,40,0,20">
+                <TextBlock x:Name="txbNumero" Text="{Binding Path=IdDocumento}" Width="100"></TextBlock>
+                <TextBlock x:Name="txbFechaRemito" Text="{Binding Path=Alta}" Width="100"></TextBlock>
+            </StackPanel>
+            <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" CornerRadius="10">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock>Cliente:</TextBlock>
+                        <TextBlock x:Name="Cliente" Text="{Binding Path=ClienteObra}" Width="300"></TextBlock>
+                        <TextBlock>Cuit</TextBlock>
+                        <TextBlock x:Name="Cuit" Width="200" Text="{Binding Path=CuitObra}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock>Imputacion:</TextBlock>
+                        <TextBlock x:Name="Imputacion" Width="100" Text="{Binding Path=Imputacion}"></TextBlock>
+                        <TextBlock>Obra:</TextBlock>
+                        <TextBlock x:Name="Obra" Width="300" Text="{Binding Path=NombreObra}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock>Direccion:</TextBlock>
+                        <TextBlock x:Name="Direccion" Width="400" Text="{Binding Path=DirObra}"></TextBlock>
+                        
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock>Localidad:</TextBlock>
+                        <TextBlock x:Name="Localidad" Width="300" Text="{Binding Path=Localidad}"></TextBlock>
+                        <TextBlock>Provincia:</TextBlock>
+                        <TextBlock x:Name="Provincia" Width="200" Text="{Binding Path=Provincia}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock>Destinatario:</TextBlock>
+                        <TextBlock x:Name="Destinatario" Width="300" Text="{Binding Path=NombreEmpleado}"></TextBlock>
+                        <TextBlock>Concepto:</TextBlock>
+                        <TextBlock x:Name="Concepto" Width="100" Text="{Binding Path=Concepto}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock>Transporte:</TextBlock>
+                        <TextBlock x:Name="Transporte" Width="300" Text="{Binding Path=Transporte}"></TextBlock>
+                        <TextBlock>Chofer:</TextBlock>
+                        <TextBlock x:Name="Chofer" Width="200" Text="{Binding Path=Chofer}"></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+               
+            </Border>
+        </Grid>
+        <Grid x:Name="grdDetalle" Grid.Row="1" Margin="5,20,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Margin="5,0,5,10">Detalle del Remito</TextBlock>
+            <DataGrid x:Name="grDetalleProductos" AutoGenerateColumns="False"  Grid.Row="1"
+                           materialDesign:DataGridAssist.CellPadding="4,2,2,2" IsReadOnly="False"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" Height="500" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Codigo" Binding="{Binding CodigoItem}" IsReadOnly="True" Width="70"/>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding Descripcion}" Width="200" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Marca" Binding="{Binding Path=Marca}" Width="120" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Modelo" Binding="{Binding Path=Modelo}" Width="120" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Cod Inventario" Binding="{Binding Path=CodIventario}" Width="150" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Cantidad"  Binding="{Binding Path=CantidadItem}" Width="100"/>
+
+                   
+                </DataGrid.Columns>
+                
+            </DataGrid>
+
+       
+        </Grid>
+    
+        <Grid x:Name="grdPie" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock>Nota:</TextBlock>
+                <TextBlock x:Name="txbNota" Height="60" Width="700"></TextBlock>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

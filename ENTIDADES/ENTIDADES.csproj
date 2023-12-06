@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2CB04289-6204-4692-896A-E63520FA1F71}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ENTIDADES</RootNamespace>
+    <AssemblyName>ENTIDADES</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ACCDetMesAnio.cs" />
+    <Compile Include="ACCombustible.cs" />
+    <Compile Include="ACC_CategoriaAnio.cs" />
+    <Compile Include="ACMVH_CategoriaAnio.cs" />
+    <Compile Include="AjusteStockProducto.cs" />
+    <Compile Include="Asignacion_vh.cs" />
+    <Compile Include="Autorizacion_vh.cs" />
+    <Compile Include="BajaProductos.cs" />
+    <Compile Include="BalanceEmpleado.cs" />
+    <Compile Include="BalanceObraCatPro.cs" />
+    <Compile Include="BalanceObraEmpleados.cs" />
+    <Compile Include="BalanceObraProductos.cs" />
+    <Compile Include="BalanceObraProductosDetalle.cs" />
+    <Compile Include="BalanceObraSector.cs" />
+    <Compile Include="BalanceObraTiposVehiculo.cs" />
+    <Compile Include="BalanceObraVehiculo.cs" />
+    <Compile Include="Cajon.cs" />
+    <Compile Include="CalibracionInstrumento.cs" />
+    <Compile Include="Casa.cs" />
+    <Compile Include="CasasProductos.cs" />
+    <Compile Include="CategoriaContenedor.cs" />
+    <Compile Include="CategoriaEmpleado.cs" />
+    <Compile Include="CategoriaManteVh.cs" />
+    <Compile Include="CategoriaObra.cs" />
+    <Compile Include="CategoriaP.cs" />
+    <Compile Include="CategoriaVh.cs" />
+    <Compile Include="categoria_plan.cs" />
+    <Compile Include="CausaAjusteStock.cs" />
+    <Compile Include="CausaBaja.cs" />
+    <Compile Include="Cliente.cs" />
+    <Compile Include="Coeficiente.cs" />
+    <Compile Include="Combustible.cs" />
+    <Compile Include="CompraP.cs" />
+    <Compile Include="CompraPDetalle.cs" />
+    <Compile Include="ConsultaExistencias.cs" />
+    <Compile Include="ConsumoAnios.cs" />
+    <Compile Include="ConsumoCombustible.cs" />
+    <Compile Include="ConsumoVhMes.cs" />
+    <Compile Include="CostoCompraVehiculo.cs" />
+    <Compile Include="CostosGenericos.cs" />
+    <Compile Include="Deposito.cs" />
+    <Compile Include="DetDescuentoEmpleado.cs" />
+    <Compile Include="DetManteVh.cs" />
+    <Compile Include="DetTareaSector.cs" />
+    <Compile Include="Documento.cs" />
+    <Compile Include="DocumentoDetalle.cs" />
+    <Compile Include="Docu_vh.cs" />
+    <Compile Include="ElementoMPM.cs" />
+    <Compile Include="Empleado.cs" />
+    <Compile Include="EmpleadoObra.cs" />
+    <Compile Include="FotoProducto.cs" />
+    <Compile Include="FotoVh.cs" />
+    <Compile Include="Gastos.cs" />
+    <Compile Include="Gastos_vh.cs" />
+    <Compile Include="Inversiones.cs" />
+    <Compile Include="Inversiones_vh.cs" />
+    <Compile Include="KitProducto.cs" />
+    <Compile Include="Licencia.cs" />
+    <Compile Include="Linea.cs" />
+    <Compile Include="LineVh.cs" />
+    <Compile Include="Localidad.cs" />
+    <Compile Include="LogOperaciones.cs" />
+    <Compile Include="Mante_P.cs" />
+    <Compile Include="Mante_vh.cs" />
+    <Compile Include="MarcaProductos.cs" />
+    <Compile Include="MarcaVh.cs" />
+    <Compile Include="Monedas.cs" />
+    <Compile Include="Mpm.cs" />
+    <Compile Include="MpmDetalle.cs" />
+    <Compile Include="MpmRegistro.cs" />
+    <Compile Include="NotaDocuVh.cs" />
+    <Compile Include="NotaSahmV6.cs" />
+    <Compile Include="NotasLeidos.cs" />
+    <Compile Include="Obra.cs" />
+    <Compile Include="Otm.cs" />
+    <Compile Include="OtmDetalle.cs" />
+    <Compile Include="PlanCajon.cs" />
+    <Compile Include="PlanificacionVH.cs" />
+    <Compile Include="plan_inspeccion.cs" />
+    <Compile Include="plan_insp_detalle.cs" />
+    <Compile Include="Presupuesto.cs" />
+    <Compile Include="PresupuestoMh.cs" />
+    <Compile Include="PresupuestoVh.cs" />
+    <Compile Include="Presupuesto_Item.cs" />
+    <Compile Include="Presupuesto_Item_Mh.cs" />
+    <Compile Include="Presupuesto_Item_Vh.cs" />
+    <Compile Include="Producto.cs" />
+    <Compile Include="ProductoProve.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proveedor.cs" />
+    <Compile Include="Provincia.cs" />
+    <Compile Include="RegManteP.cs" />
+    <Compile Include="RelacionManteHs.cs" />
+    <Compile Include="RelacionManteKM.cs" />
+    <Compile Include="RepuestoProve.cs" />
+    <Compile Include="RepuestoVh.cs" />
+    <Compile Include="ReservaProducto.cs" />
+    <Compile Include="RespuestaNota.cs" />
+    <Compile Include="RMAProducto.cs" />
+    <Compile Include="RubroProve.cs" />
+    <Compile Include="SectorEmpleado.cs" />
+    <Compile Include="SegmentoP.cs" />
+    <Compile Include="Sfisica.cs" />
+    <Compile Include="SituacionOperativaVh.cs" />
+    <Compile Include="SituacionStk.cs" />
+    <Compile Include="Solicitud_Ab.cs" />
+    <Compile Include="Solicitud_ab_detalle.cs" />
+    <Compile Include="StockCategoriaProducto.cs" />
+    <Compile Include="StockProducto.cs" />
+    <Compile Include="StockRvh.cs" />
+    <Compile Include="StockTipoProducto.cs" />
+    <Compile Include="TareaSector.cs" />
+    <Compile Include="TareasIso.cs" />
+    <Compile Include="TareasMante.cs" />
+    <Compile Include="TipoCajon.cs" />
+    <Compile Include="TipoContenedor.cs" />
+    <Compile Include="TipoDocumento.cs" />
+    <Compile Include="TipoGastosObra.cs" />
+    <Compile Include="TipoProducto.cs" />
+    <Compile Include="TipoVh.cs" />
+    <Compile Include="TotalesyAvg.cs" />
+    <Compile Include="Usuario.cs" />
+    <Compile Include="ValeCD.cs" />
+    <Compile Include="VarPrecioTipoP.cs" />
+    <Compile Include="vef_tecnica.cs" />
+    <Compile Include="vef_tecnica_detalle.cs" />
+    <Compile Include="Vehiculo.cs" />
+    <Compile Include="VehiculoDocu.cs" />
+    <Compile Include="VehiculosRelacionados.cs" />
+    <Compile Include="VhAnioModelo.cs" />
+    <Compile Include="VhKmAvg.cs" />
+    <Compile Include="VhKmAvgCate.cs" />
+    <Compile Include="VhKmRango.cs" />
+    <Compile Include="VisorDocDepositos.cs" />
+    <Compile Include="VisorDocObras.cs" />
+    <Compile Include="VisorDocProductosCompras.cs" />
+    <Compile Include="VisorDocVales.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

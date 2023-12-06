@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="UIDESK.uc.Obras.ucRemitosDMO"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIDESK.uc.Obras"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:remitos="clr-namespace:UIDESK.Remitos"
+               TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="900">
+    <Grid>
+        <DataGrid x:Name="dgPrincipal" Grid.Row="1" Margin="3" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                  SelectionChanged="dgPrincipal_SelectionChanged"  RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnCerrarDetalle" Click="btnCerrarDetalle_Click" Height="15" Width="15"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Id" Binding="{Binding Path=IdDocumento}" Width="70"/>
+                <DataGridTextColumn Header="Fecha" Binding="{Binding Path=FechaRemito, StringFormat=d, ConverterCulture=es-AR}" Width="100"/>
+                <DataGridTextColumn Header="Concepto" Binding="{Binding Path=Concepto}" Width="90"/>
+                <DataGridTextColumn Header="Numero R" Binding="{Binding Path=NumDocumento}" Width="90"/>
+                <DataGridTextColumn Header="Empleado"  Binding="{Binding Path=NombreEmpleado}" Width="150"/>
+                <DataGridTextColumn Header="Origen"  Binding="{Binding Path=Imputacion}" Width="70"/>
+                <DataGridTextColumn Header="Cliente"  Binding="{Binding Path=ClienteObra}" Width="200"/>
+                <DataGridTextColumn Header="Destino"  Binding="{Binding Path=ImputacionDestino}" Width="70"/>
+                <DataGridTextColumn Header="Cliente"  Binding="{Binding Path=ClienteDestino}" Width="200"/>
+                
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnReImprimir" Padding="2" Style="{StaticResource MaterialDesignFlatButton}"
+                               Height="20" Width="20" Click="btnReImprimir_Click" ToolTip="Re-Imprimir">
+                                <materialDesign:PackIcon Kind="Printer" Foreground="Black"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnAnular" Padding="2" Style="{StaticResource MaterialDesignFlatButton}"
+                               Height="20" Width="20" Click="btnAnular_Click" ToolTip="Anular Remito">
+                                <materialDesign:PackIcon Kind="DeleteCircle" Foreground="Red"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <remitos:ucDetalleDocumento/>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>    
+    </Grid>
+</UserControl>

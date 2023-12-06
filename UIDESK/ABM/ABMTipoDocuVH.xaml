@@ -1,0 +1,58 @@
+﻿<Window x:Class="UIDESK.ABM.ABMTipoDocuVH"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIDESK.ABM"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None" WindowStartupLocation="CenterScreen"  BorderBrush="Black" BorderThickness="1" materialDesign:ShadowAssist.ShadowDepth="Depth3"
+        mc:Ignorable="d" ResizeMode="NoResize"  MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Title="ABMTipoDocuVH" Height="200" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="txbOperacion" Grid.Column="0"   FontFamily="Helvetica" FontWeight="Light" FontStyle="Normal" FontSize="20" Foreground="DeepSkyBlue">ABM Tipo Documentacion</TextBlock>
+            <Button Name="btnCancelar"  Grid.Column="1" Click="btnCancelar_Click"  Background="OrangeRed" Foreground="White"  
+                    Style="{StaticResource WindowCloseButtonStyle}">
+                <materialDesign:PackIcon Kind="Close"/>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="txtIdDocuvh" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="60"
+                         materialDesign:HintAssist.Hint="ID" HorizontalAlignment="Left" IsReadOnly="True" IsEnabled="False"
+                     Text="{Binding Path=IdDocuVH}"/>
+            <TextBox x:Name="txtNombreDocu" Grid.Row="1" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="250"
+                         materialDesign:HintAssist.Hint="Nombre Documentacion" HorizontalAlignment="Left"
+                     Text="{Binding Path=Descripcion}"/>
+           
+        </Grid>
+        <StackPanel  Grid.Row="2" Margin="10" HorizontalAlignment="Right">
+            <Button x:Name="btnAceptar" Style="{StaticResource MaterialDesignFlatButton}" Click="btnAceptar_Click" 
+                    Background="DarkBlue" Foreground="White" Content="Guardar" >
+
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Window>

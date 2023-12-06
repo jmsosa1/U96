@@ -1,0 +1,6 @@
+﻿Regla situacion flota - Pickups
+
+Situacion	- condicion km
+"buena"		- <= 400.000
+¨regular¨ - > 400.000 y < 500.000
+"mala"		- >500.000

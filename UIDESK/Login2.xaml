@@ -1,0 +1,74 @@
+﻿<Window x:Class="UIDESK.Login2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIDESK"
+          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Title="Screnn Login" Height="300" Width="400" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <materialDesign:Card Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Image Source="/imagenes/login2.jpg" Stretch="Fill"></Image>
+        </materialDesign:Card>
+
+        <Grid Grid.Column="0" >
+            <Grid.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#F48C06" Offset="0.0"></GradientStop>
+                    <GradientStop Color="#DC2F02" Offset="1.0"></GradientStop>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <Image Source="/imagenes/logo-sahm-blanco.jpg" Stretch="UniformToFill"></Image>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+                <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Margin="5,0,0,0"></materialDesign:PackIcon>
+                <TextBox x:Name="txtUser" materialDesign:HintAssist.Hint="Usuario" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Foreground="Black" Width="200" Margin="10,0,0,0" FontWeight="Bold"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
+                <materialDesign:PackIcon Kind="Key" VerticalAlignment="Center" Margin="5,0,0,0"></materialDesign:PackIcon>
+                <PasswordBox x:Name="txtPassword" materialDesign:HintAssist.Hint="Password"  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                         Foreground="Black" Width="200" Margin="10,0,0,0" FontWeight="Bold"></PasswordBox>
+                
+            </StackPanel>
+            <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="20">
+                <Button x:Name="btnLogin" Style="{StaticResource MaterialDesignFlatButton}" Click="btnLogin_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Login" Foreground="Black"/>
+                        <TextBlock Text="Login" Foreground="Black"/>
+                    </StackPanel>
+                    
+                </Button>
+                <Button x:Name="btnLogout" Style="{StaticResource MaterialDesignFlatButton}" Margin="50,0,0,0"  Click="btnLogout_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Logout" Foreground="Black"/>
+                        <TextBlock Text="Logout" Foreground="Black"/>
+                    </StackPanel>
+                    
+                </Button>
+            </StackPanel>
+            <TextBlock Grid.Row="4">Version 3.3</TextBlock>
+        </Grid>
+    </Grid>
+</Window>

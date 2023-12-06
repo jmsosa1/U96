@@ -1,0 +1,75 @@
+﻿<Window x:Class="UIDESK.ABM.RechazoPlanificacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIDESK.ABM"
+       
+         xmlns:System="clr-namespace:System;assembly=mscorlib"
+        
+        xmlns:validaciones="clr-namespace:UIDESK.validacion"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None" WindowStartupLocation="CenterScreen" BorderThickness="1" BorderBrush="Black" ResizeMode="NoResize" MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        mc:Ignorable="d"
+        Title="RechazoPlanificacion" Height="400" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="txbOperacion" Grid.Column="0"   FontFamily="Helvetica" FontWeight="Light" FontStyle="Normal" FontSize="20" Foreground="BlueViolet">Rechazar Programacion</TextBlock>
+            <Button Name="btnCancelar"  Grid.Column="1" Click="btnCerrar_Click"  Background="OrangeRed" Foreground="White"  
+                    Style="{StaticResource WindowCloseButtonStyle}">
+                <materialDesign:PackIcon Kind="Close"/>
+            </Button>
+        </Grid>
+        
+       
+        <Grid Grid.Row="1" Name="gridPrincipal">
+           
+            <TextBox Name="txtImputacion"  CharacterCasing="Upper" IsReadOnly="True"
+                 materialDesign:HintAssist.Hint="Imputacion" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                HorizontalAlignment="Left"  Margin="10,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" TabIndex="4">
+
+            </TextBox>
+            <TextBlock Name="txbObra" 
+                HorizontalAlignment="Left" Margin="97,68,0,0" TextWrapping="Wrap" Text="NOMBRE OBRA" VerticalAlignment="Top" Width="200"/>
+            <TextBox Name="txtSolicitado" CharacterCasing="Upper" IsReadOnly="True"
+                 materialDesign:HintAssist.Hint="Solicitado por" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                HorizontalAlignment="Left"  Margin="332,52,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="150" TabIndex="5">
+              
+            </TextBox>
+            <TextBox Name="txtNotas"  CharacterCasing="Upper" IsReadOnly="True"
+                HorizontalAlignment="Left" Height="60" AcceptsReturn="True"  materialDesign:HintAssist.Hint="Notas"
+                     Margin="10,94,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="400" TabIndex="6"/>
+            
+            <TextBox Name="txtDominio" materialDesign:HintAssist.Hint="Dominio" CharacterCasing="Upper"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"
+                HorizontalAlignment="Left"  Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" TabIndex="1">
+                
+            </TextBox>
+            <TextBlock Name="txtModelo" Text="Modelo"
+                HorizontalAlignment="Left" Height="23" Margin="155,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Name="txtMarca" Text="Marca"
+                HorizontalAlignment="Left" Height="23" Margin="335,21,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+            <TextBox Name="txtNotaBaja" CharacterCasing="Upper" 
+                HorizontalAlignment="Left" Height="45" Margin="10,170,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="400"/>
+            <Button Click="Button_Click"  Background="DarkBlue" Foreground="White"
+                Content="Rechazar" HorizontalAlignment="Left" Margin="332,260,0,0" VerticalAlignment="Top" Width="100"/>
+
+        </Grid>
+    </Grid>
+</Window>

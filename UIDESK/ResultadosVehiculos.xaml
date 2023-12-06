@@ -1,0 +1,186 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.ResultadosVehiculos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+         xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions" 
+        xmlns:local="clr-namespace:UIDESK"   
+                        
+        mc:Ignorable="d"  
+         AllowsTransparency="False" BorderBackgroundBrush="#272537" 
+          BorderForegroundBrush="White" Title="SAHMV6 - Resultados de Vehiculos y Maquinas"
+         Height="630" Width="920">
+    
+     
+       <mde:MaterialWindow.TitleTemplate>
+        <DataTemplate>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <md:PackIcon Kind="ChartBar" Margin="5"></md:PackIcon>
+                    <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}"  Foreground="Orange"
+                           Text="{Binding Path=Title, RelativeSource={RelativeSource AncestorType={x:Type mde:MaterialWindow}}}" Margin="8,0,0,0"/>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Stretch">
+                    <!--<Button Style="{StaticResource WindowButtonStyle}" >
+                        <md:PackIcon Style="{StaticResource WindowButtonIconStyle}" Kind="Github" />
+                    </Button>-->
+                    <Button Style="{StaticResource MaterialDesignIconButton}" Padding="1" >
+                        <md:PackIcon  Kind="HelpCircle"  VerticalAlignment="Center"/>
+                    </Button>
+                    <Border Width="1" VerticalAlignment="Stretch" SnapsToDevicePixels="True" Margin="8,4,8,4"
+                            Background="{Binding Path=BorderForegroundBrush, RelativeSource={RelativeSource AncestorType={x:Type mde:MaterialWindow}}}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </mde:MaterialWindow.TitleTemplate>
+    
+    <Border Background="#272537">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <!--<RowDefinition Height="50"/>-->
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <!--<TextBlock Text="SAHMV6" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White"
+                       FontSize="22" Margin="20,0,0,0"></TextBlock>-->
+            <!--#region 
+            <StackPanel Grid.Row="1">
+                <Button x:Name="btnMantenimientos" Content="Mantenimientos" Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                       Margin="5" Click="btnMantenimientos_Click" ></Button>
+                <Button x:Name="btnCombustibles" Content="Combustibles" Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                        Margin="5" Click="btnCombustibles_Click"></Button>
+               
+            </StackPanel>-->
+            <Border Grid.Row="1" Grid.Column="0" Background="#FF061D3A" Margin="0,5,0,0">
+                <StackPanel>
+                    <!--#region Mantenimientos Nav-->
+                    <StackPanel>
+                        <TextBlock Foreground="OrangeRed" FontSize="18" Margin="10,0,0,0" >Mantenimientos</TextBlock>
+                        <ListView x:Name="lsvNavMante" Grid.Row="1" SelectionChanged="lsvNavMante_SelectionChanged" Margin="5">
+                            <ListViewItem Name="IMInfoAnual" Cursor="Hand" >
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="ChartScatterPlot" Foreground="White"></md:PackIcon>
+                                    <TextBlock Foreground="White"  VerticalAlignment="Center" Margin="10,0,0,0">Informe por Año</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Name="IMComparativaAnios" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="ChartBar" Foreground="White"></md:PackIcon>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Progresion Interanual</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Name="IMCategorias" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="CarMultiple" Foreground="White"></md:PackIcon>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Informe por Categorias</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Name="IMVehiculo" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="CarInfo" Foreground="White"></md:PackIcon>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Informe por Vehiculo</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Name="IMSituacionOp" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="CarCruiseControl" Foreground="White"></md:PackIcon>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Situacion Operativa</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Name="IMCostoManteKm" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="CurrencyUsd" Foreground="White"></md:PackIcon>
+                                    <md:PackIcon Kind="Gauge" Foreground="White"/>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Costos por Km</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Name="IMCostoManteHs" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="CurrencyUsd" Foreground="White"></md:PackIcon>
+                                    <md:PackIcon Kind="Clock" Foreground="White"/>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Costos por Hora</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                        </ListView>
+                    </StackPanel>
+                    <!--#region consumos Nav-->
+                    <StackPanel>
+                        <TextBlock Foreground="OrangeRed" FontSize="18" Margin="10,0,0,0" >Consumos</TextBlock>
+                        <ListView x:Name="lsvNavConsumos" Grid.Row="1" SelectionChanged="lsvNavConsumos_SelectionChanged" Margin="5">
+                            <ListViewItem Name="ITConsumoAnual" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="ChartScatterPlotHexbin" Foreground="White"></md:PackIcon>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Informe por Año</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Name="ITConsumoInterAnual" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="Finance" Foreground="White"></md:PackIcon>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Consumos</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Name="ITConsumoCategorias" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="Category" Foreground="White"></md:PackIcon>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Detalle Categorias</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Name="ITConsumoIndividual" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="Car" Foreground="White"></md:PackIcon>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Informe por Vehiculo</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Name="ITProgresionConsumos" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="ChartTimelineVariant" Foreground="White"></md:PackIcon>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Progresion Mensual</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                        </ListView>
+                    </StackPanel>
+                    
+                    <!--#region Flota-->
+                    <StackPanel>
+                        <TextBlock Foreground="OrangeRed" FontSize="18" Margin="10,0,0,0">Flota</TextBlock>
+                        <ListView x:Name="lsvNavFlota" Grid.Row="1" SelectionChanged="lsvNavFlota_SelectionChanged" Margin="5">
+                            <ListViewItem Name="ITAnalisisFlota" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="ChartScatterPlotHexbin" Foreground="White"></md:PackIcon>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Analisis Operativo</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Name="ITPrediccion" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="ChartSankeyVariant" Foreground="White"></md:PackIcon>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0">Predicion</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                        </ListView>
+                    </StackPanel>
+                   
+                </StackPanel>
+               
+            </Border>
+            
+            <!--<Border Grid.Column="1" Background="Transparent" BorderBrush="White" BorderThickness="1" CornerRadius="5" 
+                    Width="450" Height="40" HorizontalAlignment="Left">
+                <TextBlock Text="Resultados de Vehiculos y Maquinas" Foreground="DarkCyan" FontWeight="Bold"
+                          FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+            </Border>-->
+          
+            <ContentControl x:Name="cc" Grid.Column="1" Grid.Row="1" Margin="5"></ContentControl>
+
+        </Grid>
+    </Border>
+   
+</mde:MaterialWindow>

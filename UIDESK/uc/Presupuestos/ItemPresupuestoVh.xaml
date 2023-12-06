@@ -1,0 +1,95 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.uc.Presupuestos.ItemPresupuestoVh"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+        xmlns:local="clr-namespace:UIDESK.uc.Presupuestos"
+        mc:Ignorable="d"
+        Title="ItemPresupuestoVh" Height="450" Width="800">
+    <Grid>
+        <!-- ventana que permite el ABM de un item del presupuesto-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="3">
+            <StackPanel Orientation="Horizontal">
+
+                <TextBox x:Name="txtAltaItem" Width="100" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Fecha Alta"/>
+                <TextBox x:Name="txtUltimaModificacion" Width="100" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Ultima Actualizacion"/>
+
+            </StackPanel>
+
+        </Border>
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="3">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Margin="10,0" Style="{StaticResource MaterialDesignBody2TextBlock}">Seleccion tipo:</TextBlock>
+                <ComboBox Name="cmbTipos" Width="250" Margin="10,0" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                materialDesign:HintAssist.Hint="Tipos" SelectionChanged="cmbTipos_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding idtipodto}"></TextBlock>
+                                <TextBlock Text="{Binding NomTipoDto}"></TextBlock>
+                            </StackPanel>
+
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="3">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Margin="10,0" Style="{StaticResource MaterialDesignBody2TextBlock}">Seleccion de la categoria:</TextBlock>
+                <ComboBox Name="cmbCategorias" Width="250" Margin="10,0" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                       materialDesign:HintAssist.Hint="Categorias" SelectionChanged="cmbCategorias_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding idcatedto}"></TextBlock>
+                                <TextBlock Text="{Binding NomCateDto}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="3" BorderBrush="Black" BorderThickness="1" CornerRadius="5"  Margin="3">
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <TextBlock VerticalAlignment="Center" Margin="10,0" Style="{ StaticResource MaterialDesignBody2TextBlock}">Importe Presupuesto:</TextBlock>
+                <TextBox x:Name="txtPresupuesto" Width="120" Margin="5,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                      materialDesign:HintAssist.Hint="$" Text="{Binding Path=Monto_Presupuestado,StringFormat=C,ConverterCulture=es-Ar}"></TextBox>
+
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="4" BorderBrush="Black" BorderThickness="1" CornerRadius="5"  Margin="3">
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <TextBlock VerticalAlignment="Center" Margin="10,0" Style="{ StaticResource MaterialDesignBody2TextBlock}">Importe Aprobado:</TextBlock>
+                <TextBox x:Name="txtAprobado" Width="120" Margin="5,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                      materialDesign:HintAssist.Hint="$" Text="{Binding Path=Monto_Aprobado,StringFormat=C,ConverterCulture=es-Ar}"></TextBox>
+
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="5" BorderBrush="Black" BorderThickness="1" CornerRadius="5"  Margin="3">
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <TextBlock VerticalAlignment="Center" Margin="10,0" Style="{ StaticResource MaterialDesignBody2TextBlock}">Importe Ejecutado:</TextBlock>
+
+                <TextBox x:Name="txtEjecutado" Width="120" Margin="5,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                      materialDesign:HintAssist.Hint="$" Text="{Binding Path=Monto_Real_Ejecutado,StringFormat=C,ConverterCulture=es-Ar}"/>
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="6" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="3">
+            <StackPanel Orientation="Horizontal" Margin="3" HorizontalAlignment="Right">
+                <Button x:Name="btnAceptar" Margin="10,0" Click="btnAceptar_Click">Aceptar</Button>
+                <Button x:Name="btnCancelar"  Margin="10,0" Click="btnCancelar_Click">Cancelar</Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</mde:MaterialWindow>

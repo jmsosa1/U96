@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="UIDESK.uc.Empleados.UIPpal.ucTrabjadoresPpal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+             xmlns:local="clr-namespace:UIDESK.uc.Empleados.UIPpal"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="650"/>
+        </Grid.ColumnDefinitions>
+        <!--panel lateral izquierda la imagen -->
+        <!-- Panel 1 -->
+        <Border  Grid.Column="1" CornerRadius="20" Margin="20">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.75,0" EndPoint="0,1">
+                    <GradientStop Color="#FF6B1C0A" Offset="0.1"></GradientStop>
+                    <GradientStop Color="#FFCC3017" Offset="0.8"></GradientStop>
+
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Border  Height="200" Width="180" HorizontalAlignment="Left" VerticalAlignment="Top"
+                           CornerRadius="20" Opacity="0.8" Margin="10,10,0,0" >
+                    <Border.Background>
+                        <ImageBrush ImageSource="/imagenes/trabajadores.jpg" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <TextBlock Text="Trabajadores" Margin="10,220,0,0" Style="{StaticResource MaterialDesignHeadline4TextBlock}"></TextBlock>
+                <TextBlock Text="Datos Personales y Balances" Margin="10,260,0,0" Style="{StaticResource MaterialDesignHeadline6TextBlock}"></TextBlock>
+                <Button Name="btnAddTrabajador" Margin="10,400,10,0" Style="{StaticResource MaterialDesignRaisedButton}">Ingresar</Button>
+                
+            </Grid>
+        </Border>
+        <Border Grid.Column="2" CornerRadius="20" Margin="20">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.75,0" EndPoint="0,1">
+                    <GradientStop Color="#FF6B1C0A" Offset="0.1"></GradientStop>
+                    <GradientStop Color="#FFCC3017" Offset="0.8"></GradientStop>
+
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}">1500 trabajadores</TextBlock>
+                <TextBlock Style="{StaticResource MaterialDesignHeadline4TextBlock}" Margin="10,120,0,0">20 departamentos</TextBlock>
+                <TextBlock Style="{StaticResource MaterialDesignHeadline2TextBlock}" Margin="70,150,0,0">3000 entregas EPP</TextBlock>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

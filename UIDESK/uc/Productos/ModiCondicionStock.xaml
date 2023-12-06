@@ -1,0 +1,51 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.uc.Productos.ModiCondicionStock"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+        xmlns:local="clr-namespace:UIDESK.uc.Productos"
+        mc:Ignorable="d" Height="200" Width="400" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        Title="ModiCondicionStock"  MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--<Grid Grid.Row="0" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="txbOperacion" Grid.Column="0"   FontFamily="Helvetica" FontWeight="Light" FontStyle="Normal" FontSize="20" Foreground="DeepSkyBlue">Modificar condicion de Stock del Producto</TextBlock>
+            <Button Name="btnCancelar"  Grid.Column="1" Click="btnCancelar_Click"  Background="OrangeRed" Foreground="White"  
+                    Style="{StaticResource WindowCloseButtonStyle}">
+                <materialDesign:PackIcon Kind="Close"/>
+            </Button>
+        </Grid>-->
+       
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
+            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Condicion Actual"
+                    x:Name="txtSituacionAnterior" Width="150" IsReadOnly="True" ></TextBox>
+            <ComboBox Name="cmbSituacionStk" Margin="30,0,0,0" Width="200" 
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Nueva Condicion">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=IdSituacionStk}"></TextBlock>
+                            <Separator Width="2"></Separator>
+                            <TextBlock Text="{Binding Path=NombreSituacion}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5,60,10,0" HorizontalAlignment="Right">
+            
+            <Button x:Name="btnActualizar" Click="btnActualizar_Click" Style="{StaticResource MaterialDesignRaisedButton}"
+                   Margin="20,0,0,0" Background="DarkBlue" >Actualizar</Button>
+        </StackPanel>
+    </Grid>
+</mde:MaterialWindow>

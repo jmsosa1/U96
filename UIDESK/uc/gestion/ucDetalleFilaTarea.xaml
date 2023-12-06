@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="UIDESK.uc.gestion.ucDetalleFilaTarea"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIDESK.uc.gestion"
+              
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             
+             xmlns:converter="clr-namespace:UIDESK.validacion"
+              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            Background="{DynamicResource MaterialDesignPaper}"
+            FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1000">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Actividades de la Tarea">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Name="dgListaActividades" Grid.Row="0" AutoGenerateColumns="False" CanUserAddRows="False"
+                             CanUserDeleteRows="False" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single"
+                             VerticalScrollBarVisibility="Visible" materialDesign:DataGridAssist.CellPadding="4,2,2,2"
+                             materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2"  >
+
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EstadoItem}" Value="Pendiente">
+                                        <Setter Property="Background" Value="LightGray"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding EstadoItem}" Value="En Curso">
+                                        <Setter Property="Background" Value="LightGreen"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding EstadoItem}" Value="Cumplido">
+                                        <Setter Property="Background" Value="LightBlue"></Setter>
+                                        <Setter Property="IsEnabled" Value="False"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding EstadoItem}" Value="Cancelado">
+                                      
+                                        <Setter Property="IsEnabled" Value="False"></Setter>
+                                        
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.Columns>
+
+
+                            <DataGridTextColumn Header="Item" Width="130" Binding="{Binding Path=NumItem}" IsReadOnly="True"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Descripcion" Width="300"  Binding="{Binding Path= DescriTarea}" IsReadOnly="True"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Estado" Width="100" Binding="{Binding Path=EstadoItem}" IsReadOnly="True"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Cumplimiento" Width="100" Binding="{Binding Path= Fcumplimiento, StringFormat=d, ConverterCulture=es-AR}" IsReadOnly="True"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Responsable" Width="100" Binding="{Binding Path=NombreSeguidor}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Observacion" Width="250" Binding="{Binding Path=Observacion}" IsReadOnly="True"/>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Name="btnTomarActividad" ToolTip="Tomar Actividad" 
+                                                Style="{StaticResource MaterialDesignFlatButton}"
+                                                Height="20" Width="20" Padding="1" Click="btnTomarActividad_Click">
+                                            <materialDesign:PackIcon Kind="AirplaneTakeoff"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Name="btnCumplirActividad" ToolTip="Cumplir Actividad" 
+                                                Style="{StaticResource MaterialDesignFlatButton}" 
+                                                Height="20" Width="20" Padding="1" Click="btnCumplirActividad_Click">
+                                            <materialDesign:PackIcon Kind="Approval"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Name="btnCancelarActividad" ToolTip="Cancelar Actividad" 
+                                                Style="{StaticResource MaterialDesignFlatButton}" 
+                                                Height="20" Width="20" Padding="1" Click="btnCancelarActividad_Click">
+                                            <materialDesign:PackIcon Kind="Close"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

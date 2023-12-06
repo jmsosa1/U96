@@ -1,0 +1,165 @@
+﻿<UserControl x:Class="UIDESK.uc.Vehiculos.ucRemitos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIDESK.uc.Vehiculos"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+       
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ToolBar Name="tbComandos"  Style="{StaticResource MaterialDesignToolBar}" Grid.Row="0"
+                    ClipToBounds="False"  Padding="2" Margin="3">
+
+            <TextBox Name="txtBuscar" Width="300" Padding="2" 
+                         materialDesign:HintAssist.Hint="Buscar Documento..." CharacterCasing="Upper"></TextBox>
+            <Button Name="btnBuscarDoc" Padding="2" Click="btnBuscarDoc_Click">
+                <materialDesign:PackIcon Kind="Magnify"/>
+            </Button>
+            <Separator Width="2" Background="OrangeRed"></Separator>
+            <Button Name="btnAgregar" Padding="2" Click="btnAgregar_Click" ToolTip="Generar un nuevo remito">
+                <materialDesign:PackIcon Kind="Plus"/>
+            </Button>
+            <Button Name="btnBaja" Padding="2" ToolTip="Anular " Click="btnBaja_Click">
+                <materialDesign:PackIcon Kind="MinusCircle"/>
+            </Button>
+
+
+            <Button Name="btnEliminar" Padding="2" ToolTip="Borrar seleccionado" Click="btnEliminar_Click">
+                <materialDesign:PackIcon Kind="Delete"/>
+            </Button>
+
+            <Separator Width="2" Background="OrangeRed"></Separator>
+            <DatePicker Name="dtpFiltroDesde" Width="100" Padding="2" Margin="3" materialDesign:HintAssist.Hint="Desde" 
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"></DatePicker>
+            
+            <DatePicker Name="dtpFiltroHasta" Width="100" Padding="2" Margin="3" materialDesign:HintAssist.Hint="Hasta"  
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+            <Button Name="btnBuscarFechas" Padding="2" Click="BtnBuscarFechas_Click">
+                <materialDesign:PackIcon Kind="Magnify"/>
+            </Button>
+            <Separator Width="2" Background="OrangeRed"/>
+            <TextBox Name="txtImputacion" materialDesign:HintAssist.Hint="Imputacion" Padding="2" 
+                     CharacterCasing="Upper" Width="100"></TextBox>
+            
+            <Button Name="btnBuscarImputacion" Padding="2" Click="BtnBuscarImputacion_Click">
+                <materialDesign:PackIcon Kind="Magnify"/>
+            </Button>
+            <Separator Width="3" Background="OrangeRed"></Separator>
+            <Button Name="btnImprimirRemito" Padding="2" ToolTip="Imprimir Documento Seleccionado" Click="BtnImprimirRemito_Click">
+                <materialDesign:PackIcon Kind="Printer"/>
+            </Button>
+        </ToolBar>
+        <DataGrid  Name="dgGralRemitos" Grid.Row="1" 
+                 Margin="3" AutoGenerateColumns="False" CanUserAddRows="False"
+                  CanUserDeleteRows="False" SelectionChanged="DgGralRemitos_SelectionChanged"
+                  RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2"  >
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Estado}" Value="Prevision">
+                        <Setter Property="Background" Value="LightYellow"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Estado}" Value="En Curso">
+                        <Setter Property="Background" Value="LightGreen"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Estado}" Value="Rechazado">
+                        <Setter Property="Background" Value="OrangeRed"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnCerrarDetalle" Click="btnCerrarDetalle_Click" Height="15" Width="15"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=IdDocumento}"/>
+                <DataGridTextColumn Header="Fecha" Binding="{Binding Path=FechaRemito,StringFormat=d,ConverterCulture=es-AR}"/>
+                <DataGridTextColumn Header="Numero" Width="100" Binding="{Binding Path=NumDocumento}" ></DataGridTextColumn>
+             
+                <DataGridTextColumn Header="Imputacion" Width="100" 
+                                    Binding="{Binding Path=Imputacion}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Cliente" Width="150" 
+                                    Binding="{Binding Path=ClienteObra}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Destinatario" Width="150" Binding="{Binding Path=NombreEmpleado}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Transporte" Width="150" Binding="{Binding Path=RazonSocial}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Chofer" Width="100" Binding="{Binding Path=Chofer}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Usuario" Width="100" Binding="{Binding Path=NombreUsuario}"></DataGridTextColumn>
+               
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <local:ucDetalleFilaDocumento/>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+
+        </DataGrid>
+        <Border Grid.Row="2" Background="Transparent" BorderBrush="Green" BorderThickness="2" CornerRadius="5"
+               Margin="3" >
+            <StatusBar>
+                <StatusBar.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="130"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </ItemsPanelTemplate>
+                </StatusBar.ItemsPanel>
+                <StatusBarItem Grid.Column="0">
+                    <TextBlock Text="Mostrando Resultados:" />
+                </StatusBarItem>
+                <StatusBarItem Grid.Column="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Data Info:" VerticalAlignment="Center"/>
+                        <TextBox Name="txtRegistros" IsReadOnly="True" Margin="3" Width="100"/>
+                    </StackPanel>
+                </StatusBarItem>
+                <Separator Grid.Column="2"/>
+                <StatusBarItem Grid.Column="3">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Data Info:" VerticalAlignment="Center"/>
+                        <TextBox Name="txtTotalKmAcu" IsReadOnly="True" Margin="3" Width="100"/>
+                    </StackPanel>
+                </StatusBarItem>
+                <Separator Grid.Column="4"/>
+                <StatusBarItem Grid.Column="5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Data info:" VerticalAlignment="Center"/>
+                        <TextBox Name="txtTotalHsAcu" IsReadOnly="True" Margin="3" Width="100"/>
+                    </StackPanel>
+                </StatusBarItem>
+            </StatusBar>
+        </Border>
+    </Grid>
+</UserControl>

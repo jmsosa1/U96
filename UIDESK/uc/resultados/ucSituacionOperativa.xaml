@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="UIDESK.uc.resultados.ucSituacionOperativa"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:UIDESK.uc.resultados"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1000">
+    <Grid  Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" >
+            <TextBlock Name="txbtitulo" Style="{StaticResource MaterialDesignBody1TextBlock}"
+                   Text=" Vehiculos - Comparativa Situacion Operativa" VerticalAlignment="Center"></TextBlock>
+            
+        </StackPanel>
+        <ToolBar Grid.Row="1" Style="{StaticResource MaterialDesignToolBar}"  Margin="0,5,5,0">
+
+            <TextBox x:Name="txtAnioVisualizado" Width="100" Margin="5,0,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Año Visualizado"/>
+            <Button x:Name="btnCambiarAnio" Padding="2" Margin="5,0">
+                <materialDesign:PackIcon Kind="Magnify"/>
+            </Button>
+            <Separator></Separator>
+            <TextBlock VerticalAlignment="Center">Categoria del vehiculo</TextBlock>
+            <ComboBox Name="cmbCategoriasVh" Width="200" Margin="20,0,0,0" SelectionChanged="cmbCategoriasVh_SelectionChanged" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=IdCateVh}" Margin="5,0,0,0"></TextBlock>
+                            <Separator Width="3" Background="Black" Margin="5,0,0,0"></Separator>
+                            <TextBlock Text="{Binding Path=NomCate}" Margin="5,0,0,0"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </ToolBar>
+        <DataGrid Name="dgSituacionOP" Grid.Row="2" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                 RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" 
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2"  Margin="3"
+                 GridLinesVisibility="All" BorderBrush="DarkOrange" BorderThickness="1" >
+            <DataGrid.Columns>
+                
+                
+                <DataGridTextColumn Header="Dominio" Binding="{Binding Dominio}"/>
+                <DataGridTextColumn Header="Modelo" Binding="{Binding Modelo}"/>
+               
+                <DataGridTextColumn Header="Costo Diario Paro" Binding="{Binding Path=CostoDiarioParo,StringFormat=C, ConverterCulture=es-Ar}"/>
+                <DataGridTextColumn Header="Dias Mante." Binding="{Binding Path=DiasMante}"/>
+                <DataGridTextColumn Header="Costo ToTal Mante" Binding="{Binding Path=CtDm ,StringFormat=C, ConverterCulture=es-Ar}"/>
+                <DataGridTextColumn Header="Dias Paro" Binding="{Binding Path=DiasParo}"/>
+                <DataGridTextColumn Header="Costo Total Paro"  Binding="{Binding Path=CtDP, StringFormat=C,ConverterCulture=es-AR}"/>
+                <DataGridTextColumn Header="Total CDP" Binding="{Binding Path=TotalCDP, StringFormat=C, ConverterCulture=es-Ar}"/>
+                <DataGridTextColumn Header="Dias Uso" Binding="{Binding Path=DiasUso}">
+                    
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Costo Diario Operativo" Binding="{Binding Path=CostoDiarioUso, StringFormat=C, ConverterCulture=es-Ar}" >
+                  
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Header="Total CDO">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Path=TotalCDU, StringFormat=C, ConverterCulture=es-AR}" Foreground="DarkGreen" FontWeight="Bold"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Path=ImageEstado}"  Width="15" Height="15"></Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

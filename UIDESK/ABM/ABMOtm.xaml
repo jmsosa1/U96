@@ -1,0 +1,173 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.ABM.ABMOtm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+        xmlns:local="clr-namespace:UIDESK.ABM"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" BorderBackgroundBrush="Gray"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown" 
+        Title="ABM Orden Trabajo Mantenimiento" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+      
+        
+        <materialDesign:DrawerHost Grid.Row="1">
+
+                <materialDesign:DrawerHost.BottomDrawerContent>
+                    <Grid Name="grdItemDetalle">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" Grid.Row="0"
+                               Margin="5">Detalle Mantenimiento</TextBlock>
+
+                        <ComboBox Name="cmbCateMante" Grid.Row="1" Margin="5" Width="120" materialDesign:HintAssist.Hint="Cat. Mantenimiento"
+                           Style="{StaticResource MaterialDesignFloatingHintComboBox}"  HorizontalAlignment="Left" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Path=IdCateMante}" Margin="2"></TextBlock>
+                                        <Separator Width="2"></Separator>
+                                        <TextBlock Text="{Binding Path=NomCate}" Margin="2"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <TextBox Name="txtDescriActividad" Grid.Row="2" Width="400"  Margin="10" materialDesign:HintAssist.Hint="Descripcion Actividad"
+                            HorizontalAlignment="Left"  CharacterCasing="Upper"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            Text="{Binding Path=DescriTarea}" GotFocus="txtDescriActividad_GotFocus" ></TextBox>
+
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="5">
+                            <Button Name="btnCerrarDrawBotton" Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                CommandParameter="{x:Static Dock.Bottom}" Margin="5"
+                                Style="{StaticResource MaterialDesignFlatButton}">Cerrar</Button>
+                            <Button Name="btnSeleccionarDrawBotton" Click="btnSeleccionarDrawBotton_Click" Margin="5" 
+                                Style="{StaticResource MaterialDesignFlatButton}" >Seleccionar</Button>
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:DrawerHost.BottomDrawerContent>
+                
+                <Grid Name="grdDatos">
+                    <materialDesign:Card UniformCornerRadius="6"  Margin="5">
+                <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <!-- Fila 0-->
+                        <TextBox Name="txtDominio" KeyDown="TxtDominio_KeyDown" CharacterCasing="Upper" TabIndex="1" Margin="5,0,0,0"
+                             Text="{Binding Dominio}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Dominio" 
+                      Width="100"/>
+                        <TextBox Name="txtDescripcion" IsReadOnly="True" Text="{Binding Path=DescriVh}" Grid.Row="0"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Descripcion" 
+                       HorizontalAlignment="Left" Width="343" Grid.IsSharedSizeScope="True" Grid.ColumnSpan="2" Margin="115,0,0,0"/>
+
+                        <TextBox Name="txtModelo" IsReadOnly="True" Text="{Binding Path=ModeloVh}" Grid.Row="0" Grid.Column="2"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Modelo"  
+                         HorizontalAlignment="Left" Width="150" Margin="5,0,0,0"/>
+
+                        <TextBox Name="txtMarca" IsReadOnly="True" Text="{Binding Path=MarcaVh}" Grid.Row="0" Grid.Column="3"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Marca" 
+                      Width="144" Margin="4,0,-3,0"/>
+                        <!-- FIla 1-->
+
+
+                        <DatePicker Name="dtpFnecesidad"  materialDesign:HintAssist.Hint="Fecha Necesidad" TabIndex="4" 
+                    Grid.Row="1" Grid.Column="3" Margin="4,10,-4,3" />
+
+                        <TextBox Name="txtTitulo" CharacterCasing="Upper" TabIndex="3" Grid.Row="1" Grid.Column="0"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Titulo" 
+                      Width="298"/>
+                        <TextBox Name="txtLecturaKM"  materialDesign:HintAssist.Hint="Lectura KM" TabIndex="7" Grid.Row="1" Grid.Column="1"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                             Text="{Binding Path=LecturaKm}"
+                        HorizontalAlignment="Left"   Width="120" Margin="10,0,0,0"/>
+
+                        <TextBox Name="txtLecturaHs" materialDesign:HintAssist.Hint="Lectura Hs" TabIndex="8"
+                             Text="{Binding Path=LecturaHs}" Grid.Row="1" Grid.Column="2"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                        HorizontalAlignment="Left"   Width="120"/>
+                        <!--Fila 2-->
+                        <TextBox Name="txtNota" CharacterCasing="Upper" TabIndex="5" Grid.Row="2" Grid.Column="0" Margin="5,0,0,0"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nota"  
+                    HorizontalAlignment="Left"  Width="600" Grid.ColumnSpan="4"/>
+
+
+                        <!--Fila 3-->
+                        <Label Content="Detalle de las tareas del Mantenimiento" 
+                           HorizontalAlignment="Left" Grid.Row="3" Grid.Column="0" />
+
+                        <!--Fila 4-->
+                        <!-- grid de detalle de de las tareas-->
+                        <DataGrid Name="dgDetalle" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                              VerticalScrollBarVisibility="Auto" SelectionMode="Single" BorderBrush="Black" BorderThickness="1"
+                           materialDesign:DataGridAssist.CellPadding="4,2,2,2" IsReadOnly="True"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" Margin="5,0,0,0"
+                              HorizontalAlignment="Left" Height="180" Width="500" Grid.Row="4" Grid.ColumnSpan="3">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Item" Binding="{Binding Path=NumItem}"/>
+                                <DataGridTextColumn Header="Descripcion" Binding="{Binding Path=DescripcionItem}" Width="250"/>
+                                <DataGridTextColumn Header="Categoria" Binding="{Binding Path=NomCateMante}"/>
+
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="btnEliminarItem" Height="15" Width="15" Click="btnEliminarItem_Click">
+                                                <materialDesign:PackIcon Kind="Delete"/>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Button x:Name="btnAddItem" ToolTip="Agregra una actividad"  
+                    Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"  Margin="50,0,0,0"  CommandParameter="{x:Static Dock.Bottom}"
+                    HorizontalAlignment="Left" Width="50" Grid.Row="4"  Grid.Column="2" Style="{StaticResource MaterialDesignPaperButton}">
+                            <materialDesign:PackIcon Kind="PlusOne"  Height="20" Width="20"/>
+                        </Button>
+
+
+                        
+                    </Grid>
+
+                </materialDesign:Card>
+                </Grid>
+        </materialDesign:DrawerHost>
+
+        <StackPanel Grid.Row="2" HorizontalAlignment="Right" Margin="5">
+            <Button Name="btnGuardar" Click="BtnGuardar_Click" Content="Guardar" TabIndex="6"
+                          Style="{StaticResource MaterialDesignPaperButton}"/>
+        </StackPanel>
+    </Grid>
+</mde:MaterialWindow>

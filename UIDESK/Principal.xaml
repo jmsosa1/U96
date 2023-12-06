@@ -1,0 +1,528 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.Principal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+        
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"            
+        mc:Ignorable="d" BorderThickness="0" 
+        WindowState="Maximized" 
+        Title="Portada" 
+        Height="{x:Static SystemParameters.PrimaryScreenHeight}" 
+        Width="{x:Static SystemParameters.PrimaryScreenWidth}"  >
+    <mde:MaterialWindow.BorderBackgroundBrush>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black"/>
+            <GradientStop Color="#FFBFEFE8" Offset="1"/>
+        </LinearGradientBrush>
+    </mde:MaterialWindow.BorderBackgroundBrush>
+    <materialDesign:DialogHost>
+        <!--#region  contenido del dialog acerca de-->
+        <materialDesign:DialogHost.DialogContent>
+            <materialDesign:Card BorderThickness="1" BorderBrush="Black" UniformCornerRadius="10">
+                <Grid x:Name="grDialog">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" Margin="5" BorderBrush="Black" BorderThickness="1" CornerRadius="5">
+                        <TextBlock VerticalAlignment="Center" Margin="5,0,0,0">SAHMV6</TextBlock>
+                    </Border>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+                        <TextBlock VerticalAlignment="Center" Margin="5,0,0,0">Sistema de Administracion de Herramientas , Maquinas y Vehiculos</TextBlock>
+
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="5,20,0,0">
+                        <TextBlock Margin="5,0,0,0">Version: 3.3.3</TextBlock>
+                        <TextBlock Margin="10,0,0,0">Fecha Ultima Compilacion: 24/01/22</TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5,10,0,0">
+                        <TextBlock VerticalAlignment="Center" Margin="5,0,0,0">Creado por:</TextBlock>
+
+                        <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" >Jose Maria Sosa</TextBlock>
+
+                        <TextBlock VerticalAlignment="Center" Margin="10,0,0,0">Contacto:</TextBlock>
+
+                        <TextBlock VerticalAlignment="Center" Margin="10,0,0,0">jose-sosa@live.com.ar</TextBlock>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="4" Margin="5,10,0,0">
+                        <TextBlock x:Name="txtGap" Margin="5,0,0,0" VerticalAlignment="Center" >Todos los derechos reservados</TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="5,10,0,0" HorizontalAlignment="Center">
+
+                        <Button x:Name="btnCancel" Style="{StaticResource MaterialDesignFlatButton}" Margin="10,0,0,0"
+                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">Cerrar</Button>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+
+        </materialDesign:DialogHost.DialogContent>
+        <!-- grid principal-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+
+                <RowDefinition  Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <mde:AppBar Grid.Row="0">
+                <mde:AppBar.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FFBFEFE8" Offset="1"/>
+
+                    </LinearGradientBrush>
+                </mde:AppBar.Background>
+
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="#FFBFEFE8" Offset="1"/>
+                        </LinearGradientBrush>
+                    </StackPanel.Background>
+
+                    <Image Source="/imagenes/Logo-sahmv-1.jpg" Width="60"  Height="60" />
+                    <materialDesign:Chip Content="ANZ Bank" Grid.Column="0" Grid.Row="0" 
+                                         Name="chipUsuario"
+                             Margin="30,10,0,0"     Icon="A" VerticalAlignment="Center" />
+                    <materialDesign:Badged  Grid.Column="1" Grid.Row="0" Name="bdgNotificacion"  Margin="10,10,10,5" VerticalAlignment="Center">
+                        <Button Padding="0" Width="25" Height="25" >
+                            <materialDesign:PackIcon Kind="MessageAlert"/>
+                        </Button>
+                    </materialDesign:Badged>
+                    <materialDesign:Badged  Grid.Column="2" Grid.Row="0" Name="bdgTareas"  Margin="10,10,10,5" VerticalAlignment="Center" ToolTip="Tareas asignadas">
+                        <Button Padding="0" Width="25" Height="25" Name="btnTareasNotificacion" ToolTip="Click para ver" 
+                                Click="BtnTareasNotificacion_Click">
+                            <materialDesign:PackIcon Kind="ClipboardAlert" />
+                        </Button>
+                    </materialDesign:Badged>
+                    <materialDesign:Badged  Grid.Column="3" Grid.Row="0" Name="bdgNotas"   Margin="10,10,10,5" VerticalAlignment="Center" ToolTip="Tareas asignadas">
+                        <Button Padding="0" Width="25" Height="25" Name="btnAddNotaSahm" ToolTip="Agregar Nota SAHMV6" 
+                                Click="btnAddNotaSahm_Click">
+                            <materialDesign:PackIcon Kind="NoteAdd" />
+                        </Button>
+                    </materialDesign:Badged>
+                    <TextBlock x:Name="txbVersion" Width="50" VerticalAlignment="Center" />
+                    <TextBlock VerticalAlignment="Center">Buscar tema:</TextBlock>
+                    <TextBox Name="txtBuscarTema" Width="300" Margin="10"></TextBox>
+                    <Button Name="btnBuscarTema" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Margin="10,0">
+                        <materialDesign:PackIcon Kind="SearchGlobe"/>
+                    </Button>
+                    <ToggleButton Cursor="Hand" ToolTip="Enable Dark Mode" Margin="12 0 8 0" x:Name="themeToggle" IsChecked="{Binding IsDarkTheme}" Click="toggleTheme"/>
+                    <TextBlock x:Name="txbfechaYhora" Margin="30,0" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+                <!--<Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                  
+                        <StackPanel Grid.Column="0">
+                            <Image Source="/imagenes/logo-sahm-blanco.jpg" Width="200"/>
+                        </StackPanel>
+                    
+                  
+
+                        <Grid Margin="20,0" Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+
+                            <materialDesign:Chip Content="ANZ Bank" Grid.Column="0" Grid.Row="0" 
+                                         Name="chipUsuario"
+                             Margin="0,10,0,0"     Icon="A" VerticalAlignment="Center" />
+                            <materialDesign:Badged  Grid.Column="1" Grid.Row="0" Name="bdgNotificacion" Margin="10,10,10,5" VerticalAlignment="Center">
+                                <Button Padding="0" Width="25" Height="25">
+                                    <materialDesign:PackIcon Kind="MessageAlert"/>
+                                </Button>
+                            </materialDesign:Badged>
+                            <materialDesign:Badged  Grid.Column="2" Grid.Row="0" Name="bdgTareas"  Margin="10,10,10,5" VerticalAlignment="Center" ToolTip="Tareas asignadas">
+                                <Button Padding="0" Width="25" Height="25" Name="btnTareasNotificacion" ToolTip="Click para ver" 
+                                Click="BtnTareasNotificacion_Click">
+                                    <materialDesign:PackIcon Kind="ClipboardAlert" />
+                                </Button>
+                            </materialDesign:Badged>
+                            <materialDesign:Badged  Grid.Column="3" Grid.Row="0" Name="bdgNotas"   Margin="10,10,10,5" VerticalAlignment="Center" ToolTip="Tareas asignadas">
+                                <Button Padding="0" Width="25" Height="25" Name="btnAddNotaSahm" ToolTip="Agregar Nota SAHMV6" 
+                                Click="btnAddNotaSahm_Click">
+                                    <materialDesign:PackIcon Kind="NoteAdd" />
+                                </Button>
+                            </materialDesign:Badged>
+                            <StackPanel Grid.Row="0" Grid.Column="4" Orientation="Horizontal" Margin="100,0,0,0">
+                                <TextBlock x:Name="txbVersion" Width="50" VerticalAlignment="Center" />
+
+                            </StackPanel>
+                            <Button x:Name="btnAcercaDe" Click="btnAcercaDe_Click"   Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                    Style="{StaticResource MaterialDesignFlatButton}" Grid.Row="0" Grid.Column="5" Margin="150,0,0,0">
+                                <materialDesign:PackIcon Kind="AboutCircleOutline" Foreground="Black"/>
+                            </Button>
+
+                        </Grid>
+
+                </Grid>-->
+
+            </mde:AppBar>
+
+
+            <!-- uniform grid con el panel principal-->
+
+            <UniformGrid  Columns="4" Rows="2"  Grid.Row="1">
+                <UniformGrid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="1"/>
+                        <GradientStop Color="#FFBFEFE8" Offset="0"/>
+
+                    </LinearGradientBrush>
+                </UniformGrid.Background>
+
+                <materialDesign:Card  x:Name="cardTrabajadores" Width="300" Margin="10" Height="225" UniformCornerRadius="10" 
+                                  materialDesign:ElevationAssist.Elevation="Dp3"  materialDesign:ShadowAssist.ShadowEdges="All"
+                                    materialDesign:ShadowAssist.Darken="True" >
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Height="140" Width="300" Stretch="UniformToFill" 
+                           Source="/imagenes/trabajadores.jpg" Margin="3" >
+
+                        </Image>
+                        <Button Name="btnTrabajadores" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                             Click="btnTrabajadores_Click"  Background="#a30000" BorderBrush="Black"
+                                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,16,-20">
+                            <materialDesign:PackIcon Kind="Worker" Width="24" Height="24" />
+                        </Button>
+                        <StackPanel Grid.Row="1" Margin="-8">
+                            <TextBlock FontWeight="Bold" Margin="20,0,0,0"  Style="{StaticResource MaterialDesignBody1TextBlock}">Trabajadores</TextBlock>
+                            <TextBlock VerticalAlignment="Center" Margin="20,0,0,0">Datos personales,Balances herramientas</TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2">
+                            <Button x:Name="btnAddEmpleado" ToolTip="Agregar Empleado" 
+                                Width="25" Height="25" Margin="20,0,0,5"  Padding="2"  Click="btnAddEmpleado_Click">
+                                <materialDesign:PackIcon Kind="AccountAdd"  />
+                            </Button>
+                            <Button x:Name="btnDSI" ToolTip="Remito Indumentaria" 
+                                Width="25" Height="25" Margin="20,0,0,5"  Padding="2"  Click="btnDSI_Click">
+                                <materialDesign:PackIcon Kind="TagPlus"  />
+                            </Button>
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </materialDesign:Card>
+                <materialDesign:Card x:Name="cardObras" Width="300" Margin="10" Height="225" UniformCornerRadius="10" 
+                                     materialDesign:ElevationAssist.Elevation="Dp3" materialDesign:ShadowAssist.ShadowEdges="Bottom">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Height="140" Width="300" Stretch="UniformToFill" 
+                           Source="/imagenes/trabajadores2.jpg" Margin="3">
+
+                        </Image>
+                        <Button Name="btnObras" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                            Click="btnObras_Click"  Background="#00e676" BorderBrush="Black"
+                                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,16,-20">
+                            <materialDesign:PackIcon Kind="SignCaution" Width="24" Height="24" />
+                        </Button>
+                        <StackPanel Grid.Row="1" Margin="-8">
+                            <TextBlock FontWeight="Bold" Margin="20,0,0,0"  Style="{StaticResource MaterialDesignBody1TextBlock}">Obras</TextBlock>
+                            <TextBlock  VerticalAlignment="Center" Margin="20,0,0,0">Datos y Balances</TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2">
+                            <Button x:Name="btnAddObra" ToolTip="Agregar Obra"  Click="btnAddObra_Click" Padding="2"
+                                Margin="20,0,0,5" Height="25" Width="25" >
+                                <materialDesign:PackIcon Kind="SignDirectionAdd" />
+                            </Button>
+                            <Button x:Name="btnNuevoDSO" ToolTip="Remito Obra"  Click="btnNuevoDSO_Click" Padding="2"
+                                Margin="20,0,0,5" Height="25" Width="25" >
+                                <materialDesign:PackIcon Kind="TextBoxPlusOutline" />
+                            </Button>
+                            <Button x:Name="btnNuevoDDO" ToolTip="Remito Devolucion"  Click="btnNuevoDDO_Click" Padding="2"
+                                Margin="20,0,0,5" Height="25" Width="25" >
+                                <materialDesign:PackIcon Kind="FileMove" />
+                            </Button>
+                            <Button x:Name="btnNuevoDMO" ToolTip="Remito Mov. Obra"  Click="btnNuevoMov_Click" Padding="2"
+                                Margin="20,0,0,5" Height="25" Width="25" >
+                                <materialDesign:PackIcon Kind="MoveResizeVariant" />
+                            </Button>
+
+                        </StackPanel>
+                    </Grid>
+
+                </materialDesign:Card>
+                <materialDesign:Card x:Name="cardAbastecimiento" Width="300" Margin="10" Height="225" UniformCornerRadius="10" 
+                                    materialDesign:ElevationAssist.Elevation="Dp3" materialDesign:ShadowAssist.ShadowEdges="Bottom" >
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Height="140" Width="300" Stretch="UniformToFill" 
+                           Source="/imagenes/gestion-almacen.jpg" Margin="3">
+
+                        </Image>
+                        <Button Name="btnProductos" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                            Background="#0288d1" Click="btnProductos_Click" BorderBrush="Black"  
+                                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,16,-20">
+                            <materialDesign:PackIcon Kind="Wrench" Width="24" Height="24"/>
+                        </Button>
+                        <StackPanel Grid.Row="1" Margin="-8">
+                            <TextBlock FontWeight="Bold" Margin="20,0,0,0"  Style="{StaticResource MaterialDesignBody1TextBlock}">Abastecimiento</TextBlock>
+                            <TextBlock Margin="20,0,0,0">Productos,Stock,Compras,Proveedores</TextBlock>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal">
+                            <Button x:Name="btnAddProducto" ToolTip="Agregar Un Producto"  Click="btnAddProducto_Click" Padding="2"
+                               Background="DeepSkyBlue" Margin="20,0,0,5" Height="25" Width="25" >
+                                <materialDesign:PackIcon Kind="ArchiveAdd" Foreground="Black"/>
+                            </Button>
+                            <materialDesign:Badged Name="bdgProductosPP" Margin="20,0,0,0"
+                                            ToolTip="Productos en Punto de Pedido" >
+                                <Button x:Name="btnListPP" ToolTip="Productos Punto Pedido"  Click="btnListPP_Click" Padding="2"
+                               Background="Yellow" Margin="20,0,0,5" Height="25" Width="25" Style="{StaticResource MaterialDesignFloatingActionButton}" >
+                                    <materialDesign:PackIcon Kind="ArchiveClock" Foreground="Black"/>
+                                </Button>
+                            </materialDesign:Badged>
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </materialDesign:Card>
+                <materialDesign:Card x:Name="cardGestionDepartamento" Width="300" Height="225" Margin="20" UniformCornerRadius="10"
+                                    materialDesign:ElevationAssist.Elevation="Dp3" materialDesign:ShadowAssist.ShadowEdges="Bottom" >
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="*"/>
+
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Height="140" Width="300" Stretch="UniformToFill" 
+                           Source="/imagenes/gestion1.jpg" Margin="3" >
+
+                        </Image>
+                        <Button Name="btnTareasSector" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                            Background="LightGray" Click="btnTareasSector_Click"  BorderBrush="Black"
+                                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,16,-20">
+                            <materialDesign:PackIcon Kind="ChartTimeline" Width="24" Height="24"/>
+                        </Button>
+                        <StackPanel Grid.Row="1">
+                            <TextBlock FontWeight="Bold" Margin="5"  Style="{StaticResource MaterialDesignBody1TextBlock}">Gestion Departamento</TextBlock>
+                            <TextBlock Margin="5" VerticalAlignment="Center">Planificacion de tareas</TextBlock>
+                        </StackPanel>
+
+                    </Grid>
+
+                </materialDesign:Card>
+
+                <materialDesign:Card x:Name="cardVehiculos" Width="300" Margin="20" Height="225" UniformCornerRadius="10"
+                                       materialDesign:ElevationAssist.Elevation="Dp3"  materialDesign:ShadowAssist.ShadowEdges="Bottom" >
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="*"/>
+
+                        </Grid.RowDefinitions>
+
+                        <Image  Stretch="UniformToFill"   
+                           Source="/imagenes/vehiculo1.jpg" Margin="3"/>
+
+
+
+
+
+                        <Button Name="btnVehiculos" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                            Background="BlueViolet" Click="btnVehiculos_Click"  BorderBrush="Black"
+                                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,16,-20">
+                            <materialDesign:PackIcon Kind="Car" Width="24" Height="24" />
+                        </Button>
+                        <StackPanel Grid.Row="1" Margin="-5">
+                            <TextBlock FontWeight="Bold" VerticalAlignment="Center" Margin="20,0"  Style="{StaticResource MaterialDesignBody1TextBlock}">Administracion Vehiculos</TextBlock>
+                            <TextBlock Margin="20,0">Gestion de Flota</TextBlock>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <materialDesign:Badged   Name="bdgVhDocV" Margin="10,5"
+                                            ToolTip="Vehiculos con documentacion vencida">
+                                    <Button Padding="0" Width="25" Height="25" Name="btnvhDocV"  Background="Red" BorderBrush="White"
+                                Click="BtnvhDocV_Click" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                  Content="{materialDesign:PackIcon Kind=BusSide}"  />
+                                </materialDesign:Badged>
+                                <materialDesign:Badged   Name="bdgVhDocPV" Margin="20,5"
+                                            ToolTip="Vehiculos con documentacion por vencer">
+                                    <Button Padding="0" Width="25" Height="25" Name="btnvhDocPV"  Background="Yellow" BorderBrush="White"
+                                 Click="BtnvhDocPV_Click" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                  Content="{materialDesign:PackIcon Kind=CalendarClock}" Foreground="Black" />
+                                </materialDesign:Badged>
+                                <materialDesign:Badged   Name="bdgVhPlanAVencer" Margin="20,5"
+                                            ToolTip="Vehiculos plan inspeccion por vencer">
+                                    <Button Padding="0" Width="25" Height="25" Name="btnPlanVencer"  BorderBrush="White"
+                                 Click="BtnPlanVencer_Click" Background="Yellow" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                  Content="{materialDesign:PackIcon Kind=FlagOutline}" Foreground="Black"  />
+                                </materialDesign:Badged>
+                                <materialDesign:Badged   Name="bdgVHPlanVencido" Margin="20,5"
+                                            ToolTip="Vehiculos con plan de inspeccion vencidos">
+                                    <Button Padding="0" Width="25" Height="25" Name="btnPlanVencido"  BorderBrush="White"
+                                 Click="BtnPlanVencido_Click" Background="Red"  Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                  Content="{materialDesign:PackIcon Kind=FlagOutline}"  />
+                                </materialDesign:Badged>
+                            </StackPanel>
+
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </materialDesign:Card>
+
+                <materialDesign:Card x:Name="cardResultadoVehiculos" Width="300" Height="225" Margin="20" UniformCornerRadius="10"
+                                    materialDesign:ElevationAssist.Elevation="Dp3"  materialDesign:ShadowAssist.ShadowEdges="Bottom">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="*"/>
+
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Height="140" Width="300" Stretch="UniformToFill" 
+                           Source="/imagenes/resultados.jpg" Margin="3" >
+
+                        </Image>
+                        <Button Name="btnDocumentos" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                            Background="RosyBrown" Click="btnDocumentos_Click"  IsEnabled="True" BorderBrush="Black"
+                                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,16,-20">
+                            <materialDesign:PackIcon Kind="ChartBar" Width="24" Height="24" />
+                        </Button>
+                        <StackPanel Grid.Row="1" Margin="-8">
+                            <TextBlock FontWeight="Bold" Margin="20,0"  Style="{StaticResource MaterialDesignBody1TextBlock}">Resultados Vehiculos</TextBlock>
+                            <TextBlock Margin="20,0" VerticalAlignment="Center">Costos de Operacion y Mantenimiento</TextBlock>
+                        </StackPanel>
+
+                    </Grid>
+
+                </materialDesign:Card>
+
+                <materialDesign:Card x:Name="cardCalidad" Width="300" Height="225" Margin="20" UniformCornerRadius="10"
+                                    materialDesign:ElevationAssist.Elevation="Dp3"  materialDesign:ShadowAssist.ShadowEdges="Bottom">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="*"/>
+
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Height="140" Width="300" Stretch="UniformToFill" 
+                           Source="/imagenes/documentos.jpg" Margin="3">
+
+                        </Image>
+                        <Button Name="btnAdmHerramientas" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                            Background="#FFBCC93D" Click="btnAdmHerramientas_Click"  IsEnabled="True" BorderBrush="Black"
+                                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,16,-15">
+                            <materialDesign:PackIcon Kind="Gauge" Width="24" Height="24" Foreground="Black"/>
+                        </Button>
+                        <StackPanel Grid.Row="1" Margin="-8">
+                            <TextBlock FontWeight="Bold" Margin="20,0"  Style="{StaticResource MaterialDesignBody1TextBlock}">Admin. Herramientas y Maq.</TextBlock>
+                            <TextBlock  VerticalAlignment="Center" Margin="20,0">Laboratorio y Elementos Criticos</TextBlock>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <materialDesign:Badged   Name="bdgInstVencidos" Margin="10,5"
+                                            ToolTip="Instrumentos con documentacion vencida">
+                                    <Button Padding="0" Width="25" Height="25" Name="btnInstVencidos"  Background="Red" BorderBrush="White"
+                                Click="btnInstVencidos_Click" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                  Content="{materialDesign:PackIcon Kind=AlarmLight }" Foreground="White" />
+                                </materialDesign:Badged>
+                                <materialDesign:Badged   Name="bdgInstDocPV" Margin="20,5"
+                                            ToolTip="Instrumentos con documentacion por vencer">
+                                    <Button Padding="0" Width="25" Height="25" Name="btnIntsDocPV" Background="Yellow" BorderBrush="White"
+                                 Click="btnIntsDocPV_Click" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                  Content="{materialDesign:PackIcon Kind=CalendarClock}"  Foreground="Black" />
+                                </materialDesign:Badged>
+                                <materialDesign:Badged   Name="bdgMaqVencidos" Margin="60,5"
+                                            ToolTip="Maquinas con tareas vencidas">
+                                    <Button Padding="0" Width="25" Height="25" Name="btnMaqVencidos"  Background="Red" BorderBrush="White"
+                                 Style="{StaticResource MaterialDesignFloatingActionButton}" Click="btnMaqVencidos_Click"
+                                  Content="{materialDesign:PackIcon Kind=CoffeeMachine}" Foreground="White" />
+                                </materialDesign:Badged>
+                                <materialDesign:Badged   Name="bdgMaqPV" Margin="5"
+                                            ToolTip="Maquinas con tareas por vencer">
+                                    <Button Padding="0" Width="25" Height="25" Name="btnMaqPV" Background="Yellow" BorderBrush="White"
+                                  Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                  Content="{materialDesign:PackIcon Kind=CoffeeMachine}"  Foreground="Black" />
+                                </materialDesign:Badged>
+
+                            </StackPanel>
+                        </StackPanel>
+
+                    </Grid>
+
+                </materialDesign:Card>
+                <materialDesign:Card x:Name="cardResultadoHerramienta"  Width="300" Height="225" Margin="20" UniformCornerRadius="10"
+                                    materialDesign:ElevationAssist.Elevation="Dp3" materialDesign:ShadowAssist.ShadowEdges="Bottom" >
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="*"/>
+
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Height="140" Width="300" Stretch="UniformToFill" 
+                           Source="/imagenes/gestiondep.jpg" Margin="3">
+
+                        </Image>
+                        <Button Name="btnResultadoHerramientas" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                            Background="LightBlue" Click="btnResultadoHerramientas_Click"  IsEnabled="True" BorderBrush="Black"
+                                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,120,16,0" Grid.RowSpan="2">
+                            <materialDesign:PackIcon Kind="ChartAreaspline"/>
+                        </Button>
+                        <StackPanel Grid.Row="1">
+                            <TextBlock FontWeight="Bold" Margin="5"  Style="{StaticResource MaterialDesignBody1TextBlock}">Resultados Herramientas y Maq.</TextBlock>
+                            <TextBlock Margin="5" VerticalAlignment="Center">Costos Operacion y Mantenimiento</TextBlock>
+                        </StackPanel>
+
+                    </Grid>
+
+                </materialDesign:Card>
+            </UniformGrid>
+
+
+
+        </Grid>
+    </materialDesign:DialogHost>
+</mde:MaterialWindow>

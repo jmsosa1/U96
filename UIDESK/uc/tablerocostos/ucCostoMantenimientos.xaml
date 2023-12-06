@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="UIDESK.uc.tablerocostos.ucCostoMantenimientos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+               xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:local="clr-namespace:UIDESK.uc.tablerocostos"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <TextBlock Foreground="White" FontSize="14" VerticalAlignment="Center">Resumen de Costos Inversiones</TextBlock>
+            <TextBlock Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="20,0,0,0">Año:</TextBlock>
+            <TextBox  x:Name="txtAnio" Foreground="Orange" VerticalAlignment="Center" Margin="20,0,0,0" Width="100"></TextBox>
+            <Button x:Name="btnBuscar" Click="btnBuscar_Click" Padding="2" Margin="10,0,0,0" ToolTip="Buscar Resultados" Style="{StaticResource MaterialDesignFlatButton}">
+                <md:PackIcon Kind="DatabaseSearch" Foreground="Yellow" Width="20" Height="20"/>
+            </Button>
+            <Button x:Name="btnExcel" Click="btnExcel_Click" Padding="2" Margin="10,0,0,0" ToolTip="Importar a Excel" Style="{StaticResource MaterialDesignFlatButton}">
+                <md:PackIcon Kind="MicrosoftExcel" Foreground="Green" Width="20" Height="20"/>
+            </Button>
+            <TextBlock Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="20,0,0,0">Productos:</TextBlock>
+            <TextBlock Foreground="Orange" Name="txbInvPro" FontSize="14" VerticalAlignment="Center" Margin="3,0,0,0"></TextBlock>
+            <TextBlock Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="20,0,0,0">Vehiculos:</TextBlock>
+            <TextBlock Foreground="Orange" FontSize="14" Name="txbInvVh" VerticalAlignment="Center" Margin="3,0,0,0"></TextBlock>
+        </StackPanel>
+        <!--#region  region de costos totales-->
+        <Border Grid.Row="1" BorderBrush="Orange" BorderThickness="1" CornerRadius="5" Margin="5">
+            <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FFB1A0A0" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+                    <TextBlock Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="14">Resumen Costos Totales</TextBlock>
+                </StackPanel>
+                <DataGrid x:Name="dgTotales" Grid.Column="0" Grid.Row="1" Margin="5" AutoGenerateColumns="False" CanUserDeleteRows="False"
+                  RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 md:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible" 
+                      md:DataGridAssist.ColumnHeaderPadding="4,2,2,2" GridLinesVisibility="All" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=Mes}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Mes"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Path=CostoInvProducto,StringFormat=C,ConverterCulture=es-Ar}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Mant. Productos"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Path=CostoInvVehiculo,StringFormat=C,ConverterCulture=es-Ar}" FontSize="11">
+                            <DataGridTextColumn.Header>
+                                <TextBlock FontSize="11" Text="Mant. Vehiculos"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <lvc:CartesianChart Name="grafTotales" Margin="5" Grid.Column="1" Grid.Row="1" Series="{Binding SeriesCollection1}"  
+                          Foreground="White"      BorderBrush="Cyan" BorderThickness="1" LegendLocation="Right"  Grid.ColumnSpan="2">
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Importes" LabelFormatter="{Binding YFormatter}" MinValue="0"></lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Mes" Labels="{Binding Labels}">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="True" Step="1"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                </lvc:CartesianChart>
+            </Grid>
+        </Border>
+
+    </Grid>
+</UserControl>

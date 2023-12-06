@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="UIDESK.uc.Productos.ucStock"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIDESK.uc.Productos"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+             xmlns:UC="clr-namespace:UIDESK.uc"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ToolBar Name="tbComandos"  Style="{StaticResource MaterialDesignToolBar}" Grid.Row="0"
+                    ClipToBounds="False"  Padding="2" Margin="3">
+            
+            <Button x:Name="btnGestionIndu" ToolTip="Gestion de Indumentaria" Padding="2" Click="btnGestionIndu_Click">
+                <materialDesign:PackIcon Kind="ChartBar" Foreground="OrangeRed" />
+            </Button>
+            <Button x:Name="btnConsultaEntregas" ToolTip="Consulta Entregas" Padding="2" Click="btnConsultaEntregas_Click">
+                <materialDesign:PackIcon Kind="ThumbsUpDown" Foreground="OrangeRed"/>
+            </Button>
+            <Separator Width="2" Height="10" Background="DeepSkyBlue"/>
+                <Button x:Name="btnConsultaGrupo" ToolTip="Consultar existencia grupo de productos" Padding="2" Click="btnConsultaGrupo_Click">
+                <materialDesign:PackIcon Kind="Group" Foreground="DarkCyan"/>
+            </Button>
+            <Button x:Name="btnConsultaStock" ToolTip="Estado del stock" Padding="2" Click="btnConsultaStock_Click">
+                <materialDesign:PackIcon Kind="ViewDashboardOutline" Foreground="DarkCyan"/>
+            </Button>
+            <Button x:Name="btnConsultaBajas" ToolTip="Consulta Bajas" Padding="2" Click="btnConsultaBajas_Click">
+                <materialDesign:PackIcon Kind="ArchiveCancelOutline" Foreground="DarkCyan"/>
+            </Button>
+            <Separator Width="2" Height="10" Background="DeepSkyBlue"/>
+            <Button Name="btnNuevoDIP" Padding="2" Click="btnNuevoDIP_Click" ToolTip="Nuevo Recepcion Deposito">
+                <materialDesign:PackIcon Kind="InboxArrowUp"/>
+            </Button>
+            
+            <Button Name="btnNuevoDSD" Padding="2" Click="btnNuevoDSD_Click" ToolTip="Nuevo Salida Deposito">
+                <materialDesign:PackIcon Kind="FileSendOutline"/>
+            </Button>
+
+
+            <Button x:Name="btnNuevoVCD" Padding="2" ToolTip="Hacer Vale Consumo Producto" Click="btnNuevoVCD_Click" >
+                <materialDesign:PackIcon Kind="FileDocumentOutline"/>
+            </Button>
+            <Separator Width="2" Height="10" Background="DeepSkyBlue"></Separator>
+            <Button x:Name="btnNuevoDSO" ToolTip="Remito Obra"  Click="btnNuevoDSO_Click" Padding="2">
+                <materialDesign:PackIcon Kind="TextBoxPlusOutline" Foreground="LimeGreen"/>
+            </Button>
+            <Button x:Name="btnNuevoDDO" ToolTip="Remito Devolucion"  Click="btnNuevoDDO_Click" Padding="2">
+                <materialDesign:PackIcon Kind="FileMove" Foreground="LimeGreen"/>
+            </Button>
+            <Button x:Name="btnNuevoDMO" ToolTip="Remito Mov. Obra"  Click="btnNuevoMov_Click" Padding="2">
+                <materialDesign:PackIcon Kind="MoveResizeVariant" Foreground="LimeGreen"/>
+            </Button>
+        </ToolBar>
+        <ContentControl x:Name="ccGestionStk" Grid.Row="1"></ContentControl>
+    </Grid>
+</UserControl>

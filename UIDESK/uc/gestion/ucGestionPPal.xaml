@@ -1,0 +1,124 @@
+﻿<UserControl x:Class="UIDESK.uc.gestion.ucGestionPPal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:UIDESK.uc.gestion"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1050">
+    <ContentControl x:Name="ctcppal">
+        <UniformGrid Columns="5">
+            <materialDesign:Card Background="SlateGray" Margin="5" VerticalAlignment="Center" 
+  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="0" Width="200">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Margin="16 16 16 4" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Diario" />
+                    <Separator Grid.Row="1" Style="{StaticResource MaterialDesignSeparator}" />
+                    <Button Grid.Row="2" Height="150" Width="150" Style="{StaticResource MaterialDesignIconButton}" Name="btnDiario" Click="rbDiario_Click">
+                        <Image  Source="/imagenes/gestion/tareas.png"/>
+                    </Button>
+
+
+                    <TextBlock  Grid.Row="3"  TextWrapping="Wrap"  Margin="16 0 16 8"
+                      VerticalAlignment="Center"  HorizontalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Asignacion Tareas de equipo" />
+
+
+
+                </Grid>
+            </materialDesign:Card>
+
+            <materialDesign:Card  Background="SlateGray"  Margin="5" VerticalAlignment="Center" 
+  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="0" Width="200">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Margin="16 16 16 4" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="PM Vehiculos" />
+                    <Separator Grid.Row="1" Style="{StaticResource MaterialDesignSeparator}" />
+                    <Button Grid.Row="2" Height="150" Width="150" Style="{StaticResource MaterialDesignIconButton}" Name="btnPmVehiculos" Click="rbManteVh_Click">
+                        <Image  Source="/imagenes/gestion/pmvehiculos.png" />
+                    </Button>
+
+                    <TextBlock Grid.Row="3"  Margin="16 0 16 8"
+      VerticalAlignment="Center"  HorizontalAlignment="Left" Style="{StaticResource MaterialDesignBody2TextBlock}" 
+                           Text="Seguimiento Pedidos Mantenimiento" TextWrapping="Wrap" />
+
+                </Grid>
+            </materialDesign:Card>
+            <materialDesign:Card  Background="SlateGray"  Margin="5" VerticalAlignment="Center" 
+                             Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="0" Width="200">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Margin="10 16 16 4" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Solicitudes" />
+                    <Separator Grid.Row="1" Style="{StaticResource MaterialDesignSeparator}" />
+                    <Button Grid.Row="2" Height="150" Width="150" Style="{StaticResource MaterialDesignIconButton}" Name="btnSolicitudes" Click="rdSolicitudesHerra_Click">
+                        <Image  Source="/imagenes/gestion/solicitudes.png" />
+                    </Button>
+
+                    <TextBlock Grid.Row="3"  Margin="16 0 16 8" VerticalAlignment="Center"  HorizontalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" 
+                           Text="Solicitudes de Herramientas"  TextWrapping="Wrap" />
+
+                </Grid>
+            </materialDesign:Card>
+            <materialDesign:Card  Background="SlateGray"  Margin="5" VerticalAlignment="Center" 
+                             Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="0" Width="200">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Margin="10 16 16 4" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="PM Herramienta" />
+                    <Separator Grid.Row="1" Style="{StaticResource MaterialDesignSeparator}" />
+                    <Button Grid.Row="2" Height="150" Width="150" Style="{StaticResource MaterialDesignIconButton}" Name="btnPmHerramientas" Click="rdManteHerra_Click">
+                        <Image  Source="/imagenes/gestion/pmherramientas.png" />
+                    </Button>
+
+                    <TextBlock Grid.Row="3"  Margin="16 0 16 8" VerticalAlignment="Center"  HorizontalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" 
+                           Text="Seguimiento Pedidos Mantenimiento" TextWrapping="Wrap" />
+
+                </Grid>
+            </materialDesign:Card>
+            <!--notas-->
+            <materialDesign:Card  Background="SlateGray"  Margin="5" VerticalAlignment="Center" 
+                             Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="0" Width="200">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Margin="10 16 16 4" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Notas" />
+                    <Separator Grid.Row="1" Style="{StaticResource MaterialDesignSeparator}" />
+                    <Button Grid.Row="2" Height="150" Width="150" Style="{StaticResource MaterialDesignIconButton}" Name="btnNotas" Click="rdNotas_Click">
+                        <Image  Source="/imagenes/gestion/img-gestion-png-5.png" />
+                    </Button>
+
+                    <TextBlock Grid.Row="3"  Margin="16 0 16 8" VerticalAlignment="Center"  HorizontalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" 
+                           Text="Notas sobre el desarrollo del sistema" TextWrapping="Wrap" />
+
+                </Grid>
+            </materialDesign:Card>
+
+        </UniformGrid>
+    </ContentControl>
+    
+
+
+</UserControl>

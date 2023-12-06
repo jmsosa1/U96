@@ -1,0 +1,123 @@
+﻿<Window x:Class="UIDESK.imprimir.PrintRMA"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:UIDESK.imprimir"
+        mc:Ignorable="d"
+        Title="PrintRMA" Height="800" Width="700" WindowStyle="None" ResizeMode="NoResize">
+    <ScrollViewer>
+        <Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="btnCancelar" Margin="10" VerticalAlignment="Top" Click="btnCancelar_Click" Background="Red" Foreground="White">
+                    <materialDesign:PackIcon Kind="Cancel"/>
+                </Button>
+                <Button x:Name="btnImprimir" Margin="10"  VerticalAlignment="Top" Click="btnImprimir_Click" Foreground="White" Background="Green">
+                    <materialDesign:PackIcon Kind="Printer"/>
+                </Button>
+
+            </StackPanel>
+           
+            <Grid x:Name="print" Margin="20,0,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="180"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Margin="20,40" Grid.Row="0">
+                    <Image Source="/imagenes/logo1.jpg" Width="100" Height="70"></Image>
+                    <StackPanel Margin="50,0,0,0">
+                        <TextBlock FontSize="16" FontWeight="Bold">Proyeccion electroluz SRL</TextBlock>
+                        <TextBlock>Calle 2 - N20 -3482-421940- CUIT 30-60127190-3</TextBlock>
+                        <TextBlock>Avellaneda - CP 3560 - Santa Fe</TextBlock>
+                        <StackPanel Orientation="Horizontal" Margin="250,0,0,0">
+                            <TextBlock>Numero:</TextBlock>
+                            <TextBlock Text="{Binding Path=IdRma}" Margin="10,0,0,0"></TextBlock>
+                            <TextBlock Margin="10,0,0,0">Fecha:</TextBlock>
+                            <TextBlock Text="{Binding Path=AltaF,StringFormat=d,ConverterCulture=es-Ar}" Margin="10,0,0,0"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <TextBlock FontSize="20" Margin="20,0,0,0">Solicitud de Mantenimiento del Producto</TextBlock>
+                    <Border BorderBrush="Black" BorderThickness="1" Height="5"></Border>
+                    <TextBlock FontStyle="Italic" FontWeight="Bold" Margin="20,5,0,0" FontSize="14">Datos del Producto</TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=IdProducto}" Margin="20,5,0,0"></TextBlock>
+                        <TextBlock FontStyle="Italic" Margin="20,5,0,0">Nombre:</TextBlock>
+                        <TextBlock Text="{Binding Path=NombreProducto}" Margin="20,5,0,0"></TextBlock>
+                        <TextBlock FontStyle="Italic" Margin="20,5,0,0">Cod. Inventario:</TextBlock>
+                        <TextBlock Text="{Binding Path=CodInventario}" Margin="20,5,0,0"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontStyle="Italic" Margin="20,5,0,10">Marca:</TextBlock>
+                        <TextBlock Text="{Binding Path=Marca}" Margin="20,0,0,0"></TextBlock>
+                        <TextBlock FontStyle="Italic" Margin="20,5,0,10">Modelo:</TextBlock>
+                        <TextBlock Text="{Binding Path=Modelo}" Margin="20,0,0,0"></TextBlock>
+                        <TextBlock FontStyle="Italic" Margin="20,5,0,10">Num Serie:</TextBlock>
+                        <TextBlock Text="{Binding Path=Serie}" Margin="20,0,0,0"></TextBlock>
+                    </StackPanel>
+                    <Border BorderBrush="Black" BorderThickness="1" Height="5"></Border>
+                </StackPanel>
+                <StackPanel Grid.Row="2">
+                    <TextBlock FontStyle="Italic" FontWeight="Bold" Margin="20,5,0,0" FontSize="14">Datos del Proveedor</TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Account" Margin="20,5,0,0"/>
+                        <TextBlock Text="{Binding Path=IdProveedor}" Margin="20,5,0,0"></TextBlock>
+                        <TextBlock Text="{Binding Path=NombrProveedor}" Margin="20,5,0,0" Width="250"></TextBlock>
+                        <materialDesign:PackIcon Kind="MapMarker" Margin="20,5,0,0"/>
+                        <TextBlock x:Name="txbDireccionProve" Margin="20,5,0,0"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Phone" Margin="20,10,0,0"/>
+                        <TextBlock x:Name="txbTelefono" Margin="20,10,0,0"></TextBlock>
+                        <materialDesign:PackIcon Kind="Email" Margin="20,10,0,0"/>
+                        <TextBlock x:Name="txbEmail" Margin="20,10,0,0"></TextBlock>
+                        <TextBlock x:Name="txbLocalidad" Margin="20,10,0,0"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="txbRubro" Margin="20,5,0,0"></TextBlock>
+                        <TextBlock x:Name="txbProvincia" Margin="20,5,0,10"></TextBlock>
+                    </StackPanel>
+                    <Border BorderBrush="Black" BorderThickness="1" Height="5"></Border>
+                </StackPanel>
+                <StackPanel  Grid.Row="3">
+                    <TextBlock FontStyle="Italic" FontWeight="Bold" Margin="20,5,0,0" FontSize="14">Datos del Transporte</TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Truck" Margin="20,10,0,0"/>
+                        <TextBlock Text="{Binding Path=Idtransporte}" Margin="20,10,0,0"></TextBlock>
+                        <TextBlock x:Name="txbNombreTransporte" Margin="20,10,0,0"></TextBlock>
+                        <materialDesign:PackIcon Kind="MapMarker" Margin="20,10,0,0"/>
+                        <TextBlock x:Name="txbLocalidadT" Margin="20,10,0,0"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Phone" Margin="20,10,0,10"/>
+                        <TextBlock x:Name="txbTelefonoT" Margin="20,10,0,10"></TextBlock>
+                    </StackPanel>
+                    <Border BorderBrush="Black" BorderThickness="1" Height="5"></Border>
+                </StackPanel>
+                <StackPanel Grid.Row="4">
+                    <TextBlock FontStyle="Italic" FontWeight="Bold" Margin="20,5,0,0" FontSize="14">Causa/Motivo de la Necesidad de Mantenimiento</TextBlock>
+                    <TextBox x:Name="txtCausa" AcceptsReturn="True" Height="100" Margin="20,10,10,10" Text="{Binding Path=CausaRma}"></TextBox>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontStyle="Italic" FontWeight="Bold" Margin="20,5,0,5">Imputacion:</TextBlock>
+                        <TextBlock Text="{Binding Path=Imputacion}" Margin="20,5,0,5"></TextBlock>
+                    </StackPanel>
+                    
+                    <Border BorderBrush="Black" BorderThickness="1" Height="5"></Border>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Orientation="Horizontal">
+                    <TextBlock FontStyle="Italic" FontWeight="Bold" Margin="20,10,0,0">Retiró:</TextBlock>
+                    <TextBlock Margin="5,10,0,0">---------------------------------------------</TextBlock>
+                    <TextBlock Margin="50,10,0,0" FontStyle="Italic" FontWeight="Bold">Recibió:</TextBlock>
+                    <TextBlock Margin="5,10,0,0">---------------------------------------------</TextBlock>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+   
+</Window>

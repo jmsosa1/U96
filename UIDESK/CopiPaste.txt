@@ -1,0 +1,28 @@
+﻿
+ xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+ xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+
+ CultureInfo ci = new CultureInfo("es-AR");
+
+ public ICollectionView vistaVehiculos
+        {
+            get { return CollectionViewSource.GetDefaultView(colvehiculos); }
+        }
+
+
+ txtTotalDolares.Text = _valordoll.ToString("N", ci);
+
+
+
+ private void MaterialWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Desea cancelar la operacion?", "Aviso", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                e.Cancel=false ;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }

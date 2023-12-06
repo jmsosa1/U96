@@ -1,0 +1,163 @@
+﻿<UserControl x:Class="UIDESK.uc.Obras.ucResumenPrincipal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:UIDESK.uc.Obras"
+              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1000">
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn}">
+
+
+        <UniformGrid Columns="2" Rows="2">
+
+            <materialDesign:Card Grid.Row="0" Grid.Column="0" Margin="10">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" FontWeight="Bold"
+                          Foreground="DarkGreen" Margin="10,5,0,10" FontSize="16">Herramientas</TextBlock>
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="2"  Margin="10,0,0,5">Resumen costos de productos Imputados</TextBlock>
+                   
+                    <DataGrid x:Name="dgTipoProducto" Grid.Row="3"  AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                    RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" SelectionChanged="dgTipoProducto_SelectionChanged"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" Background="Transparent" Margin="5,0,5,0">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Tipo" Binding="{Binding Path=NombreTipo}">
+
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Costo" Binding="{Binding Path=CostoEntregas,StringFormat=C, ConverterCulture=es-Ar}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+
+                    <StackPanel Grid.Row="1"  Orientation="Horizontal" Margin="10,20,0,10">
+                        <TextBlock FontWeight="DemiBold">Costo Total:</TextBlock>
+                        <TextBlock x:Name="txbCTProductos" FontWeight="Bold" ></TextBlock>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+
+            <materialDesign:Card Margin="10">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" FontWeight="Bold"
+                          Foreground="DarkGreen" Margin="10,5,0,10" FontSize="16">Vehiculos</TextBlock>
+                    </StackPanel>
+                    <TextBlock Grid.Row="2"  Margin="10,0,0,5">Resumen</TextBlock>
+
+                    <DataGrid x:Name="dgTipoVh" Grid.Row="3"  AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                    RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" Margin="5,0,5,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tipo" Binding="{Binding Path=NombreCateVh}"/>
+                            <DataGridTextColumn Header="Asignaciones" Binding="{Binding Path=CantidadAsignada}"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+
+                    <StackPanel Grid.Row="1"  Orientation="Horizontal" Margin="10,20,0,10">
+                        <TextBlock FontWeight="DemiBold">Cantidad Total Asignaciones:</TextBlock>
+                        <TextBlock x:Name="txbCantidadVh" FontWeight="Bold"  ></TextBlock>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+
+            <materialDesign:Card Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" FontWeight="Bold"
+                          Foreground="DarkGreen" Margin="10,5,0,10"  FontSize="16">Empleados</TextBlock>
+                    </StackPanel>
+                    <TextBlock Grid.Row="2"  Margin="10,0,0,5">Resumen</TextBlock>
+                    <DataGrid x:Name="dgEmpleados" Grid.Row="3"   AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                    RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible" 
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" Margin="5,0,5,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Path=NombreEmpleado}"/>
+
+                            <DataGridTextColumn Header="Costo Herramientas" Binding="{Binding Path=CostoHerramientas, StringFormat=C,ConverterCulture=es-Ar}"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="1"  Orientation="Horizontal" Margin="10,20,0,10">
+                        <TextBlock FontWeight="DemiBold">Cantidad Total Empleados relacionados con la obra:</TextBlock>
+                        <TextBlock x:Name="txbCantEmpleados"  Margin=" 10,0,0,0" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+
+            <materialDesign:Card  Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" FontWeight="Bold"
+                          Foreground="DarkGreen" Margin="10,5,0,10" FontSize="16">Gastos</TextBlock>
+                    </StackPanel>
+                    <TextBlock Grid.Row="2"  Margin="10,0,0,5">Resumen por Tipo de Costo</TextBlock>
+                    <DataGrid x:Name="dgTipoGastos" Grid.Row="3"   AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                    RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" Margin="5,0,5,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Path=NombreGasto}"/>
+
+                            <DataGridTextColumn Header="Costo" Binding="{Binding Path=CostoAcumulado,StringFormat=C,ConverterCulture=es-Ar}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+
+                    <StackPanel Grid.Row="1"  Orientation="Horizontal" Margin="10,20,0,10">
+                        <TextBlock FontWeight="DemiBold">Costo Total:</TextBlock>
+                        <TextBlock x:Name="txbCostoGastos" FontWeight="Bold" ></TextBlock>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+
+
+        </UniformGrid>
+    </materialDesign:TransitioningContent>
+</UserControl>

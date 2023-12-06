@@ -1,0 +1,247 @@
+﻿<UserControl x:Class="UIDESK.uc.Productos.ucProductosGeneral"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIDESK.uc.Productos"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+             xmlns:UC="clr-namespace:UIDESK.uc"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <Grid>
+        <materialDesign:DialogHost >
+            <materialDesign:DialogHost.DialogContent>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="3">
+                        <TextBlock Text="Tipos de Productos" Margin="10" />
+                    </StackPanel>
+                    <Button x:Name="btnHerramientas" Grid.Column="0" Grid.Row="1" Click="btnHerramientas_Click" 
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                           Style="{StaticResource MaterialDesignFlatAccentButton}" Height="70" Margin="5" >
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Screwdriver"/>
+                            <TextBlock Text="Herramientas" 
+                                       Foreground="BlueViolet"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnIndumentaria" Grid.Column="1" Grid.Row="1" Click="btnIndumentaria_Click" 
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                           Style="{StaticResource MaterialDesignFlatAccentButton}" Height="70" Margin="5">
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Glasses"/>
+                            <TextBlock Text="Indumentaria" 
+                                      Foreground="DarkRed" />
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Column="2" Grid.Row="1" Name="btnRepuestos" Click="btnRepuestos_Click" 
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                           Style="{StaticResource MaterialDesignFlatAccentButton}" Height="70" Margin="5" >
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="CarBattery"/>
+                            <TextBlock Text="Repuestos" 
+                                      Foreground="DarkGreen" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnMuebles" Grid.Column="0" Grid.Row="2" Click="btnMuebles_Click" 
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                           Style="{StaticResource MaterialDesignFlatAccentButton}" Height="70" Margin="5">
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Home"/>
+                            <TextBlock Text="Mobiliario" 
+                                      Foreground="DarkBlue" />
+                        </StackPanel>
+                        
+                    </Button>
+                    <Button x:Name="btnInstrumentos" Click="btnInstrumentos_Click" Grid.Column="1" Grid.Row="2" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                           Style="{StaticResource MaterialDesignFlatAccentButton}" Height="70" Margin="5">
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Metronome"/>
+                            <TextBlock Text="Instrumentos" 
+                                      Foreground="DarkOrange" />
+                        </StackPanel>
+
+                    </Button>
+                    <Button x:Name="btnContenedores" Grid.Column="2" Grid.Row="2" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                           Style="{StaticResource MaterialDesignFlatAccentButton}" Height="70" Margin="5" Click="btnContenedores_Click">
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Box"/>
+                            <TextBlock Text="Contenedores" 
+                                      Foreground="DarkCyan" />
+                        </StackPanel>
+
+                    </Button>
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ToolBar Name="tbComandos"  Style="{StaticResource MaterialDesignToolBar}" Grid.Row="0"
+                    ClipToBounds="False"  Padding="2" Margin="3">
+
+                    <TextBox Name="txtBuscar" Width="500" Padding="2" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Buscar un Producto..." CharacterCasing="Upper" GotFocus="txtBuscar_GotFocus"></TextBox>
+                    
+                        <Button Name="btnBuscar" Padding="2" Click="btnBuscar_Click">
+                        <materialDesign:PackIcon Kind="Magnify"/>
+                    </Button>
+                    <Separator Width="1" Background="DeepSkyBlue"></Separator>
+                    <Button Name="btnAgregar" Padding="2" Click="BtnAgregar_Click" ToolTip="Agregar un nuevo Producto">
+                        <materialDesign:PackIcon Kind="Plus"/>
+                    </Button>
+                    <Button x:Name="btnEditProducto" Padding="2" Click="btnEditProducto_Click" ToolTip="Editar datos">
+                        <materialDesign:PackIcon Kind="PencilBox"/>
+                    </Button>
+                    <Separator></Separator>
+                    <Button x:Name="btnBajaProducto" Padding="2" Click="btnBajaProducto_Click" ToolTip="Dar de baja">
+                        <materialDesign:PackIcon Kind="Delete"/>
+                    </Button>
+
+
+                    <Separator Background="DeepSkyBlue"></Separator>
+                    <Button Padding="2" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" ToolTip="Selector Categorias">
+                        <materialDesign:PackIcon Kind="Magnet"/>
+                    </Button>
+                    <Button Padding="2" Name="btnAdmTipos" ToolTip="Administrador de tipos y categorias" Click="btnAdmTipos_Click">
+                        <materialDesign:PackIcon Kind="SourceBranch"/>
+                    </Button>
+                    <Button Padding="2" Name="btnAdmMarcas" ToolTip="Administrador de Marcas" Click="btnAdmMarcas_Click">
+                        <materialDesign:PackIcon Kind="Library"/>
+                    </Button>
+                    <Separator Background="DeepSkyBlue"></Separator>
+                    <Button x:Name="btnNuevoMantenimiento" Padding="2" ToolTip="Agregar Nuevo Mantenimiento" Click="btnNuevoMantenimiento_Click">
+                        <materialDesign:PackIcon Kind="Wrench" Foreground="DarkSlateBlue"/>
+                    </Button>
+                    <Button x:Name="btnNuevoRMA" Padding="2" ToolTip="Generar RMA del producto" Click="btnNuevoRMA_Click" Content="RMA">
+                        
+                    </Button>
+                    <Separator></Separator>
+                    <Button x:Name="btnModiInstrumento" Click="btnModiInstrumento_Click" Padding="2" ToolTip="Modificar atributos instrumento">
+                        <materialDesign:PackIcon Kind="Pen"/>
+                    </Button>
+                </ToolBar>
+                <DataGrid Name="dgProductos" Margin="3" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                  SelectionChanged="DgProductos_SelectionChanged" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2"   Grid.Row="1">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding EstadoItem}" Value="5">
+                                    <Setter Property="Background" Value="Salmon"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CondicionStk}" Value="2">
+                                    <Setter Property="Background" Value="Yellow"/>
+                                </DataTrigger>
+                              
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="btnCerrarDetalle" Click="btnCerrarDetalle_Click" Height="15" Width="15"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Path=IdProducto}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Nombre" Binding="{Binding Path=Nombre}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Cod Inventario" Binding="{Binding Path=CodInventario}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Modelo" Binding="{Binding Path=Modelo}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="N Serie" Binding="{Binding Path=NumSerie}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Marca" Binding="{Binding Path=Marca}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Tipo" Binding="{Binding Path=Tipo}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Categoria" Binding="{Binding Path=Categoria}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Segmento" Binding="{Binding Path=Segmento}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Situacion" Binding="{Binding Path=Situacion}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Stock Disponible(1)" Binding="{Binding Path=StkDisponible}"/>
+
+
+                    </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <UC:ucDetalleFilaProducto/>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                    
+                   
+                </DataGrid>
+                <Border Grid.Row="2" Background="Transparent" BorderBrush="DarkSeaGreen" BorderThickness="2"  CornerRadius="5">
+                    <StatusBar>
+                        <StatusBar.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="130"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                            </ItemsPanelTemplate>
+                        </StatusBar.ItemsPanel>
+                        <StatusBarItem Grid.Column="0">
+                            <TextBlock Text="Mostrando Resultados:" />
+                        </StatusBarItem>
+                        <StatusBarItem Grid.Column="1">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Data Info:" VerticalAlignment="Center"/>
+                                <TextBox Name="txtRegistros" IsReadOnly="True" Margin="3" Width="100"/>
+                            </StackPanel>
+                        </StatusBarItem>
+                        <Separator Grid.Column="2"/>
+                        <StatusBarItem Grid.Column="3">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Data Info" VerticalAlignment="Center"/>
+                                <TextBox Name="txtTotalKmAcu" IsReadOnly="True" Margin="3" Width="100"/>
+                            </StackPanel>
+                        </StatusBarItem>
+                        <Separator Grid.Column="4"/>
+                        <StatusBarItem Grid.Column="5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Data Info" VerticalAlignment="Center"/>
+                                <TextBox Name="txtTotalHsAcu" IsReadOnly="True" Margin="3" Width="100"/>
+                            </StackPanel>
+                        </StatusBarItem>
+                    </StatusBar>
+                </Border>
+
+            </Grid>
+        </materialDesign:DialogHost>
+
+       
+
+
+        
+    </Grid>
+</UserControl>

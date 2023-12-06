@@ -1,0 +1,244 @@
+﻿<Window x:Class="UIDESK.DockBarMenuPpal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIDESK"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Title="DockBarMenuPpal" Height="740" Width="1220">
+    <Grid>
+        <!--background-->
+
+        <Border  Background="#FF071C2D"  CornerRadius="25"></Border>
+        <!-- Main grid-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="360"/>
+                <RowDefinition Height="170"/>
+                <RowDefinition Height="70"/>
+
+            </Grid.RowDefinitions>
+                <!--Header-->
+            <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="Posible nueva Diseño" Foreground="#CDD7E0"
+                       FontFamily="Oswald" FontSize="36" Margin="20,50,0,0"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="Prueba proximo ppal" Foreground="#A6B8C8" FontFamily="Roboto"
+                       FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,238,33"/>
+            
+            <!-- Panel 1 -->
+            <Border Grid.Row="1" Grid.Column="1" CornerRadius="20" Margin="20">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0.75,0" EndPoint="0,1">
+                        <GradientStop Color="#df208f" Offset="0.1"></GradientStop>
+                        <GradientStop Color="#dfCF20" Offset="0.8"></GradientStop>
+                        
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Border Background="#ffffff" Height="200" Width="180" HorizontalAlignment="Left" VerticalAlignment="Top"
+                           CornerRadius="20" Opacity="0.3" Margin="10,10,0,0" ></Border>
+                    <TextBlock Text="Titulo de la placa" Margin="10,220,0,0" Style="{StaticResource MaterialDesignHeadline4TextBlock}"></TextBlock>
+                </Grid>
+            </Border>
+            <!--footer-->
+            <Border Grid.Row="3" Grid.ColumnSpan="6" CornerRadius="0,0,20,20">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0.75,0" EndPoint="0,1">
+                        <GradientStop Color="#DF208F" Offset="0.1"/>
+                        <GradientStop Color="#DFCF20" Offset="0.8"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+             <!--Dock bar-->
+            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="740"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="1" Background="#323345" CornerRadius="10,10,0,0" Margin="0,85,0,0">
+                    <!-- grid que contendra los botones de acceso a las distintas areas-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="20"/>
+                        </Grid.ColumnDefinitions>
+                        <!--Vehiculos-->
+                        <Button Grid.Column="1" Name="btnVehiculos" Style="{StaticResource DockBtnStyle}">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/imagenes/sahmv6-iconos-dock-bar-5.png" Stretch="Fill"/>
+                            </Button.Background>
+                            <Popup Width="70" HorizontalOffset="-12" PlacementTarget="{Binding ElementName=Home}"
+                                   IsOpen="{Binding ElementName=btnVehiculos, Path=IsMouseOver, Mode=OneWay}"
+                                   Style="{StaticResource PopupStyle}">
+                                <Grid>
+                                    <Border Style="{StaticResource border}">
+                                        <TextBlock Text="Vehiculos" Style="{StaticResource PopupText}"/>
+                                    </Border>
+                                    <Path Style="{StaticResource ArrowPath}"/>
+                                </Grid>
+                            </Popup>
+                        </Button>
+                        <!-- TRabajadores-->
+                        <Button Grid.Column="2" Name="btnTrabajadores" Style="{StaticResource DockBtnStyle}">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/imagenes/sahmv6-iconos-dock-bar-1.png" Stretch="Fill"/>
+                            </Button.Background>
+                            <Popup Width="70" HorizontalOffset="-12" PlacementTarget="{Binding ElementName=Home}"
+                                   IsOpen="{Binding ElementName=btnTrabajadores, Path=IsMouseOver, Mode=OneWay}"
+                                   Style="{StaticResource PopupStyle}">
+                                <Grid>
+                                    <Border Style="{StaticResource border}">
+                                        <TextBlock Text="Trabajadores" Style="{StaticResource PopupText}"/>
+                                    </Border>
+                                    <Path Style="{StaticResource ArrowPath}"/>
+                                </Grid>
+                            </Popup>
+                        </Button>
+                         <!--obras-->
+                        <Button Grid.Column="3" Name="btnObras" Style="{StaticResource DockBtnStyle}">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/imagenes/sahmv6-iconos-dock-bar-2.png" Stretch="Fill"/>
+                            </Button.Background>
+                            <Popup Width="70" HorizontalOffset="-12" PlacementTarget="{Binding ElementName=Home}"
+                                   IsOpen="{Binding ElementName=btnObras, Path=IsMouseOver, Mode=OneWay}"
+                                   Style="{StaticResource PopupStyle}">
+                                <Grid>
+                                    <Border Style="{StaticResource border}">
+                                        <TextBlock Text="Obras" Style="{StaticResource PopupText}"/>
+                                    </Border>
+                                    <Path Style="{StaticResource ArrowPath}"/>
+                                </Grid>
+                            </Popup>
+                        </Button>
+                        <!--abastecimiento-->
+                        <Button Grid.Column="4" Name="btnAbastecimiento" Style="{StaticResource DockBtnStyle}">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/imagenes/sahmv6-iconos-dock-bar-3.png" Stretch="Fill"/>
+                            </Button.Background>
+                            <Popup Width="70" HorizontalOffset="-12" PlacementTarget="{Binding ElementName=Home}"
+                                   IsOpen="{Binding ElementName=btnAbastecimiento, Path=IsMouseOver, Mode=OneWay}"
+                                   Style="{StaticResource PopupStyle}">
+                                <Grid>
+                                    <Border Style="{StaticResource border}">
+                                        <TextBlock Text="Abastecimiento" Style="{StaticResource PopupText}"/>
+                                    </Border>
+                                    <Path Style="{StaticResource ArrowPath}"/>
+                                </Grid>
+                            </Popup>
+                        </Button>
+                        <!--gestion departamento-->
+                        <Button Grid.Column="5" Name="btnGestionDpto" Style="{StaticResource DockBtnStyle}">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/imagenes/sahmv6-iconos-dock-bar-4.png" Stretch="Fill"/>
+                            </Button.Background>
+                            <Popup Width="70" HorizontalOffset="-12" PlacementTarget="{Binding ElementName=Home}"
+                                   IsOpen="{Binding ElementName=btnGestionDpto, Path=IsMouseOver, Mode=OneWay}"
+                                   Style="{StaticResource PopupStyle}">
+                                <Grid>
+                                    <Border Style="{StaticResource border}">
+                                        <TextBlock Text="Gestion Dpto" Style="{StaticResource PopupText}"/>
+                                    </Border>
+                                    <Path Style="{StaticResource ArrowPath}"/>
+                                </Grid>
+                            </Popup>
+                        </Button>
+                        <!--laboratorio-->
+                        <Button Grid.Column="6" Name="btnLaboratorio" Style="{StaticResource DockBtnStyle}">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/imagenes/sahmv6-iconos-dock-bar-8.png" Stretch="Fill"/>
+                            </Button.Background>
+                            <Popup Width="70" HorizontalOffset="-12" PlacementTarget="{Binding ElementName=Home}"
+                                   IsOpen="{Binding ElementName=btnLaboratorio, Path=IsMouseOver, Mode=OneWay}"
+                                   Style="{StaticResource PopupStyle}">
+                                <Grid>
+                                    <Border Style="{StaticResource border}">
+                                        <TextBlock Text="Instrumentos y Maq especiales" Style="{StaticResource PopupText}"/>
+                                    </Border>
+                                    <Path Style="{StaticResource ArrowPath}"/>
+                                </Grid>
+                            </Popup>
+                        </Button>
+                        <!--resultados vehiculos-->
+                        <Button Grid.Column="7" Name="btnResultadoVh" Style="{StaticResource DockBtnStyle}">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/imagenes/sahmv6-iconos-dock-bar-6.png" Stretch="Fill"/>
+                            </Button.Background>
+                            <Popup Width="70" HorizontalOffset="-12" PlacementTarget="{Binding ElementName=Home}"
+                                   IsOpen="{Binding ElementName=btnResultadoVh, Path=IsMouseOver, Mode=OneWay}"
+                                   Style="{StaticResource PopupStyle}">
+                                <Grid>
+                                    <Border Style="{StaticResource border}">
+                                        <TextBlock Text="Resultados Vehiculos" Style="{StaticResource PopupText}"/>
+                                    </Border>
+                                    <Path Style="{StaticResource ArrowPath}"/>
+                                </Grid>
+                            </Popup>
+                        </Button>
+                        <!--resultados maquinas-->
+                        <Button Grid.Column="8" Name="btnResultadoM" Style="{StaticResource DockBtnStyle}">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/imagenes/sahmv6-iconos-dock-bar-7.png" Stretch="Fill"/>
+                            </Button.Background>
+                            <Popup Width="70" HorizontalOffset="-12" PlacementTarget="{Binding ElementName=Home}"
+                                   IsOpen="{Binding ElementName=btnResultadoM, Path=IsMouseOver, Mode=OneWay}"
+                                   Style="{StaticResource PopupStyle}">
+                                <Grid>
+                                    <Border Style="{StaticResource border}">
+                                        <TextBlock Text="Gestion MyH" Style="{StaticResource PopupText}"/>
+                                    </Border>
+                                    <Path Style="{StaticResource ArrowPath}"/>
+                                </Grid>
+                            </Popup>
+                        </Button>
+                    </Grid>
+                </Border>
+            </Grid>
+            
+           
+            
+        </Grid>
+        
+        
+        <!--User -->
+        <Grid Height="50" Width="50" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,30,70,0">
+            <Button x:Name="btnUser" Style="{StaticResource UserStyle}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/imagenes/img_user.png" Stretch="Uniform"/>
+                   
+                </Button.Background>
+                <Popup Width="137" HorizontalOffset="-93" PlacementTarget="{Binding ElementName=btnUser}"
+                       IsOpen="{Binding ElementName=btnUser, Path=IsMouseOver, Mode=OneWay}" Style="{StaticResource user_popup}">
+                    <Grid>
+                        <Border Style="{StaticResource user_border}">
+                            <TextBlock Text="Usuario Prueba" Style="{StaticResource PopupText}"/>
+                        </Border>
+                        <Path Style="{StaticResource ArrowPath}"/>
+                    </Grid>
+                </Popup>
+            </Button>
+        </Grid>
+        
+        <!-- Exit button-->
+        <Button Name="btnExit" Style="{StaticResource CloseBtnStyle}"/>
+    </Grid>
+</Window>

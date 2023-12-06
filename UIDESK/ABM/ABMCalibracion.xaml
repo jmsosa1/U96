@@ -1,0 +1,137 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.ABM.ABMCalibracion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+        xmlns:local="clr-namespace:UIDESK.ABM"
+        mc:Ignorable="d" 
+        Title="Registro Calibracion Instrumento" Height="470" Width="800" ResizeMode="NoResize">
+    
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition  Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+            
+            <!--#region  datos del instrumento-->
+            <Border Grid.Row="0" Margin="5" BorderBrush="Black" BorderThickness="1" CornerRadius="5">
+            <Grid x:Name="grdInstrumento">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    
+                </Grid.RowDefinitions>
+                <!--#region  textblocks & campos-->
+                <StackPanel Grid.Row="0">
+                    <TextBlock Margin="10,0,0,0">Datos del Instrumento a Calibrar</TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,5,0,5">
+                    <TextBox x:Name="txtNombreInstrumento" Text="{Binding Path=Nombre}" Width="300"  materialDesign:HintAssist.Hint="Nombre"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Margin="10,0,0,0" ></TextBox>
+                    <TextBox x:Name="txtMarca" Text="{Binding Path=Marca}" Width="130"  materialDesign:HintAssist.Hint="Marca"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Margin="10,0,0,0" ></TextBox>
+                    <TextBox x:Name="txtModelo" Width="200"  materialDesign:HintAssist.Hint="Modelo" Text="{Binding Path=Modelo}"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Margin="10,0,0,0" ></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,5,0,5">
+                    
+                    <TextBox x:Name="txtNumSerie" Width="200"  materialDesign:HintAssist.Hint="Numero Serie" Text="{Binding Path=NumSerie}"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Margin="10,0,0,0" ></TextBox>
+                    <TextBox x:Name="txtCodInventario" Width="100"  materialDesign:HintAssist.Hint="Cod Inventario" Text="{Binding Path=CodInventario}"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Margin="10,0,0,0" ></TextBox>
+                    <TextBox x:Name="txtRango" Width="100"  materialDesign:HintAssist.Hint="Rango" Text="{Binding Path=RangoMedicion}"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Margin="10,0,0,0" ></TextBox>
+                    <TextBox x:Name="txtEscala" Width="100"  materialDesign:HintAssist.Hint="Escala" Text="{Binding Path=Escala}"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Margin="10,0,0,0" ></TextBox>
+                    <TextBox x:Name="txtClase" Width="100"  materialDesign:HintAssist.Hint="Clase" Text="{Binding Path=Exactitud}"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Margin="10,0,0,0" ></TextBox>
+                </StackPanel>
+                
+            </Grid>
+             </Border>
+            <Border Grid.Row="1" Margin="5" BorderBrush="Black" BorderThickness="1" CornerRadius="5">
+            <!--#region datos de la certificacion-->
+            <Grid x:Name="grdCertificacion">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <TextBlock Margin="10,0,0,0" VerticalAlignment="Center">Datos del Proveedor</TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <ComboBox Name="cmbProveedor" Width="300" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectionChanged="cmbProveedor_SelectionChanged"
+                         materialDesign:HintAssist.Hint="Nombre" Margin="10,5,0,5" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Nombre}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <DatePicker  Name="dtpFechaCalibracion" Width="115" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                         Margin="30,5,0,5"   materialDesign:HintAssist.Hint="Fecha Calibracion" SelectedDateChanged="dtpFechaCalibracion_SelectedDateChanged" ></DatePicker>
+                   
+
+                    <TextBox x:Name="txtCertificado" Style="{StaticResource MaterialDesignFloatingHintTextBox }"
+                        materialDesign:HintAssist.Hint="Numero Certificado" Width="150" Margin="10,5,0,5" ></TextBox>
+                    <TextBox x:Name="txtValidez" materialDesign:HintAssist.Hint="Validez(Dias)" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            Width="120" Margin="10,5,0,5" LostFocus="txtValidez_LostFocus"  ></TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                   
+                    <TextBox x:Name="txtEmisorCertificado" Style="{StaticResource MaterialDesignFloatingHintTextBox }"
+                             Margin="10,5,0,10"  materialDesign:HintAssist.Hint="Emisor Certificado" Width="300" ></TextBox>
+                    
+                    <DatePicker  Name="dtpFechaProximoVencimiento" Width="115" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                         Margin="30,5,0,5" IsEnabled="False" Foreground="DarkBlue"   materialDesign:HintAssist.Hint="Prox.Vencimiento" SelectedDateChanged="dtpFechaProximoVencimiento_SelectedDateChanged"></DatePicker>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="3">
+                    <Label VerticalAlignment="Center" Margin="10,0,0,0" FontWeight="Bold">Resultado:</Label>
+                    <RadioButton GroupName="resultado" Name="rdb1" Checked="rdb1_Checked" Margin="10,0,0,0">Satisfactorio</RadioButton>
+                    <RadioButton GroupName="resultado" Name="rdb2" Checked="rdb2_Checked" Margin="10,0,0,0">No Satisfactorio</RadioButton>
+                </StackPanel>
+                <Border Grid.Row="4" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="5">
+                    <TextBox x:Name="txtObservaciones" AcceptsReturn="True" Width="700" Height="80" Margin="3"
+                            HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            materialDesign:HintAssist.Hint="Observaciones" ></TextBox>
+                </Border>
+                <!--
+                 <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="5">
+                    <TextBox x:Name="txtRutaArchivo" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            materialDesign:HintAssist.Hint="Ruta  archivo certificado" Width="500" ></TextBox>
+                    <Button x:Name="btnRutaArchivo" Margin="10,0,0,0" Click="btnRutaArchivo_Click" Style="{StaticResource MaterialDesignFlatButton}">
+                        <materialDesign:PackIcon Kind="FolderOpen" Foreground="Black"/>
+                    </Button>
+                </StackPanel>
+                -->
+                
+            </Grid>
+        </Border>
+            
+
+            
+            <!--#region  butones de accion-->
+        <StackPanel Grid.Row="2" Margin="5,15">
+            <Button x:Name="btnGrabar" Click="btnGrabar_Click" Style="{StaticResource MaterialDesignPaperButton}">
+                <StackPanel Orientation="Horizontal">
+                    <!--<materialDesign:PackIcon Kind="ContentSave" VerticalAlignment="Center" Foreground="Black"/>-->
+                    <TextBlock Margin="3,0,0,0" VerticalAlignment="Center" Foreground="Black">Guardar</TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        </Grid>
+
+    
+</mde:MaterialWindow>

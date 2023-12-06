@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="UIDESK.uc.resultados.ucDatosManteVhAnio"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:local="clr-namespace:UIDESK.uc.resultados"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+
+            <!-- fila para los graficos-->
+            <RowDefinition Height="*"/>
+
+            <!-- fila para algo mas-->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--zona toolbar-->
+        <ToolBar Name="tbOpcionesPresentacion" Grid.Row="0"   Grid.ColumnSpan="2"   Style="{StaticResource MaterialDesignToolBar}"
+                    ClipToBounds="False"  Padding="2" Margin="3">
+            <TextBox x:Name="txtBuscarAnio" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    Width="150" materialDesign:HintAssist.Hint="Buscar datos Año" ></TextBox>
+            <Button x:Name="btnBuscar" Padding="2" ToolTip="Buscar" Click="btnBuscar_Click">
+                <materialDesign:PackIcon Kind="DatabaseSearch"/>
+            </Button>
+            <Separator Width="2" Background="OrangeRed"></Separator>
+            <Button x:Name="btnDolar" Padding="2" ToolTip="Mostrar Valores en Dolar" Click="btnDolar_Click">
+                <materialDesign:PackIcon Kind="CurrencyUsd"/>
+            </Button>
+            <Separator></Separator>
+            <TextBlock Text="Costo total del Mantenimiento del año:" VerticalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+            <TextBlock   Margin="20,0,0,0" Name="txtCostoTotal" VerticalAlignment="Center"/>
+            <TextBlock Text="Costo Promedio Mensual:" VerticalAlignment="Center" Margin="20,0,0,0"
+                               Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+            <TextBlock x:Name="txbCostoPromedio" VerticalAlignment="Center" Margin="20,0,0,0" 
+                       Style="{StaticResource MaterialDesignBody2TextBlock}"  />
+        </ToolBar>
+
+
+        <!-- zona data grids-->
+        <Border Grid.Row="1" Grid.Column="0"  BorderBrush="Black"  BorderThickness="1" CornerRadius="10" Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Margin="5" Grid.Row="0">
+                    <StackPanel.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black" Offset="1"/>
+                            <GradientStop Color="#FF9DA9DA" Offset="0"/>
+                        </LinearGradientBrush>
+                    </StackPanel.Background>
+
+                    <TextBlock Text="Resumen Mensual Mantenimientos" Margin="5"   FontSize="14"></TextBlock>
+                    <DataGrid x:Name="dgResumenMensual" AutoGenerateColumns="False" CanUserAddRows="False"
+                          CanUserDeleteRows="False"  IsReadOnly="True" SelectionChanged="dgResumenMensual_SelectionChanged"
+                        RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" GridLinesVisibility="All"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Mes" Binding="{Binding Path=Anio}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Costo ($)"  Binding="{Binding Path=CostoAnio, ConverterCulture=es-AR,StringFormat=C}"></DataGridTextColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+                <StackPanel x:Name="stkMonedas" Grid.Row="1" Visibility="Hidden">
+                    <StackPanel.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </StackPanel.Background>
+                    <TextBlock Text="Valor Promedio Mensual Dolar" Margin="5" Foreground="DarkGreen" Style="{StaticResource MaterialDesignBody1TextBlock}"></TextBlock>
+                    <DataGrid x:Name="dgResumenVariacionMoneda" AutoGenerateColumns="False" CanUserAddRows="False"
+                          CanUserDeleteRows="False"  IsReadOnly="True" 
+                        RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Mes" Binding="{Binding Path=MesValor}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="1 Dollar=$"  Binding="{Binding Path=Valor, ConverterCulture=es-AR,StringFormat=C}"></DataGridTextColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!--zona graficos-->
+        <Border Grid.Row="1"  Grid.Column="1" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="5">
+            <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="1"/>
+                        <GradientStop Color="White" Offset="0"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--grid principal costos por gategoria-->
+                <StackPanel Margin="5" Grid.Row="0" Grid.Column="0">
+                    <StackPanel.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black" Offset="1"/>
+                            <GradientStop Color="#FFEF3E3E" Offset="0"/>
+                        </LinearGradientBrush>
+                    </StackPanel.Background>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Mes :" Margin="5" FontSize="14"></TextBlock>
+                        <TextBlock x:Name="txbMes" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+
+                    <DataGrid x:Name="dgResumenCategoria" AutoGenerateColumns="False" CanUserAddRows="False"
+                          CanUserDeleteRows="False"  IsReadOnly="True" SelectionChanged="dgResumenCategoria_SelectionChanged"
+                        RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Categoria" Binding="{Binding Path=NombreCategoria}"></DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Costo ($)"  Binding="{Binding Path=CostoTotalCategoria, ConverterCulture=es-AR,StringFormat=C}"></DataGridTextColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+
+                <!-- grid detalle de dominios por categoria-->
+                <StackPanel Margin="30,0,0,0" Grid.Row="0" Grid.Column="1">
+                    <TextBlock Text="Dominios de la categoria" Margin="5"  FontSize="14"></TextBlock>
+                    <DataGrid x:Name="dgResumenDominios" AutoGenerateColumns="False" CanUserAddRows="False"
+                          CanUserDeleteRows="False"  IsReadOnly="True" 
+                        RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Dominio" Binding="{Binding Path=Dominio}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Modelo" Binding="{Binding Path=Modelo}"/>
+                            <DataGridTextColumn Header="Marca"  Binding="{Binding Path=NomMarca}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Incidencias" Binding="{Binding Path=RSat}"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+
+                <!--zona detalle de mantenimientos para un-->
+
+                <!-- grafico de variacion de costos mensuales-->
+                <lvc:CartesianChart  Name="lvcCartesiano"  Grid.Row="1" Grid.ColumnSpan="3" Margin="10">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Labels="{Binding Etiquetas}" Position="LeftBottom">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="True" Step="1"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Costos" LabelFormatter="{Binding YFormatter}" ></lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+            </Grid>
+        </Border>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,128 @@
+﻿<mde:MaterialWindow x:Class="UIDESK.ABM.ABMProveedor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIDESK.ABM"
+        xmlns:validaciones="clr-namespace:UIDESK.validacion"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" BorderBackgroundBrush="DeepSkyBlue" BorderThickness="1" 
+        MouseLeftButtonDown="Window_MouseLeftButtonDown" 
+        mc:Ignorable="d"
+        Title="ABM Proveedor" Height="450" Width="800">
+    <!--Closing="MaterialWindow_Closing"-->
+    <Grid>
+        <Grid.RowDefinitions>
+           
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0"  Name="grdPrincipal">
+            <materialDesign:Card UniformCornerRadius="6"  Margin="5" BorderBrush="Black" BorderThickness="1" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                </Grid>
+            </materialDesign:Card>
+            
+                <TextBox Name="txtNombre" CharacterCasing="Upper" Text="{Binding Path=Nombre}" Grid.Row="0"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nombre"
+               TabIndex="1"  HorizontalAlignment="Left"  Margin="10,11,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="300">
+                <!--<materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="-2,0,0,0">
+                        <materialDesign:PackIcon Kind="Account"></materialDesign:PackIcon>
+                        <TextBlock>Nombre</TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>-->
+            </TextBox>
+                <TextBox Name="txtRazonSocial"  CharacterCasing="Upper" Text="{Binding Path=RazonSocial}" Grid.Row="0"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Razon Social"
+               TabIndex="3"  HorizontalAlignment="Left"  Margin="390,13,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="300"/>
+                <Button Name="btnIgualRazon" Click="btnIgualRazon_Click"  Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                 ToolTip="Igual Nombre y Razon Social" Grid.Row="0"
+                    TabIndex="2" HorizontalAlignment="Left" Margin="335,20,0,0" VerticalAlignment="Top" Height="30" Width="30" RenderTransformOrigin="0.533,0.312">
+                    <materialDesign:PackIcon Kind="EqualBox"/>
+                </Button>
+            
+                <TextBox Name="txtDir1" Text="{Binding Path=Dir1}" CharacterCasing="Upper" Grid.Row="1" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Direccion1" 
+                TabIndex="4" HorizontalAlignment="Left"  Margin="10,55,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="300"/>
+                <TextBox Name="txtDir2" Text="{Binding Path=Dir2}" CharacterCasing="Upper" Grid.Row="1" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Direccion2" 
+                TabIndex="5" HorizontalAlignment="Left"  Margin="390,55,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="295"/>
+                <TextBox Name="txtTel1" Text="{Binding Path=Tel1}" CharacterCasing="Upper" Grid.Row="2" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Telefono1" 
+                TabIndex="6" HorizontalAlignment="Left"  Margin="10,98,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200"/>
+                <TextBox Name="txtTel2" Text="{Binding Path=Tel2}" CharacterCasing="Upper" Grid.Row="2" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Telefono2" 
+                TabIndex="7" HorizontalAlignment="Left"  Margin="230,97,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" RenderTransformOrigin="3.5,2.297"/>
+                <TextBox Name="txtCuit" Text="{Binding Path=CuitTexto}" Grid.Row="2" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="CUIT" 
+               TabIndex="8" HorizontalAlignment="Left"  Margin="450,97,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+                <TextBox Name="txtEmail" Text="{Binding Path=Email}" Grid.Row="3" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Email" 
+               TabIndex="9" HorizontalAlignment="Left"  Margin="10,140,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="250"/>
+                <TextBox Name="txtSitioWEb" Text="{Binding Path=Web}"  Grid.Row="3" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Web" 
+               TabIndex="10" HorizontalAlignment="Left"  Margin="270,139,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="250"/>
+                <TextBox Name="txtContacto" Text="{Binding Path=Contacto}" Grid.Row="3" CharacterCasing="Upper"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contacto" 
+                TabIndex="11" HorizontalAlignment="Left"  Margin="530,140,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200"/>
+
+                <ComboBox Name="cmbRubroProve" Grid.Row="4" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Rubro"
+              TabIndex="12"  HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" Width="180" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Path=IdRubro}"></TextBlock>
+                                <Separator Width="3" Background="OrangeRed"/>
+                                <TextBlock Text="{Binding Path=NombreRubro}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ComboBox Name="cmbLocalidad" Grid.Row="4" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Localidad"
+               TabIndex="13" HorizontalAlignment="Left" Margin="405,195,0,0" VerticalAlignment="Top" Width="250"
+                     >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Path=IdLocalidad}"></TextBlock>
+                                <Separator Width="3" Background="OrangeRed"/>
+                                <TextBlock Text="{Binding Path=Nombre}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ComboBox x:Name="cmbProvincia" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Provincia"
+                SelectionChanged="cmbProvincia_SelectionChanged" Grid.Row="4"
+                      TabIndex="13" HorizontalAlignment="Left" Margin="210,195,0,0" VerticalAlignment="Top" Width="165">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding IdProvincia}"/>
+                                <Separator Width="3" Background="OrangeRed"/>
+                                <TextBlock Text="{Binding Nombre}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                
+
+            </Grid>
+        <StackPanel Grid.Row="1" Margin="5" >
+           
+            <Button Name="btnGuardar" Click="btnGuardar_Click" Style="{StaticResource MaterialDesignPaperButton}"
+                Content="Guardar" />
+        </StackPanel>
+       
+    </Grid>
+</mde:MaterialWindow>

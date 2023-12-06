@@ -1,0 +1,448 @@
+﻿<UserControl x:Class="UIDESK.uc.ucDetalleFilaProducto"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIDESK.uc"
+             xmlns:UC="clr-namespace:UIDESK.uc.Productos"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+            
+              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            Background="{DynamicResource MaterialDesignPaper}"
+            FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="900">
+    <materialDesign:Card Margin="10" UniformCornerRadius="10">
+
+        <TabControl Margin="5"  Style="{StaticResource  MaterialDesignTabControl}">
+            <TabItem Header="Detalles" Name="itemDetalles" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ToolBar Grid.Row="0" Style="{StaticResource MaterialDesignToolBar}" ClipToBounds="False"  Padding="2" Margin="3">
+
+                    </ToolBar>
+                    <Grid Grid.Row="1">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0"  Margin="5,5" Orientation="Horizontal">
+                            <TextBox materialDesign:HintAssist.Hint="Nombre" Width="300" Text="{Binding Path=Nombre}"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"/>
+                            <TextBox IsReadOnly="True"    materialDesign:HintAssist.Hint="Cod inventario" Width="110" Text="{Binding Path=CodInventario}"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,0,0,0" />
+                            <TextBox IsReadOnly="True"   materialDesign:HintAssist.Hint="Modelo" Width="120" Text="{Binding Path=Modelo}" Margin="10,0,0,0"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                            <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Marca" Width="120" Text="{Binding Path=Marca}" Margin="10,0,0,0"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                            <TextBox IsReadOnly="True"  materialDesign:HintAssist.Hint="Serie" Width="150" Text="{Binding Path=NumSerie}" Margin="10,0,0,0"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Margin="5,5" Orientation="Horizontal">
+                            <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Descripcion" Text="{Binding Path=Descripcion}" Width="250"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                            <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Dimensiones" Text="{Binding Path=Dimensiones}"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Margin="10,0,0,0" Width="150"/>
+                            <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Color" Text="{Binding Path=Color}" Margin="10,0,0,0" Width="100"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                            <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Precio Unit" Text="{Binding Path=PrecioUnitario,ConverterCulture=es-AR,StringFormat=C}"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="100" Margin="10,0,0,0"/>
+                            <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Costo Reposicion" Text="{Binding Path=CostoReposicion,ConverterCulture=es-AR,StringFormat=C}"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,0,0,0" Width="100"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5,5">
+                            <CheckBox IsEnabled="False" IsChecked="{Binding Path=EstadoItem}" VerticalAlignment="Bottom">Activo</CheckBox>
+                            <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Alta" Text="{Binding Path=AltaF,ConverterCulture=es-AR,StringFormat=d}"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="100" Margin="10,0,0,0"/>
+                            <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Baja" Text="{Binding Path=BajaF,ConverterCulture=es-AR,StringFormat=d}"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="100" Margin="10,0,0,0"/>
+                            <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Condicion Stock" Text="{Binding Path=CondicionStk}"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,0,0,0" Width="100"/>
+                            <TextBox IsReadOnly="True" Name="txtCondicionStock" Width="100" Margin="10,0,0,0" Text="{Binding Path=TipoSituacionStk}"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5,5">
+                            <TextBox IsReadOnly="True" Name="txtEscala" Width="150" Margin="10,0,0,0" Text="{Binding Path=Escala}"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Escala"/>
+                            <TextBox IsReadOnly="True" Name="txtRangoMedicion" Width="150" Margin="10,0,0,0" Text="{Binding Path=RangoMedicion}"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Rango Medicion"/>
+                            <TextBox IsReadOnly="True" Name="txtExactitud" Width="150" Margin="10,0,0,0" Text="{Binding Path=Exactitud}"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Exactitud"/>
+                            <TextBox IsReadOnly="True" Name="txtContraste" Width="100" Margin="10,0,0,0" Text="{Binding Path=NomConstraste}"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Constraste"/>
+                            <TextBox IsReadOnly="True" Name="txtPatron" Width="100" Margin="10,0,0,0" Text="{Binding Path=EsPatron}"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Patron"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="4" Margin="5,5">
+                            <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Accesorios" Text="{Binding Path=Accesorios}" Height="50"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Stock" Name="itemStock">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ToolBar Grid.Row="0" Style="{StaticResource MaterialDesignToolBar}" ClipToBounds="False" Margin="5">
+                        <Button x:Name="btnCambiarPosicion" Click="btnCambiarPosicion_Click" Padding="2" ToolTip="Cambiar Posicion en deposito">
+                            <materialDesign:PackIcon Kind="CallSplit"/>
+                        </Button>
+                        <Separator></Separator>
+                        <Button x:Name="btnCambiarPuntoPedido" Padding="2" Click="btnCambiarPuntoPedido_Click" ToolTip="Cambiar Punto Pedido">
+                            <materialDesign:PackIcon Kind="VectorPoint"/>
+                        </Button>
+                        <Separator></Separator>
+                        <Button x:Name="btnCambiarSituacionStock" ToolTip="Cambiar Situacion Stock" Padding="2" Click="btnCambiarSituacionStock_Click">
+                            <materialDesign:PackIcon Kind="ChartGantt"/>
+                        </Button>
+                        <Separator></Separator>
+                        <Button x:Name="btnAjustarStock" ToolTip="Ajustar Stock" Padding="2" Click="btnAjustarStock_Click">
+                            <materialDesign:PackIcon Kind="Adjust"/>
+                        </Button>
+                    </ToolBar>
+                    <DataGrid x:Name="dgStock"  Grid.Row="1" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False"
+                  RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" SelectionChanged="dgStock_SelectionChanged"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible" Margin="5"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" BorderThickness="1" BorderBrush="Black" >
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Deposito" Binding="{Binding Path=Deposito}"/>
+                            <DataGridTemplateColumn Header="Stk Actual">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=StkActual}" Foreground="Brown"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Stk Disponible">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=StkDisponible}" Foreground="Green"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Stk Reservado">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=StkReservado}" Foreground="DarkSalmon"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTextColumn Header="Estante" Binding="{Binding Path=Estante}"/>
+                            <DataGridTextColumn Header="Fila" Binding="{Binding Path=Fila}"/>
+                            <DataGridTextColumn Header="Columna" Binding="{Binding Path=Columna}"/>
+                            <DataGridTextColumn Header="Frente" Binding="{Binding Path=Frente}"/>
+                            <DataGridTextColumn Header="Punto Pedido" Binding="{Binding Path=PuntoPedido}"/>
+                            <DataGridTextColumn Header="Costo Stk" Binding="{Binding Path=CostoStk}"/>
+                        </DataGrid.Columns>
+                        <DataGrid.RowDetailsTemplate>
+                            <DataTemplate>
+                                <UC:ucDetalleAjustesStock/>
+                            </DataTemplate>
+                        </DataGrid.RowDetailsTemplate>
+                    </DataGrid>
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Movimientos" Name="itemMovimientos">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ToolBar Grid.Row="0" Style="{StaticResource MaterialDesignToolBar}" ClipToBounds="False" Margin="5">
+                        <RadioButton x:Name="rdbTodos" IsChecked="True" Padding="2">Todos</RadioButton>
+                        <RadioButton x:Name="rdbObra" Padding="2">Una Obra</RadioButton>
+                        <RadioButton x:Name="rdbEmpleado" Padding="2">Un Empleado</RadioButton>
+                        <TextBox x:Name="txtBusqueda" Width="120" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                    materialDesign:HintAssist.Hint="Codigo"  Padding="2"></TextBox>
+                        <Button x:Name="btnFiltrar" Padding="2" Margin="10,0,0,0" ToolTip="Filtrar" Click="btnFiltrar_Click">
+                            <materialDesign:PackIcon Kind="Filter"/>
+                        </Button>
+                        <Separator></Separator>
+                        <Button x:Name="btnExportarMov" Padding="2" ToolTip="Exportar" Click="btnExportarMov_Click">
+                            <materialDesign:PackIcon Kind="FileExcel"/>
+                        </Button>
+                    </ToolBar>
+                    <DataGrid x:Name="dgMovimientos" Grid.Row="1" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False"
+                   RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" Margin="5" HorizontalScrollBarVisibility="Auto"  
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible" BorderThickness="1" BorderBrush="Black"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Fecha" Binding="{Binding Path=FechaRemito,StringFormat=d,ConverterCulture=es-Ar}"/>
+                            <DataGridTextColumn Header="Remito" Binding="{Binding Path=IdDocumento}"/>
+                            <DataGridTextColumn Header="Concepto" Binding="{Binding Path=Concepto}"/>
+                            <DataGridTextColumn Header="Imputacion" Binding="{Binding Path=Imputacion}"/>
+                            <DataGridTextColumn Header="Obra" Binding="{Binding Path=NombreObra}"/>
+                            <DataGridTextColumn Header="Destinatario" Binding="{Binding Path=NombreEmpleado}"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StatusBar Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="5">
+                        <StatusBar.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                            </ItemsPanelTemplate>
+                        </StatusBar.ItemsPanel>
+                        <StatusBarItem Grid.Column="0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Movimientos :" VerticalAlignment="Center" FontFamily="Helvetica"/>
+                                <TextBox Name="txtCantidadMovimientos" IsReadOnly="True" Margin="3" Width="70" FontFamily="Helvetica" Foreground="BlueViolet"/>
+                            </StackPanel>
+                        </StatusBarItem>
+
+                    </StatusBar>
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Compras" Name="itemCompras">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ToolBar Grid.Row="0" Style="{StaticResource MaterialDesignToolBar}" ClipToBounds="False" Margin="5">
+                        <TextBlock Text="Filtrar por Proveedor:" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtIdProveedor" Width="100" Margin="10,0,0,0"/>
+                        <Button x:Name="btnfiltroProveedor" Padding="2" Margin="10,0,0,0" ToolTip="Filtrar">
+                            <materialDesign:PackIcon Kind="Filter"/>
+                        </Button>
+                        <Separator></Separator>
+                        <Button x:Name="btnExportarCompras" Padding="2" ToolTip="Exportar" Click="btnExportarCompras_Click">
+                            <materialDesign:PackIcon Kind="FileExcel"/>
+                        </Button>
+                    </ToolBar>
+                    <DataGrid x:Name="dgCompras" Grid.Row="1" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False"
+                   RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" Margin="5"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" BorderThickness="1" BorderBrush="Black">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Fecha" Binding="{Binding Path=Alta,StringFormat=d,ConverterCulture=es-AR}"/>
+                            <DataGridTextColumn Header="Proveedor" Binding="{Binding Path=NombreProveedor}"/>
+                            <DataGridTextColumn Header="Cantidad" Binding="{Binding Path=CantidadUno}"/>
+                            <DataGridTextColumn Header="PrecioUnit" Binding="{Binding Path=PrecioUniUno,StringFormat=C,ConverterCulture=es-Ar}"/>
+                            <DataGridTextColumn Header="Total" Binding="{Binding Path=TotalItemUno,StringFormat=C,ConverterCulture=es-AR}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StatusBar Grid.Row="2" BorderBrush="Black" BorderThickness="1">
+                        <StatusBar.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                            </ItemsPanelTemplate>
+                        </StatusBar.ItemsPanel>
+                        <StatusBarItem Grid.Column="0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Cant. Uni. Compradas:" VerticalAlignment="Center" FontFamily="Helvetica"/>
+                                <TextBox Name="txtCantCompras" IsReadOnly="True" Margin="3" Width="70" FontFamily="Helvetica" Foreground="BlueViolet"/>
+                            </StackPanel>
+                        </StatusBarItem>
+                        <StatusBarItem Grid.Column="1">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Importe Total:" VerticalAlignment="Center" FontFamily="Helvetica"/>
+                                <TextBox Name="txtTotalCostoCompras" IsReadOnly="True" Margin="3" Width="120" FontFamily="Helvetica" Foreground="BlueViolet"
+                                              />
+                            </StackPanel>
+                        </StatusBarItem>
+                    </StatusBar>
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Mantenimientos" Name="itemMantenimientos">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ToolBar Grid.Row="0" Style="{StaticResource MaterialDesignToolBar}" ClipToBounds="False" Margin="5">
+                        <TextBlock Text="Filtrar por Proveedor:" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtIdProveMante" Width="100" Margin="10,0,0,0"/>
+                        <Button x:Name="btnfiltroProveMante" Padding="2" Margin="10,0,0,0" ToolTip="Filtrar" Click="btnfiltroProveMante_Click">
+                            <materialDesign:PackIcon Kind="Filter"/>
+                        </Button>
+                        <Separator></Separator>
+                        <Button x:Name="btnExportarMantenimientos" Padding="2" ToolTip="Exportar" Click="btnExportarMantenimientos_Click">
+                            <materialDesign:PackIcon Kind="FileExcel" />
+                        </Button>
+                    </ToolBar>
+                    <DataGrid x:Name="dgMantenimientos" Grid.Row="1" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False"
+                   RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" Margin="5"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" Height="280"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2" BorderThickness="1" BorderBrush="Black">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Fecha Factura" Binding="{Binding Path=FechaFactura,StringFormat=d,ConverterCulture=es-Ar}" Width="60"/>
+                            <DataGridTextColumn Header="Proveedor" Binding="{Binding Path=RazonSocial}" Width="200"/>
+                            <DataGridTextColumn Header="Detalle" Binding="{Binding Path=DetalleMante}" Width="200"/>
+                            <DataGridTextColumn Header="Factura" Binding="{Binding Path=NumFacturaProve}" Width="70"/>
+
+                            <DataGridTextColumn Header="Importe" Binding="{Binding Path=ImporteFactura, StringFormat=C,ConverterCulture=es-Ar}" Width="90"/>
+
+                            <DataGridTextColumn Header="Imputacion" Binding="{Binding Path=Imputacion}" Width="80"/>
+                            <DataGridTextColumn Header="Cliente" Binding="{Binding Path=ClienteObra}" Width="150"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StatusBar Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="5">
+                        <StatusBar.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                            </ItemsPanelTemplate>
+                        </StatusBar.ItemsPanel>
+                        <StatusBarItem Grid.Column="0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Cantidad :" VerticalAlignment="Center" FontFamily="Helvetica"/>
+                                <TextBox Name="txtRegistros" IsReadOnly="True" Margin="3" Width="70" FontFamily="Helvetica" Foreground="BlueViolet"/>
+                            </StackPanel>
+                        </StatusBarItem>
+                        <StatusBarItem Grid.Column="1">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Costo Total:" VerticalAlignment="Center" FontFamily="Helvetica"/>
+                                <TextBox Name="txtTotalCosto" IsReadOnly="True" Margin="3" Width="120" FontFamily="Helvetica" Foreground="BlueViolet"
+                                              />
+                            </StackPanel>
+                        </StatusBarItem>
+                    </StatusBar>
+                </Grid>
+            </TabItem>
+            <TabItem Header="RMA" Name="itemRma">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="161*"/>
+                        <ColumnDefinition Width="13*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ToolBar Grid.Row="0" Margin="5" Grid.ColumnSpan="2" >
+                        <Button x:Name="btnImprimir" Padding="2" ToolTip="Imprimir RMA" Click="btnImprimir_Click">
+                            <materialDesign:PackIcon Kind="Printer"/>
+                        </Button>
+                    </ToolBar>
+                    <DataGrid x:Name="dgRMA" Grid.Row="1" Margin="5" BorderBrush="Black" BorderThickness="1" 
+                                  CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False"
+                   RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2"
+                                  SelectionChanged="dgRMA_SelectionChanged" Grid.ColumnSpan="2" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Path=IdRma}"/>
+                            <DataGridTextColumn Header="Fecha" Binding="{Binding Path=AltaF, StringFormat=d, ConverterCulture=es-Ar}"/>
+                            <DataGridTextColumn Header="Causa del Mantenimiento" Binding="{Binding Path=CausaRma}" Width="200"/>
+                            <DataGridTextColumn Header="Proveedor" Binding="{Binding Path=NombrProveedor}" Width="150"/>
+                            <DataGridTextColumn Header="Transporte" Binding="{Binding Path= NombreTransporte}" Width="150"/>
+                            <DataGridTextColumn Header="Estado" Binding="{Binding Path=NombreEstado}" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StatusBar Grid.Row="2" Margin="5" BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2">
+                        <StatusBar.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                            </ItemsPanelTemplate>
+                        </StatusBar.ItemsPanel>
+                        <StatusBarItem Grid.Column="0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Cantidad :" VerticalAlignment="Center" FontFamily="Helvetica"/>
+                                <TextBox Name="txtRegRMA" IsReadOnly="True" Margin="3" Width="70" FontFamily="Helvetica" Foreground="BlueViolet"/>
+                            </StackPanel>
+                        </StatusBarItem>
+                        <StatusBarItem Grid.Column="1">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Costo Total:" VerticalAlignment="Center" FontFamily="Helvetica"/>
+                                <TextBox Name="txtTotalCostoRMA" IsReadOnly="True" Margin="3" Width="120" FontFamily="Helvetica" Foreground="BlueViolet"
+                                              />
+                            </StackPanel>
+                        </StatusBarItem>
+                    </StatusBar>
+                </Grid>
+
+
+            </TabItem>
+            <TabItem Header="Galeria" Name="itemGaleria">
+                <Grid Name="grdGaleria">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="275" Margin="10,10,0,0" VerticalAlignment="Top" Width="455">
+                        <Image Source="{Binding Path=Foto}" Name="imgFotoProducto"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="10,10">
+                        <Button Content="{materialDesign:PackIcon Kind=PageLast}" Name="btnPrevFoto" Click="BtnPrevFoto_Click" Margin="3" />
+                        <Button Content="{materialDesign:PackIcon Kind=PageFirst}" Name="btnNextFoto" Click="BtnNextFoto_Click" Margin="3" />
+                        <Button Name="btnDelFoto" Click="BtnDelFoto_Click" Content="{materialDesign:PackIcon Kind=Delete}" Margin="3"  />
+                        <Button Name="btnAddFoto" Click="BtnAddFoto_Click" Content="{materialDesign:PackIcon Kind=PlusBox}" Margin="3"  />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" Margin="10,10">
+                        <TextBox Text="{Binding Path=Titulo}" IsReadOnly="True" HorizontalAlignment="Left"
+                             materialDesign:HintAssist.Hint="Titulo" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         Width="300"/>
+                        <TextBox Text="{Binding Path=DescriFoto}" IsReadOnly="True" HorizontalAlignment="Left"
+                             materialDesign:HintAssist.Hint="Descripcion" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Width="300" Height="100"/>
+                        <TextBox Text="{Binding Path=AltaF, StringFormat=d, ConverterCulture=es-Ar}" IsReadOnly="True" HorizontalAlignment="Left"
+                             materialDesign:HintAssist.Hint="Fecha" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Width="120"/>
+                    </StackPanel>
+
+
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+    </materialDesign:Card>
+</UserControl>
