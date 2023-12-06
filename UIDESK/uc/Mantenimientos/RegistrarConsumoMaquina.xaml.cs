@@ -13,6 +13,7 @@ namespace UIDESK.uc.Mantenimientos
     {
         Producto _producto = new Producto();
         BLLLaboratorio coreLab = new BLLLaboratorio();
+        BLLMaquinas coreMaq = new BLLMaquinas();
         int _idmpm;
 
         public RegistrarConsumoMaquina( Producto producto, int idmpm)
@@ -37,7 +38,7 @@ namespace UIDESK.uc.Mantenimientos
             {
                 int _consumo = Convert.ToInt32(txtCantidad.Text);
                 //llamamos al metodo que registra el consumo
-                coreLab.RegistrarConsumoMaquina(_idmpm, _consumo);
+                coreMaq.RegistrarConsumoMaquina(_idmpm, _consumo);
                 DialogResult = true;
             }
            

@@ -30,6 +30,7 @@ namespace UIDESK.uc.Mantenimientos
         string _unidad;
         ObservableCollection<MpmDetalle> detalle = new ObservableCollection<MpmDetalle>();
         BLLLaboratorio coreLab = new BLLLaboratorio();
+        BLLMaquinas coreMaq = new BLLMaquinas();
         int _operacion; // indica el tipo de operacion  1= alta , 2 editar
 
         public PlanillaMantenimientoMaquina(Producto producto) //pasamos el producto seleccionado como parametro
@@ -39,10 +40,10 @@ namespace UIDESK.uc.Mantenimientos
           
             stkDatosMaquina.DataContext = _producto; // asignamos le producto pasado como data contex
 
-            mpm = coreLab.ObtenerMPMUnaMaquina(producto.IdProducto);
+            mpm = coreMaq.ObtenerMPMUnaMaquina(producto.IdProducto);
             if (mpm.Idmpm > 0) // se trata de una actualizacion
             {
-                detalle = coreLab.ObtenerDetalleMPMUnaMaquina(mpm.Idmpm);
+                detalle = coreMaq.ObtenerDetalleMPMUnaMaquina(mpm.Idmpm);
                 dgTareas.ItemsSource = detalle; // en este momento detalle es null, por lo tanto la grilla esta "vacia"
                 dgTareas.DataContext = detalle;
                 _operacion = 2;
@@ -207,27 +208,27 @@ namespace UIDESK.uc.Mantenimientos
                 {
                     // grabamos el encabezado
                     CrearMPm();
-                    coreLab.AgregarMPM(mpm);
+                    coreMaq.AgregarMPM(mpm);
                     //obtenemos el ultimo id mpm
-                    int _id = coreLab.ObtenerUltimoIdMPM();
+                    int _id = coreMaq.ObtenerUltimoIdMPM();
                     //grabamos el detalle
                     foreach (var item in detalle)
                     {
                         item.Idmpm = _id;
-                        coreLab.AgregarDetalleMPM(item);
+                        coreMaq.AgregarDetalleMPM(item);
                     }
                 }
                 else
                 {
                     //se trata de una actualizacion
                     //borrar el detalle primero 
-                    coreLab.BorrarDetalleMPM(mpm.Idmpm);
+                    coreMaq.BorrarDetalleMPM(mpm.Idmpm);
                     
                     //grabamos el detalle usando el campo idmpm del mpm que buscamos en el constructor
                     foreach (var item in detalle)
                     {
                         item.Idmpm = mpm.Idmpm;
-                        coreLab.AgregarDetalleMPM(item);
+                        coreMaq.AgregarDetalleMPM(item);
                     }
                 }
                
@@ -273,7 +274,7 @@ namespace UIDESK.uc.Mantenimientos
             if (result == MessageBoxResult.Yes)
             {
                 //llamamos al metodo de borrado
-                coreLab.BorrarUnMPM(mpm.Idmpm);
+                coreMaq.BorrarUnMPM(mpm.Idmpm);
                 MessageBox.Show("Se borro la planilla de mantenimiento", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 //cerramos el formulario

@@ -17,6 +17,7 @@ namespace UIDESK.uc.Mantenimientos
         BLLProducto coreProducto = new BLLProducto();
         ObservableCollection<Producto> lista_maquinas = new ObservableCollection<Producto>();
         BLLLaboratorio coreLab = new BLLLaboratorio();
+        BLLMaquinas coreMaq = new BLLMaquinas();
         #endregion
 
         public ucMaquinasProduccion()
@@ -41,7 +42,7 @@ namespace UIDESK.uc.Mantenimientos
             if (producto != null)
             {
 
-                if (coreLab.ValidarExistenciaPlanillaMPM(producto.IdProducto))
+                if (coreMaq.ValidarExistenciaPlanillaMPM(producto.IdProducto))
                 {
                     MessageBox.Show("Ya existe una planilla activa para esta maquina", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;

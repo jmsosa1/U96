@@ -24,6 +24,7 @@ namespace UIDESK.uc.Mantenimientos
     {
         public static int _idproducto;
         BLLLaboratorio coreLab = new BLLLaboratorio();
+        BLLMaquinas coreMaq = new BLLMaquinas();
         Mpm mpm = new Mpm();
         ObservableCollection<MpmDetalle> lista_mpm = new ObservableCollection<MpmDetalle>();
         bool _existe_mpm;
@@ -31,14 +32,14 @@ namespace UIDESK.uc.Mantenimientos
         public ucDetalleMpm()
         {
             InitializeComponent();
-            _existe_mpm = coreLab.ValidarExistenciaPlanillaMPM(_idproducto);
+            _existe_mpm = coreMaq.ValidarExistenciaPlanillaMPM(_idproducto);
 
             if (_existe_mpm)
             {
 
 
-                mpm = coreLab.ObtenerMPMUnaMaquina(_idproducto);
-                lista_mpm = coreLab.ObtenerDetalleMPMUnaMaquina(mpm.Idmpm);
+                mpm = coreMaq.ObtenerMPMUnaMaquina(_idproducto);
+                lista_mpm = coreMaq.ObtenerDetalleMPMUnaMaquina(mpm.Idmpm);
                 DataContext = mpm;
                 dgMPM.ItemsSource = lista_mpm;
                 dgMPM.DataContext = lista_mpm;
