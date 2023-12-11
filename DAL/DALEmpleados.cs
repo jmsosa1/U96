@@ -1234,6 +1234,12 @@ namespace DAL
                 empleado.TPantalon = (string)lectura["tpantalon"];
                 empleado.Provincia = (string)lectura["nomprovincia"];
                 empleado.Localidad = (string)lectura["nomlocalidad"];
+                if (lectura["foto_empleado"]!= DBNull.Value)
+                {
+                    empleado.Foto = (byte[])lectura["foto_empleado"];
+                }
+                
+
                 lista.Add(empleado);
             }
             return lista;
@@ -1283,15 +1289,12 @@ namespace DAL
                 empleado.TCalzado = (string)lectura["tcalzado"];
                 empleado.TPantalon = (string)lectura["tpantalon"];
                 empleado.Provincia = (string)lectura["nomprovincia"];
-                empleado.Localidad = (string)lectura["nomlocalidad"]; 
-                if(lectura["foto_empleado"]!= null)
+                empleado.Localidad = (string)lectura["nomlocalidad"];
+                if (lectura["foto_empleado"] != DBNull.Value)
                 {
                     empleado.Foto = (byte[])lectura["foto_empleado"];
                 }
-                else
-                {
-                    empleado.Foto = null;
-                }
+
             }
             return empleado;
 

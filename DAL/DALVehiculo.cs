@@ -3457,7 +3457,7 @@ namespace DAL
 
         public void VehiculoCalcularCostoDocu(int idvh)
         { }
-
+        #endregion
         #region Fotos
 
 
@@ -3551,7 +3551,7 @@ namespace DAL
 
 
 
-        #endregion
+       
 
         #region Repuestos
 
