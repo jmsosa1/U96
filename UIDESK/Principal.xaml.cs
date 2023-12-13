@@ -27,6 +27,7 @@ namespace UIDESK
         BLLForo coreforo = new BLLForo();
         BLLProducto coreProducto = new BLLProducto();
         BLLLaboratorio coreLab = new BLLLaboratorio();
+        BLLMaquinas coreM = new BLLMaquinas();
         List<StockProducto> lista_productos = new List<StockProducto>();
         ObservableCollection<Producto> lista_instrumentos = new ObservableCollection<Producto>();
         ObservableCollection<Producto> instrumentos_por_vencer = new ObservableCollection<Producto>();
@@ -93,7 +94,9 @@ namespace UIDESK
 
         private void MostrarMaquinasConTareasVencidas()
         {
-            throw new NotImplementedException();
+            List<MpmDetalle> lista = coreM.TareasVencidasMaquinas(2, "vencido");
+            int _cantidad = lista.Count;
+            bdgMaqVencidos.Badge = _cantidad;
         }
 
 

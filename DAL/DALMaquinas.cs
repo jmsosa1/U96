@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Win32;
 
 namespace DAL
 {
@@ -378,6 +379,50 @@ namespace DAL
 
                 throw;
             }
+        }
+
+        // calcular la cantidad de tareas vencidas
+        public List<MpmDetalle> TareasVencidasMaquinas(int ejecucion, string situacion)
+        {
+            List<MpmDetalle> lista = new List<MpmDetalle>();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn.AbriConexion();
+            cmd.CommandText = "Mpm_Tareas_Vencidas";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idproducto", 0);
+            cmd.Parameters.AddWithValue("@ejecucion", ejecucion);
+            cmd.Parameters.AddWithValue("@situacion", situacion);
+            try
+            {
+                conn.AbriConexion();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    MpmDetalle mpm = new MpmDetalle();
+                    mpm.Id = (int)reader["id"];
+                    mpm.Idmpm = (int)reader["idmpm"];
+                    mpm.DescriTarea = (string)reader["descri_tarea"];
+                    mpm.Frecuencia = (int)reader["frecuencia"];
+                    mpm.Unidad = (string)reader["unidad"];
+                    mpm.FechaVencimiento = (DateTime)reader["fecha_vencimiento"];
+                    mpm.EstadoTarea = (string)reader["estado_tarea"];
+                    mpm.Gap = (int)reader["gap"];
+                    mpm.FechaInicio = (DateTime)reader["fecha_inicio"];
+                    mpm.Ejecucion = (int)reader["ejecucion"];
+                    mpm.SituacionTarea = (string)reader["situacion_tarea"];
+                    mpm.IdProducto = (int)reader["idproducto"];
+                    mpm.NombreProducto = (string)reader["nombre"];
+
+                    lista.Add(mpm);
+                }
+                conn.CerrarConexion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return lista;
         }
         #endregion
 

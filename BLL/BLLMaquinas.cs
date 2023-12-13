@@ -123,6 +123,12 @@ namespace BLL
             coreM.RegistrarConsumoMaquina(idmpm, consumo);
         }
 
+        public List<MpmDetalle> TareasVencidasMaquinas(int ejecucion, string situacion)
+        {
+            List<MpmDetalle> lista = new List<MpmDetalle>();
+            lista = coreM.TareasVencidasMaquinas(ejecucion,situacion);
+            return lista;
+        }
         #endregion
 
     }

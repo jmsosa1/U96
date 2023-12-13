@@ -115,8 +115,8 @@
 
                 <DataGrid x:Name="dgPronosticos" AutoGenerateColumns="False" CanUserAddRows="False" Margin="5,10"
                           CanUserDeleteRows="False"  IsReadOnly="True" 
-                        RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" GridLinesVisibility="All"
-                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+                         SelectionMode="Single" GridLinesVisibility="All"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Auto"
                       materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2">
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">

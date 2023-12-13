@@ -27,5 +27,7 @@ namespace ENTIDADES
         // para ejecutar las alarmas , siempre se considera que el valor del gap sea menor o igual a la alarma o mayor que cero para proximos a vencer
         // si el gap es mayor a la alarma pasa a representar los vencidos
         public string SituacionTarea { get; set; } // indica el estado, vencido, normal , por vencer
+        public int IdProducto { get; set; }
+        public string NombreProducto { get; set; }
     }
 }

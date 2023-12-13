@@ -21,5 +21,6 @@ namespace ENTIDADES
         public int CantAcuUnidades { get; set; } // cantidad de unidades acumuladas , ejemplo: 20 dias, 200hs
         public DateTime? FechaCierre { get; set; } // fecha de finalizacion ya sea por cumplimiento total o baja de la planilla
        
+       
     }
 }

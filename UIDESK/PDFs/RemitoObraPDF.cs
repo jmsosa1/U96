@@ -129,16 +129,16 @@ namespace UIDESK.PDFs
                 //step 2 
                 table.Header(header =>
                 {
-                    header.Cell().Element(CellStyle).Text("#");
-                    header.Cell().Element(CellStyle).Text("Product");
-                    header.Cell().Element(CellStyle).AlignRight().Text("Unit price");
-                    header.Cell().Element(CellStyle).AlignRight().Text("Quantity");
-                    header.Cell().Element(CellStyle).AlignRight().Text("Total");
+                    //header.Cell().Element(CellStyle).Text("#");
+                    //header.Cell().Element(CellStyle).Text("Product");
+                    //header.Cell().Element(CellStyle).AlignRight().Text("Unit price");
+                    //header.Cell().Element(CellStyle).AlignRight().Text("Quantity");
+                    //header.Cell().Element(CellStyle).AlignRight().Text("Total");
 
-                    static IContainer CellStyle(IContainer container)
-                    {
-                        return container.DefaultTextStyle(x => x.SemiBold()).PaddingVertical(5).BorderBottom(1).BorderColor(Colors.Black);
-                    }
+                    //static IContainer CellStyle(IContainer container)
+                    //{
+                    //    return container.DefaultTextStyle(x => x.SemiBold()).PaddingVertical(5).BorderBottom(1).BorderColor(Colors.Black);
+                    //}
                 });
 
                 //step 3
@@ -146,16 +146,16 @@ namespace UIDESK.PDFs
                 // step 3
                 foreach (var item in _docudetalle)
                 {
-                    table.Cell().Element(CellStyle).Text(_docudetalle.IndexOf(item) + 1);
-                    table.Cell().Element(CellStyle).Text(item.Descripcion);
-                    table.Cell().Element(CellStyle).AlignRight().Text($"{item.PrecioItem}$");
-                    table.Cell().Element(CellStyle).AlignRight().Text(item.CantidadItem);
-                    table.Cell().Element(CellStyle).AlignRight().Text($"{item.PrecioItem * item.CantidadItem}$");
+                    //table.Cell().Element(CellStyle).Text(_docudetalle.IndexOf(item) + 1);
+                    //table.Cell().Element(CellStyle).Text(item.Descripcion);
+                    //table.Cell().Element(CellStyle).AlignRight().Text($"{item.PrecioItem}$");
+                    //table.Cell().Element(CellStyle).AlignRight().Text(item.CantidadItem);
+                    //table.Cell().Element(CellStyle).AlignRight().Text($"{item.PrecioItem * item.CantidadItem}$");
 
-                    static IContainer CellStyle(IContainer container)
-                    {
-                        return container.BorderBottom(1).BorderColor(Colors.Grey.Lighten2).PaddingVertical(5);
-                    }
+                    //static IContainer CellStyle(IContainer container)
+                    //{
+                    //    return container.BorderBottom(1).BorderColor(Colors.Grey.Lighten2).PaddingVertical(5);
+                    //}
                 }
             });
             
