@@ -12,6 +12,7 @@ using UIDESK.uc.gestion.Notas;
 using UIDESK.uc.Productos;
 using UIDESK.uc.Laboratorio;
 using MaterialDesignThemes.Wpf;
+using UIDESK.uc.Mantenimientos;
 
 namespace UIDESK
 {
@@ -476,7 +477,9 @@ namespace UIDESK
 
         private void btnMaqVencidos_Click(object sender, RoutedEventArgs e)
         {
-
+            List<MpmDetalle> lista = coreM.TareasVencidasMaquinas(2, "vencido");
+            ListaMaquinasConVencimiento listaMaquinas = new ListaMaquinasConVencimiento(lista);
+            listaMaquinas.Show();
         }
     }
 }

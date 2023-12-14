@@ -44,7 +44,8 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+               
+
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Row="0">
                 <materialDesign:Card UniformCornerRadius="5" Margin="10"
@@ -99,12 +100,12 @@
                     </Grid>
                 </materialDesign:Card>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="5">
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
                 <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="3">Resultado Pronostico</TextBlock>
                 <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="3">- Periodo :</TextBlock>
                 <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" Name="txbCantAnios" VerticalAlignment="Center"></TextBlock>
             </StackPanel>
-            <StackPanel Grid.Row="3" Margin="5">
+            <StackPanel Grid.Row="2" Margin="5">
                 <StackPanel.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black" Offset="1"/>
@@ -115,8 +116,8 @@
 
                 <DataGrid x:Name="dgPronosticos" AutoGenerateColumns="False" CanUserAddRows="False" Margin="5,10"
                           CanUserDeleteRows="False"  IsReadOnly="True" 
-                         SelectionMode="Single" GridLinesVisibility="All"
-                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Auto"
+                         SelectionMode="Single" GridLinesVisibility="All" Height="450"
+                 materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
                       materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2">
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">
@@ -140,6 +141,13 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
+            <!--<StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5">
+                <TextBlock>Cantidad de reemplazos:</TextBlock>
+                <TextBlock Text="Potenciales:" Name="txbPotenciales" Foreground="Red" 
+                            Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="2"/>
+                <TextBlock Text="Costo Remplazos" Name="txbCostoReemplazos" Foreground="Green"
+                            Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="2"/>
+            </StackPanel>-->
         </Grid>
         <Grid x:Name="grDatos1" Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
@@ -156,15 +164,12 @@
                     <Button x:Name="btnCalcular" Margin="5,10" Click="btnCalcular_Click">Calcular</Button>
                 </StackPanel>
             </Border>
-            <Border BorderBrush="DarkGreen"  BorderThickness="1" CornerRadius="3" Grid.Row="1" Margin="3">
+            <!--<Border BorderBrush="DarkGreen"  BorderThickness="1" CornerRadius="3" Grid.Row="1" Margin="3">
                 <StackPanel>
                     <TextBlock Text="Zona Datos reemplazos" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="2"/>
-                    <TextBlock Text="Potenciales:" Name="txbPotenciales" Foreground="Red" 
-                           Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="2"/>
-                    <TextBlock Text="Costo Remplazos" Name="txbCostoReemplazos" Foreground="Green"
-                           Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="2"/>
+                   
                 </StackPanel>
-            </Border>
+            </Border>-->
 
             <StackPanel Grid.Row="2">
                 <materialDesign:Card UniformCornerRadius="5" Margin="10" Background="#03a9f4"

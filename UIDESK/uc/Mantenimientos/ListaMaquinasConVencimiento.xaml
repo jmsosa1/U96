@@ -1,0 +1,55 @@
+﻿<Window x:Class="UIDESK.uc.Mantenimientos.ListaMaquinasConVencimiento"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions" 
+        xmlns:local="clr-namespace:UIDESK.uc.Mantenimientos"
+        mc:Ignorable="d"
+        Title="ListaMaquinasConVencimiento" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ToolBar Grid.Row="0" SnapsToDevicePixels="False">
+            <TextBlock x:Name="txbTitulo" Width="320" FontSize="12" Margin="10,0,0,0" VerticalAlignment="Center">Lista de Maquinas con tareas Vencidas</TextBlock>
+
+            <Separator></Separator>
+            <Button x:Name="btnExportExcel" Padding="2" Margin="5,0,0,0" Click="btnExportExcel_Click">
+                <materialDesign:PackIcon Kind="MicrosoftExcel" Foreground="Green"/>
+            </Button>
+        </ToolBar>
+        <DataGrid x:Name="dgMaqTareasVencidas" Margin="5" AutoGenerateColumns="False" CanUserAddRows="False"
+           CanUserDeleteRows="False"  Grid.Row="1" SelectionChanged="dgMaqTareasVencidas_SelectionChanged"
+           RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" IsReadOnly="True" 
+          materialDesign:DataGridAssist.CellPadding="4,2,2,2" VerticalScrollBarVisibility="Visible"
+               materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Fecha Vencimiento" Binding="{Binding Path=FechaVencimiento,StringFormat=d,ConverterCulture=es-Ar}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tarea" Binding="{Binding Path=DescriTarea}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Situacion" Binding="{Binding Path=SituacionTarea}"></DataGridTextColumn>
+                <DataGridTextColumn Header="GAP" Binding="{Binding Path=Gap}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Maquina" Binding="{Binding Path=NombreProducto}"></DataGridTextColumn>
+               
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <StatusBar Grid.Row="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock>Cantidad :</TextBlock>
+                    <TextBlock x:Name="txbCantidad" Width="100" Margin="10,0,0,0"></TextBlock>
+                </StackPanel>
+            </Grid>
+        </StatusBar>
+    </Grid>
+</Window>

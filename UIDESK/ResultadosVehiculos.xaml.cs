@@ -5,6 +5,7 @@ using System.Windows.Media;
 using System.Windows.Controls;
 using UIDESK.uc.resultados;
 using UIDESK.uc.Vehiculos;
+using MaterialDesignThemes.Wpf;
 
 namespace UIDESK
 {
@@ -139,6 +140,23 @@ namespace UIDESK
                 //    break;
                 default:
                     break;
+            }
+        }
+
+        private void btnMenu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnNavMenu_Click(object sender, RoutedEventArgs e)
+        {
+            if (dwrGeneral.IsLeftDrawerOpen)
+            {
+               dwrGeneral.IsLeftDrawerOpen = false;
+            }
+            else
+            {
+                dwrGeneral.IsLeftDrawerOpen= true;
             }
         }
     }
