@@ -68,8 +68,8 @@ namespace UIDESK.uc.resultados
 
             //creamos la serie que va a representar el grafico chartpie con los datos que ya calculamos
             lvcTorta.Series = new SeriesCollection{
-                new PieSeries { Title = "CostoHoras", Values = new ChartValues<decimal> { punto1 } ,DataLabels=true, LabelPoint=PointLabel},
-                new PieSeries { Title="CostoKM", Values = new ChartValues<decimal> { punto2} , DataLabels=true, LabelPoint=PointLabel},
+                new PieSeries { Title = "CostoHoras", Values = new ChartValues<decimal> { punto1 } ,DataLabels=true, LabelPoint=PointLabel,FontSize=14},
+                new PieSeries { Title="CostoKM", Values = new ChartValues<decimal> { punto2} , DataLabels=true, LabelPoint=PointLabel,FontSize = 14 },
 
 
                 };
