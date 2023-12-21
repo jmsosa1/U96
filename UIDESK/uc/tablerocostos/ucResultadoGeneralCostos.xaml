@@ -49,14 +49,14 @@
                
 
                 
-                    <TextBlock  Margin="20,0,0,0" Foreground="White">Total Costos Combustibles:</TextBlock>
-                <TextBlock Margin="20,0,0,0" Text="{Binding Path=CostoTotalCombustibles, StringFormat=C,ConverterCulture=es-Ar}" Foreground="#FF3CCCEC" FontSize="12" ></TextBlock>
+                    <TextBlock  Margin="20,0,0,0" Foreground="White" Style="{StaticResource MaterialDesignBody2TextBlock}">Total Costos Combustibles:</TextBlock>
+                <TextBlock Margin="20,0,0,0" Text="{Binding Path=CostoTotalCombustibles, StringFormat=C,ConverterCulture=es-Ar}" Foreground="#FF3CCCEC" Style="{StaticResource MaterialDesignBody2TextBlock}" ></TextBlock>
               
-                    <TextBlock  Margin="20,0,0,0" Foreground="White">Total Costos Inversiones:</TextBlock>
-                    <TextBlock Margin="20,0,0,0" Text="{Binding Path=CostoTotalInversiones,StringFormat=C,ConverterCulture=es-Ar}" Foreground="Green" FontSize="12"></TextBlock>
+                    <TextBlock  Margin="20,0,0,0" Foreground="White" Style="{StaticResource MaterialDesignBody2TextBlock}">Total Costos Inversiones:</TextBlock>
+                    <TextBlock Margin="20,0,0,0" Text="{Binding Path=CostoTotalInversiones,StringFormat=C,ConverterCulture=es-Ar}" Foreground="Green" Style="{StaticResource MaterialDesignBody2TextBlock}"></TextBlock>
                 
-                    <TextBlock Margin="20,0,0,0" Foreground="White">Total Costos Mantenimientos</TextBlock>
-                    <TextBlock Margin="20,0,0,0" Text="{Binding Path=CostoTotalMantenimientos,StringFormat=C,ConverterCulture=es-Ar}" Foreground="Red" FontSize="12"></TextBlock>
+                    <TextBlock Margin="20,0,0,0" Foreground="White" Style="{StaticResource MaterialDesignBody2TextBlock}">Total Costos Mantenimientos</TextBlock>
+                    <TextBlock Margin="20,0,0,0" Text="{Binding Path=CostoTotalMantenimientos,StringFormat=C,ConverterCulture=es-Ar}" Foreground="Red" Style="{StaticResource MaterialDesignBody2TextBlock}"></TextBlock>
                 
 
             </StackPanel>

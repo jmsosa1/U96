@@ -73,18 +73,18 @@
         </Grid>
 
 
-        <lvc:CartesianChart Grid.Row="3" Name="lvcCartesiano" Grid.ColumnSpan="2">
+        <lvc:CartesianChart Grid.Row="3" Name="lvcCartesiano" Grid.ColumnSpan="2" Foreground="White">
             <lvc:CartesianChart.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>
-                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FF773C3C" Offset="0"/>
                 </LinearGradientBrush>
             </lvc:CartesianChart.Background>
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="Costos Mantenimientos" LabelFormatter="{Binding Formatter}"></lvc:Axis>
+                <lvc:Axis Title="Costos Mantenimientos" LabelFormatter="{Binding Formatter}" Foreground="Cyan"></lvc:Axis>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Categorias" Labels="{Binding Etiquetas}"></lvc:Axis>
+                <lvc:Axis Title="Categorias" Labels="{Binding Etiquetas}"  Foreground="Cyan"></lvc:Axis>
             </lvc:CartesianChart.AxisY>
 
         </lvc:CartesianChart>

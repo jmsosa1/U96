@@ -8,6 +8,8 @@ using System.Drawing;
 using System.Windows.Media.TextFormatting;
 using System.Windows;
 using System.Windows.Controls;
+using MaterialDesignThemes.Wpf;
+using System.Windows.Media;
 
 namespace UIDESK.uc.resultados
 {
@@ -58,9 +60,10 @@ namespace UIDESK.uc.resultados
             Etiquetas = tags_lineas.ToArray();
             lvcCartesiano.Series = new SeriesCollection
             {
-                new RowSeries{ Title="Consumos por categoria de vehiculo",Values=values_lineas,DataLabels=true}
+                new RowSeries{ Title="Consumos por categoria de vehiculo",Values=values_lineas,DataLabels=true,Foreground= System.Windows.Media.Brushes.Orange}
             };
             lvcCartesiano.DataContext = this;
+            
             
 
         }

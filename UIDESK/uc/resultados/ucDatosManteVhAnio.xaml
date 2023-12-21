@@ -162,16 +162,22 @@
                 <!--zona detalle de mantenimientos para un-->
 
                 <!-- grafico de variacion de costos mensuales-->
-                <lvc:CartesianChart  Name="lvcCartesiano"  Grid.Row="1" Grid.ColumnSpan="3" Margin="10">
+                <lvc:CartesianChart  Name="lvcCartesiano"  Grid.Row="1" Grid.ColumnSpan="3" Margin="10" Foreground="White">
+                    <lvc:CartesianChart.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="#FF753A3A" Offset="1"/>
+                        </LinearGradientBrush>
+                    </lvc:CartesianChart.Background>
                     <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Labels="{Binding Etiquetas}" Position="LeftBottom">
+                        <lvc:Axis Labels="{Binding Etiquetas}" Position="LeftBottom" Foreground="Cyan">
                             <lvc:Axis.Separator >
                                 <lvc:Separator IsEnabled="True" Step="1"></lvc:Separator>
                             </lvc:Axis.Separator>
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis Title="Costos" LabelFormatter="{Binding YFormatter}" ></lvc:Axis>
+                        <lvc:Axis Title="Costos" LabelFormatter="{Binding YFormatter}" Foreground="Cyan"></lvc:Axis>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
             </Grid>

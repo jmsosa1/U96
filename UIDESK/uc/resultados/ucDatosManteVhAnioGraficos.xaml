@@ -17,23 +17,23 @@
             <TextBlock Text="Comparativa de costos de mantenimiento entre los ultimos 10 años" 
                        Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="10,0" />
         </StackPanel>
-        <lvc:CartesianChart Grid.Row="1" Series="{Binding series}" LegendLocation="Left" >
+        <lvc:CartesianChart Grid.Row="1" Series="{Binding series}" LegendLocation="Left" Foreground="White" >
             <lvc:CartesianChart.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>
-                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FF793E3E" Offset="0"/>
                 </LinearGradientBrush>
             </lvc:CartesianChart.Background>
             <lvc:CartesianChart.AxisX>
 
-                <lvc:Axis Title="Años" Labels="{Binding EtiquetasX}" >
+                <lvc:Axis Title="Años" Labels="{Binding EtiquetasX}" Foreground="Cyan">
                     <lvc:Axis.Separator >
                         <lvc:Separator IsEnabled="False" Step="1"></lvc:Separator>
                     </lvc:Axis.Separator>
                 </lvc:Axis>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Costo consumos ($)" LabelFormatter="{Binding Formatter}"/>
+                <lvc:Axis Title="Costo consumos ($)" LabelFormatter="{Binding Formatter}" Foreground="Cyan"/>
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
     </Grid>

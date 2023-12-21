@@ -137,23 +137,23 @@
 
             </StackPanel>
         </Border>
-        <Border Grid.Row="2" Grid.Column="1" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="5">
-            <lvc:CartesianChart  Name="lvcCartesiano" >
+        <Border Grid.Row="2" Grid.Column="1" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="5" >
+            <lvc:CartesianChart  Name="lvcCartesiano" Foreground="White" >
                 <lvc:CartesianChart.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black" Offset="1"/>
-                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="#FF6F3939" Offset="0"/>
                     </LinearGradientBrush>
                 </lvc:CartesianChart.Background>
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Labels="{Binding Etiquetas}" Position="LeftBottom">
+                    <lvc:Axis Labels="{Binding Etiquetas}" Position="LeftBottom" Foreground="Cyan">
                         <lvc:Axis.Separator >
                             <lvc:Separator Step="1"></lvc:Separator>
                         </lvc:Axis.Separator>
                     </lvc:Axis>
                 </lvc:CartesianChart.AxisX>
                 <lvc:CartesianChart.AxisY>
-                    <lvc:Axis  LabelFormatter="{Binding YFormatter}" Position="RightTop"></lvc:Axis>
+                    <lvc:Axis  LabelFormatter="{Binding YFormatter}" Position="RightTop" Foreground="Cyan"></lvc:Axis>
                 </lvc:CartesianChart.AxisY>
             </lvc:CartesianChart>
         </Border>

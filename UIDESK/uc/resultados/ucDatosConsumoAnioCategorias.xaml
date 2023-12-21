@@ -27,19 +27,19 @@
 
         </ToolBar>
 
-        <lvc:CartesianChart Grid.Row="1" Name="lvcCartesiano">
+        <lvc:CartesianChart Grid.Row="1" Name="lvcCartesiano"  FontWeight="Bold">
             <lvc:CartesianChart.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>
-                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FF582C2C" Offset="0"/>
                 </LinearGradientBrush>
             </lvc:CartesianChart.Background>
 
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="Costos Consumo" LabelFormatter="{Binding Formatter}" ></lvc:Axis>
+                <lvc:Axis Title="Costos Consumo" LabelFormatter="{Binding Formatter}" Foreground="Cyan" ></lvc:Axis>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Categorias" Labels="{Binding Etiquetas}" ></lvc:Axis>
+                <lvc:Axis Title="Categorias" Labels="{Binding Etiquetas}" Foreground="Cyan"></lvc:Axis>
             </lvc:CartesianChart.AxisY>
 
         </lvc:CartesianChart>

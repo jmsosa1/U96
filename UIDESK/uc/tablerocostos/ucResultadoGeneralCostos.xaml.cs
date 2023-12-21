@@ -116,9 +116,9 @@ namespace UIDESK.uc.tablerocostos
                 new PieSeries { Title = "Combustibles", 
                                 Values = new ChartValues<decimal> { punto1 } ,
                                 DataLabels=true, 
-                                LabelPoint=PointLabel,},
-                new PieSeries { Title="Mantenimientos", Values = new ChartValues<decimal> { punto3} , DataLabels=true, LabelPoint=PointLabel},
-                new PieSeries { Title = "Inversiones", Values = new ChartValues<decimal> { punto2 } ,DataLabels=true, LabelPoint=PointLabel, Fill=Brushes.DarkGreen },
+                                LabelPoint=PointLabel, FontSize=14},
+                new PieSeries { Title="Mantenimientos", Values = new ChartValues<decimal> { punto3} , DataLabels=true, LabelPoint=PointLabel, FontSize=14},
+                new PieSeries { Title = "Inversiones", Values = new ChartValues<decimal> { punto2 } ,DataLabels=true, LabelPoint=PointLabel, Fill=Brushes.DarkGreen,FontSize=14 },
               
 
             };
