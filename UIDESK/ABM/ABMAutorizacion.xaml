@@ -15,7 +15,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         WindowStartupLocation="CenterScreen" BorderBackgroundBrush="DarkViolet" 
         mc:Ignorable="d" ResizeMode="NoResize"  MouseLeftButtonDown="Window_MouseLeftButtonDown"
-        Title="ABM Autorizacion Vehiculo" Height="500" Width="500">
+        Title="ABM Autorizacion Vehiculo" Height="500" Width="600">
 
     <!--Closing="MaterialWindow_Closing"-->
 
@@ -86,7 +86,7 @@
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
                         <TextBox Name="txtEmpleado" KeyDown="txtEmpleado_KeyDown" GotFocus="txtEmpleado_GotFocus" CharacterCasing="Upper"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nombre Empleado"    
-                            Width="250"/>
+                            Width="250" IsEnabled="False"/>
                     
                         <Button Name="btnAbriDrawer"  Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                 Foreground="Black" Background="Transparent" Width="30" Height="30" VerticalAlignment="Center"

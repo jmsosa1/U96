@@ -191,6 +191,9 @@ namespace UIDESK.uc.tablerocostos
             ws.Range["A5"].Value = "2020";
             ws.Range["A6"].Value = "2021";
             ws.Range["A7"].Value = "2022";
+            ws.Range["A7"].Value = "2023";
+            ws.Range["A7"].Value = "2024";
+
             ws.Range["B3"].Value = "Combustibles";
             ws.Range["C3"].Value = "Mantenimientos";
             ws.Range["D3"].Value = "Inversiones";
@@ -226,7 +229,7 @@ namespace UIDESK.uc.tablerocostos
             _chartRange = ws.Range["A3","D7"]; // rango de celdas que se usan para el grafico
 
             _chart.HasTitle = true;
-            _chart.ChartTitle.Caption = "Evolucion Costos InterAnual 2019-2021";
+            _chart.ChartTitle.Caption = "Evolucion Costos InterAnual 2019-2024";
 
 
             _chart.ApplyDataLabels(XlDataLabelsType.xlDataLabelsShowValue);

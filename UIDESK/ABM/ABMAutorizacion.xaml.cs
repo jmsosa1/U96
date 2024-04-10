@@ -27,27 +27,27 @@ namespace UIDESK.ABM
 
         private void txtEmpleado_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
-            {
-                Empleado empleadoBuscar = new Empleado();
-                //buscamo el empleado en la tabla empleados
-                // y rescatamos solo el id y el nombre
-                string _nombre = txtEmpleado.Text; //nombre ingresado
-                empleadoBuscar = bLL.BuscarPorNombre(_nombre);
-                if (empleadoBuscar.IdEmpleado == 0)
-                {
-                    MessageBox.Show("El empleado no existe", "Aviso", MessageBoxButton.OK);
-                    return;
-                }
-                else
-                {
-                    MessageBox.Show("Empleado encontrado", "Aviso", MessageBoxButton.OK);
-                    listaEmpleados.Add(empleadoBuscar);
-                    lstEmpleados.ItemsSource = listaEmpleados;
-                }
+            //if (e.Key == Key.Enter)
+            //{
+            //    Empleado empleadoBuscar = new Empleado();
+            //    //buscamo el empleado en la tabla empleados
+            //    // y rescatamos solo el id y el nombre
+            //    string _nombre = txtEmpleado.Text; //nombre ingresado
+            //    empleadoBuscar = bLL.BuscarPorNombre(_nombre);
+            //    if (empleadoBuscar.IdEmpleado == 0)
+            //    {
+            //        MessageBox.Show("El empleado no existe", "Aviso", MessageBoxButton.OK);
+            //        return;
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Empleado encontrado", "Aviso", MessageBoxButton.OK);
+            //        listaEmpleados.Add(empleadoBuscar);
+            //        lstEmpleados.ItemsSource = listaEmpleados;
+            //    }
 
 
-            }
+            //}
         }
 
 
@@ -113,6 +113,8 @@ namespace UIDESK.ABM
             Empleado empleado = new Empleado();
             empleado = lstResultadoBusqueda.SelectedItem as Empleado;
             txtEmpleado.Text = empleado.Nombre.ToString();
+            listaEmpleados.Add(empleado);
+            lstEmpleados.ItemsSource = listaEmpleados;
             btnCerrarDraw.Command.Execute(Dock.Right);
         }
 

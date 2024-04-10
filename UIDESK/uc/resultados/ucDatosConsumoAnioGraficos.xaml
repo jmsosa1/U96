@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UIDESK.uc.resultados"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="800">
+             d:DesignHeight="650" d:DesignWidth="900">
     <!--ESTE CONTROL CONTIENE LA INFORMACION DE LOS CONSUMOS EN FORMA DE GRAFICOS VARIOS-->
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -29,7 +29,7 @@
 
                 <lvc:Axis Title="Años" Labels="{Binding EtiquetasX}" Foreground="Cyan">
                     <lvc:Axis.Separator >
-                        <lvc:Separator IsEnabled="False" Step="1" ></lvc:Separator>
+                        <lvc:Separator IsEnabled="False"  ></lvc:Separator>
                     </lvc:Axis.Separator>
                 </lvc:Axis>
             </lvc:CartesianChart.AxisX>

@@ -17,7 +17,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
          WindowStartupLocation="CenterScreen" ResizeMode="NoResize" BorderBackgroundBrush="DarkViolet" MouseLeftButtonDown="Window_MouseLeftButtonDown"
         mc:Ignorable="d"  
-        Title="ABMMantenimiento" Height="700" Width="800">
+        Title="ABM Mantenimiento Vehiculo" Height="700" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -25,17 +25,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <!--<Grid Grid.Row="0" Margin="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="30"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock x:Name="txbOperacion" Grid.Column="0"   FontFamily="Helvetica" FontWeight="Light" FontStyle="Normal" FontSize="20" Foreground="BlueViolet">ABM Mantenimiento</TextBlock>
-            <Button Name="btnCancelar"  Grid.Column="1" Click="btnCerrar_Click"  Background="OrangeRed" Foreground="White"  
-                    Style="{StaticResource WindowCloseButtonStyle}">
-                <materialDesign:PackIcon Kind="Close"/>
-            </Button>
-        </Grid>-->
+      
        
         
         <materialDesign:DrawerHost Grid.Row="1" Name="dwrBusqueda">
@@ -224,10 +214,10 @@
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          Margin="5,0,0,0"   VerticalAlignment="Center" Width="130" TabIndex="7"/>
 
-                        <TextBox Name="txtImporte" Text="{Binding Path=Importe,StringFormat=C,ConverterCulture=es-AR}"  
+                        <TextBox Name="txtImporte" Text="{Binding Path=Importe,StringFormat=C2,ConverterCulture=es-AR}"  
                          materialDesign:HintAssist.Hint="Importe" GotFocus="txtImporte_GotFocus"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         HorizontalAlignment="Left"  Margin="20,0,0,0"   VerticalAlignment="Center" Width="120" TabIndex="8"/>
+                         HorizontalAlignment="Left"  Margin="20,0,0,0"   VerticalAlignment="Center" Width="150" TabIndex="8"/>
 
                         <TextBox Name="txtKm" Text="{Binding Path=KmMante}" 
                          materialDesign:HintAssist.Hint="Kilometros" GotFocus="txtKm_GotFocus"

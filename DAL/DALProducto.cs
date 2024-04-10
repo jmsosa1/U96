@@ -173,6 +173,7 @@ namespace DAL
                 producto.CodInventario = (string)reader["cod_inventario"];
                 producto.Accesorios = (string)reader["accesorios"];
                 producto.EstadoItem = (int)reader["idestado"];
+               
                 producto.AltaF = (DateTime)reader["altaf"];
                 if (reader["bajaf"] != DBNull.Value)
                 {

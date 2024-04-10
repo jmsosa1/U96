@@ -271,27 +271,48 @@ namespace UIDESK.uc.Productos
             bool validar;
             Producto p = dgProductos.SelectedItem as Producto;
 
-            //primero verificamos si el producto ya esta dado de baja
-
-            if (p.EstadoItem == 5)
-            {
-                MessageBox.Show("el producto no se puede dar de baja", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
+        
             if (p != null)
             {
 
-                MessageBoxResult boxResult = MessageBox.Show("Dar de baja el producto?", "Aviso", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (boxResult == MessageBoxResult.Yes)
+                //primero verificamos si el producto ya esta dado de baja
+
+                if (p.EstadoItem == 5)
                 {
-                    // dar de baja el producto
-                    //para dar de baja un producto , primero debemos verifica que no tenga cantidades en stock asociadas
-                    validar = coreproducto.ValidarExistenciaDeStockUnProducto(p.IdProducto);
-                    if (validar)
+                    MessageBox.Show("el producto no se puede dar de baja", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                else
+                {
+
+
+                    MessageBoxResult boxResult = MessageBox.Show("Dar de baja el producto?", "Aviso", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (boxResult == MessageBoxResult.Yes)
                     {
-                        //si el producto tiene stock, avisamos que se dara la baja del stock a esas unidades
-                        MessageBoxResult confirmar = MessageBox.Show("El producto tiene stock asociado. Se dara consumo al mismo.Continuar?", "Aviso", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                        if (confirmar == MessageBoxResult.Yes)
+                        // dar de baja el producto
+                        //para dar de baja un producto , primero debemos verifica que no tenga cantidades en stock asociadas
+                        validar = coreproducto.ValidarExistenciaDeStockUnProducto(p.IdProducto);
+                        if (validar)
+                        {
+                            //si el producto tiene stock, avisamos que se dara la baja del stock a esas unidades
+                            MessageBoxResult confirmar = MessageBox.Show("El producto tiene stock asociado. Se dara consumo al mismo.Continuar?", "Aviso", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                            if (confirmar == MessageBoxResult.Yes)
+                            {
+                                BajaProducto bajaProducto = new BajaProducto(p.IdProducto);
+                                if (bajaProducto.ShowDialog() == true)
+                                {
+                                    MessageBox.Show("Se dio de baja el producto", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    //refrescamos la lista
+                                    lista_productos = coreproducto.ListarTodos();
+                                    dgProductos.ItemsSource = lista_productos;
+                                    dgProductos.DataContext = lista_productos;
+                                }
+                            }
+
+
+
+                        }
+                        else
                         {
                             BajaProducto bajaProducto = new BajaProducto(p.IdProducto);
                             if (bajaProducto.ShowDialog() == true)
@@ -302,23 +323,8 @@ namespace UIDESK.uc.Productos
                                 dgProductos.ItemsSource = lista_productos;
                                 dgProductos.DataContext = lista_productos;
                             }
-                        }
-
-
-
+                        };
                     }
-                    else
-                    {
-                        BajaProducto bajaProducto = new BajaProducto(p.IdProducto);
-                        if (bajaProducto.ShowDialog() == true)
-                        {
-                            MessageBox.Show("Se dio de baja el producto", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
-                            //refrescamos la lista
-                            lista_productos = coreproducto.ListarTodos();
-                            dgProductos.ItemsSource = lista_productos;
-                            dgProductos.DataContext = lista_productos;
-                        }
-                    };
                 }
             }
 

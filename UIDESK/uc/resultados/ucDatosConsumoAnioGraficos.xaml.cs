@@ -31,7 +31,7 @@ namespace UIDESK.uc.resultados
                 values_lineas.Add(item.CostoAnio);
                 tags_lineas.Add(item.Anio.ToString());
             }
-            EtiquetasX = new[] { "2018", "2019", "2020", "2021", "2022" };
+            EtiquetasX = new[] { "2018", "2019", "2020", "2021", "2022" ,"2023","2024"};
 
             series = new SeriesCollection
             {

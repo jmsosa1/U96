@@ -38,7 +38,7 @@ namespace UIDESK.uc.resultados
                     tags_lineas.Add(item.Anio.ToString());
                 }
             }
-            EtiquetasX = new[] { "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021","2022" };
+            EtiquetasX = new[] { "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021","2022","2023","2024" };
 
             series = new SeriesCollection
             {
