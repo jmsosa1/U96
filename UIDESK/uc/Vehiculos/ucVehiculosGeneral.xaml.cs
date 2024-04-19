@@ -332,7 +332,7 @@ namespace UIDESK.uc.Vehiculos
                 registrarConsumo._tipoConsumo = "KM";
                 if (registrarConsumo.ShowDialog() == true)
                 {
-                    MessageBox.Show("Se registro con exito el consumo", "Aviso", MessageBoxButton.OK);
+                   // MessageBox.Show("Se registro con exito el consumo", "Aviso", MessageBoxButton.OK);
                     colvehiculos = bllVehiculos.VehiculosListarActivos();
                     dgVhGeneral.ItemsSource = colvehiculos;
                     // actualizamos el estado de las tareas del vehiculo

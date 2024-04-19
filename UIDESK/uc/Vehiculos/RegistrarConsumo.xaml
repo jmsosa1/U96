@@ -7,22 +7,11 @@
         xmlns:validaciones="clr-namespace:UIDESK.validacion"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
          xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
-         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        TextElement.FontWeight="Regular"
-        TextElement.FontSize="13"
-        TextOptions.TextFormattingMode="Ideal"
-        TextOptions.TextRenderingMode="Auto"
-        Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}"
-        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="MaterialWindow_Closing"
+      
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" 
         mc:Ignorable="d" MouseLeftButtonDown="Window_MouseLeftButtonDown"
-        Title="Registrar Consumo" Height="300" Width="500">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-           
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        Title="Registrar Consumo" Height="300" Width="400">
+  
        
        
 
@@ -66,5 +55,4 @@
         </Grid>
         
 
-    </Grid>
 </mde:MaterialWindow>

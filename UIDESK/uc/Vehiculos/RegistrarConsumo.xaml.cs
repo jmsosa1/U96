@@ -118,6 +118,7 @@ namespace UIDESK.uc.Vehiculos
                     bLL.PlanInspeccionCalcularGAP(item.Idvh, consumoReg.KmRecorrido, item.Idplan, DateTime.Today);
 
                 }
+                
             }
             else
             {
@@ -140,7 +141,7 @@ namespace UIDESK.uc.Vehiculos
                     bLL.PlanInspeccionCalcularGAP(item.Idvh, consumoReg.HorasTrabajo, item.Idplan, DateTime.Today);
 
                 }
-
+               
             }
             DialogResult = true;
             this.Close();

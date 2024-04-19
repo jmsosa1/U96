@@ -53,11 +53,11 @@ namespace DAL
             //conexion.ConnectionString = @"Data Source=JMSOSA\SQLEXPRESS; Initial Catalog=SAHMv6;Trusted_Connection=True";
             
             // cadena de conexion para ambito de desarrolllo
-           conexion.ConnectionString = @"Data Source=172.16.13.60,1433\SQLEXPRESS; Initial Catalog=SAHMv6-P;User id=jmsosa;Password=fear2007";
+           //conexion.ConnectionString = @"Data Source=172.16.13.60,1433\SQLEXPRESS; Initial Catalog=SAHMv6-P;User id=jmsosa;Password=fear2007";
 
 
             // cadena de conexion para ambito de produccion
-            //conexion.ConnectionString = @"Data Source=172.16.13.60,1433\SQLEXPRESS; Initial Catalog=SAHMv6;User id=jmsosa;Password=fear2007";
+            conexion.ConnectionString = @"Data Source=172.16.13.60,1433\SQLEXPRESS; Initial Catalog=SAHMv6;User id=jmsosa;Password=fear2007";
 
             // conexion para pruebas desde otras maquinas
             //conexion.ConnectionString = @"Data Source=172.16.13.132,1433\SQLEXPRESS; Initial Catalog=SAHMv6;User id=pruebasahmv6;Password=fear2007";
