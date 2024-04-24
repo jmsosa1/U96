@@ -16,7 +16,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" BorderBackgroundBrush="OrangeRed" 
         ResizeMode="NoResize"  MouseLeftButtonDown="Window_MouseLeftButtonDown"
-        Title="ABMEmpleado" Height="350" Width="600">
+        Title="ABMEmpleado" Height="350" Width="550">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="651*"/>

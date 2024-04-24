@@ -18,23 +18,19 @@
         WindowStartupLocation="CenterScreen" BorderBackgroundBrush="DarkViolet" 
         mc:Ignorable="d" ResizeMode="NoResize"  MouseLeftButtonDown="Window_MouseLeftButtonDown"
         Title="ABM Categoria Vehiculo" Height="300" Width="400">
-    <!--Closing="MaterialWindow_Closing"-->
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+ 
        
         
        
-        <Grid Grid.Row="1" Name="grdPpal" Margin="5">
+        <Grid  Name="grdPpal" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-               
-            </Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
 
             <ComboBox Name="cmbTipoVh" materialDesign:HintAssist.Hint="Elejir Tipo de Vehiculo"
                       Style="{StaticResource MaterialDesignFloatingHintComboBox}" Grid.Row="0"
@@ -69,13 +65,19 @@
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Costo Diario Uso"
                 HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="5,10"/>
             </StackPanel>
-            
+            <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5,10">
+                <TextBox x:Name="txtUnidadCate" Width="100" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Unidad Categoria" Text="{Binding Path=UnidadCate}"/>
+                <TextBox x:Name="txtCostoUnidad" Margin="30,0" Width="150" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         materialDesign:HintAssist.Hint="Costo Actual Unidad" Text="{Binding Path=CostoUnidadCategoria,StringFormat=C, ConverterCulture=es-AR}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="4" Margin="5,20" >
+                <Button Name="btnAccion" Click="btnAccion_Click" TabIndex="3" Style="{StaticResource MaterialDesignPaperButton}" Foreground="Black"
+                 Content="Accion"   />
+            </StackPanel>
 
-
-        </Grid>
-        <StackPanel Grid.Row="2" Margin="5,20" >
-            <Button Name="btnAccion" Click="btnAccion_Click" TabIndex="3" Style="{StaticResource MaterialDesignPaperButton}" Foreground="Black"
-                Content="Accion"   />
-        </StackPanel>
     </Grid>
+        
+       
+ 
 </mde:MaterialWindow>

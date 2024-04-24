@@ -339,6 +339,8 @@ namespace DAL
             cmd.Parameters.AddWithValue("@litroscmbhoras", consumo.LitrosCmbHoras);
             cmd.Parameters.AddWithValue("@costocmbkm", consumo.CostoCmbKm);
             cmd.Parameters.AddWithValue("@costocmbhoras", consumo.CostoCmbHoras);
+            cmd.Parameters.AddWithValue("@costounidad", consumo.CostoUnidadConsumo);
+            cmd.Parameters.AddWithValue("@costototalunidad", consumo.TotalCostoUnidadConsumo);
 
 
 
@@ -879,6 +881,8 @@ namespace DAL
             cmd.Parameters.AddWithValue("@idtipovh", _cate.IdTipoVh);
             cmd.Parameters.AddWithValue("@cdp", _cate.CostoDiarioParo);
             cmd.Parameters.AddWithValue("@cdu", _cate.CostoDiarioUso);
+            cmd.Parameters.AddWithValue("@cuc", _cate.CostoUnidadCategoria);
+            cmd.Parameters.AddWithValue("@unidadcate", _cate.UnidadCate);
 
             try
             {
@@ -907,6 +911,8 @@ namespace DAL
             cmd.Parameters.AddWithValue("@idtipovh", categoria.IdTipoVh);
             cmd.Parameters.AddWithValue("@cdp", categoria.CostoDiarioParo);
             cmd.Parameters.AddWithValue("@cdu", categoria.CostoDiarioUso);
+            cmd.Parameters.AddWithValue("@cuc", categoria.CostoUnidadCategoria);
+            cmd.Parameters.AddWithValue("@unidadcate", categoria.UnidadCate);
 
             try
             {
@@ -1568,6 +1574,8 @@ namespace DAL
                     cate.IdTipoVh = (int)reader["idtipovh"];
                     cate.CostoDiarioParo = (decimal)reader["costo_diario_parada"];
                     cate.CostoDiarioParo = (decimal)reader["costo_diario_uso"];
+                    cate.CostoUnidadCategoria = (decimal)reader["costo_unidad_categoria"];
+                    cate.UnidadCate = (string)reader["unidad_cate"];
                     lista.Add(cate);
                 }
                 conexion.CerrarConexion();
@@ -1792,6 +1800,8 @@ namespace DAL
                     categoriaVh.IdTipoVh = (int)lectura["idtipovh"];
                     categoriaVh.CostoDiarioParo = (decimal)lectura["costo_diario_parada"];
                     categoriaVh.CostoDiarioUso = (decimal)lectura["costo_diario_uso"];
+                    categoriaVh.UnidadCate = (string)lectura["unidad_cate"];
+                    categoriaVh.CostoUnidadCategoria = (decimal)lectura["costo_unidad_categoria"];
                     categorias.Add(categoriaVh);
 
                 }

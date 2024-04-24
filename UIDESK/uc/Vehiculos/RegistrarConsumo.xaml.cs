@@ -3,6 +3,7 @@ using ENTIDADES;
 using MaterialDesignExtensions.Controls;
 using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 
@@ -20,6 +21,7 @@ namespace UIDESK.uc.Vehiculos
         Vehiculo vehiculo = new Vehiculo();
         Obra obra = new Obra();
         ObservableCollection<plan_inspeccion> plan_Inspeccions = new ObservableCollection<plan_inspeccion>();
+        CultureInfo ci = new CultureInfo("es-AR");
 
         public RegistrarConsumo()
         {
@@ -55,6 +57,8 @@ namespace UIDESK.uc.Vehiculos
             combustible = bLL.BuscarUnCombustible(vehiculo.IdCombustible);
             //empezamos a setear 
             consumoReg.IdVh = vehiculo.IdVh;
+            string _cuc = txtCostoUnidad.Text;
+            consumoReg.CostoUnidadConsumo = decimal.Parse(_cuc.Replace("$", ""));
             if (_tipoConsumo == "KM")
             {
                 consumoReg.KmRecorrido = Convert.ToDecimal(txtCantidad.Text);
@@ -64,6 +68,8 @@ namespace UIDESK.uc.Vehiculos
                 {
                     consumoReg.LitrosCmbKM = consumoReg.KmRecorrido / vehiculo.KmLitro; //calculamos listros consumidos en funcion de los km
                     consumoReg.CostoCmbKm = consumoReg.LitrosCmbKM * combustible.PrecioLitroActual;// calculamos el costo de los litros consumidos
+                    consumoReg.TotalCostoUnidadConsumo = consumoReg.CostoUnidadConsumo * consumoReg.KmRecorrido; // calculamos el costo de los km registrados
+                    
                 }
                 consumoReg.HorasTrabajo = 0;
             }
@@ -75,7 +81,7 @@ namespace UIDESK.uc.Vehiculos
                 {
                     consumoReg.LitrosCmbHoras = consumoReg.HorasTrabajo * vehiculo.LitroHora; // calculamos litros consumidos en funcion de las horeas 
                     consumoReg.CostoCmbHoras = consumoReg.LitrosCmbHoras * combustible.PrecioLitroActual;// calculamos el costo de los litros consumidos
-
+                    consumoReg.TotalCostoUnidadConsumo = consumoReg.CostoUnidadConsumo * consumoReg.HorasTrabajo; // calculamos el costo de las horas registradas
                 }
                 consumoReg.KmRecorrido = 0;
 
@@ -88,6 +94,7 @@ namespace UIDESK.uc.Vehiculos
             consumoReg.Meskm = consumoReg.FechaConsumo.ToString("MMMM");
             consumoReg.AnioConsumo = consumoReg.FechaConsumo.Year;
             consumoReg.PrecioLitro = combustible.PrecioLitroActual;
+            
 
 
             //registramos el consumo de combustible en la tabla consumocombustibles
@@ -209,6 +216,14 @@ namespace UIDESK.uc.Vehiculos
             {
                 e.Cancel = true;
             }
+        }
+
+        private void txtCantidad_LostFocus(object sender, RoutedEventArgs e)
+        {
+            decimal _totalCostoUnidad = 0;
+            string _costoUnidad = txtCostoUnidad.Text;
+            _totalCostoUnidad = decimal.Parse(_costoUnidad.Replace("$","")) * Convert.ToDecimal(txtCantidad.Text);
+            txtTotalCosto.Text = _totalCostoUnidad.ToString("C",ci);
         }
     }
 }

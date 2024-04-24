@@ -60,10 +60,14 @@ namespace UIDESK.ABM
 
                 string _cdp = txtCDP.Text;
                 string _cdu = txtCDU.Text;
+                string _cuc = txtCostoUnidad.Text;
                 categoriaVh.NomCate = txtNombreCate.Text;
                 categoriaVh.IdTipoVh = tipo.IdTipoVh;
                 categoriaVh.CostoDiarioParo = decimal.Parse(_cdp.Replace("$", ""));
                 categoriaVh.CostoDiarioUso = decimal.Parse(_cdu.Replace("$", ""));
+                categoriaVh.CostoUnidadCategoria = decimal.Parse(_cuc.Replace("$", ""));
+                categoriaVh.UnidadCate = txtUnidadCate.Text;
+
                 bLL.VehiculoAgregarCategoria(categoriaVh);
             }
             else
@@ -88,11 +92,14 @@ namespace UIDESK.ABM
 
                     string _cdp = txtCDP.Text;
                     string _cdu = txtCDU.Text;
+                    string _cuc = txtCostoUnidad.Text;
                     categoriaVh.NomCate = txtNombreCate.Text;
                     categoriaVh.IdCateVh = Convert.ToInt16(txtIdCategoria.Text);
                     categoriaVh.IdTipoVh = tipo.IdTipoVh;
                     categoriaVh.CostoDiarioParo = decimal.Parse(_cdp.Replace("$", ""));
                     categoriaVh.CostoDiarioUso = decimal.Parse(_cdu.Replace("$", ""));
+                    categoriaVh.CostoUnidadCategoria = decimal.Parse(_cuc.Replace("$", ""));
+                    categoriaVh.UnidadCate = txtUnidadCate.Text;
                     bLL.VehiculoModificarCategoria(categoriaVh);
                 }
                 else

@@ -11,12 +11,14 @@ namespace ENTIDADES
         private int _idcatevh,_idtipovh;
         private string _nomcate;
 
-        public int IdCateVh { get { return _idcatevh; } set { _idcatevh = value; } }
-        public string NomCate { get { return _nomcate; } set { _nomcate = value; } }
-        public int IdTipoVh { get { return _idtipovh; } set { _idtipovh = value; } }
+        public int IdCateVh { get; set; }
+        public string NomCate { get; set; }
+        public int IdTipoVh { get; set; }
        
         public decimal CostoDiarioParo { get; set; }
         public decimal CostoDiarioUso { get; set; }
+        public decimal CostoUnidadCategoria { get; set; }
+        public string UnidadCate { get; set; } 
 
         public CategoriaVh()
         { }

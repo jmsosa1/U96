@@ -11,45 +11,60 @@
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" 
         mc:Ignorable="d" MouseLeftButtonDown="Window_MouseLeftButtonDown"
         Title="Registrar Consumo" Height="300" Width="400">
-  
-       
-       
 
-        <Grid x:Name="grdLayout" Grid.Row="1">
+        <Grid x:Name="grdLayout">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-            <TextBox Name="txtDominio"  IsReadOnly="True"
-                 materialDesign:HintAssist.Hint="Dominio" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-            HorizontalAlignment="Left" Margin="10,0,0,0"  Grid.Row="0" Grid.Column="0" Width="100" VerticalAlignment="Center"  TabIndex="1"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5">
+            <TextBox Name="txtDominio"  IsReadOnly="True" materialDesign:HintAssist.Hint="Dominio" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+ HorizontalAlignment="Left" Margin="10,0,0,0" Width="100" VerticalAlignment="Center"  TabIndex="1"/>
             <TextBlock Name="txbModelo" Text="Modelo"
-            HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1"  VerticalAlignment="Bottom" Margin="5,0"/>
+ HorizontalAlignment="Left"   VerticalAlignment="Bottom" Margin="20,0"/>
             <TextBlock Name="txbMarca" Text="Marca" 
-            HorizontalAlignment="Left"  Grid.Row="0" Grid.Column="2"   VerticalAlignment="Bottom" Margin="5,0"/>
+ HorizontalAlignment="Left"     VerticalAlignment="Bottom" Margin="20,0"/>
+        </StackPanel>
+            
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
             <TextBox Name="txtObra" KeyDown="txtObra_KeyDown"  LostFocus="txtObra_LostFocus" Margin="10,0" Width="100"
-                 materialDesign:HintAssist.Hint="Imputacion" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-            HorizontalAlignment="Left"   Grid.Row="1" Grid.Column="0" TextWrapping="Wrap"  VerticalAlignment="Top" TabIndex="2"/>
-            <TextBlock Name="txbNombreObra" Text="Nombre de la obra"
-            HorizontalAlignment="Left"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"   VerticalAlignment="Bottom"/>
-
-            <DatePicker Name="dtpFechaConsumo" Grid.Row="2" Grid.Column="0" Margin="10,0" VerticalAlignment="Bottom"></DatePicker>
+      materialDesign:HintAssist.Hint="Imputacion" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+ HorizontalAlignment="Left"  TextWrapping="Wrap"  VerticalAlignment="Top" TabIndex="2"/>
+            <TextBlock Name="txbNombreObra" Text="Nombre de la obra" Margin="10,0"
+ HorizontalAlignment="Left"     VerticalAlignment="Bottom"/>
+        </StackPanel>
+            
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="5">
+            <DatePicker Name="dtpFechaConsumo" Margin="10,0" Width="100" VerticalAlignment="Bottom" TabIndex="4"></DatePicker>
             <TextBox Name="txtCantidad" Margin="10,0" materialDesign:HintAssist.Hint="Cantidad" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-            HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1"  VerticalAlignment="Center"  Width="120" TabIndex="5" />
+ HorizontalAlignment="Center"   VerticalAlignment="Center" LostFocus="txtCantidad_LostFocus" 
+                     Width="120" TabIndex="5" />
+            <TextBox x:Name="txtUnidad" IsEnabled="False" Width="100" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Unidad"></TextBox>
+            
+        </StackPanel>
+            
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="5">
+            <TextBox x:Name="txtCostoUnidad" IsEnabled="False" Width="100" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+         materialDesign:HintAssist.Hint="Costo x Unidad" Margin="10,0"></TextBox>
+            <TextBox x:Name="txtTotalCosto" IsEnabled="False" Width="150" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+        materialDesign:HintAssist.Hint="Costo Total Ingreso" Margin="10,0" ></TextBox>
+        </StackPanel>
+            
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="5">
+            <Button Name="btnGuardar" Click="btnGuardar_Click" Style="{StaticResource MaterialDesignPaperButton}" Foreground="Black"
+Content="Guardar" TabIndex="6"/>
+        </StackPanel>    
+           
+           
 
-            <StackPanel Grid.Row="3" Grid.ColumnSpan="4" Margin="5,20">
-                <Button Name="btnGuardar" Click="btnGuardar_Click" Style="{StaticResource MaterialDesignPaperButton}" Foreground="Black"
-            Content="Guardar" />
-            </StackPanel>
+           
+
+           
            
             
         </Grid>

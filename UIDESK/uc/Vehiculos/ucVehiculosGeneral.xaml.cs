@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -292,11 +293,15 @@ namespace UIDESK.uc.Vehiculos
             }
             else
             {
+                //buscamos los datos del costo de unidad y la unidad relacionada a la categoria del vehiculo seleccionado
+                CategoriaVh categoria = categoriaVh.FirstOrDefault(x => x.IdCateVh == vehiculo.IdCate);
                 RegistrarConsumo registrarConsumo = new RegistrarConsumo();
                 registrarConsumo.txtDominio.Text = vehiculo.Dominio;
                 registrarConsumo.txbMarca.Text = vehiculo.NomMarca;
                 registrarConsumo.txbModelo.Text = vehiculo.Modelo;
                 //registrarConsumo.txbOperacion.Text = registrarConsumo.txbOperacion.Text + " Horas";
+                registrarConsumo.txtCostoUnidad.Text = categoria.CostoUnidadCategoria.ToString("C", ci);
+                registrarConsumo.txtUnidad.Text = categoria.UnidadCate;
                 registrarConsumo._tipoConsumo = "HS";
                 if (registrarConsumo.ShowDialog() == true)
                 {
@@ -324,12 +329,16 @@ namespace UIDESK.uc.Vehiculos
             }
             else
             {
+                //buscamos los datos del costo de unidad y la unidad relacionada a la categoria del vehiculo seleccionado
+                CategoriaVh categoria = categoriaVh.FirstOrDefault(x => x.IdCateVh == vehiculo.IdCate);
                 RegistrarConsumo registrarConsumo = new RegistrarConsumo();
                 registrarConsumo.txtDominio.Text = vehiculo.Dominio;
                 //registrarConsumo.txbOperacion.Text = registrarConsumo.txbOperacion.Text + " Kilometros";
                 registrarConsumo.txbMarca.Text = vehiculo.NomMarca;
                 registrarConsumo.txbModelo.Text = vehiculo.Modelo;
                 registrarConsumo._tipoConsumo = "KM";
+                registrarConsumo.txtCostoUnidad.Text = categoria.CostoUnidadCategoria.ToString("C",ci);
+                registrarConsumo.txtUnidad.Text = categoria.UnidadCate;
                 if (registrarConsumo.ShowDialog() == true)
                 {
                    // MessageBox.Show("Se registro con exito el consumo", "Aviso", MessageBoxButton.OK);

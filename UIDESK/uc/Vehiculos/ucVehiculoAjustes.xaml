@@ -73,7 +73,9 @@
                                 <DataGridTextColumn Header="Nombre" Binding="{Binding Path=NomCate}"/>
                                 <DataGridTextColumn Header="CDP" Binding="{Binding Path=CostoDiarioParo, StringFormat=C,ConverterCulture=es-Ar}"/>
                                 <DataGridTextColumn Header="CDU" Binding="{Binding Path=CostoDiarioUso, StringFormat=C, ConverterCulture=es-Ar}"/>
-                            </DataGrid.Columns>
+                                <DataGridTextColumn Header="CUC" Binding="{Binding Path=CostoUnidadCategoria, StringFormat=C, ConverterCulture=es-Ar}"/>
+                            <DataGridTextColumn Header="Unidad" Binding="{Binding Path=UnidadCate}"/>
+                        </DataGrid.Columns>
                         </DataGrid>
                     
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Background="LightCyan">

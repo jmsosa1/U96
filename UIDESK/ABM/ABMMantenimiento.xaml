@@ -17,18 +17,12 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
          WindowStartupLocation="CenterScreen" ResizeMode="NoResize" BorderBackgroundBrush="DarkViolet" MouseLeftButtonDown="Window_MouseLeftButtonDown"
         mc:Ignorable="d"  
-        Title="ABM Mantenimiento Vehiculo" Height="700" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-      
-       
-        
-        <materialDesign:DrawerHost Grid.Row="1" Name="dwrBusqueda">
+        Title="ABM Mantenimiento Vehiculo" Height="650" Width="800">
+  
+
+
+
+        <materialDesign:DrawerHost Name="dwrBusqueda">
             <!--panel de la derecha items de OTM cumplidos pero sin registrar-->
             <materialDesign:DrawerHost.RightDrawerContent>
                 <Grid>
@@ -67,7 +61,7 @@
                 </Grid>
 
             </materialDesign:DrawerHost.RightDrawerContent>
-            
+
             <!--panel de abajo ingreso de un item de mantenimiento-->
             <materialDesign:DrawerHost.BottomDrawerContent>
                 <Grid Name="grdItemDetalle">
@@ -97,7 +91,7 @@
                             HorizontalAlignment="Left" AcceptsReturn="True" CharacterCasing="Upper"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                             Text="{Binding Path=DescriMante}" GotFocus="txtDescriMante_GotFocus"></TextBox>
                     </Border>
-                    
+
                     <StackPanel Orientation="Horizontal" Grid.Row="3" CanVerticallyScroll="True">
                         <TextBox Name="txtCantidad"  Width="100" materialDesign:HintAssist.Hint="Cantidad" Margin="5"
                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" GotFocus="txtCantidad_GotFocus"
@@ -156,142 +150,142 @@
                 </Grid>
             </materialDesign:DrawerHost.LeftDrawerContent>
             <!--Grid principal-->
-            
+
             <Grid  Name="grdPrincipal" Margin="5">
                 <materialDesign:Card UniformCornerRadius="6" Margin="5">
                     <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10">
-                        <TextBox Name="txtDominio"  LostFocus="txtDominio_LostFocus" CharacterCasing="Upper" 
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10">
+                            <TextBox Name="txtDominio"  LostFocus="txtDominio_LostFocus" CharacterCasing="Upper" 
                          Text="{Binding Path=Dominio}" Margin="5,0,0,0"
                          materialDesign:HintAssist.Hint="Dominio" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                    Width="100" TabIndex="1"/>
-                        <Border Background="Transparent" 
+                            <Border Background="Transparent" 
                 BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="50"  Width="251" Margin="10,0,0,0">
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Name="txbModelo" Margin="5">Modelo</TextBlock>
-                                <TextBlock Name="txbMarca" Margin="5">Marca</TextBlock>
-                            </StackPanel>
-                        </Border>
-                        <Button Name="btnBuscarProve" Height="25" Width="25" ToolTip="Abrir panel de busqueda de proveedor"
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Name="txbModelo" Margin="5">Modelo</TextBlock>
+                                    <TextBlock Name="txbMarca" Margin="5">Marca</TextBlock>
+                                </StackPanel>
+                            </Border>
+                            <Button Name="btnBuscarProve" Height="25" Width="25" ToolTip="Abrir panel de busqueda de proveedor"
                         Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"  CommandParameter="{x:Static Dock.Left}"
                         Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
                           VerticalAlignment="Center" Margin="20,0,0,0">
-                            <materialDesign:PackIcon Kind="Magnify"></materialDesign:PackIcon>
-                        </Button>
-                        <TextBox Name="txtIdProve" Text="{Binding Path=IdProve}" Margin="20,0,0,0"  
+                                <materialDesign:PackIcon Kind="Magnify"></materialDesign:PackIcon>
+                            </Button>
+                            <TextBox Name="txtIdProve" Text="{Binding Path=IdProve}" Margin="20,0,0,0"  
                          GotFocus="txtIdProve_GotFocus" VerticalAlignment="Center"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="ID" 
                      Width="60" TabIndex="2"/>
-                        <TextBlock Name="txbRazonSocial" Text="Razon Social" Margin="10,0,0,0" VerticalAlignment="Center" Width="245"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="10">
-                        <TextBox Name="txtFactura" Text="{Binding Path=NumFactura}" 
+                            <TextBlock Name="txbRazonSocial" Text="Razon Social" Margin="10,0,0,0" VerticalAlignment="Center" Width="245"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="10">
+                            <TextBox Name="txtFactura" Text="{Binding Path=NumFactura}" 
                          materialDesign:HintAssist.Hint="Factura" GotFocus="txtFactura_GotFocus"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  Margin="5,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Center"  Width="130" TabIndex="3"/>
 
-                        <TextBox Name="txtRemito" Text="{Binding Path=NumRemito}"  
+                            <TextBox Name="txtRemito" Text="{Binding Path=NumRemito}"  
                          materialDesign:HintAssist.Hint="Remito" GotFocus="txtRemito_GotFocus"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                   Margin="10,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Center" Width="127" TabIndex="5"/>
 
-                        <DatePicker Name="dtpFechaFactura"  materialDesign:HintAssist.Hint="F. Factura"   Margin="20,0,0,0" VerticalAlignment="Bottom" Width="120" TabIndex="4"/>
+                            <DatePicker Name="dtpFechaFactura"  materialDesign:HintAssist.Hint="F. Factura"   Margin="20,0,0,0" VerticalAlignment="Bottom" Width="120" TabIndex="4"/>
 
-                        <DatePicker Name="dtpFechaRemito" materialDesign:HintAssist.Hint="F. Remito"  HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Bottom" Width="120" TabIndex="6"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="10">
-                        <TextBox Name="txtOC" Text="{Binding Path=OrdenCompra}" 
+                            <DatePicker Name="dtpFechaRemito" materialDesign:HintAssist.Hint="F. Remito"  HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Bottom" Width="120" TabIndex="6"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="10">
+                            <TextBox Name="txtOC" Text="{Binding Path=OrdenCompra}" 
                          materialDesign:HintAssist.Hint="OC" GotFocus="txtOC_GotFocus"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          Margin="5,0,0,0"   VerticalAlignment="Center" Width="130" TabIndex="7"/>
 
-                        <TextBox Name="txtImporte" Text="{Binding Path=Importe,StringFormat=C2,ConverterCulture=es-AR}"  
+                            <TextBox Name="txtImporte" Text="{Binding Path=Importe,StringFormat=C2,ConverterCulture=es-AR}"  
                          materialDesign:HintAssist.Hint="Importe" GotFocus="txtImporte_GotFocus"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          HorizontalAlignment="Left"  Margin="20,0,0,0"   VerticalAlignment="Center" Width="150" TabIndex="8"/>
 
-                        <TextBox Name="txtKm" Text="{Binding Path=KmMante}" 
+                            <TextBox Name="txtKm" Text="{Binding Path=KmMante}" 
                          materialDesign:HintAssist.Hint="Kilometros" GotFocus="txtKm_GotFocus"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Margin="20,0,0,0"   VerticalAlignment="Center" Width="100" TabIndex="9"/>
 
-                        <TextBox Name="txtHs" Text="{Binding Path=HorasMante}" 
+                            <TextBox Name="txtHs" Text="{Binding Path=HorasMante}" 
                          materialDesign:HintAssist.Hint="Horas" GotFocus="txtHs_GotFocus"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Margin="20,0,0,0"  VerticalAlignment="Center" Width="100" TabIndex="10"/>
 
-                        <ComboBox Name="cmbTipoMante" materialDesign:HintAssist.Hint="Tipo Mantenimieto" 
+                            <ComboBox Name="cmbTipoMante" materialDesign:HintAssist.Hint="Tipo Mantenimieto" 
                       HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Bottom" Width="150" TabIndex="11">
-                            <ComboBox.Items>
-                                <ComboBoxItem>Programado</ComboBoxItem>
-                                <ComboBoxItem>No Programado</ComboBoxItem>
-                            </ComboBox.Items>
-                        </ComboBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="10">
-                        <TextBox Name="txtImputacion" Text="{Binding Path=Imputacion}" GotFocus="txtImputacion_GotFocus"
+                                <ComboBox.Items>
+                                    <ComboBoxItem>Programado</ComboBoxItem>
+                                    <ComboBoxItem>No Programado</ComboBoxItem>
+                                </ComboBox.Items>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="10">
+                            <TextBox Name="txtImputacion" Text="{Binding Path=Imputacion}" GotFocus="txtImputacion_GotFocus"
                          materialDesign:HintAssist.Hint="Imputacion" TabIndex="12" LostFocus="txtImputacion_LostFocus"
                     HorizontalAlignment="Left"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                           Margin="5,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Center" Width="87"/>
-                        <TextBlock Name="txbNombreObra"  Width="250"
+                            <TextBlock Name="txbNombreObra"  Width="250"
                     HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" Text="Nombre de la obra" VerticalAlignment="Center"/>
-                        <TextBlock  Name="txbNombreCliente" 
+                            <TextBlock  Name="txbNombreCliente" 
                     HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Center" Width="200"/>
-                    </StackPanel>
-                    <StackPanel Grid.Row="4" Margin="10">
-                        <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}"
+                        </StackPanel>
+                        <StackPanel Grid.Row="4" Margin="10">
+                            <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}"
                     HorizontalAlignment="Left" Margin="5,0,0,10" Text="Detalle del Mantenimieto" VerticalAlignment="Top" Foreground="#DD111783"/>
 
-                        <DataGrid Name="dgDetalle" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" BorderBrush="Black" BorderThickness="1"
+                            <DataGrid Name="dgDetalle" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" BorderBrush="Black" BorderThickness="1"
                           VerticalScrollBarVisibility="Auto" SelectionMode="Single" HorizontalAlignment="Left"
                            materialDesign:DataGridAssist.CellPadding="4,2,2,2" IsReadOnly="False"
                       materialDesign:DataGridAssist.ColumnHeaderPadding="4,2,2,2"
                     Height="225" Margin="5,0,0,10"  Width="700">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Cat. Mante." Width="100"  Binding="{Binding Path=NomCateMante}"/>
-                                <DataGridTextColumn Header="Descripcion" Width="300" Binding="{Binding Path=DescriMante}"/>
-                                <DataGridTextColumn Header="Cantidad" Width="100" Binding="{Binding Path=Cantidad}"/>
-                                <DataGridTextColumn Header="Importe Item" Width="100" Binding="{Binding Path=CostoItem,StringFormat=C, ConverterCulture=es-AR}"/>
-                                <DataGridTextColumn Header="OTM" Width="100" Binding="{Binding Otm}"/>
-                                <DataGridTextColumn Header="Item OTM" Width="100" Binding="{Binding ItemOtm}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="10">
-                        <materialDesign:Badged Badge="0"   Name="bdgCItemMante"
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Cat. Mante." Width="100"  Binding="{Binding Path=NomCateMante}"/>
+                                    <DataGridTextColumn Header="Descripcion" Width="300" Binding="{Binding Path=DescriMante}"/>
+                                    <DataGridTextColumn Header="Cantidad" Width="100" Binding="{Binding Path=Cantidad}"/>
+                                    <DataGridTextColumn Header="Importe Item" Width="100" Binding="{Binding Path=CostoItem,StringFormat=C, ConverterCulture=es-AR}"/>
+                                    <DataGridTextColumn Header="OTM" Width="100" Binding="{Binding Otm}"/>
+                                    <DataGridTextColumn Header="Item OTM" Width="100" Binding="{Binding ItemOtm}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="10">
+                            <materialDesign:Badged Badge="0"   Name="bdgCItemMante"
                     Margin="5,0,0,0" >
-                            <Button Padding="0" Width="70"  Name="btnMantePlanificado" Style="{StaticResource MaterialDesignPaperButton}"
+                                <Button Padding="0" Width="70"  Name="btnMantePlanificado" Style="{StaticResource MaterialDesignPaperButton}"
                           Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"   CommandParameter="{x:Static Dock.Right}" >
-                                <materialDesign:PackIcon Kind="Wrench" Foreground="Black"/>
-                            </Button>
-                        </materialDesign:Badged>
-                        <Button Name="btnAgregarItem" Width="70" ToolTip="Agregar un item al detalle" Style="{StaticResource MaterialDesignPaperButton}" TabIndex="13" Margin="10,0,0,0"
+                                    <materialDesign:PackIcon Kind="Wrench" Foreground="Black"/>
+                                </Button>
+                            </materialDesign:Badged>
+                            <Button Name="btnAgregarItem" Width="70" ToolTip="Agregar un item al detalle" Style="{StaticResource MaterialDesignPaperButton}" TabIndex="13" Margin="10,0,0,0"
                         Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"  CommandParameter="{x:Static Dock.Bottom}">
-                            <materialDesign:PackIcon Kind="PlusOne" Foreground="Black"/>
-                        </Button>
-                        <Button  Name="btnQuitarItem" Width="70" ToolTip="Quitar item seleccionado" Click="btnQuitarItem_Click"  Style="{StaticResource MaterialDesignPaperButton}" Margin="10,0,0,0"
+                                <materialDesign:PackIcon Kind="PlusOne" Foreground="Black"/>
+                            </Button>
+                            <Button  Name="btnQuitarItem" Width="70" ToolTip="Quitar item seleccionado" Click="btnQuitarItem_Click"  Style="{StaticResource MaterialDesignPaperButton}" Margin="10,0,0,0"
                           TabIndex="14">
-                            <materialDesign:PackIcon Kind="MinusCircle" Foreground="Black"/>
-                        </Button>
-
+                                <materialDesign:PackIcon Kind="MinusCircle" Foreground="Black"/>
+                            </Button>
+                        <Button Name="btnGuardar"  Click="btnGuardar_Click" TabIndex="15" Style="{StaticResource MaterialDesignPaperDarkButton}" Margin="390,0,0,0"
+                                                Content="Guardar" />
                     </StackPanel>
-                </Grid>
+                        <StackPanel Grid.Row="6" HorizontalAlignment="Right" Margin="10">
+                            
+                        </StackPanel>
+                    </Grid>
                 </materialDesign:Card>
             </Grid>
         </materialDesign:DrawerHost>
-        <StackPanel Grid.Row="2"  Margin="5" >
-          
-            <Button Name="btnGuardar"  Click="btnGuardar_Click" TabIndex="15" Style="{StaticResource MaterialDesignPaperDarkButton}" 
-                    Content="Guardar"  />
-        </StackPanel>
-    </Grid>
+
+    
 </mde:MaterialWindow>
