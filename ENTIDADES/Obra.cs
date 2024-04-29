@@ -39,7 +39,7 @@ namespace ENTIDADES
         public string Provincia { get; set; }
        
         public string CateObra { get; set; }
-
+        public int IdFinnegans {  get; set; }
         public Obra()
         { }
     }

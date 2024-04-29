@@ -12,21 +12,23 @@ namespace UIDESK.uc.Vehiculos
     /// <summary>
     /// Lógica de interacción para ConsumoHs.xaml
     /// </summary>
-    public partial class RegistrarConsumo : MaterialWindow 
+    public partial class RegistrarConsumo : MaterialWindow
     {
         public string _tipoConsumo; // contiene la seleccion del tipo de consumo que se esta registrando
         ConsumoCombustible consumoReg = new ConsumoCombustible();
         BLLVehiculos bLL = new BLLVehiculos();
         BLLObras bllObras = new BLLObras();
+        BLLBase BLLBase = new BLLBase();
         Vehiculo vehiculo = new Vehiculo();
         Obra obra = new Obra();
         ObservableCollection<plan_inspeccion> plan_Inspeccions = new ObservableCollection<plan_inspeccion>();
         CultureInfo ci = new CultureInfo("es-AR");
-
+        decimal _cotizacionDolar = 0;
         public RegistrarConsumo()
         {
             InitializeComponent();
-
+            _cotizacionDolar = BLLBase.UltimaCotizacionDolar();
+            txtCotDolar.Text = _cotizacionDolar.ToString("C");
 
         }
 
@@ -59,6 +61,7 @@ namespace UIDESK.uc.Vehiculos
             consumoReg.IdVh = vehiculo.IdVh;
             string _cuc = txtCostoUnidad.Text;
             consumoReg.CostoUnidadConsumo = decimal.Parse(_cuc.Replace("$", ""));
+            consumoReg.CotDolar = _cotizacionDolar;
             if (_tipoConsumo == "KM")
             {
                 consumoReg.KmRecorrido = Convert.ToDecimal(txtCantidad.Text);

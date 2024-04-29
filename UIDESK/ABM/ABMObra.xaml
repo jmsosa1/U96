@@ -17,16 +17,11 @@
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" BorderBackgroundBrush="Green"
         mc:Ignorable="d" 
         Title="ABM Obra" Height="360" Width="800">
-    <!--Closing="MaterialWindow_Closing"-->
-    <Grid>
-        <Grid.RowDefinitions>
-          
-            <RowDefinition Height="*"/>
-            
-        </Grid.RowDefinitions>
+ 
+       
         
         
-        <materialDesign:Card UniformCornerRadius="6" Margin="5" Grid.Row="1">
+        <materialDesign:Card UniformCornerRadius="6" Margin="5" >
             <Grid x:Name="grdDatos" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -39,14 +34,20 @@
 
 
                 <!--Fila 0-->
-                <TextBox Name="txtImputacion" Grid.Row="0" Margin="5,0,0,0"
-                materialDesign:HintAssist.Hint="Imputacion" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 Width="75"  HorizontalAlignment="Left"
-                    LostFocus="TxtImputacion_LostFocus" />
-                <TextBox Name="txtNombre" CharacterCasing="Upper" Grid.Row="0" 
-                materialDesign:HintAssist.Hint="Nombre " Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                 Width="380" Margin="10,0,0,0"/>
-                <!--Fila 1-->
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBox Name="txtImputacion"  Margin="5,0,0,0"
+                        materialDesign:HintAssist.Hint="Imputacion" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Width="100"  HorizontalAlignment="Left"
+                            LostFocus="TxtImputacion_LostFocus" />
+                <TextBox Name="txtNombre" CharacterCasing="Upper" 
+                        materialDesign:HintAssist.Hint="Nombre " Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         Width="400" Margin="10,0,0,0"/>
+                <TextBox Name="txtTransaccionId" CharacterCasing="Upper" 
+                        materialDesign:HintAssist.Hint="Id Finnegans " Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                        Width="120" Margin="10,0,0,0"/>     
+            </StackPanel>
+              
+            <!--Fila 1-->
                 <TextBox Name="txtCliente" CharacterCasing="Upper" Grid.Row="1" HorizontalAlignment="Left" Margin="5,0,0,0"
                 materialDesign:HintAssist.Hint="Cliente" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                  Width="281"/>
@@ -118,5 +119,5 @@
 
        
        
-    </Grid>
+ 
 </mde:MaterialWindow>

@@ -19,6 +19,7 @@ namespace BLL
 
        
         DALBase dalBase = new DALBase(); 
+        DALConexion conexion = new DALConexion();
         #endregion
 
         public int CalcularDiasAsignacionVehiculo(DateTime _fechadiahoy)
@@ -193,6 +194,35 @@ namespace BLL
         public void RecalcularGapVencimientosDias(DateTime date)
         {
             dalBase.RecalcularGapVencimientosDias(date);
+        }
+        #endregion
+
+        #region Monedas
+
+        public decimal UltimaCotizacionDolar()
+        {
+            decimal _cotDolar = 0;
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "UltimaCotDolar";
+            cmd.Connection = conexion.AbriConexion();
+            //ejecutamos el comando
+            try
+            {
+                conexion.AbriConexion();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    _cotDolar = (decimal)reader["valor"];
+                }
+                conexion.CerrarConexion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return _cotDolar;
         }
         #endregion
         public BLLBase() //constructor de clase

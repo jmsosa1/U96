@@ -10,7 +10,7 @@
       
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" 
         mc:Ignorable="d" MouseLeftButtonDown="Window_MouseLeftButtonDown"
-        Title="Registrar Consumo" Height="300" Width="400">
+        Title="Registrar Consumo" Height="300" Width="450">
 
         <Grid x:Name="grdLayout">
             <Grid.RowDefinitions>
@@ -53,6 +53,7 @@
          materialDesign:HintAssist.Hint="Costo x Unidad" Margin="10,0"></TextBox>
             <TextBox x:Name="txtTotalCosto" IsEnabled="False" Width="150" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
         materialDesign:HintAssist.Hint="Costo Total Ingreso" Margin="10,0" ></TextBox>
+            <TextBox x:Name="txtCotDolar" IsEnabled="False" Width="100" Margin="5,0,0,0"/>
         </StackPanel>
             
         <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="5">

@@ -26,6 +26,7 @@ namespace ENTIDADES
         public decimal PrecioLitro { get; set; }
         public decimal CostoUnidadConsumo { get; set; }
         public decimal TotalCostoUnidadConsumo { get; set; }
+        public decimal CotDolar { get; set; } // agregado nuevo cotizacion del dolar , sale de la tabla variacion moneda
 
         public ConsumoCombustible()
         { }
