@@ -54,7 +54,7 @@
             </Button>
             <Separator Width="1" Background="DeepSkyBlue"/>
             <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Imputacion"
-                    Name="txtImputacion" ></TextBox>
+                    Name="txtImputacion" Width="100"></TextBox>
             <Button x:Name="btnFiltroImputacion" Click="btnFiltroImputacion_Click" Padding="2"
                     ToolTip="Filtrar Imputacion" Margin="5,0,0,0">
                 <materialDesign:PackIcon Kind="Filter1"/>
@@ -62,9 +62,9 @@
             <Separator Width="1" Background="DeepSkyBlue"></Separator>
             <TextBlock Text="Fechas" VerticalAlignment="Center"/>
             <DatePicker Width="100" materialDesign:HintAssist.Hint="Desde" Margin="10,0,0,0"
-                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Name="dtpDesde" />
             <DatePicker Width="100" materialDesign:HintAssist.Hint="Hasta" Margin="10,0,0,0"
-                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Name="dtpHasta" />
             <Separator Width="1" Background="DeepSkyBlue"/>
             <Button Name="btnReImprimir" Padding="2" Click="btnReImprimir_Click">
                 <materialDesign:PackIcon Kind="Printer"/>

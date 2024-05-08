@@ -61,9 +61,9 @@ namespace BLL
             return documentos;
         }
 
-        public ObservableCollection<Documento> ListarDocObras()
+        public ObservableCollection<Documento> ListarDocObras(DateTime fdesde, DateTime fhasta)
         {
-            ObservableCollection<Documento> lista = dAL.ListarDocObras();
+            ObservableCollection<Documento> lista = dAL.ListarDocObras(fdesde,fhasta);
 
             return lista;
         }

@@ -21,6 +21,8 @@ namespace UIDESK.uc.Obras
         BLLEmpleados coreEmpleado = new BLLEmpleados();
         BLLProducto coreProducto = new BLLProducto();
         ObservableCollection<Documento> lista_doc = new ObservableCollection<Documento>();
+        DateTime _fechaDesde = DateTime.Now.AddDays(-30); 
+        DateTime _fechaHasta = DateTime.Now;
         public ICollectionView vistaRemitos
         {
             get { return CollectionViewSource.GetDefaultView(lista_doc); }
@@ -36,9 +38,11 @@ namespace UIDESK.uc.Obras
         public ucRemitosObras()
         {
             InitializeComponent();
-            lista_doc = coreRemito.ListarDocObras();
+            lista_doc = coreRemito.ListarDocObras(_fechaDesde,_fechaHasta);
             dgPrincipal.ItemsSource = lista_doc;
             dgPrincipal.DataContext = lista_doc;
+           dtpDesde.SelectedDate = _fechaDesde;
+            dtpHasta.SelectedDate = _fechaHasta;
 
         }
 
@@ -67,7 +71,14 @@ namespace UIDESK.uc.Obras
             // devuelve un solo objeto que corresponde al numero de remito indicado en el cuadro de busqueda
             Documento p = obj as Documento;
             int _iddocu = Convert.ToInt32(txtBuscar.Text);
-            return p.IdDocumento == _iddocu;
+            if (_iddocu == 0)
+            { return false; }
+            else
+            {
+
+
+                return p.IdDocumento == _iddocu;
+            }
         }
 
         private bool filtroImputacion(object obj)
@@ -153,7 +164,7 @@ namespace UIDESK.uc.Obras
 
         private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
         {
-            
+            RefrescarLista();
             _tipodocu = 1;
             if (string.IsNullOrEmpty(txtImputacion.Text))
             {
@@ -165,7 +176,7 @@ namespace UIDESK.uc.Obras
 
         private void ListBoxItem_Selected_1(object sender, RoutedEventArgs e)
         {
-           
+            RefrescarLista();
             _tipodocu = 4;
             if (string.IsNullOrEmpty(txtImputacion.Text))
             {
@@ -176,7 +187,7 @@ namespace UIDESK.uc.Obras
 
         private void ListBoxItem_Selected_2(object sender, RoutedEventArgs e)
         {
-           
+            RefrescarLista();
             _tipodocu = 14;
             if (string.IsNullOrEmpty(txtImputacion.Text))
             {
@@ -231,6 +242,25 @@ namespace UIDESK.uc.Obras
             }
         }
 
+        private void RefrescarLista()
+        {
+            // antes de aplicar el filtro, referescamos la lista con los valores de los datepicker
+            _fechaDesde = dtpDesde.SelectedDate.Value;
+            _fechaHasta = dtpHasta.SelectedDate.Value;
+            //chekeamos que las fechas tengan sentido
+            if (_fechaDesde > _fechaHasta)
+            {
+                MessageBox.Show("La fecha desde no puede ser mayor al valor de la fecha hasta", "Aviso", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            else
+            {
+                lista_doc = coreRemito.ListarDocObras(_fechaDesde, _fechaHasta);
+                dgPrincipal.ItemsSource = lista_doc;
+                dgPrincipal.DataContext = lista_doc;
+
+            }
+        }
         
     }
 }

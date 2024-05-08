@@ -1,5 +1,6 @@
 ﻿using BLL;
 using ENTIDADES;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +23,8 @@ namespace UIDESK.uc.Obras
         ObservableCollection<DocumentoDetalle> lista_det_dso = new ObservableCollection<DocumentoDetalle>();
         public int _cantRemitos = 0;
         public int _filtroId = 0; // parametros que se recibe y sirve para determinar si se aplica filtro por id de documento
+        DateTime _fechaDesde = DateTime.Now.AddDays(-30);
+        DateTime _fechaHasta = DateTime.Now;
         #endregion
 
 
@@ -29,7 +32,7 @@ namespace UIDESK.uc.Obras
         public ucRemitosDSO(int _iddocu)
         {
             InitializeComponent();
-            lista_doc = coreRemito.ListarDocObras();
+            lista_doc = coreRemito.ListarDocObras(_fechaDesde,_fechaHasta);
             _filtroId = _iddocu;
             ArmarLista(_filtroId);
 

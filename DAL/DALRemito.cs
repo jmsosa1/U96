@@ -145,14 +145,15 @@ namespace DAL
 
         #region RemitosObras
 
-        public ObservableCollection<Documento> ListarDocObras()
+        public ObservableCollection<Documento> ListarDocObras(DateTime fdesde, DateTime fhasta)
         {
             ObservableCollection<Documento> lista_dip = new ObservableCollection<Documento>();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conexion.AbriConexion();
             cmd.CommandText = "Documentos_Mov_Obras";
             cmd.CommandType = CommandType.StoredProcedure;
-
+            cmd.Parameters.AddWithValue("@fechadesde", fdesde);
+            cmd.Parameters.AddWithValue("@fechahasta",fhasta);
 
             try
             {
