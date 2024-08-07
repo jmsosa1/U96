@@ -176,6 +176,8 @@
                         <DataGridTextColumn Header="Categoria" Binding="{Binding Path=Categoria}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Segmento" Binding="{Binding Path=Segmento}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Situacion" Binding="{Binding Path=Situacion}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Alta" Binding="{ Binding Path=AltaF ,StringFormat=d, ConverterCulture=es-Ar}"/>
+                        <DataGridTextColumn Header="Baja" Binding="{Binding Path=BajaF, StringFormat=d, ConverterCulture=es-Ar}"/>
                         <DataGridTextColumn Header="Stock Disponible(1)" Binding="{Binding Path=StkDisponible}"/>
 
 
@@ -215,22 +217,22 @@
                         </StatusBarItem>
                         <StatusBarItem Grid.Column="1">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Data Info:" VerticalAlignment="Center"/>
+                                <TextBlock Text="Registros:" VerticalAlignment="Center"/>
                                 <TextBox Name="txtRegistros" IsReadOnly="True" Margin="3" Width="100"/>
                             </StackPanel>
                         </StatusBarItem>
                         <Separator Grid.Column="2"/>
                         <StatusBarItem Grid.Column="3">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Data Info" VerticalAlignment="Center"/>
-                                <TextBox Name="txtTotalKmAcu" IsReadOnly="True" Margin="3" Width="100"/>
+                                <TextBlock Text="Activos:" VerticalAlignment="Center"/>
+                                <TextBox Name="txtActivos" IsReadOnly="True" Margin="3" Width="100"/>
                             </StackPanel>
                         </StatusBarItem>
                         <Separator Grid.Column="4"/>
                         <StatusBarItem Grid.Column="5">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Data Info" VerticalAlignment="Center"/>
-                                <TextBox Name="txtTotalHsAcu" IsReadOnly="True" Margin="3" Width="100"/>
+                                <TextBlock Text="Bajas" VerticalAlignment="Center"/>
+                                <TextBox Name="txtBajas" IsReadOnly="True" Margin="3" Width="100"/>
                             </StackPanel>
                         </StatusBarItem>
                     </StatusBar>

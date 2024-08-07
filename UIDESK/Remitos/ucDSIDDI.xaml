@@ -38,8 +38,8 @@
             </Button>
             <Separator></Separator>
             <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" Name="txtImputacion"
-                     materialDesign:HintAssist.Hint="Buscar Obra"></TextBox>
-            <Button x:Name="btnBuscarObra" Margin="5,0,0,0" Click="btnBuscarObra_Click" Padding="2">
+                     materialDesign:HintAssist.Hint="Imputacion Obra" Width="110"></TextBox>
+            <Button x:Name="btnBuscarObra" Margin="5,0,0,0" Click="btnBuscarObra_Click" Padding="2" ToolTip="Buscar ">
                 <materialDesign:PackIcon Kind="FileFind"/>
             </Button>
         </ToolBar>

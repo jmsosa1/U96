@@ -13,8 +13,8 @@ namespace UIDESK
         public PrincipalEmpleados()
         {
             InitializeComponent();
-            ucDetEmpleadoTransitioner uc = new ucDetEmpleadoTransitioner();
-            ctc.Content = uc;
+           // ucDetEmpleadoTransitioner uc = new ucDetEmpleadoTransitioner();
+            //ctc.Content = uc;
         }
 
         private void btnMinizar_Click(object sender, RoutedEventArgs e)

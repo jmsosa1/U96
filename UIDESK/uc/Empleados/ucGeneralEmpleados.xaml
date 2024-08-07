@@ -55,19 +55,19 @@
 
                 <TextBox Name="txtBuscar" Width="200" Padding="2" CharacterCasing="Upper"
                          materialDesign:HintAssist.Hint="Buscar Empleado..."></TextBox>
-                <Button Name="btnBuscar" Padding="2" Click="BtnBuscar_Click">
+                <Button Name="btnBuscar" Padding="2" Click="BtnBuscar_Click" ToolTip="Buscar">
                     <materialDesign:PackIcon Kind="Magnify"/>
                 </Button>
                 <Separator Width="2" Background="OrangeRed"></Separator>
-                <Button Name="btnAgregar" Padding="2" Click="BtnAgregar_Click">
+                <Button Name="btnAgregar" Padding="2" Click="BtnAgregar_Click" ToolTip="Agregar Empleado">
                     <materialDesign:PackIcon Kind="AccountPlus"/>
                 </Button>
 
-                <Button Name="btnModicarDatos" Padding="2" Click="BtnModicarDatos_Click">
+                <Button Name="btnModicarDatos" Padding="2" Click="BtnModicarDatos_Click" ToolTip="Modificar Empleado">
                     <materialDesign:PackIcon Kind="AccountEdit"/>
                 </Button>
 
-                <Button Name="btnBaja" Padding="2" Click="BtnBaja_Click">
+                <Button Name="btnBaja" Padding="2" Click="BtnBaja_Click" ToolTip="Baja Empleado">
                     <materialDesign:PackIcon Kind="AccountMinus"/>
                 </Button>
                 <Separator Width="2" Background="OrangeRed"></Separator>

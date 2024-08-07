@@ -1,8 +1,10 @@
 ﻿using BLL;
 using ENTIDADES;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -35,13 +37,25 @@ namespace UIDESK.uc.Productos
             InitializeComponent();
             lista_productos = coreproducto.ListarTodos();
 
-            dgProductos.ItemsSource = lista_productos;
-            dgProductos.DataContext = lista_productos;
-
+            dgProductos.ItemsSource = lista_productos.Where(x => x.EstadoItem == 1 && x.AltaF > DateTime.Now.AddDays(-120)).ToList();
+            dgProductos.DataContext = lista_productos.Where(x => x.EstadoItem == 1 && x.AltaF > DateTime.Now.AddDays(-120)).ToList();
+          
+            //CalcularRegistrosVista(lista_productos);
 
             // vistaProductos.Filter = new System.Predicate<object>(filtroTipo);
             // vistaProductos.Filter = new Predicate<object>(filtroCategoria);
         }
+
+        private void CalcularRegistrosVista(List<Producto> lista_productos)
+        {
+            txtRegistros.Text = lista_productos.Count.ToString();
+            var _activos = lista_productos.Where(x => x.EstadoItem == 1).ToList();
+            var _bajas = lista_productos.Where(x => x.EstadoItem == 5).ToList();
+            txtBajas.Text = _bajas.Count.ToString();
+            txtActivos.Text = _activos.Count.ToString();
+        }
+
+
 
         #region FiltrosVistas
 
@@ -181,17 +195,25 @@ namespace UIDESK.uc.Productos
         {
             //este bloque de codigo nos permite realizar las busquedas por numeros o por caracteres
             //evaluando el texto ingresado usando TryParse y su parametro de salida
-            int temp;
-            if (int.TryParse(txtBuscar.Text, out temp)) // si es numeros
-            {
+            //int temp;
+            //if (int.TryParse(txtBuscar.Text, out temp)) // si es numeros
+            //{
 
 
-                vistaProductos.Filter = filtroCodigoProducto;
-            }
-            else
-            {
-                vistaProductos.Filter = filtroNombre; // si es caracter
-            }
+            //    vistaProductos.Filter = filtroCodigoProducto;
+            //}
+            //else
+            //{
+            //    vistaProductos.Filter = filtroNombre; // si es caracter
+            //}
+            
+            vistaProductos.Filter = filtroNombre;
+            
+            dgProductos.ItemsSource = lista_productos; 
+            dgProductos.DataContext = lista_productos;
+             List<Producto> productos = new List<Producto>();
+            productos = dgProductos.Items.Cast<Producto>().ToList();
+            CalcularRegistrosVista(productos);
         }
 
         //selectores de categoria de productos
