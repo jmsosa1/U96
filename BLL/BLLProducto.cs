@@ -40,6 +40,13 @@ namespace BLL
 
             return productos;
         }
+
+        public ObservableCollection<Producto> ListarTodosActivos()
+        {
+            ObservableCollection<Producto> productos = dAL.ListarTodosActivos();
+
+            return productos;
+        }
         public Producto BuscarDatosUno(int _idproducto)
         {
             Producto producto = dAL.BuscarDatosUno(_idproducto);

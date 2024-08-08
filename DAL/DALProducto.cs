@@ -137,6 +137,68 @@ namespace DAL
             return productos;
         }
 
+        public ObservableCollection<Producto> ListarTodosActivos()
+        {
+            ObservableCollection<Producto> productos = new ObservableCollection<Producto>();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn.AbriConexion();
+            cmd.CommandTimeout = 50;
+            cmd.CommandText = "Sahm_Usuario.Productos_Activos";
+            cmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                conn.AbriConexion();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Producto producto = new Producto();
+                    producto.IdProducto = (int)reader["idproducto"];
+                    producto.Nombre = (string)reader["nombre"];
+                    producto.CodInventario = (string)reader["cod_inventario"];
+                    producto.EstadoItem = (int)reader["idestado"];
+                    producto.AltaF = (DateTime)reader["altaf"];
+              
+                    producto.Modelo = (string)reader["modelo"];
+                   
+                    producto.NumSerie = (string)reader["numserie"];
+                  
+                    producto.Marca = (string)reader["nombre_marca"];
+                    producto.Tipo = (string)reader["nomtipo"];
+                    producto.Categoria = (string)reader["nomcate_p"];
+                    producto.Segmento = (string)reader["nombre_seg"];
+                    producto.Situacion = (string)reader["nomsf"];
+                    producto.StkDisponible = (decimal)reader["stkdisponible"];
+                    producto.CondicionStk = (int)reader["condicion_stk"];
+                    if (producto.CondicionStk == 1)
+                    {
+                        producto.TipoSituacionStk = "En Uso";
+                    }
+                    else
+                    {
+                        if (producto.CondicionStk == 2)
+                        {
+                            producto.TipoSituacionStk = "Discontinuado";
+                        }
+                        else
+                        {
+                            producto.TipoSituacionStk = "Obsoleto";
+                        }
+                    }
+
+                    productos.Add(producto);
+
+                }
+
+                conn.CerrarConexion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return productos;
+        }
+
         public ObservableCollection<Producto> ListarTodosBajas()
         {
             ObservableCollection<Producto> productos = new ObservableCollection<Producto>();

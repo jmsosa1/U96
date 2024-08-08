@@ -4,8 +4,10 @@ using MaterialDesignExtensions.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using UIDESK.imprimir;
 
@@ -22,10 +24,16 @@ namespace UIDESK.Remitos
         BLLRemito coreRemito = new BLLRemito();
         BLLObras coreObra = new BLLObras();
         List<Proveedor> proveedors = new List<Proveedor>();
+        ObservableCollection<Proveedor> proveedores_draw = new ObservableCollection<Proveedor>();
         ObservableCollection<Proveedor> transportes = new ObservableCollection<Proveedor>();
         Producto pro_rma = new Producto();
-
+        public ICollectionView vistaProveedores
+        {
+            get { return CollectionViewSource.GetDefaultView(proveedores_draw); }
+        }
         #endregion
+
+
 
         public RMA(Producto producto)
         {
@@ -34,6 +42,9 @@ namespace UIDESK.Remitos
             DataContext = pro_rma;
             transportes = bLLProveedor.ProveedorPorRubro(9); // proveedores de transportes
             cmbTransporte.ItemsSource = transportes;
+            proveedores_draw = bLLProveedor.ProveedorTodos();
+            lstResultadoBusquedaProve.ItemsSource = proveedores_draw;
+
         }
 
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
@@ -86,9 +97,11 @@ namespace UIDESK.Remitos
 
         private void BtnBuscarProveedor_Click(object sender, RoutedEventArgs e)
         {
-            proveedors = bLLProveedor.ProveedorCombobox(txtBuscarProve.Text);
+            //proveedors = bLLProveedor.ProveedorCombobox(txtBuscarProve.Text);
 
-            lstResultadoBusquedaProve.ItemsSource = proveedors;
+            //lstResultadoBusquedaProve.ItemsSource = proveedors;
+
+            vistaProveedores.Filter = filtroProveNombre;
         }
 
         private void btnSeleccionarProveedor_Click(object sender, RoutedEventArgs e)
@@ -217,5 +230,15 @@ namespace UIDESK.Remitos
             if (!char.IsDigit(e.Text, e.Text.Length - 1))
                 e.Handled = true;
         }
+
+        #region Filtros
+
+        private bool filtroProveNombre(object obj)
+        {
+            Proveedor proveedor = obj as Proveedor;
+            string _texto = txtBuscarProve.Text;
+            return proveedor.Nombre.Contains(txtBuscarProve.Text);
+        }
+        #endregion
     }
 }

@@ -35,15 +35,18 @@ namespace UIDESK.uc.Productos
         public ucProductosGeneral()
         {
             InitializeComponent();
-            lista_productos = coreproducto.ListarTodos();
+            lista_productos = coreproducto.ListarTodosActivos();
+            //vistaProductos.Filter = filtroActivos;
+            //dgProductos.ItemsSource = lista_productos;
+            //dgProductos.DataContext = lista_productos;
+            //txtRegistros.Text = lista_productos.Count.ToString();
+            //var _activos = lista_productos.Where(x => x.EstadoItem == 1).ToList();
+            //var _bajas = lista_productos.Where(x => x.EstadoItem == 5).ToList();
+            //txtBajas.Text = _bajas.Count.ToString();
+            //txtActivos.Text = _activos.Count.ToString();
 
-            dgProductos.ItemsSource = lista_productos.Where(x => x.EstadoItem == 1 && x.AltaF > DateTime.Now.AddDays(-120)).ToList();
-            dgProductos.DataContext = lista_productos.Where(x => x.EstadoItem == 1 && x.AltaF > DateTime.Now.AddDays(-120)).ToList();
-          
-            //CalcularRegistrosVista(lista_productos);
 
-            // vistaProductos.Filter = new System.Predicate<object>(filtroTipo);
-            // vistaProductos.Filter = new Predicate<object>(filtroCategoria);
+
         }
 
         private void CalcularRegistrosVista(List<Producto> lista_productos)
@@ -71,6 +74,11 @@ namespace UIDESK.uc.Productos
             return p.IdCateP == 0;
         }*/
 
+        private bool filtroActivos (object obj)
+        {
+            Producto producto = obj as Producto;
+            return producto.EstadoItem == 1;
+        }
         private bool filtroTipo(object obj)
         {
 
@@ -88,7 +96,7 @@ namespace UIDESK.uc.Productos
 
             return p.Nombre.Contains(_texto) || p.Modelo.Contains(_texto)
                 || p.CodInventario.Contains(_texto)
-                || p.Descripcion.Contains(_texto) || p.NumSerie.Contains(_texto);
+                || p.NumSerie.Contains(_texto);
         }
 
         private bool filtroCodigoProducto(object obj)
@@ -206,7 +214,7 @@ namespace UIDESK.uc.Productos
             //{
             //    vistaProductos.Filter = filtroNombre; // si es caracter
             //}
-            
+           
             vistaProductos.Filter = filtroNombre;
             
             dgProductos.ItemsSource = lista_productos; 
@@ -404,6 +412,11 @@ namespace UIDESK.uc.Productos
                     dgProductos.ItemsSource = lista_productos;
                     dgProductos.DataContext = lista_productos;
                 }
+            }
+            else
+            {
+                MessageBox.Show("Debe eligir un producto", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
             }
         }
 
